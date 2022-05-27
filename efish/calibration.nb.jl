@@ -36,20 +36,19 @@ Zbylé body byly proloženy polynomem druhého stupně, čímž byla získána
 následující závislost.
 """
 
+# ╔═╡ a744f342-31a6-4d70-bcd6-d2f8b8285f7b
+# TODO: Prepocitat U na E. Jaka byla vzdalenost elektrod?
+
 # ╔═╡ 90751086-2f45-4bb7-84c7-1d1b87f9b241
 latexstring("🐟 = $(round(β[1], digits=3))E^2 + $(round(β[2], digits=3))E + $(round(β[3], digits=3))")
 
 # ╔═╡ c82f6174-9f76-4aed-8fb2-10731c0a3628
-begin
-	scatter(Ud, Ecalib, markersize = 8, legend = :topleft, label = "naměřená data")
+with(legend = :topleft) do
+	scatter(Ud, Ecalib, label = "naměřená data", markersize = 8)
 	plot!(calib, color = 1, label = "modelová funkce")
+	xlabel!("U [V]")
+	ylabel!("I [a.u.]")
 end
-
-# ╔═╡ 8f7bc25a-b74a-4e94-94a7-6e7bf0b312cf
-
-
-# ╔═╡ e8038603-b4cf-458b-80f0-54d7669ff86a
-
 
 # ╔═╡ de27fa5d-0633-4444-bb2e-a7614a50cc99
 # Nelinearni model
@@ -981,11 +980,10 @@ version = "0.9.1+5"
 # ╠═7c82f757-53fc-4d94-b975-2669f9afe453
 # ╠═9a92b306-a103-4485-99e0-e6612e55fad8
 # ╟─2a850e6a-68ee-48bd-83b6-e233f99a14c6
+# ╠═a744f342-31a6-4d70-bcd6-d2f8b8285f7b
 # ╠═55cfde6d-ff4c-4e84-9570-85905899b046
 # ╠═90751086-2f45-4bb7-84c7-1d1b87f9b241
 # ╠═c82f6174-9f76-4aed-8fb2-10731c0a3628
-# ╠═8f7bc25a-b74a-4e94-94a7-6e7bf0b312cf
-# ╠═e8038603-b4cf-458b-80f0-54d7669ff86a
 # ╠═de27fa5d-0633-4444-bb2e-a7614a50cc99
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
