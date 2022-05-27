@@ -1,7 +1,17 @@
-% soubor_powermeter - zesileni laseru - soubor_osciloskop
-% 571777_01.txt .. amp 1 ... energie01.bin
-1   1   1
-2   2	2
+# Zavislost na energii
+#
+# Sloupce:
+# 1. power: cislo datoveho souboru s vykonem
+#    Cely nazev souboru je `571777_xx.txt`.
+# 2. amp: zesileni laseru
+# 3. oscilo: cislo datoveho souboru z osciloskopu
+#    Nazev souboru je `energiexx.bin`.
+#
+# Zakomentovane radky jsou spatne zmereny.
+
+power	amp	oscilo
+1	1	1
+2	2	2
 3	3	3
 4	4	4
 5	5	5
@@ -9,7 +19,7 @@
 7	10	7
 8	14	8
 9	17	9
-%10	20	10
+#10	20	10
 11	25	11
 12	21	12
 13	18	13
