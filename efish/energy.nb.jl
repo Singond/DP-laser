@@ -19,6 +19,9 @@ using ImportKeysightBin
 # ╔═╡ 71cd8f8e-3ec3-4d05-a0d7-ac1311565c59
 using LaTeXStrings
 
+# ╔═╡ fe01283a-c8f3-4e20-a540-746a708c4576
+using NumericalIntegration
+
 # ╔═╡ f63d5a9c-b85c-4d79-8afc-f974cd63820a
 using Plots
 
@@ -75,12 +78,40 @@ with(legend = :none) do
 	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
 
+# ╔═╡ 70472573-f8e8-4230-8c77-42087b4f84e8
+md"""
+## Integrál
+"""
+
+# ╔═╡ 97a59953-1e19-48b6-a4c6-4029eddbb236
+efish_int = [-integrate(x.efish...)[1] for x in X]
+
+# ╔═╡ 73865f03-0c02-40d8-a593-6287ab03daec
+with(legend = :none) do
+	plot(Epulse*1e3, efish_int*1e8; markershape = :circle, markersize = 4)
+	xlabel!(L"E_\mathrm{laser}\ [\mathrm{mJ}]")
+	ylabel!(L"I\ [\mathrm{a.u.}]")
+end
+
+# ╔═╡ 635fb8b5-16ac-406b-bc99-977fb1a7519e
+md"""
+## Porovnání obou přístupů
+"""
+
+# ╔═╡ 575a0f43-c517-4f60-aee9-446bab36ac5d
+with(legend = :none, markeralpha = 0.5) do
+	plot(efish_peak, efish_int*1e8, markershape = :circle)
+	xlabel!(L"\max(E)")
+	ylabel!(L"\int(E)\mathrm{d}t")
+end
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 ImportKeysightBin = "76a68121-5bb9-42aa-bb53-85bca5455360"
 LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
+NumericalIntegration = "e7bfaba1-d571-5449-8927-abc22e82249b"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
@@ -88,6 +119,7 @@ Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 [compat]
 ImportKeysightBin = "~0.1.2"
 LaTeXStrings = "~1.3.0"
+NumericalIntegration = "~0.3.3"
 Plots = "~1.29.0"
 """
 
@@ -109,6 +141,12 @@ uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
 
 [[deps.Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+
+[[deps.AxisAlgorithms]]
+deps = ["LinearAlgebra", "Random", "SparseArrays", "WoodburyMatrices"]
+git-tree-sha1 = "66771c8d21c8ff5e3a93379480a2307ac36863f7"
+uuid = "13072b0f-2c55-5437-9ae7-d433b7a33950"
+version = "1.0.1"
 
 [[deps.Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -200,6 +238,10 @@ uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 [[deps.DelimitedFiles]]
 deps = ["Mmap"]
 uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+
+[[deps.Distributed]]
+deps = ["Random", "Serialization", "Sockets"]
+uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[deps.DocStringExtensions]]
 deps = ["LibGit2"]
@@ -337,6 +379,12 @@ version = "0.5.1"
 [[deps.InteractiveUtils]]
 deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
+
+[[deps.Interpolations]]
+deps = ["AxisAlgorithms", "ChainRulesCore", "LinearAlgebra", "OffsetArrays", "Random", "Ratios", "Requires", "SharedArrays", "SparseArrays", "StaticArrays", "WoodburyMatrices"]
+git-tree-sha1 = "b7bc05649af456efc75d178846f47006c2c4c3c7"
+uuid = "a98d9a8b-a2ab-59e6-89dd-64a1c18fca59"
+version = "0.13.6"
 
 [[deps.InverseFunctions]]
 deps = ["Test"]
@@ -531,6 +579,18 @@ version = "1.0.0"
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
 
+[[deps.NumericalIntegration]]
+deps = ["Interpolations", "LinearAlgebra", "Logging"]
+git-tree-sha1 = "2a4ef5fc235053f9747d59cfdee19bcb8ba1e833"
+uuid = "e7bfaba1-d571-5449-8927-abc22e82249b"
+version = "0.3.3"
+
+[[deps.OffsetArrays]]
+deps = ["Adapt"]
+git-tree-sha1 = "9cf6b82f7f337c01eac9995be43d11483dee5d7b"
+uuid = "6fe1bfb0-de20-5000-8ca7-80f57d26f881"
+version = "1.12.0"
+
 [[deps.Ogg_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
 git-tree-sha1 = "887579a3eb005446d514ab7aeac5d1d027658b8f"
@@ -632,6 +692,12 @@ uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 deps = ["SHA", "Serialization"]
 uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
+[[deps.Ratios]]
+deps = ["Requires"]
+git-tree-sha1 = "dc84268fe0e3335a62e315a3a7cf2afa7178a734"
+uuid = "c84ed2f1-dad5-54f0-aa8e-dbefe2724439"
+version = "0.4.3"
+
 [[deps.RecipesBase]]
 git-tree-sha1 = "6bf3f380ff52ce0832ddd3a2a7b9538ed1bcca7d"
 uuid = "3cdcf5f2-1ef4-517c-9805-6587b60abb01"
@@ -671,6 +737,10 @@ version = "1.1.0"
 
 [[deps.Serialization]]
 uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
+
+[[deps.SharedArrays]]
+deps = ["Distributed", "Mmap", "Random", "Serialization"]
+uuid = "1a1011a3-84de-559e-8e89-a11a2f7dc383"
 
 [[deps.Showoff]]
 deps = ["Dates", "Grisu"]
@@ -789,6 +859,12 @@ deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
 git-tree-sha1 = "4528479aa01ee1b3b4cd0e6faef0e04cf16466da"
 uuid = "2381bf8a-dfd0-557d-9999-79630e7b1b91"
 version = "1.25.0+0"
+
+[[deps.WoodburyMatrices]]
+deps = ["LinearAlgebra", "SparseArrays"]
+git-tree-sha1 = "de67fa59e33ad156a590055375a30b23c40299d3"
+uuid = "efce3f68-66dc-5838-9240-27a6d6f5f9b6"
+version = "0.5.5"
 
 [[deps.XML2_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Libiconv_jll", "Pkg", "Zlib_jll"]
@@ -1000,6 +1076,7 @@ version = "0.9.1+5"
 # ╠═302dbc64-9741-4245-a74e-14e098fc9303
 # ╠═c9dd0a27-6a36-4002-9999-8921a053f734
 # ╠═71cd8f8e-3ec3-4d05-a0d7-ac1311565c59
+# ╠═fe01283a-c8f3-4e20-a540-746a708c4576
 # ╠═f63d5a9c-b85c-4d79-8afc-f974cd63820a
 # ╠═3c6e7861-8a34-44ad-9af4-fd33e0355293
 # ╠═cbedfbb1-35d2-43b7-8003-350a0204a38e
@@ -1007,5 +1084,10 @@ version = "0.9.1+5"
 # ╠═0a2d69cb-e8e5-4f9d-acbc-4440a5f63f50
 # ╠═b245859c-7519-4825-ba16-d654ed3fce24
 # ╠═865fe7b5-a04e-46c0-b634-304ebfd17e89
+# ╠═70472573-f8e8-4230-8c77-42087b4f84e8
+# ╠═97a59953-1e19-48b6-a4c6-4029eddbb236
+# ╠═73865f03-0c02-40d8-a593-6287ab03daec
+# ╠═635fb8b5-16ac-406b-bc99-977fb1a7519e
+# ╠═575a0f43-c517-4f60-aee9-446bab36ac5d
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
