@@ -7,11 +7,17 @@ using InteractiveUtils
 # ╔═╡ 5bb34397-77e9-4745-a51a-64b5a06e2038
 using Printf
 
+# ╔═╡ 3d04f097-34fb-4e91-b5ea-dfcbae91dcc5
+using Statistics
+
 # ╔═╡ 302dbc64-9741-4245-a74e-14e098fc9303
 using DelimitedFiles
 
 # ╔═╡ c9dd0a27-6a36-4002-9999-8921a053f734
 using ImportKeysightBin
+
+# ╔═╡ 71cd8f8e-3ec3-4d05-a0d7-ac1311565c59
+using LaTeXStrings
 
 # ╔═╡ f63d5a9c-b85c-4d79-8afc-f974cd63820a
 using Plots
@@ -29,9 +35,12 @@ begin
 
 	X = NamedTuple[]
 	for (power, amp, oscilo) in eachrow(index)
-		file = @sprintf("data/oscilo/energie_napeti/energie%02d.bin", oscilo)
-		U, efish, I, fd, meta = importkeysightbin(file)
-		push!(X, (; U, efish, I, fd))
+		powfile = @sprintf("data/powermeter/571777_%02d.txt", power)
+		powdata = readdlm(powfile, skipstart = 36)
+		Epulse = mean(powdata[:,2])  # Pulse energy
+		oscfile = @sprintf("data/oscilo/energie_napeti/energie%02d.bin", oscilo)
+		U, efish, I, fd, meta = importkeysightbin(oscfile)
+		push!(X, (; U, efish, I, fd, Epulse))
 	end
 end
 
@@ -42,9 +51,28 @@ with(legend = :bottomright) do
 	ylabel!("efish [a.u.]")
 	xlims!((48.5, 51))
 	for x in X
-		plot!(x.efish[1].*1e9, x.efish[2])
+		plot!(x.efish[1].*1e9, x.efish[2],
+			label = @sprintf("%.2f mJ", x.Epulse*1e3))
 	end
 	current()
+end
+
+# ╔═╡ 415ee871-bd26-4e11-bf73-422800b04f47
+md"""
+## Maximální hodnota
+"""
+
+# ╔═╡ 0a2d69cb-e8e5-4f9d-acbc-4440a5f63f50
+Epulse = [x.Epulse for x in X]
+
+# ╔═╡ b245859c-7519-4825-ba16-d654ed3fce24
+efish_peak = [-minimum(x.efish[2]) for x in X]
+
+# ╔═╡ 865fe7b5-a04e-46c0-b634-304ebfd17e89
+with(legend = :none) do
+	plot(Epulse*1e3, efish_peak; markershape = :circle, markersize = 4)
+	xlabel!(L"E_\mathrm{laser}\ [\mathrm{mJ}]")
+	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -52,11 +80,14 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 ImportKeysightBin = "76a68121-5bb9-42aa-bb53-85bca5455360"
+LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
 ImportKeysightBin = "~0.1.2"
+LaTeXStrings = "~1.3.0"
 Plots = "~1.29.0"
 """
 
@@ -965,10 +996,16 @@ version = "0.9.1+5"
 # ╔═╡ Cell order:
 # ╠═16167ec8-0a91-4a41-ac66-45349cf2df65
 # ╠═5bb34397-77e9-4745-a51a-64b5a06e2038
+# ╠═3d04f097-34fb-4e91-b5ea-dfcbae91dcc5
 # ╠═302dbc64-9741-4245-a74e-14e098fc9303
 # ╠═c9dd0a27-6a36-4002-9999-8921a053f734
+# ╠═71cd8f8e-3ec3-4d05-a0d7-ac1311565c59
 # ╠═f63d5a9c-b85c-4d79-8afc-f974cd63820a
 # ╠═3c6e7861-8a34-44ad-9af4-fd33e0355293
 # ╠═cbedfbb1-35d2-43b7-8003-350a0204a38e
+# ╠═415ee871-bd26-4e11-bf73-422800b04f47
+# ╠═0a2d69cb-e8e5-4f9d-acbc-4440a5f63f50
+# ╠═b245859c-7519-4825-ba16-d654ed3fce24
+# ╠═865fe7b5-a04e-46c0-b634-304ebfd17e89
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
