@@ -78,6 +78,19 @@ with(legend = :none) do
 	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
 
+# ╔═╡ 6465f45d-a08f-4444-9fd4-441c4acf6921
+with(legend = :bottomright) do
+	plot()
+	xlabel!("t [ns]")
+	ylabel!("efish [a.u.]")
+	xlims!((48.5, 51))
+	for (x, pk) in zip(X, efish_peak)
+		plot!(x.efish[1].*1e9, x.efish[2]./pk,
+			label = @sprintf("%.2f mJ", x.Epulse*1e3))
+	end
+	current()
+end
+
 # ╔═╡ 70472573-f8e8-4230-8c77-42087b4f84e8
 md"""
 ## Integrál
@@ -1084,6 +1097,7 @@ version = "0.9.1+5"
 # ╠═0a2d69cb-e8e5-4f9d-acbc-4440a5f63f50
 # ╠═b245859c-7519-4825-ba16-d654ed3fce24
 # ╠═865fe7b5-a04e-46c0-b634-304ebfd17e89
+# ╠═6465f45d-a08f-4444-9fd4-441c4acf6921
 # ╠═70472573-f8e8-4230-8c77-42087b4f84e8
 # ╠═97a59953-1e19-48b6-a4c6-4029eddbb236
 # ╠═73865f03-0c02-40d8-a593-6287ab03daec
