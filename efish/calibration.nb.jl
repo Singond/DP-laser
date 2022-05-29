@@ -17,12 +17,14 @@ include("calib.jl")
 md"""
 # Kalibrace
 Účelem této části bylo změřit závislost intenzity signálu EFISH na známé
-intenzitě elektrického pole E v reaktoru.
+intenzitě elektrického pole $E$ v reaktoru.
 Elektrické pole bylo realizováno přiložením známého napětí na elektrody
 v reaktoru před zapálením výboje. Elektrické pole je v tom případě považováno
 za homogenní a určeno podle vztahu
 
 $$E = \frac{U}{d}$$
+
+Intenzita odezvy byla naměřena pro několik hodnot napětí $U$ a získaná zívislost aproximována vhodnou modelovou funkcí.
 """
 
 # ╔═╡ 9a92b306-a103-4485-99e0-e6612e55fad8
@@ -40,7 +42,7 @@ následující závislost.
 # TODO: Prepocitat U na E. Jaka byla vzdalenost elektrod?
 
 # ╔═╡ 90751086-2f45-4bb7-84c7-1d1b87f9b241
-latexstring("🐟 = $(round(β[1], digits=3))E^2 + $(round(β[2], digits=3))E + $(round(β[3], digits=3))")
+latexstring("🐟 = $(round(β[1], digits=3))U^2 + $(round(β[2], digits=3))U + $(round(β[3], digits=3))")
 
 # ╔═╡ c82f6174-9f76-4aed-8fb2-10731c0a3628
 with(legend = :topleft) do
@@ -982,7 +984,7 @@ version = "0.9.1+5"
 # ╟─2a850e6a-68ee-48bd-83b6-e233f99a14c6
 # ╠═a744f342-31a6-4d70-bcd6-d2f8b8285f7b
 # ╠═55cfde6d-ff4c-4e84-9570-85905899b046
-# ╠═90751086-2f45-4bb7-84c7-1d1b87f9b241
+# ╟─90751086-2f45-4bb7-84c7-1d1b87f9b241
 # ╠═c82f6174-9f76-4aed-8fb2-10731c0a3628
 # ╠═de27fa5d-0633-4444-bb2e-a7614a50cc99
 # ╟─00000000-0000-0000-0000-000000000001
