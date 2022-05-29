@@ -112,9 +112,9 @@ Epulse = [x.Epulse for x in X]
 # ╔═╡ b245859c-7519-4825-ba16-d654ed3fce24
 efish_peak = [x.efish_peak for x in X]
 
-# ╔═╡ 865fe7b5-a04e-46c0-b634-304ebfd17e89
+# ╔═╡ 6a82cf94-1707-468b-8c85-c101ec82b138
 with(legend = :none) do
-	plot(Epulse*1e3, efish_peak; markershape = :circle, markersize = 4)
+	plot(Epulse*1e3, efish_peak; markershape = :circle)
 	xlabel!(L"E_\mathrm{laser}\ [\mathrm{mJ}]")
 	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
@@ -131,7 +131,7 @@ snad k lepšímu.
 # ╔═╡ 97a59953-1e19-48b6-a4c6-4029eddbb236
 efish_int = [-integrate(x.efish...)[1] for x in X]
 
-# ╔═╡ 73865f03-0c02-40d8-a593-6287ab03daec
+# ╔═╡ 35266884-6576-4517-a495-97bfc77401f1
 with(legend = :none) do
 	plot(Epulse*1e3, efish_int*1e8; markershape = :circle, markersize = 4)
 	xlabel!(L"E_\mathrm{laser}\ [\mathrm{mJ}]")
@@ -144,9 +144,9 @@ md"""
 Níže je vykreslena vzájemná závislost maxima signálu a jeho integrálu.
 """
 
-# ╔═╡ 575a0f43-c517-4f60-aee9-446bab36ac5d
+# ╔═╡ bfb0a570-4aa4-461f-a47c-e7d10840799a
 with(legend = :none, markeralpha = 0.5) do
-	plot(efish_peak, efish_int*1e8, markershape = :circle)
+	plot(efish_peak, efish_int*1e8, markershape = :circle, markeralpha = 0.5)
 	xlabel!(L"\max(E)")
 	ylabel!(L"\int(E)\mathrm{d}t")
 end
@@ -1132,11 +1132,11 @@ version = "0.9.1+5"
 # ╟─415ee871-bd26-4e11-bf73-422800b04f47
 # ╠═0a2d69cb-e8e5-4f9d-acbc-4440a5f63f50
 # ╠═b245859c-7519-4825-ba16-d654ed3fce24
-# ╠═865fe7b5-a04e-46c0-b634-304ebfd17e89
-# ╟─70472573-f8e8-4230-8c77-42087b4f84e8
+# ╠═6a82cf94-1707-468b-8c85-c101ec82b138
+# ╠═70472573-f8e8-4230-8c77-42087b4f84e8
 # ╠═97a59953-1e19-48b6-a4c6-4029eddbb236
-# ╠═73865f03-0c02-40d8-a593-6287ab03daec
-# ╟─635fb8b5-16ac-406b-bc99-977fb1a7519e
-# ╠═575a0f43-c517-4f60-aee9-446bab36ac5d
+# ╠═35266884-6576-4517-a495-97bfc77401f1
+# ╠═635fb8b5-16ac-406b-bc99-977fb1a7519e
+# ╠═bfb0a570-4aa4-461f-a47c-e7d10840799a
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
