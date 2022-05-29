@@ -27,8 +27,11 @@ using Plots
 
 # ╔═╡ 16167ec8-0a91-4a41-ac66-45349cf2df65
 md"""
-# Závislost tvaru odezvy na energii
-Je nutno určit, zdali je tvar odezvy EFISH závislý na energii laseru.
+# Tvar odezvy
+Před dalším měřením je nutno zjistit, zdali je tvar odezvy EFISH výrazně závislý
+na energii laserového pulzu.
+Výboj nehoří, mezi elektrodami je napětí $U = 2\,\mathrm{V}$.
+Energie laseru je postupně měněna od cca 1 do 6 mJ.
 """
 
 # ╔═╡ 3c6e7861-8a34-44ad-9af4-fd33e0355293
@@ -43,7 +46,8 @@ begin
 		Epulse = mean(powdata[:,2])  # Pulse energy
 		oscfile = @sprintf("data/oscilo/energie_napeti/energie%02d.bin", oscilo)
 		U, efish, I, fd, meta = importkeysightbin(oscfile)
-		push!(X, (; U, efish, I, fd, Epulse))
+		efish_peak = -minimum(efish[2])  # Extremum of efish signal (absolute value)
+		push!(X, (; U, efish, efish_peak, I, fd, Epulse))
 	end
 end
 
@@ -53,6 +57,7 @@ with(legend = :bottomright) do
 	xlabel!("t [ns]")
 	ylabel!("efish [a.u.]")
 	xlims!((48.5, 51))
+	title!("Naměřená odezva EFISH pro různé energie pulzu")
 	for x in X
 		plot!(x.efish[1].*1e9, x.efish[2],
 			label = @sprintf("%.2f mJ", x.Epulse*1e3))
@@ -60,16 +65,52 @@ with(legend = :bottomright) do
 	current()
 end
 
+# ╔═╡ b2f01251-e63a-469f-9b8a-d1c48728876b
+md"""
+## Normalizovaná odezva
+Pro snazší porovnání tvaru byla každá odezva dělena svou maximální hodnotou.
+Zdá se, že průběh hlavního pulzu odpovídá, nesedí ale střední hodnoty
+normalizovaného signálu.
+
+**Udělat**:
+Zkusit před normalizací odečíst pozadí, snad si průběhy na sebe sednou lépe.
+"""
+
+# ╔═╡ 6465f45d-a08f-4444-9fd4-441c4acf6921
+with(legend = :bottomright) do
+	plot()
+	xlabel!("t [ns]")
+	ylabel!("efish [a.u.]")
+	xlims!((48.5, 51))
+	title!("Normalizovaná odezva EFISH")
+	for x in X
+		plot!(x.efish[1].*1e9, x.efish[2]./x.efish_peak,
+			label = @sprintf("%.2f mJ", x.Epulse*1e3))
+	end
+	current()
+end
+
+# ╔═╡ b575c692-13fe-49d7-b515-c37aa6d8f34f
+md"""
+# Intenzita odezvy
+Dále je nutno najít vhodný parametr pro popis intenzity odezvy EFISH.
+Nabízí se její integrál, ale v úvahu připadá také prostý extrém signálu.
+Pro vyhodnocení byla použita data uvedená výše.
+"""
+
 # ╔═╡ 415ee871-bd26-4e11-bf73-422800b04f47
 md"""
 ## Maximální hodnota
+Níže jsou vynesena maxima signálu EFISH proti energii pulzu z výše uvedeného měření.
+Spodní větev odpovídá zvyšování energie, prudký skok značí zapálení výboje.
+Horní větev je opačný proces: snižování energie a následné zhasnutí výboje.
 """
 
 # ╔═╡ 0a2d69cb-e8e5-4f9d-acbc-4440a5f63f50
 Epulse = [x.Epulse for x in X]
 
 # ╔═╡ b245859c-7519-4825-ba16-d654ed3fce24
-efish_peak = [-minimum(x.efish[2]) for x in X]
+efish_peak = [x.efish_peak for x in X]
 
 # ╔═╡ 865fe7b5-a04e-46c0-b634-304ebfd17e89
 with(legend = :none) do
@@ -78,22 +119,13 @@ with(legend = :none) do
 	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
 
-# ╔═╡ 6465f45d-a08f-4444-9fd4-441c4acf6921
-with(legend = :bottomright) do
-	plot()
-	xlabel!("t [ns]")
-	ylabel!("efish [a.u.]")
-	xlims!((48.5, 51))
-	for (x, pk) in zip(X, efish_peak)
-		plot!(x.efish[1].*1e9, x.efish[2]./pk,
-			label = @sprintf("%.2f mJ", x.Epulse*1e3))
-	end
-	current()
-end
-
 # ╔═╡ 70472573-f8e8-4230-8c77-42087b4f84e8
 md"""
 ## Integrál
+Podobný graf pro integrál celého signálu je níže.
+
+Omezit integrační interval na oblast kolem pulzu by mohlo výsledky trochu změnit,
+snad k lepšímu.
 """
 
 # ╔═╡ 97a59953-1e19-48b6-a4c6-4029eddbb236
@@ -108,7 +140,8 @@ end
 
 # ╔═╡ 635fb8b5-16ac-406b-bc99-977fb1a7519e
 md"""
-## Porovnání obou přístupů
+## Korelace obou parametrů
+Níže je vykreslena vzájemná závislost maxima signálu a jeho integrálu.
 """
 
 # ╔═╡ 575a0f43-c517-4f60-aee9-446bab36ac5d
@@ -1083,7 +1116,7 @@ version = "0.9.1+5"
 """
 
 # ╔═╡ Cell order:
-# ╠═16167ec8-0a91-4a41-ac66-45349cf2df65
+# ╟─16167ec8-0a91-4a41-ac66-45349cf2df65
 # ╠═5bb34397-77e9-4745-a51a-64b5a06e2038
 # ╠═3d04f097-34fb-4e91-b5ea-dfcbae91dcc5
 # ╠═302dbc64-9741-4245-a74e-14e098fc9303
@@ -1093,15 +1126,17 @@ version = "0.9.1+5"
 # ╠═f63d5a9c-b85c-4d79-8afc-f974cd63820a
 # ╠═3c6e7861-8a34-44ad-9af4-fd33e0355293
 # ╠═cbedfbb1-35d2-43b7-8003-350a0204a38e
-# ╠═415ee871-bd26-4e11-bf73-422800b04f47
+# ╟─b2f01251-e63a-469f-9b8a-d1c48728876b
+# ╠═6465f45d-a08f-4444-9fd4-441c4acf6921
+# ╟─b575c692-13fe-49d7-b515-c37aa6d8f34f
+# ╟─415ee871-bd26-4e11-bf73-422800b04f47
 # ╠═0a2d69cb-e8e5-4f9d-acbc-4440a5f63f50
 # ╠═b245859c-7519-4825-ba16-d654ed3fce24
 # ╠═865fe7b5-a04e-46c0-b634-304ebfd17e89
-# ╠═6465f45d-a08f-4444-9fd4-441c4acf6921
-# ╠═70472573-f8e8-4230-8c77-42087b4f84e8
+# ╟─70472573-f8e8-4230-8c77-42087b4f84e8
 # ╠═97a59953-1e19-48b6-a4c6-4029eddbb236
 # ╠═73865f03-0c02-40d8-a593-6287ab03daec
-# ╠═635fb8b5-16ac-406b-bc99-977fb1a7519e
+# ╟─635fb8b5-16ac-406b-bc99-977fb1a7519e
 # ╠═575a0f43-c517-4f60-aee9-446bab36ac5d
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
