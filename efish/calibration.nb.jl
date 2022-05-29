@@ -19,8 +19,8 @@ md"""
 Účelem této části bylo změřit závislost intenzity signálu EFISH na známé
 intenzitě elektrického pole $E$ v reaktoru.
 Elektrické pole bylo realizováno přiložením známého napětí na elektrody
-v reaktoru před zapálením výboje. Elektrické pole je v tom případě považováno
-za homogenní a určeno podle vztahu
+v reaktoru před zapálením výboje. Elektrické pole je v tom případě považováno
+za homogenní a určeno podle vztahu
 
 $$E = \frac{U}{d}$$
 
