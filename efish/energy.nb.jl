@@ -115,6 +115,7 @@ efish_peak = [x.efish_peak for x in X]
 # ╔═╡ 6a82cf94-1707-468b-8c85-c101ec82b138
 with(legend = :none) do
 	plot(Epulse*1e3, efish_peak; markershape = :circle)
+	title!("Intenzita EFISH podle maximální hodnoty")
 	xlabel!(L"E_\mathrm{laser}\ [\mathrm{mJ}]")
 	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
@@ -123,9 +124,12 @@ end
 md"""
 ## Integrál
 Podobný graf pro integrál celého signálu je níže.
+Průběh odpovídá extrémům jen vzdáleně.
 
-Omezit integrační interval na oblast kolem pulzu by mohlo výsledky trochu změnit,
-snad k lepšímu.
+Je ovšem nutno upozornit, že integrál byl pro jednoduchost počítán
+z celých datových sad.
+Omezit integrační interval na oblast kolem pulzu by mohlo výsledky
+trochu změnit, snad k lepšímu.
 """
 
 # ╔═╡ 97a59953-1e19-48b6-a4c6-4029eddbb236
@@ -134,6 +138,7 @@ efish_int = [-integrate(x.efish...)[1] for x in X]
 # ╔═╡ 35266884-6576-4517-a495-97bfc77401f1
 with(legend = :none) do
 	plot(Epulse*1e3, efish_int*1e8; markershape = :circle, markersize = 4)
+	title!("Intenzita EFISH podle integrálu")
 	xlabel!(L"E_\mathrm{laser}\ [\mathrm{mJ}]")
 	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
@@ -147,6 +152,7 @@ Níže je vykreslena vzájemná závislost maxima signálu a jeho integrálu.
 # ╔═╡ bfb0a570-4aa4-461f-a47c-e7d10840799a
 with(legend = :none, markeralpha = 0.5) do
 	plot(efish_peak, efish_int*1e8, markershape = :circle, markeralpha = 0.5)
+	title!("Porovnání maxima a integrálu EFISH")
 	xlabel!(L"\max(E)")
 	ylabel!(L"\int(E)\mathrm{d}t")
 end
