@@ -3,11 +3,11 @@ using Printf
 using DelimitedFiles
 using ImportKeysightBin
 
-index = readdlm("data/napeti_info.txt", skipstart = 1)
+index = readdlm("data-22-01-24/napeti_info.txt", skipstart = 1)
 
 X = NamedTuple[]
 for row in eachrow(index)
-	file = @sprintf("data/oscilo/energie_napeti/napeti%02d.bin", row[2])
+	file = @sprintf("data-22-01-24/oscilo/energie_napeti/napeti%02d.bin", row[2])
 	U, efish, I, fd, meta = importkeysightbin(file)
 	push!(X, (;Ud = row[1], U, efish, I, fd))
 end

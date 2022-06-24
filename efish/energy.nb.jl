@@ -36,15 +36,15 @@ Energie laseru je postupně měněna od cca 1 do 6 mJ.
 
 # ╔═╡ 3c6e7861-8a34-44ad-9af4-fd33e0355293
 begin
-	index = readdlm("data/energie_info.txt", skipstart = 12)
+	index = readdlm("data-22-01-24/energie_info.txt", skipstart = 12)
 	index = index[isa.(index[:,1], Number),:]  # Remove commented-out lines
 
 	X = NamedTuple[]
 	for (power, amp, oscilo) in eachrow(index)
-		powfile = @sprintf("data/powermeter/571777_%02d.txt", power)
+		powfile = @sprintf("data-22-01-24/powermeter/571777_%02d.txt", power)
 		powdata = readdlm(powfile, skipstart = 36)
 		Epulse = mean(powdata[:,2])  # Pulse energy
-		oscfile = @sprintf("data/oscilo/energie_napeti/energie%02d.bin", oscilo)
+		oscfile = @sprintf("data-22-01-24/oscilo/energie_napeti/energie%02d.bin", oscilo)
 		U, efish, I, fd, meta = importkeysightbin(oscfile)
 		efish_peak = -minimum(efish[2])  # Extremum of efish signal (absolute value)
 		push!(X, (; U, efish, efish_peak, I, fd, Epulse))
