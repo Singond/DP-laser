@@ -1,0 +1,64 @@
+Aparatura na efish - leden&unor 2022
+
+Luccino dusikove DBD
+cca 1.2*1.2 mm kulatočtvercové elektrody napatlané na podložních mikroskopových sklíčkách
+mezi nimi gap 1 mm
+válcový reaktor, protékaný 3.5 slm čistého dusíku
+
+funkční generátor Keysight 33210A: 
+frekvence 11 kHz, perioda 90.909 us, amplituda cca 2.71 V (peak to peak) (menilo se v ruznych dnech), 
+burst period 2 ms, 10 cycles on + 10 cycles off 
+sync jde do zpožďovače laseru, output jde do zesilovače
+
+zdroj Won ODP6062:
+slouží jen jako 12 V napájení pro audio zesilovač
+
+SONY Xplod XM-N502:
+napájený 12 V (pravé zdířky: 0 -> GND, 12V -> +12V&REM spojené)
+do INPUT L jde signál z generátoru funkcí
+SPEAKER OUT L posíláme do +/- cívky
+
+Zdeňkova cívka z Favorita:
+vysokonapěťový výstup jde na vršek reaktoru
+chladíme vodou - obyčejná kohoutková voda v kádince
+
+sonda Tektronix 6015A:
+měří napětí mezi vrškem reaktoru a zemí cívky
+
+proudová sonda CT2:
+na drátku mezi spodkem reaktoru a nulou cívky
+
+fotodioda Thorlabs DET10A/M:
+kouká na vstupní okno do reaktoru
+
+Fotonásobič Photek PMT210:
+použit zde poprvé :)
+napájen -3900 kV
+
+Osciloskop Keysight DSO-S204A Infinium S-series:
+ch1 - voltage (1 MOhm)
+ch2 - fotodioda
+ch3 - proud
+ch4 - fotonásobič
+
+Delay generator BNC 575:
+chB: width 8 us, delay měníme cca mezi 1 a 2 ms, output TTL/CMOS, polarity active high, 
+duty cycle 1 pls on + 9 pls off (tj. z původních 500 Hz děláme 50 Hz)
+
+Optická dráha:
+laser Ekspla :) 
+dvě zrcátka na zvednutí paprsku o cca 5 cm výš
+spojka f=50 cm - zapomněla jsem na ni dát longpass filtr a vůbec to nevadilo
+reaktor (Brewsterova okénka)
+dichroic mirror 
+	1) 1064 nm jde do powermeteru (nejsilnější do 150 mJ)
+	2) 532 nm: dál
+spojka f=50 cm
+dichroic mirror
+disperzní hranol (fakt disperzní, s úhlem 60°, odrazné fakt nefungujou :-) )
+irisová clona - ta veliká
+filtr 532 nm - Thorlabs FL532-10 - přímo na fotonásobiči
+fotonásobič - chycený do nového univerzálního držáku na 3D posuvu
+
+
+

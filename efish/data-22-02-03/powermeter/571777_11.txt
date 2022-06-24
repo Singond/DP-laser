@@ -1,0 +1,43 @@
+;PC Software:StarLab Version 3.62 Build 1
+! ******* Warning: Do not modify this file. Changes may prevent   ********
+! ******* the StarLab Log reader from opening the file correctly. ********
+;Logged:03/02/2022 at 13:15:58
+;File Version:5
+;Time Resolution:1 microseconds
+;Log Settings:Sample:of period: 00:00:30
+;Graph Mode:Merge
+;Graph Type:Line
+;Notes:                                                            
+
+;Channel A:Vega Pyroelectric PE50BF-DIF (s/n:571777)  VG2.54 (s/n:547613)
+
+;Channel A:Details
+;Name:PE50BF-DIF
+;Graph Color:RGB(14,104,168)
+;Units:J
+;Settings:Measuring:Energy
+;Settings:Wavelength:1064
+;Settings:Range:40.0mJ
+;Settings:Diffuser:N/A
+;Settings:Pulse Width:1.0mS
+;Settings:Threshold:N/A
+
+;Channel A:Statistics
+;Min:4.040mJ             
+;Max:4.080mJ             
+;Average:4.060mJ             
+;Std.Dev.:11.55uJ             
+;Overrange:0                   
+;Total Pulses:7                   
+;--------------------
+
+
+;First Pulse Arrived : 03/02/2022 at 13:15:59
+  Timestamp   	  Channel A  	
+         0.000	  4.080e-03 	
+        30.001	  4.060e-03 	
+        60.001	  4.060e-03 	
+        90.021	  4.040e-03 	
+       120.002	  4.060e-03 	
+       150.002	  4.060e-03 	
+       180.000	  4.060e-03 	
