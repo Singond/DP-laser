@@ -44,6 +44,9 @@ end
 function x = process_lifetime(x)
 	x.inraw = squeeze(sum(sum(x.img, 1), 2));
 	x.in = x.inraw ./ (x.E * x.acc);
+
+	x.fit.beta = polyfit(x.t, log(x.in), 1);
+	x.tau = -1 / x.fit.beta(1);
 end
 
 D = struct;

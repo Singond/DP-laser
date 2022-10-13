@@ -13,3 +13,6 @@ for x = X
 end
 hold off;
 legend location northeast;
+
+figure;
+plot([X.p1]', [X.tau]', "d");
