@@ -54,7 +54,7 @@ for k = [1:10 12:15]
 	d = load_data(sprintf("data-2022-08-18/lifetime-%d.SPE", k));
 	d.p1 = p1(k);
 	d.p2 = p2(k);
-	d.t = t{k};
+	d.t = t{k}(:);
 	D(k) = d;
 end
 ## Series 6 has no power data, use previous
