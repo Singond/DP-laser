@@ -36,6 +36,8 @@ function x = apply_corrections(x)
 	## Subtract dark frame
 	x.dark = mean(x.dark, 3);
 	x.img -= x.dark;
+	## Clip negative values
+	x.img(x.img < 0) = 0;
 
 	E = dopln_pulzy(x.pwrdata(:,[2 1]));
 	x.E = rozdel_energie(E, size(x.img, 3), x.acc, 1, x.readout)';
