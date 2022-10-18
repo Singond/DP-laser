@@ -8,7 +8,7 @@ xlabel("time t[ns]");
 ylabel("intensity [a.u.]");
 hold on;
 k = 1;
-for x = X(1:5)
+for x = X
 	set(gca, "colororderindex", k);
 	plot(x.t, x.in,
 		"displayname", sprintf("%d Pa", x.p1));
