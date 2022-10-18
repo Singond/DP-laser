@@ -13,11 +13,10 @@ for x = X
 	plot(x.t, x.in,
 		"displayname", sprintf("%d Pa", x.p1));
 
-	tt = linspace(min(x.t), max(x.t));
+	tt = linspace(min(x.t), max(x.t), 1000);
 	set(gca, "colororderindex", k);
 	plot(tt, x.fite.f(tt), "--", "handlevisibility", "off");
 
-	tt = linspace(min(x.t), max(x.t));
 	set(gca, "colororderindex", k);
 	plot(tt, x.fitb.f(tt), ":", "handlevisibility", "off");
 
@@ -39,4 +38,6 @@ hold off;
 legend location northeast;
 
 figure;
-plot([X.p1]', [X.tau]', "d");
+plot([X.p1]', [[X.fitl].tau]', "d",
+	[X.p1]', [[X.fite].tau]', "o",
+	[X.p1]', [[X.fitb].tau]', "s");
