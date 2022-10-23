@@ -31,6 +31,24 @@ function x = crop(x, rows, cols)
 	x.dark = x.dark(rows(1):rows(2), cols(1):cols(2), :);
 end
 
+function r = align_energy(t, E, edges)
+	if (columns(edges) == 1)
+		skips = false;
+	elseif (columns(edges) == 2)
+		edges = edges'(:);
+		skips = true;
+	else
+		error("align_energy: EDGES must be a 1- or 2-column matrix");
+	end
+
+	[~, idx] = histc(t, edges);
+	m = idx > 0;
+	r = accumarray(idx(m), E(m), [], @mean);
+	if (skips)
+		r = r(1:2:end);
+	end
+end
+
 function x = apply_corrections(x)
 	## TODO: Eliminate outliers
 
@@ -40,8 +58,12 @@ function x = apply_corrections(x)
 	## Clip negative values
 	x.img(x.img < 0) = 0;
 
-	E = dopln_pulzy(x.pwrdata(:,[2 1]));
-	x.E = rozdel_energie(E, size(x.img, 3), x.acc, 1, x.readout)';
+	## Calculate mean laser energy for each camera frame.
+	## Assume 0.1 second delay between starting power measurement
+	## and camera capture.
+	x.imgt = frametimes_princeton_spe(x.imgm, 1/50);
+	x.imgt += 0.1;
+	x.E = align_energy(x.pwrdata(:,1), x.pwrdata(:,2), x.imgt);
 end
 
 function x = process_lifetime(x)
