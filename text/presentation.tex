@@ -1,0 +1,47 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{whale}
+\beamertemplatenavigationsymbolsempty
+
+\usepackage{fontspec}
+\usepackage[czech]{babel}
+\usepackage{siunitx}
+\sisetup{
+	locale               = DE,
+	inter-unit-product   = \ensuremath{{}\cdot{}},
+	list-units           = single,
+	list-separator       = {; },
+	list-final-separator = \text{ a },
+	list-pair-separator  = \text{ a },
+	range-phrase         = \text{ až },
+	range-units          = single,
+}
+
+\usepackage{graphicx}
+\graphicspath{
+	{../img/}
+	{img/}
+}
+\usepackage{tikz}
+
+
+\title[Laserová diagnostika plazmatu]
+{Diagnostika plazmatu pomocí pikosekundového laseru}
+\subtitle{Diplomová práce}
+\date{2022}
+\author{Jan Slaný}
+\institute[PřF MUNI]{Přírodovědecká fakulta Masarykovy univerzity\\
+	Ústav fyzikální elektroniky}
+
+\input{common}
+\begin{document}
+
+\begin{frame}[plain]
+	\titlepage
+	\footnotesize
+	Vedoucí práce: \hfill doc. Mgr. Pavel Dvořák, PhD.
+\end{frame}
+
+\section{Teorie}
+
+\end{document}
