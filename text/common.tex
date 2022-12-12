@@ -1,2 +1,31 @@
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{bending}
+\usetikzlibrary{positioning}
+
+\tikzset{
+	level/.style = {},
+	transition/.style = {
+		thick,
+		arrows = {-Latex},
+	}
+}
+
 \newcommand\efishsetup{
+}
+
+\newcommand\kryptontalifgrotrian{
+	\draw [level] (4,0) -- (6,0)
+		node [right] {$\mathrm{4p^6\ {}^1S_0}$};
+	\draw [level] (4,10) -- (6,10)
+		node [right] {$\mathrm{5p'\ [3/2]_2}$};
+	\draw [level] (3,6) -- (1,6)
+		node [left] {$\mathrm{5s'\ [1/2]_1}$};
+
+	\draw [transition] (5,0) -- (5,5);
+	\draw [transition] (5,5) -- (5,10);
+	\path (5,0)
+		-- node [sloped, below] {$2 \times \SI{204.13}{\nano\metre}$} (5,10);
+	\draw [transition] (5,10)
+		-- node [sloped, above] {$\SI{826.3}{\nano\metre}$} (2,6);
+
 }

@@ -15,6 +15,7 @@
 	list-pair-separator  = \text{ a },
 	range-phrase         = \text{ až },
 	range-units          = single,
+	detect-all,                            % Use sans-serif
 }
 
 \usepackage{graphicx}
@@ -24,6 +25,7 @@
 }
 \usepackage{tikz}
 
+\input{common}
 
 \title[Laserová diagnostika plazmatu]
 {Diagnostika plazmatu pomocí pikosekundového laseru}
@@ -33,7 +35,6 @@
 \institute[PřF MUNI]{Přírodovědecká fakulta Masarykovy univerzity\\
 	Ústav fyzikální elektroniky}
 
-\input{common}
 \begin{document}
 
 \begin{frame}[plain]
@@ -42,6 +43,27 @@
 	Vedoucí práce: \hfill doc. Mgr. Pavel Dvořák, PhD.
 \end{frame}
 
-\section{Teorie}
+\section[TALIF]{Two-photon absorption laser-induced fluorescence}
+
+\begin{frame}
+	\frametitle{Dvoufotonová absorpce}
+	\begin{columns}[c]
+	\begin{column}{0.5\textwidth}
+		\begin{itemize}
+			\item nelineární optický jev
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\begin{tikzpicture}[scale=0.5]
+				\small
+				\kryptontalifgrotrian
+			\end{tikzpicture}
+			\caption{Schéma dvoufotonové absorpce v~kryptonu.}
+		\end{figure}
+	\end{column}
+	\end{columns}
+\end{frame}
 
 \end{document}
