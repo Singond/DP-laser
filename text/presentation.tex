@@ -18,12 +18,14 @@
 	range-units          = single,
 	detect-all,                            % Use sans-serif
 }
+\DeclareSIUnit\arbunit{rel.~j.}
 
 \usepackage{graphicx}
 \graphicspath{
 	{../img/}
 	{img/}
 }
+\usepackage[outdir=build/plots/]{epstopdf}
 \usepackage{tikz}
 
 \input{common}
@@ -36,12 +38,24 @@
 \institute[PřF MUNI]{Přírodovědecká fakulta Masarykovy univerzity\\
 	Ústav fyzikální elektroniky}
 
+\newcommand\elfield{E}
+\newcommand\efish{I}
+
 \begin{document}
 
 \begin{frame}[plain]
 	\titlepage
 	\footnotesize
 	Vedoucí práce: \hfill doc. Mgr. Pavel Dvořák, PhD.
+\end{frame}
+
+\section[E-FISH]{Electric field induced second harmonic generation}
+
+\begin{frame}
+	\frametitle{Kalibrace}
+	\sisetup{per-mode=symbol}
+	\graphicspath{{../efish/}}
+	\input{../efish/plots/calib}
 \end{frame}
 
 \section[TALIF]{Two-photon absorption laser-induced fluorescence}

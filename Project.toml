@@ -1,0 +1,3 @@
+[deps]
+Gnuplot = "dc211083-a33a-5b79-959f-2ff34033469d"
+LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
