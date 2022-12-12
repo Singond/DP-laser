@@ -1,5 +1,6 @@
 /tmp/
 *.aux
+*.bbl
 *.bcf
 *.blg
 *.dvi
@@ -12,4 +13,7 @@
 *.snm
 *.synctex.gz
 *.toc
+
 .externalToolBuilders/
+.settings/
+.texlipse
