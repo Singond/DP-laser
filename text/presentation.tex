@@ -39,7 +39,8 @@
 	Ústav fyzikální elektroniky}
 
 \newcommand\elfield{E}
-\newcommand\efish{I}
+\newcommand\efish{I_{2\omega}}
+\newcommand\tim{t}
 
 \begin{document}
 
@@ -78,6 +79,19 @@
 	\sisetup{per-mode=symbol}
 	\graphicspath{{../efish/}}
 	\input{../efish/plots/calib}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Elektrické pole výboje}
+	\begin{figure}
+		\centering
+		\small
+		\sisetup{per-mode=symbol}
+		\graphicspath{{../efish/}}
+		\input{../efish/plots/period-elfield}
+		\caption{Časový vývoj intenzity elektrického pole
+			v~různých místech výboje.}
+	\end{figure}
 \end{frame}
 
 \section[TALIF]{Two-photon absorption laser-induced fluorescence}
