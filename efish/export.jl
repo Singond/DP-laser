@@ -25,6 +25,11 @@ include("main.jl")
 @gp """
 	load '../style.gp'
 	set xyplane at 0
+	set border 895
+	set grid xtics vertical
+	set grid ytics vertical
+	set grid ztics
+	set style fill solid 0.5
 	set xlabel '\$\\tim\\,[\\si{\\micro\\second}]\$' offset 0,-1
 	set xtics offset 0,-0.5
 	set ylabel '\$y\\,[\\si{\\milli\\metre}]\$' offset 0,-1
@@ -36,6 +41,6 @@ for k in [8:-1:1; 10:13]
 	t = x.t .- x.t[1]
 	yy = ones(size(x.t)) * y[k]
 	zz = zeros(size(x.t))
-	@gsp :- t yy x.Iefish zz x.Iefish "w zerrorfill fc 'white' ls 1" :-
+	@gsp :- t yy x.Iefish zz x.Iefish "w zerrorfill ls 1" :-
 end
 save(term="epslatex size 12cm,8cm", output="plots/period-elfield.tex")
