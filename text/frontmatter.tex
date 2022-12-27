@@ -1,0 +1,112 @@
+\pagestyle{empty}
+
+% Title page
+\sffamily
+\begin{center}
+	\includegraphics{logo-muni}
+\end{center}
+\begin{center}
+	\huge Přírodovědecká fakulta
+\end{center}
+\hrule
+\vfill
+
+\begin{flushleft}
+\huge\noindent
+\textbf{\thetitle}
+\end{flushleft}
+\bigskip
+
+\large\noindent
+Diplomová práce
+\bigskip
+
+\Large\noindent
+\theauthor
+\vfill
+
+\Large\noindent
+Vedoucí práce: doc. Mgr. Pavel Dvořák, PhD.
+\bigskip
+
+\Large\noindent
+Ústav fyzikální elektroniky
+\hfill
+Brno, 2022
+
+\normalsize
+\rmfamily
+\cleardoublepage
+
+% Bibliographic entry
+\def\bibentryspacing{2}
+\chapter*{Bibliografický záznam}
+\thispagestyle{empty}
+\bgroup
+\renewcommand{\arraystretch}{\bibentryspacing}
+\begin{tabularx}{\textwidth}{l X}
+	\textbf{Autor}            & \theauthor\par
+	                            Přírodovědecká fakulta,
+	                            Masarykova univerzita\par
+	                            Ústav fyzikální elektroniky \\
+	\textbf{Název práce}      & \thetitle \\
+	\textbf{Studijní program} & Fyzika \\
+	\textbf{Studijní obor}    & Fyzika plazmatu a~nanotechnologií \\
+	\textbf{Vedoucí práce}    & doc. Mgr. Pavel Dvořák, PhD. \\
+	\textbf{Akademický rok}   & 2022/2023 \\
+	\textbf{Počet stran}      & \pageref*{lastpage} \\
+	\textbf{Klíčová slova}    & plasma, nelineární optika \\
+\end{tabularx}
+\egroup
+\cleardoublepage
+\chapter*{Bibliographic Entry}
+\thispagestyle{empty}
+\bgroup
+\renewcommand{\arraystretch}{\bibentryspacing}
+\begin{tabularx}{\textwidth}{l X}
+	\textbf{Author}           & \theauthor\par
+	                            Faculty of Science, Masaryk University\par
+	                            Department of Physical Electronics \\
+	\textbf{Title of Thesis}  & Plasma diagnostics by means of a picosecond laser \\
+	\textbf{Degree Programme} & Physics \\
+	\textbf{Field of Study}   & Plasma Physics and Nanotechnology \\
+	\textbf{Supervisor}       & doc. Mgr. Pavel Dvořák, PhD. \\
+	\textbf{Academic year}    & 2022/2023 \\
+	\textbf{Number of Pages}  & \pageref*{lastpage} \\
+	\textbf{Keywords}         & plasma, nonlinear optics \\
+\end{tabularx}
+\egroup
+
+% Abstract
+\chapter*{Abstrakt}
+Tato práce se zabývá
+\vfill
+{\let\clearpage\relax\chapter*{Abstract}}
+\thispagestyle{empty}
+This thesis deals with
+
+% Assignment
+\cleardoublepage
+% \includepdf[pages={1}]{../zadani.pdf}
+
+% Acknowledgment
+\chapter*{Poděkování}
+\vfill
+
+% May be on the same page with acknowledgment
+{\let\clearpage\relax\chapter*{Prohlášení}}
+\thispagestyle{empty}
+Prohlašuji, že jsem svou diplomovou práci vypracoval samostatně
+pod vedením vedoucího práce s~využitím informačních zdrojů,
+které jsou v~práci citovány.
+\bigskip
+
+\noindent
+V Brně dne 27.~12.~2022
+\hfill
+\parbox{6cm}{
+	\centering
+	\vspace{1.5cm}
+	\rule{6cm}{0.1pt}\par
+	Jan Slaný
+}

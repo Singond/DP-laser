@@ -1,0 +1,68 @@
+\documentclass[a4paper,11pt,final]{book}
+\usepackage{fontspec}
+\usepackage[czech]{babel}
+\usepackage{csquotes}
+
+\usepackage{amsmath}
+\usepackage{unicode-math}  % Fix some weird behaviour (like space before beta)
+\usepackage{siunitx}
+\sisetup{
+	locale               = DE,
+	inter-unit-product   = \ensuremath{{}\cdot{}},
+	list-units           = single,
+	list-separator       = {; },
+	list-final-separator = \text{ a },
+	list-pair-separator  = \text{ a },
+	range-phrase         = \text{ až },
+	range-units          = single,
+}
+\DeclareSIUnit\sccm{sccm}
+\DeclareSIUnit\arbunit{rel. j.}
+\DeclareSIUnit\arbunitx{rel. j}
+
+\usepackage{graphicx}
+\graphicspath{
+	{../img/}
+	{img/}
+}
+\usepackage{tikz}
+
+% Tables
+\usepackage{caption}
+\captionsetup[table]{position=above}
+\usepackage{tabularx}                                  % Used in frontmatter
+\usepackage{booktabs}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.17}
+\pgfplotstableset{
+	use comma,
+	set thousands separator = {},
+}
+
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+
+\input{common}
+
+\def\thetitle{Diagnostika plazmatu pomocí pikosekundového laseru}
+\def\thedate{2022}
+\def\theauthor{Jan Slaný}
+
+\title\thetitle
+\date\thedate
+\author\theauthor
+
+
+\begin{document}
+
+\frontmatter
+\include{frontmatter}
+
+\mainmatter
+\phantomsection\addcontentsline{toc}{chapter}{Obsah}
+\tableofcontents
+\pagestyle{headings}
+
+\backmatter
+\label{lastpage}
+
+\end{document}
