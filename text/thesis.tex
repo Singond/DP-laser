@@ -41,6 +41,10 @@
 
 \usepackage[hidelinks,pdfusetitle]{hyperref}
 
+\usepackage[style=iso-numeric, autocite=superscript, backend=biber,
+	sorting=none, sortlocale=cs_CZ]{biblatex}
+\addbibresource{references.bib}
+
 \input{common}
 
 \def\thetitle{Diagnostika plazmatu pomocí pikosekundového laseru}
@@ -63,6 +67,7 @@
 \pagestyle{headings}
 
 \backmatter
+\printbibliography[heading=bibintoc,title=Seznam použité literatury]
 \label{lastpage}
 
 \end{document}
