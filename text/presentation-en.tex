@@ -1,0 +1,137 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\setbeamertemplate{itemize item}[triangle]
+\usecolortheme{whale}
+\beamertemplatenavigationsymbolsempty
+
+\usepackage{fontspec}
+% \usepackage[czech]{babel}
+\usepackage{siunitx}
+\sisetup{
+	list-units           = single,
+	list-separator       = {; },
+	range-units          = single,
+	detect-all,                            % Use sans-serif
+}
+\DeclareSIUnit\arbunit{rel.~j.}
+
+\usepackage{graphicx}
+\graphicspath{
+	{../img/}
+	{img/}
+}
+\usepackage[outdir=build/plots/]{epstopdf}
+\usepackage{tikz}
+
+\input{common}
+
+\title[Laser plasma diagnostics]
+{Plasma diagnostics by means of a picosecond laser}
+\subtitle{Diploma thesis}
+\date{2023}
+\author{Jan Slaný}
+\institute[PřF MUNI]{Faculty of Science, Masaryk University\\
+	Department of Physical Electronics}
+
+\newcommand\elfield{E}
+\newcommand\efish{I_{2\omega}}
+\newcommand\tim{t}
+
+\begin{document}
+
+\begin{frame}[plain]
+	\titlepage
+	\footnotesize
+	Supervisor: doc. Mgr. Pavel Dvořák, PhD.
+\end{frame}
+
+\begin{frame}
+	\frametitle{EKSPLA Picosecond Laser}
+	\begin{columns}
+	\begin{column}{0.5\textwidth}
+		\begin{itemize}
+			\item Nd:YAG ($\SI{1064}{\nano\metre}$)
+			\item adjustable wavelength
+			\item pulse duration $\SI{30}{\pico\second}$
+			\item pulse energy $\SI{30}{\milli\joule}$
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\includegraphics[width=\textwidth]{laser}
+			\caption{The \emph{EKSPLA PL2231-50} laser.
+				From \texttt{ekspla.com}.}
+		\end{figure}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\section[E-FISH]{Electric field induced second harmonic generation}
+
+\begin{frame}
+	\frametitle{E-FISH}
+	\begin{itemize}
+		\item non-linear optical environment or high intensity
+		\item two photons of equal frequency combine to form
+			a new one with double frequency
+		\item $\efish \sim (I_\mathrm{laser} \elfield)^2$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discharge}
+	\begin{columns}[c]
+	\begin{column}{0.5\textwidth}
+		\begin{itemize}
+			\item atmospheric pressure dielectric barrier discharge
+				in $\mathrm{N}_2$
+			\item 2\times microscope slide \SI{1.1}{\milli\metre}
+			\item \SI{1}{\milli\metre} gap
+			\item \SI{11}{\kilo\hertz}, \SI{14}{\kilo\volt}
+		\end{itemize}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Calibration}
+	\sisetup{per-mode=symbol}
+	\graphicspath{{../efish/}}
+	\input{../efish/plots/calib}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Electric field in discharge}
+	\begin{figure}
+		\centering
+		\small
+		\sisetup{per-mode=symbol}
+		\graphicspath{{../efish/}}
+		\input{../efish/plots/period-elfield}
+		\caption{Spatial and temporal evolution of the intensity
+			of electric field in the discharge over one period.}
+	\end{figure}
+\end{frame}
+
+\section[TALIF]{Two-photon absorption laser-induced fluorescence}
+
+\section{Summary}
+\begin{frame}
+	\frametitle{Summary}
+	Done:
+	\begin{itemize}
+		\item apply E-FISH to electric field determination
+		\item TALIF, LIF preliminary results
+		\item discovered variation in the laser beam profile
+			(partial correction using a spatial filter)
+	\end{itemize}
+	\bigskip
+	To do:
+	\begin{itemize}
+		\item redo TALIF
+		\item Raman\dots
+	\end{itemize}
+\end{frame}
+
+\end{document}
