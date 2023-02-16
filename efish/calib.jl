@@ -1,5 +1,6 @@
-using Printf
 using DelimitedFiles
+using Printf
+using Statistics
 
 using ImportKeysightBin
 using LsqFit
@@ -12,17 +13,17 @@ X = NamedTuple[]
 for row in eachrow(index)
 	file = @sprintf("data-22-01-24/oscilo/energie_napeti/napeti%02d.bin", row[2])
 	local U, efish, I, fd, meta = importkeysightbin(file)
-	U[2] .*= 1000
-	push!(X, (;Ud = row[1], U, efish, I, fd))
+	push!(X, (;Us = row[1], U, efish, I, fd, meta))
 end
 
-Ud = getfield.(X, :Ud)  # Voltage between plates
+Us = getfield.(X, :Us)  # Source voltage
+Ud = map(x -> mean(x.U[2]), X)  # Voltage between plates [V]
 E = Ud ./ d             # Electric field between plates (assuming homogeneous)
 efish = [-minimum(x.efish[2]) for x in X]  # E-FISH intensity
 
 # The parabolic part seems to end at around Ud = 2.
 # This is probably the part without discharge.
-s = Ud .< 2
+s = Us .< 2
 
 # Fit this part of data with a second-order polynomial.
 a, b, c = [E[s].^2 E[s] ones(sum(s))] \ efish[s]
