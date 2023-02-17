@@ -1,6 +1,5 @@
 pkg load singon-ext;
 pkg load singon-plasma;
-addpath ../talif/octave;
 addpath ../octave;
 if (isfolder("../octave-local"))
 	addpath ../octave-local;
