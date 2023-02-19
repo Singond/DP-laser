@@ -1,5 +1,6 @@
 pkg load singon-ext;
 pkg load singon-plasma;
+addpath ../octave;
 addpath octave;
 
 d1 = load_iccd("data-2022-08-04/wavelen-1.SPE");

@@ -1,5 +1,6 @@
 pkg load optim;
 pkg load singon-plasma;
+addpath ../octave
 addpath octave
 
 
