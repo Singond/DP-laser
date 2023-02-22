@@ -1,8 +1,12 @@
 archive
 materials
 octave-local/
+results/
 *.pdf
 *~
+\#*\#
+.\#*
+octave-workspace
 
 .project
 *.geany
