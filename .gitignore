@@ -2,6 +2,7 @@ archive
 materials
 octave-local/
 *.pdf
+*~
 
 .project
 *.geany
