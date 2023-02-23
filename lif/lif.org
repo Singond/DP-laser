@@ -19,9 +19,26 @@
   set(0, "defaultaxesbox", "on");
   set(0, "defaultaxestickdir", "in");
   set(0, "defaultlinelinewidth", 1.5);
-  set(0, "defaultlinemarkersize", 12);
+  set(0, "defaultlinemarkersize", 8);
   set(0, "defaultlinemarkerfacecolor", "auto");
 #+end_src
+
+* Plamen
+#+name:flame
+#+begin_src octave :exports results :results output file link :file results/flame.png
+	<<common>>
+	pkg load singon-plasma;
+	img = read_princeton_spe("data-2023-01-20/obr1.SPE");
+	merged = mean(img, 3);
+	merged -= min(merged(:));
+	merged /= max(merged(:));
+	imwrite(repelem(merged, 8, 8), "results/flame.png");
+#+end_src
+
+#+caption: Snímek plamene bez laseru. Složeno z pěti snímků
+#+caption: s \num{10000} akumulacemi.
+#+RESULTS[a796261bbeb8f568d39f81332e6623b9cadf8f08]: flame
+[[file:results/flame.png]]
 
 * Excitační profil
 Výkon laseru je nastaven na konstantní hodnotu, jeho vlnová délka je postupně
@@ -55,7 +72,7 @@ tato je na obrázku č. [[fig:exc-filter]].
 
 #+caption: Excitační profil bez prostorového filtru.
 #+label: fig:exc-nofilter
-#+results: exc-nofilter
+#+RESULTS[ca604023a8efe2b90acd6da0a20568cd74fc4755]: exc-nofilter
 [[file:results/exc-nofilter.png]]
 
 #+name:exc-filter
@@ -81,13 +98,13 @@ tato je na obrázku č. [[fig:exc-filter]].
 
 #+caption: Excitační profil s prostorovým filtrem.
 #+label: fig:exc-filter
-#+results: exc-filter
+#+RESULTS[f781dc271c2bc6ce874d1b5f208fc4fd24854124]: exc-filter
 [[file:results/exc-filter.png]]
 
 * Saturace
 Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
 
-#+begin_src octave :exports results :results file link :file results/saturation.png
+#+begin_src octave :exports results :results output file link :file results/saturation.png
 	<<common>>
 	saturation;
 	figure(1, "visible", "off");
@@ -102,7 +119,7 @@ Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
 	print results/saturation.png
 #+end_src
 
-#+results:
+#+RESULTS[20412da832bc09fb52220aab7858ca28bc5e383e]:
 [[file:results/saturation.png]]
 
 #+begin_src octave :exports none
