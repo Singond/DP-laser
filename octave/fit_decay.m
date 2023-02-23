@@ -38,4 +38,15 @@ function x = fit_decay(x)
 	s.tau = s.beta(2);
 	s.bg = s.beta(3);
 	x.fitb = s;
+
+	## Correct exponential model using new y-intercept
+	b0 = x.fitb.beta(1:2);
+	s = struct();
+	[~, s.beta, s.cvg, s.iter] = leasqr(t - t0, in, b0, model, [], 30);
+	if (!s.cvg)
+		warning("Convergence not reached after %d iterations.", s.iter);
+	end
+	s.f = @(t) model(t - t0, s.beta);
+	s.tau = s.beta(2);
+	x.fite = s;
 end
