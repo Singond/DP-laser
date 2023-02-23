@@ -54,6 +54,7 @@ x.control = [
 	3	33	40];
 X(end+1) = x;
 
+X = arrayfun(@correct_iccd, X);
 X = arrayfun(@img_intensity, X);
 
 Xold = X;
@@ -66,3 +67,4 @@ for x = Xold
 	x.inh = accumarray(idx', x.in, [], @mean)(1:2:end);
 	X(end+1) = x;
 endfor
+clear Xold
