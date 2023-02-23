@@ -22,4 +22,3 @@ X(k++) = load_iccd("data-2023-01-20/saturace2.SPE");
 X = arrayfun(@correct_iccd, X);
 X = arrayfun(@(x) frametimes(x, 50), X);
 X = arrayfun(@img_intensity, X);
-X = arrayfun(@process, X);
