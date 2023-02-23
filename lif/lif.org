@@ -119,8 +119,45 @@ Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
 	print results/saturation.png
 #+end_src
 
-#+RESULTS[20412da832bc09fb52220aab7858ca28bc5e383e]:
+#+RESULTS[40d04911ac41bd791774fdfd9ca200efdf20e216]:
 [[file:results/saturation.png]]
+
+* Svislý profil plamene
+Laserový svazek před atomizátorem prochází svislou štěrbinou, která jeho průřez
+ořezává na zhruba \SI{1}{\milli\metre} široký a \SI{3}{\milli\metre} vysoký.
+Poloha svazku i kamery je neměnná, svislá poloha atomizátoru $h$ je postupně
+nastavována na různé hodnoty mikrometrickým posuvem.
+Zesílení laseru je nastaveno na nejvyšší hodnotu 50.
+Měření bylo opakováno pro různé průtoky plynové směsi.
+#+begin_src octave :exports results :results output file link :file results/vertical.png
+	<<common>>
+	vertical;
+	figure(1, "visible", "off");
+	clf;
+	title("Prostorové rozložení signálu");
+	xlabel("výška h [mm]");
+	ylabel("intenzita I [a.u.]");
+	style = {"d", "o", "s", "^"};
+	hold on;
+	for k = 1:length(X)
+		x = X(k);
+		plot(x.h, x.inh, style{k});
+	endfor
+	legend({
+		"700 sccm Ar + 300 sccm H_2"
+		"700 sccm Ar + 300 sccm H_2"
+		"175 sccm Ar + 150 sccm H_2"
+		"175 sccm Ar + 50 sccm H_2"
+		});
+	print -dpng results/vertical
+#+end_src
+
+#+caption: Prostorové rozložení signálu v plameni.
+#+caption: Výška $h = 0$ odpovídá poloze středu laserového svazku
+#+caption: asi \SI{2.5}{\milli\metre} nad horním okrajem atomizátoru.
+#+caption: Šířka svazku je zhruba \SI{3}{\milli\metre}.
+#+RESULTS[e27416f20533f7060a54e252a9b67b1ab33e2a08]:
+[[file:results/vertical.png]]
 
 #+begin_src octave :exports none
 	close all

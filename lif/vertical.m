@@ -53,3 +53,16 @@ x.control = [
 	2	21	29
 	3	33	40];
 X(end+1) = x;
+
+X = arrayfun(@img_intensity, X);
+
+Xold = X;
+X = struct([]);
+for x = Xold
+	x.h = x.control(:,1);
+	n = 1:length(x.in);
+	edges = x.control(:,2:3) + [0 1];  # Include right bound
+	[~, idx] = histc(n, edges'(:));
+	x.inh = accumarray(idx', x.in, [], @mean)(1:2:end);
+	X(end+1) = x;
+endfor
