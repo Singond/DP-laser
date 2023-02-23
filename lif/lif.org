@@ -2,10 +2,10 @@
 #+author: Jan Slaný
 #+options: toc:nil
 #+language: cs
-#+property: header-args :noweb yes
-# +property: header-args :session main
-# +property: header-args :output-dir results
-#+property: header-args :cache yes
+#+property: header-args  :noweb yes
+#+property: header-args+ :exports results
+#+property: header-args+ :output-dir results
+#+property: header-args+ :cache yes
 #+latex_class: article
 #+latex_class_options: [a4paper,11pt]
 #+latex_header: \usepackage[czech]{babel}
@@ -25,7 +25,7 @@
 
 * Plamen
 #+name:flame
-#+begin_src octave :exports results :results output file link :file results/flame.png
+#+begin_src octave :results output file link :file flame.png
 	<<common>>
 	pkg load singon-plasma;
 	img = read_princeton_spe("data-2023-01-20/obr1.SPE");
@@ -37,7 +37,7 @@
 
 #+caption: Snímek plamene bez laseru. Složeno z pěti snímků
 #+caption: s \num{10000} akumulacemi.
-#+RESULTS[a796261bbeb8f568d39f81332e6623b9cadf8f08]: flame
+#+RESULTS[b9f3961bf2c23f590a5075e2e5e65823bffd2957]: flame
 [[file:results/flame.png]]
 
 * Excitační profil
@@ -50,7 +50,7 @@ V druhé sérii byl použit prostorový filtr,
 tato je na obrázku č. [[fig:exc-filter]].
 
 #+name:exc-nofilter
-#+begin_src octave :exports results :results file link :file results/exc-nofilter.png
+#+begin_src octave :results output file link :file exc-nofilter.png
 	<<common>>
 	wavelen;
 	figure(1, "visible", "off");
@@ -72,11 +72,11 @@ tato je na obrázku č. [[fig:exc-filter]].
 
 #+caption: Excitační profil bez prostorového filtru.
 #+label: fig:exc-nofilter
-#+RESULTS[ca604023a8efe2b90acd6da0a20568cd74fc4755]: exc-nofilter
+#+RESULTS[8b72586e8a5dfbf809888a88cc0f7b5edfabc86e]: exc-nofilter
 [[file:results/exc-nofilter.png]]
 
 #+name:exc-filter
-#+begin_src octave :exports results :results file link :file results/exc-filter.png
+#+begin_src octave :results output file link :file exc-filter.png
 	<<common>>
 	wavelen;
 	figure(1, "visible", "off");
@@ -98,13 +98,13 @@ tato je na obrázku č. [[fig:exc-filter]].
 
 #+caption: Excitační profil s prostorovým filtrem.
 #+label: fig:exc-filter
-#+RESULTS[f781dc271c2bc6ce874d1b5f208fc4fd24854124]: exc-filter
+#+RESULTS[bb69712db5b5124ff352aabfd1dfd5deb7550fe2]: exc-filter
 [[file:results/exc-filter.png]]
 
 * Saturace
 Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
 
-#+begin_src octave :exports results :results output file link :file results/saturation.png
+#+begin_src octave :results output file link :file saturation.png
 	<<common>>
 	saturation;
 	figure(1, "visible", "off");
@@ -119,7 +119,7 @@ Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
 	print results/saturation.png
 #+end_src
 
-#+RESULTS[40d04911ac41bd791774fdfd9ca200efdf20e216]:
+#+RESULTS[6175dbb70adc1b6de4208a7e9a7154e497dda9b5]:
 [[file:results/saturation.png]]
 
 * Svislý profil plamene
@@ -129,7 +129,7 @@ Poloha svazku i kamery je neměnná, svislá poloha atomizátoru $h$ je postupn
 nastavována na různé hodnoty mikrometrickým posuvem.
 Zesílení laseru je nastaveno na nejvyšší hodnotu 50.
 Měření bylo opakováno pro různé průtoky plynové směsi.
-#+begin_src octave :exports results :results output file link :file results/vertical.png
+#+begin_src octave :results output file link :file vertical.png
 	<<common>>
 	vertical;
 	figure(1, "visible", "off");
@@ -156,7 +156,7 @@ Měření bylo opakováno pro různé průtoky plynové směsi.
 #+caption: Výška $h = 0$ odpovídá poloze středu laserového svazku
 #+caption: asi \SI{2.5}{\milli\metre} nad horním okrajem atomizátoru.
 #+caption: Šířka svazku je zhruba \SI{3}{\milli\metre}.
-#+RESULTS[e27416f20533f7060a54e252a9b67b1ab33e2a08]:
+#+RESULTS[273b3bcee85bb4eacc37734f14241ed3e9355d05]:
 [[file:results/vertical.png]]
 
 #+begin_src octave :exports none
