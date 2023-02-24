@@ -121,7 +121,7 @@ Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
 	ylabel("intenzita [a.u.]");
 	hold on;
 	for x = X
-		plot(x.E, x.in, "d-");
+		plot(x.E*1e6, x.in, "d-");
 	endfor
 	print results/saturation.png
 #+end_src
