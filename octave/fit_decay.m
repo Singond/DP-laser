@@ -4,6 +4,8 @@
 ## Fit exponential decay to @code{x.in(x.t)}.
 ## @end deftypefn
 function x = fit_decay(x)
+	pkg load optim;
+
 	[~, pk] = max(x.in);
 	t = x.t(pk:end);
 	t0 = t(1);
