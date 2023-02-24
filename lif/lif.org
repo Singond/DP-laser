@@ -140,7 +140,7 @@ Naměřená data jsou na obrázku č. [[fig:saturation]].
 #+caption: Závislost intenzity signálu LIF na energii laserového pulzu.
 #+caption: Počínající saturace je patrna u energií převyšujících
 #+caption: hodnotu \SI{3}{\micro\joule}.
-#+label: fig: saturation
+#+label: fig:saturation
 #+RESULTS[6175dbb70adc1b6de4208a7e9a7154e497dda9b5]:
 [[file:results/saturation.png]]
 
