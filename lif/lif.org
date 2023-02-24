@@ -23,6 +23,13 @@
   set(0, "defaultlinemarkerfacecolor", "auto");
 #+end_src
 
+#+name: figure
+#+begin_src octave :exports none
+	figure(1, "visible", "off");
+	clf;
+	co = get(gca, "colororder");
+#+end_src
+
 * Plamen
 #+name:flame
 #+begin_src octave :results output file link :file flame.png
@@ -121,6 +128,42 @@ Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
 
 #+RESULTS[6175dbb70adc1b6de4208a7e9a7154e497dda9b5]:
 [[file:results/saturation.png]]
+
+* Doba života
+Postupnou změnou zpoždění kamery za pulzem byl změřen časový vývoj signálu.
+Dráha svazku byla stejná jako v předchozím případě,
+zesílení laseru bylo nastaveno na nejvyšší hodnotu 50.
+
+Klesající část odezvy byla proložena exponenciální funkcí a z exponentu
+spočtena doba života $\tau$.
+Naměřená data a proložené křivky jsou na obrázku č. [[fig:lifetime]].
+Doba života $\tau$ činila \SI{1.78}{\nano\second} a \SI{1.64}{\nano\second}.
+
+#+begin_src octave :results output file link :file lifetime.png
+	<<common>>
+	<<figure>>
+	lifetime;
+	title("Časový vývoj");
+	xlabel("čas t [ns]");
+	xlim([4 16]);
+	xticks(4:4:16);
+	ylabel("intenzita I [a.u.]");
+	ylim([0 1.2e5]);
+	hold on
+	tt = linspace(min(X(1).t), max(X(1).t), 1000);
+	plot(X(1).t*1e9, X(1).in, "d", "color", co(1,:), "markerfacecolor", "none");
+	plot(tt*1e9, X(1).fite.f(tt), "--", "color", co(1,:));
+	plot(X(2).t*1e9, X(2).in, "o", "color", co(2,:), "markerfacecolor", "none");
+	plot(tt*1e9, X(2).fite.f(tt), ":", "color", co(2,:));
+	hold off
+	print -dpng results/lifetime.png
+#+end_src
+
+#+caption: Časový vývoj signálu LIF při excitaci laserovým pulzem.
+#+caption: Podmínky byly při obou měřeních stejné.
+#+label: fig:lifetime
+#+RESULTS[cb08959387f9cfa7c6ce7115e676e70eb7d3c0c3]:
+[[file:results/lifetime.png]]
 
 * Svislý profil plamene
 Laserový svazek před atomizátorem prochází svislou štěrbinou, která jeho průřez
