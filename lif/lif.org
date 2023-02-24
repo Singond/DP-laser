@@ -31,6 +31,12 @@
 #+end_src
 
 * Plamen
+Měřený vzorek je 10 ppb selenu v roztoku kyseliny chlorovodíkové
+o koncentraci \SI{1}{\mol\per\litre}.
+Selen proudí spolu s argonem a vodíkem do atomizátoru.
+
+Snímek samotného plamene bez laserové excitace je na obrázku č. [[fig:flame]].
+
 #+name:flame
 #+begin_src octave :results output file link :file flame.png
 	<<common>>
@@ -44,6 +50,7 @@
 
 #+caption: Snímek plamene bez laseru. Složeno z pěti snímků
 #+caption: s \num{10000} akumulacemi.
+#+label: fig:flame
 #+RESULTS[b9f3961bf2c23f590a5075e2e5e65823bffd2957]: flame
 [[file:results/flame.png]]
 
@@ -108,8 +115,12 @@ tato je na obrázku č. [[fig:exc-filter]].
 #+RESULTS[bb69712db5b5124ff352aabfd1dfd5deb7550fe2]: exc-filter
 [[file:results/exc-filter.png]]
 
+\clearpage
 * Saturace
-Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
+Vlnová délka laseru byla nastavena na \SI{196.032}{\nano\metre}.
+Osa laserového svazku se nacházela zhruba \SI{4}{\milli\metre} nad horním
+okrajem atomizátoru.
+Naměřená data jsou na obrázku č. [[fig:saturation]].
 
 #+begin_src octave :results output file link :file saturation.png
 	<<common>>
@@ -126,6 +137,10 @@ Vlnová délka laseru je nastavena na \SI{196.032}{\nano\metre}.
 	print results/saturation.png
 #+end_src
 
+#+caption: Závislost intenzity signálu LIF na energii laserového pulzu.
+#+caption: Počínající saturace je patrna u energií převyšujících
+#+caption: hodnotu \SI{3}{\micro\joule}.
+#+label: fig: saturation
 #+RESULTS[6175dbb70adc1b6de4208a7e9a7154e497dda9b5]:
 [[file:results/saturation.png]]
 
@@ -170,7 +185,7 @@ Laserový svazek před atomizátorem prochází svislou štěrbinou, která jeho
 ořezává na zhruba \SI{1}{\milli\metre} široký a \SI{3}{\milli\metre} vysoký.
 Poloha svazku i kamery je neměnná, svislá poloha atomizátoru $h$ je postupně
 nastavována na různé hodnoty mikrometrickým posuvem.
-Zesílení laseru je nastaveno na nejvyšší hodnotu 50.
+Zesílení laseru zůstalo nastaveno na 50.
 Měření bylo opakováno pro různé průtoky plynové směsi.
 #+begin_src octave :results output file link :file vertical.png
 	<<common>>
