@@ -1,10 +1,33 @@
-function x = load_iccd(data, dark = "", power = "", acc)
+## -*- texinfo -*-
+## @deftypefn  {} {@var{x} =} load_iccd (@var{file})
+## @deftypefnx {} {@var{x} =} load_iccd (@dots{}, @qcode{"dark"}, @
+##     @var{darkfile})
+## @deftypefnx {} {@var{x} =} load_iccd (@dots{}, @qcode{"power"}, @
+##     @var{powerfile})
+## @deftypefnx {} {@var{x} =} load_iccd (@dots{}, @qcode{"nodark"})
+## @deftypefnx {} {@var{x} =} load_iccd (@dots{}, @qcode{"nopower"})
+##
+## Load image data from ICCD camera.
+## @end deftypefn
+function x = load_iccd(data, varargin)
+	p = inputParser;
+	p.addParameter("dark", "");
+	p.addParameter("power", "");
+	p.addSwitch("nodark");
+	p.addSwitch("nopower");
+	p.parse(varargin{:});
+	args = p.Results;
+
 	[dir, name, ext] = fileparts(data);
-	if (isempty(dark))
+	if (isempty(args.dark))
 		dark = fullfile(dir, [name "_dark" ext]);
+	else
+		dark = args.dark;
 	end
-	if (isempty(power))
-		power = fullfile(dir, [name ".txt"]);
+	if (isempty(args.power))
+		pwr = fullfile(dir, [name ".txt"]);
+	else
+		pwr = args.power;
 	end
 
 	[x.img, x.imgm] = read_princeton_spe(data);
@@ -13,14 +36,14 @@ function x = load_iccd(data, dark = "", power = "", acc)
 
 	if (isfile(dark))
 		[x.dark, x.darkm] = read_princeton_spe(dark);
-	else
+	elseif (!args.nodark)
 		x.dark = [];
 		x.darkm = [];
 		warning("load_data: No dark image for %s", name);
 	endif
 
-	if (isfile(power))
-		p = read_starlab(power, "emptyvalue", nan);
+	if (isfile(pwr))
+		p = read_starlab(pwr, "emptyvalue", nan);
 		c = cell();
 		for k = 2:size(p, 2)
 			t = p(:,1);
@@ -29,7 +52,7 @@ function x = load_iccd(data, dark = "", power = "", acc)
 			c = [c; {[t(m) v(m)]}];
 		endfor
 		x.pwrdata = c;
-	else
+	elseif (!args.nopower)
 		x.pwrdata = {};
 		warning("load_data: No power data for %s", name);
 	endif
