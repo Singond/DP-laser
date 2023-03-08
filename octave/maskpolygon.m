@@ -1,28 +1,16 @@
 ## -*- texinfo -*-
 ## @deftypefn  {} {@var{mask} =} maskpolygon (@var{size}, @var{poly})
-## @deftypefnx {} {@var{mask} =} maskpolygon (@var{width}, @var{height}, @
-##     @var{poly})
 ## @deftypefnx {} {@var{mask} =} maskpolygon (@var{size}, @var{polyx}, @
 ##     @var{polyy})
-## @deftypefnx {} {@var{mask} =} maskpolygon (@var{width}, @var{height}, @
-##     @var{polyx}, @var{polyy})
+## @deftypefnx {} {@var{mask} =} maskpolygon @
+##     (@var{width}, @var{height}, @dots{})
+## @deftypefnx {} {@var{mask} =} maskpolygon @
+##     (@dots{}, @qcode{"smooth"}, @var{smoothval})
 ## @end deftypefn
 function m = maskpolygon(varargin)
-	k = 1;
-	if (isnumeric(varargin{k}) && isscalar(varargin{k}))
-		height = varargin{k++};
-		if (k > nargin || !isnumeric(varargin{k}) || !isscalar(varargin{k}))
-			print_usage();
-		endif
-		width = varargin{k++};
-	elseif (isnumeric(varargin{k}) && numel(varargin{k}) == 2)
-		sizes = varargin{k++};
-		height = sizes(1);
-		width = sizes(2);
-	else
-		print_usage();
-	endif
+	[height, width, varargin, opts, other] = maskargs(varargin{:});
 
+	k = 1;
 	if (isnumeric(varargin{k}) && isvector(varargin{k}))
 		polyx = varargin{k++};
 		if (k > nargin || !isnumeric(varargin{k}) || !isvector(varargin{k}))
@@ -38,8 +26,8 @@ function m = maskpolygon(varargin)
 		print_usage();
 	endif
 
-	[xx, yy] = meshgrid(1:width, 1:height);
-	m = inpolygon(xx, yy, polyx, polyy);
+	fun = @(x, y) inpolygon(x, y, polyx, polyy);
+	m = smoothmask(height, width, fun, opts.smooth);
 endfunction
 
 %!shared checkmask
