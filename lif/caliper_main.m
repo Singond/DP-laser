@@ -8,6 +8,7 @@ x = load_iccd("data-2023-01-20/caliper2mm.SPE", "nodark", "nopower");
 x.d = 2;
 C(end+1) = x;
 x = load_iccd("data-2023-01-20/caliper3mm.SPE", "nodark", "nopower");
+x.img(:,:,end) = [];  # Outlier
 x.d = 3;
 C(end+1) = x;
 x = load_iccd("data-2023-01-20/caliper4mm.SPE", "nodark", "nopower");
@@ -16,6 +17,7 @@ C(end+1) = x;
 
 caliper.X = struct([]);
 for x = C
+	x.N = size(x.img, 3);
 	x.intot = squeeze(sum(x.img(60:100,:,:), 1));
 	x.inbg = mean(x.intot([1:50 150:end],:), 1);
 	x.in = x.intot - x.inbg;
@@ -31,7 +33,7 @@ for x = C
 endfor
 
 caliper.d = vertcat(caliper.X.d);
-caliper.dd = repelem(caliper.d, [[caliper.X.imgm].numframes]);
+caliper.dd = repelem(caliper.d, [caliper.X.N]');
 caliper.dpx = [caliper.X.dpx]';
 
 p = polyfit(caliper.dd, caliper.dpx, 1);
