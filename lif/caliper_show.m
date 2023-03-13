@@ -16,8 +16,56 @@ endfor
 figure(fig++);
 clf;
 hold on;
-plot(caliper.dd, caliper.dpx, "d");
-plot(caliper.dd, polyval(caliper.dfit, caliper.dd));
+k = 1;
+hax = [];
+leg = cell;
+for x = caliper.X
+	h = plot(x.in, "color", co(k,:));
+	for c = 1:columns(x.in)
+		plot(x.dbounds(:,c), interp1(x.in(:,c), x.dbounds(:,c)),
+			"d", "color", co(k,:));
+	end
+##	idx = linspace(70, 130, 1000);
+##	for c = 1:x.N
+##		plot(idx, x.infit{c}(idx), "--", "color", co(k,:));
+##	end
+	hax(k) = h(1);
+	leg(k) = sprintf("%.0f mm", x.d);
+	k++;
+endfor
 hold off;
+legend(hax, leg);
+
+figure(fig++);
+clf;
+hold on;
+k = 1;
+hax = [];
+leg = cell;
+for x = caliper.X
+	h = plot(real(log(x.in)), "color", co(k,:));
+##	idx = linspace(70, 130, 1000);
+##	for c = 1:x.N
+##		plot(idx, log(x.infit{c}(idx)), "--", "color", co(k,:));
+##	end
+	hax(k) = h(1);
+	leg(k) = sprintf("%.0f mm", x.d);
+	k++;
+endfor
+hold off;
+legend(hax, leg);
+
+figure(fig++);
+clf;
+hold on;
+plot(caliper.dd, caliper.dpx, "d", "displayname", "data");
+plot(caliper.dd, polyval(caliper.dfit1, caliper.dd),
+	"displayname", "through zero");
+plot(caliper.dd, polyval(caliper.dfit2, caliper.dd),
+	"displayname", "with y-intercept");
+hold off;
+title("Image scale calibration");
 xlabel("slit width [mm]");
 ylabel("slit width [px]");
+legend("show");
+legend("location", "northwest");
