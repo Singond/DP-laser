@@ -1,0 +1,61 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\setbeamertemplate{itemize item}[triangle]
+\usecolortheme{whale}
+\beamertemplatenavigationsymbolsempty
+
+\usepackage{fontspec}
+\usepackage[czech]{babel}
+\usepackage{siunitx}
+\sisetup{
+	locale               = DE,
+	inter-unit-product   = \ensuremath{{}\cdot{}},
+	list-units           = single,
+	list-separator       = {; },
+	list-final-separator = \text{ a },
+	list-pair-separator  = \text{ a },
+	range-phrase         = \text{ až },
+	range-units          = single,
+	detect-all,                            % Use sans-serif
+}
+\DeclareSIUnit\arbunit{rel.~j.}
+
+\usepackage{graphicx}
+\graphicspath{
+	{../img/}
+	{img/}
+}
+\usepackage[outdir=build/plots/]{epstopdf}
+\usepackage{tikz}
+
+\input{common}
+
+\title[Laserová diagnostika plazmatu]
+{Diagnostika plazmatu pomocí pikosekundového laseru}
+\subtitle{Diplomová práce}
+\date{2022}
+\author{Jan Slaný}
+\institute[PřF MUNI]{Přírodovědecká fakulta Masarykovy univerzity\\
+	Ústav fyzikální elektroniky}
+
+\newcommand\tim{t}
+
+\begin{document}
+
+\begin{frame}[plain]
+	\titlepage
+	\footnotesize
+	Vedoucí práce: doc. Mgr. Pavel Dvořák, PhD.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Laserem indukovaná fluorescence (LIF)}
+	\begin{itemize}
+		\item nízký detekční limit
+		\item detekce nezářivých částic
+		\item vysoké prostorové rozlišení
+		\item časové rozlišení pod \si{\nano\second}
+	\end{itemize}
+\end{frame}
+
+\end{document}
