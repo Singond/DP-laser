@@ -66,7 +66,9 @@ function [w, b] = width_height(x, y, height)
 	w = diff(b, 1);
 end
 
+heights = [4e5 4e5 3.7e5];
 caliper.X = struct([]);
+k = 1;
 for x = C
 	x.N = size(x.img, 3);
 	x.intot = squeeze(sum(x.img(60:100,:,:), 1));
@@ -77,8 +79,11 @@ for x = C
 	peak = 70:130;
 	#[x.dpx, x.dbounds] = width_quantile(idx, x.in, [0.1 0.9]);
 	#[x.dpx, x.dbounds, x.infit] = width_polyfit(idx(peak), x.in(peak,:), 8);
-	[x.dpx, x.dbounds] = width_height(idx, x.in, 4e5);
+	#[x.dpx, x.dbounds] = width_height(idx, x.in, 4.5e5);
+	#[x.dpx, x.dbounds] = width_height(idx, x.in, heights(k));
+	[x.dpx, x.dbounds] = width_height(idx, x.in, 0.60*mean(max(x.in)));
 	caliper.X(end+1) = x;
+	k++;
 endfor
 
 caliper.d = vertcat(caliper.X.d);
@@ -95,3 +100,5 @@ caliper.dfit2 = p;
 caliper.pxpermm2 = p(1);
 printf("image scale (offset):  %f px/mm\n", caliper.pxpermm2);
 printf("image scale offset:    %f px\n", caliper.dfit2(2));
+
+pxpermm = caliper.pxpermm1;
