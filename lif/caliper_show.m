@@ -11,6 +11,9 @@ for x = caliper.X
 			"d", "color", co(k,:));
 	endfor
 	hold off;
+	title(sprintf("Image intensity, width %.0f mm", x.d));
+	xlabel("position [px]");
+	ylabel("intensity [a.u.]");
 endfor
 
 figure(fig++);
@@ -34,6 +37,9 @@ for x = caliper.X
 	k++;
 endfor
 hold off;
+title("Image intensity, all widths");
+xlabel("position [px]");
+ylabel("intensity [a.u.]");
 legend(hax, leg);
 
 figure(fig++);
@@ -53,6 +59,9 @@ for x = caliper.X
 	k++;
 endfor
 hold off;
+title("Image intensity (logarithmic), all widths");
+xlabel("position [px]");
+ylabel("log intensity [a.u.]");
 legend(hax, leg);
 
 figure(fig++);
