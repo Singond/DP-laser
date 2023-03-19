@@ -1,6 +1,6 @@
 tex_args := --pdflua --auxdir=tmp/
 
-all: thesis.pdf presentation-efish.pdf
+all: thesis.pdf presentation-efish.pdf presentation-lif.pdf
 
 thesis.pdf: thesis.tex frontmatter.tex
 	latexmk ${tex_args} thesis && touch $@
