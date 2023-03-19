@@ -29,3 +29,18 @@
 		-- node [sloped, above] {$\SI{826.3}{\nano\metre}$} (2,6);
 
 }
+
+\newcommand\lifgrotrian{
+	\draw [level] (4,0) -- (6,0)
+		node [right] {$1$};
+	\draw [level] (4,10) -- (6,10)
+		node [right] {$3$};
+	\draw [level] (3,6) -- (1,6)
+		node [left] {$2$};
+
+	\draw [transition] (5,0) -- (5,10);
+	\path (5,0)
+		-- node [sloped, below] {laserová excitace} (5,10);
+	\draw [transition] (5,10)
+		-- node [sloped, above] {LIF} (2,6);
+}
