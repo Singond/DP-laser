@@ -163,7 +163,7 @@ Doba života $\tau$ činila \SI{1.78}{\nano\second} a \SI{1.64}{\nano\second}.
 	xlim([4 16]);
 	xticks(4:4:16);
 	ylabel("intenzita I [a.u.]");
-	ylim([0 1.2e4]);
+	ylim([0 1.0e2]);
 	hold on
 	tt = linspace(min(X(2).t), max(X(2).t), 1000);
 	plot(X(2).t*1e9, X(2).in_center, "d", "color", co(1,:), "markerfacecolor", "none");
@@ -216,7 +216,7 @@ Měření bylo opakováno pro různé průtoky plynové směsi.
 #+caption: Výška $h = 0$ odpovídá poloze středu laserového svazku
 #+caption: asi \SI{2.5}{\milli\metre} nad horním okrajem atomizátoru.
 #+caption: Šířka svazku je zhruba \SI{3}{\milli\metre}.
-#+RESULTS[273b3bcee85bb4eacc37734f14241ed3e9355d05]:
+#+RESULTS[57536017bae7b82e3941ec52dfc2ed052f986221]:
 [[file:results/vertical.png]]
 
 #+begin_src octave :exports none

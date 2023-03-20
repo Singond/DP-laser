@@ -8,16 +8,19 @@ function r = img_intensity(x, mask = [])
 		acc = x.acc;
 	elseif (isnumeric(x))
 		img = x;
-		wt = 1;
 	else
 		error("img_intensity: X must be a numeric array or a struct");
 	end
 
 	if (!isempty(mask))
 		img = img .* mask;
+		masksum = sum(mask(:));
+	else
+		masksum = 1;
 	end
 
 	in = squeeze(sum(sum(img, 1), 2));
+	in = in ./ masksum;
 
 	if (isstruct(x))
 		r = x;
