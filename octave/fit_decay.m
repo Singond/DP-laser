@@ -1,15 +1,31 @@
 ## -*- texinfo -*-
-## @deftypefn {} {@var{x} =} fit_decay (@var{x})
+## @deftypefn  {} {@var{r} =} fit_decay (@var{x}, @var{y})
+## @deftypefnx {} {@var{r} =} fit_decay (@var{struct})
 ##
-## Fit exponential decay to @code{x.in(x.t)}.
+## Fit exponential decay to @code{x(y)}.
 ## @end deftypefn
-function x = fit_decay(x)
+function x = fit_decay(varargin)
 	pkg load optim;
 
-	[~, pk] = max(x.in);
-	t = x.t(pk:end);
+	if (isstruct(varargin{1}))
+		x = varargin{1};
+		if (nargin > 1)
+			r = fit_decay(x.t, x.in, varargin{2:end});
+		else
+			r = fit_decay(x.t, x.in);
+		end
+		x.fitl = r.fitl;
+		x.fite = r.fite;
+		x.fitb = r.fitb;
+		return;
+	else
+		[t, in] = varargin{1:2};
+	end
+
+	[~, pk] = max(in);
+	t = t(pk:end);
 	t0 = t(1);
-	in = x.in(pk:end);
+	in = in(pk:end);
 
 	## Linearized model (preliminary fit)
 	x.fitl.beta = polyfit(t, log(in), 1);
