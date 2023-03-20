@@ -44,6 +44,10 @@
 \newcommand\lifetime{\tau}
 \newcommand\ity{I}
 \newcommand\itylif{I_\mathsf{LIF}}
+\newcommand\en{E}
+\newcommand\enlaser{\en_\mathrm{l}}
+\newcommand\wavelen{\lambda}
+\newcommand\wavelenlaser{\wavelen_\mathrm{l}}
 
 \begin{document}
 
@@ -92,6 +96,24 @@
 	\end{columns}
 	\bigskip
 	Dva snímky téhož uspořádání ve falešných barvách.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Saturace}
+	\begin{columns}[c]
+		\begin{column}{0.38\textwidth}
+			\begin{itemize}
+				\item $\wavelenlaser = \SI{196.032}{\nano\metre}$
+				\item saturace od $\enlaser \approx \SI{3}{\micro\joule}$
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.58\textwidth}
+			\resizebox{\textwidth}{!}{
+				\graphicspath{{../lif/}}
+				\input{../lif/results/saturation-lg.tex}
+			}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
