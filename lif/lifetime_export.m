@@ -7,7 +7,7 @@ gp.load("../style-cairo.gp");
 gp.exec("set palette gray");
 gp.title('Časový vývoj');
 gp.xlabel('čas $\\tim\\,[\\si{\\nano\\second}]$');
-gp.ylabel('intenzita $\\ity\\,[\\si\\arbunit]$');
+gp.ylabel('intenzita $\\itylif\\,[\\si\\arbunit]$');
 gp.exec("\n\
 	set xrange [4:16] \n\
 	set yrange [0:100] \n\
