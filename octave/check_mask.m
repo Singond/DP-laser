@@ -10,12 +10,11 @@ function check_mask(img, mask)
 	range = [min(img(:)) max(img(:))];
 	img -= range(1);
 	img /= diff(range);
+	img3 = repelem(img, 1, 1, 3);
 
 	maskcolor = [1 0 0];
-	nomaskcolor = [1 1 1];
-	color = interp1([0; 1], [maskcolor; nomaskcolor], double(mask));
-	combined = (color + img) ./ 2;
-	mask3 = repmat(mask, 1, 1, 3);
-	combined(mask3) = repmat(img, 1, 1, 3)(mask3);
+	masked = (reshape(maskcolor, 1, 1, 3) + img3) ./ 2;
+	img4 = reshape(img3, [1 size(img3)]);
+	combined = masked .* (1 - mask) + img3 .* mask;
 	imshow(combined);
 endfunction
