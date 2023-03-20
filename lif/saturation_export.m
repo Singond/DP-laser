@@ -4,6 +4,7 @@ saturation;
 
 gp = gnuplotter;
 gp.load("../style-cairo.gp");
+gp.title("Závislost na energii pulzu");
 gp.xlabel('energie pulzu $\\enlaser\\,[\\si{\\micro\\joule}]$');
 gp.ylabel('intenzita $\\itylif\\,[\\si\\arbunit]$');
 gp.exec("\n\
