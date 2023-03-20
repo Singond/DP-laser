@@ -8,5 +8,11 @@ thesis.pdf: thesis.tex frontmatter.tex
 presentation%.pdf: presentation%.tex
 	latexmk ${tex_args} presentation$* && touch $@
 
+presentation-lif.pdf: build/lif.timestamp
+
+build/lif.timestamp:
+	cd ../lif && $(MAKE) presentation_resources
+	touch $@
+
 clean:
 	ls thesis.* presentation* | grep -v '\.tex$$' | xargs rm

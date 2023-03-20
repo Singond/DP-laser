@@ -40,6 +40,8 @@
 	Ústav fyzikální elektroniky}
 
 \newcommand\tim{t}
+\newcommand\lifetime{\tau}
+\newcommand\ity{I}
 
 \begin{document}
 
@@ -70,6 +72,22 @@
 			\caption{Obecné schéma LIF.}
 		\end{figure}
 	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Doba života $\lifetime$}
+	\begin{columns}[c]
+		\begin{column}{0.4\textwidth}
+			\includegraphics[width=\textwidth, trim={4cm 0 4cm 0}, clip]
+				{../lif/results/lifetime-regions.png}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+			\resizebox{\textwidth}{!}{
+				\graphicspath{{../lif/}}
+				\input{../lif/results/lifetime-lg.tex}
+			}
+		\end{column}
 	\end{columns}
 \end{frame}
 
