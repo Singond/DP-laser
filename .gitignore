@@ -6,6 +6,7 @@ results/
 *~
 \#*\#
 .\#*
+.latexmkrc
 octave-workspace
 
 .project
