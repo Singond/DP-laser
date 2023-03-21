@@ -5,31 +5,41 @@
 ## @end deftypefn
 function r = img_intensity(x, mask = [])
 	if (isstruct(x))
-		img = x.img;
-		acc = x.acc;
-	elseif (isnumeric(x))
+		r = x;
+		r.inraw = img_intensity(x.img, mask);
+		r.in = r.inraw ./ r.acc;
+		return;
+	end
+
+	if (isnumeric(x))
 		img = x;
 	else
 		error("img_intensity: X must be a numeric array or a struct");
 	end
 
-	if (!isempty(mask))
-		img = img .* mask;
-		masksum = sum(mask(:));
+	if (iscell(mask))
+		masks = mask;
 	else
-		masksum = prod(size(img, 1, 2));
+		masks = {mask};
 	end
 
-	in = squeeze(sum(sum(img, 1), 2));
-	in = in ./ masksum;
+	in = zeros(prod(size(img)(3:end)), numel(masks));
+	for k = 1:numel(masks)
+		mask = masks{k};
 
-	if (isstruct(x))
-		r = x;
-		r.inraw = in;
-		r.in = in ./ acc;
-	else
-		r = in;
+		if (!isempty(mask))
+			imgk = img .* mask;
+			masksum = sum(mask(:));
+		else
+			imgk = img;
+			masksum = prod(size(img, 1, 2));
+		end
+
+		y = squeeze(sum(sum(imgk, 1), 2));
+		in(:,k) = y ./ masksum;
 	end
+
+	r = in;
 end
 
 %!shared img, mask1, mask2, in1, in2
@@ -84,3 +94,10 @@ end
 %! x = img_intensity(x, mask2);
 %! assert(x.inraw, in2);
 %! assert(x.in, in2 / 2);
+
+%!test
+%! x.img = img;
+%! x.acc = 2;
+%! x = img_intensity(x, {mask1, mask2});
+%! assert(x.inraw, [in1 in2]);
+%! assert(x.in, [in1 in2] / 2);
