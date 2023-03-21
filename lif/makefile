@@ -5,7 +5,7 @@ presentation_figs += timeev-7.0.png timeev-10.0.png timeev-12.0.png
 
 presentation_resources: ${presentation_figs:%=results/%}
 
-results/lifetime-lg.tex results/lifetime-regions.png: example_export.m
+results/flame.png results/lif-example.png: example_export.m
 	octave --norc $<
 
 results/lifetime.tex results/lifetime-lg.tex: lifetime_export.m lifetime_main.m
