@@ -1,7 +1,9 @@
 pkg load report;
 pkg load singon-plasma;
 
-lifetime_main;
+if (!exist("lifetime", "var"))
+	lifetime_main;
+end
 
 img = read_princeton_spe("data-2023-01-20/obr1.SPE");
 img_flame = mean(img, 3);
@@ -25,7 +27,7 @@ gp.exec("\n\
 gp.data(flipud(img_flame));
 clear gp;
 
-img_lif = X(2).img(:,:,12);
+img_lif = lifetime(2).img(:,:,12);
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.exec("set palette model RGB functions 3 * (gray - 2/3.0), (3/2.0) * (gray - 1/3.0), gray");

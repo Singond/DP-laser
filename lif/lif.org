@@ -158,6 +158,7 @@ Doba života $\tau$ činila \SI{1.78}{\nano\second} a \SI{1.64}{\nano\second}.
 	<<common>>
 	<<figure>>
 	lifetime_main;
+	X = lifetime;
 	title("Časový vývoj");
 	xlabel("čas t [ns]");
 	xlim([4 16]);

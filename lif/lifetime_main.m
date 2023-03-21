@@ -21,9 +21,8 @@ mask_center = maskpolygon(s, poly_center);
 mask_edge1  = maskpolygon(s, poly_edge1);
 mask_edge2  = maskpolygon(s, poly_edge2);
 
-Xold = X;
-X = struct([]);
-for x = Xold
+lifetime = struct([]);
+for x = X
 	x.t = (0:x.imgm.numframes - 1)' * x.dt;
 	x.in_center = img_intensity(x.img, mask_center) ./ x.acc;
 	x.fit_center = fit_decay(x.t, x.in_center);
@@ -34,6 +33,6 @@ for x = Xold
 	x.in_edge2 = img_intensity(x.img, mask_edge2) ./ x.acc;
 	x.fit_edge2 = fit_decay(x.t, x.in_edge2);
 	x.tau_edge2 = x.fit_edge2.fite.tau;
-	X(end+1) = x;
+	lifetime(end+1) = x;
 endfor
-clear Xold
+clear X

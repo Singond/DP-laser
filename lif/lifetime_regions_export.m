@@ -1,8 +1,10 @@
 pkg load report;
 
-lifetime_main;
+if (!exist("lifetime", "var"))
+	lifetime_main;
+end
 
-img = X(2).img(:,:,12);
+img = lifetime(2).img(:,:,12);
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.exec("set palette gray");
