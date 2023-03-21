@@ -1,6 +1,6 @@
 pkg load report;
 
-lifetime;
+lifetime_main;
 
 img = X(2).img(:,:,12);
 gp = gnuplotter;

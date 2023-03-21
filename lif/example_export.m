@@ -1,7 +1,7 @@
 pkg load report;
 pkg load singon-plasma;
 
-lifetime;
+lifetime_main;
 
 img = read_princeton_spe("data-2023-01-20/obr1.SPE");
 img_flame = mean(img, 3);

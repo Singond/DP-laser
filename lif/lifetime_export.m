@@ -1,6 +1,6 @@
 pkg load report;
 
-lifetime;
+lifetime_main;
 
 gp = gnuplotter;
 gp.load("../style-cairo.gp");

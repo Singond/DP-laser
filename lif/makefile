@@ -6,8 +6,8 @@ presentation_resources: ${presentation_figs:%=results/%}
 results/lifetime-lg.tex results/lifetime-regions.png: example_export.m
 	octave --norc $<
 
-results/lifetime.tex results/lifetime-lg.tex: lifetime_export.m lifetime.m
+results/lifetime.tex results/lifetime-lg.tex: lifetime_export.m lifetime_main.m
 	octave --norc $<
 
-results/lifetime-regions.png: lifetime_regions_export.m lifetime.m
+results/lifetime-regions.png: lifetime_regions_export.m lifetime_main.m
 	octave --norc $<
