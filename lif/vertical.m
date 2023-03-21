@@ -54,8 +54,9 @@ x.control = [
 	3	33	40];
 X(end+1) = x;
 
+regions;
 X = arrayfun(@correct_iccd, X);
-X = arrayfun(@img_intensity, X);
+X = arrayfun(@(x) img_intensity(x, {region.mask}), X);
 
 Xold = X;
 X = struct([]);
@@ -64,7 +65,10 @@ for x = Xold
 	n = 1:length(x.in);
 	edges = x.control(:,2:3) + [0 1];  # Include right bound
 	[~, idx] = histc(n, edges'(:));
-	x.inh = accumarray(idx', x.in, [], @mean)(1:2:end);
+	x.inh = zeros(rows(edges), columns(x.in));
+	for k = 1:columns(x.in)
+		x.inh(:,k) = accumarray(idx', x.in(:,k), [], @mean)(1:2:end);
+	end
 	X(end+1) = x;
 endfor
 clear Xold

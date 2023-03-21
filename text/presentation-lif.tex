@@ -10,6 +10,7 @@
 \usepackage{icomma}
 
 \usepackage{physics}
+\usepackage{mhchem}
 \usepackage{siunitx}
 \sisetup{
 	locale               = DE,
@@ -220,6 +221,26 @@
 		$\specoverlap = \int l(\freq)\,a(\freq) \dd{\freq}$
 		& spektrální překryv
 	\end{tabular}
+\end{frame}
+
+\newcommand\flamey{h}
+
+\begin{frame}
+	\frametitle{Svislý profil}
+	\begin{columns}[c]
+		\begin{column}{0.48\textwidth}
+			\resizebox{\textwidth}{!}{
+				\graphicspath{{../lif/}}
+				\input{../lif/results/vertical-center.tex}
+			}
+		\end{column}
+		\begin{column}{0.48\textwidth}
+			\resizebox{\textwidth}{!}{
+				\graphicspath{{../lif/}}
+				\input{../lif/results/vertical-edgel.tex}
+			}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \end{document}
