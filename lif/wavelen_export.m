@@ -3,6 +3,7 @@ pkg load report;
 wavelen;
 
 gp = gnuplotter;
+gp.load("../style.gp");
 gp.load("../style-cairo.gp");
 gp.title("Excitační profil (bez~prostorového filtru)");
 gp.xlabel('vlnová délka laseru $\\enlaser\\,[\\si{\\nano\\metre}]$');
@@ -23,6 +24,7 @@ gp.export("results/excitprof-nofilter-lg.tex", "cairolatex", "size 10cm,8cm");
 clear gp k;
 
 gp = gnuplotter;
+gp.load("../style.gp");
 gp.load("../style-cairo.gp");
 gp.title("Excitační profil (s~prostorovým filtrem)");
 gp.xlabel('vlnová délka laseru $\\enlaser\\,[\\si{\\nano\\metre}]$');

@@ -3,6 +3,7 @@ pkg load report;
 saturation;
 
 gp = gnuplotter;
+gp.load("../style.gp");
 gp.load("../style-cairo.gp");
 gp.title("Závislost na energii pulzu");
 gp.xlabel('energie pulzu $\\enlaser\\,[\\si{\\micro\\joule}]$');

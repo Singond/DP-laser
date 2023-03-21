@@ -6,6 +6,7 @@ end
 X = lifetime;
 
 gp = gnuplotter;
+gp.load("../style.gp");
 gp.load("../style-cairo.gp");
 gp.exec("set palette gray");
 gp.title('Časový vývoj');

@@ -13,6 +13,7 @@ imax = 2000;
 t = lifetime(2).t;
 
 gp = gnuplotter;
+gp.load("../style.gp");
 gp.load("../style-cairo.gp");
 gp.exec("set palette model RGB functions 3 * (gray - 2/3.0), (3/2.0) * (gray - 1/3.0), gray");
 gp.exec(sprintf("set cbrange [%g:%g]", imin, imax));
