@@ -32,7 +32,7 @@ function r = img_intensity(x, mask = [])
 	end
 end
 
-%!shared img, mask1, mask2
+%!shared img, mask1, mask2, in1, in2
 %! img = [
 %!   6 7 5 9 1
 %!   2 4 3 8 2
@@ -57,6 +57,7 @@ end
 %!   0 1 1 1 0
 %!   0 0 0 0 0
 %! ];
+%! in1 = mean(img(2:4,2:4)(:));
 %! mask2 = [
 %!   1 1 1 1 0
 %!   1 0 0 0 1
@@ -64,21 +65,22 @@ end
 %!   0 0 0 1 1
 %!   1 0 1 0 1
 %! ];
+%! in2 = mean(img(logical(mask2)));
 
-%!assert(img_intensity(img, mask1), mean(img(2:4,2:4)(:)));
+%!assert(img_intensity(img, mask1), in1);
 
 %!test
 %! x.img = img;
 %! x.acc = 2;
 %! x = img_intensity(x, mask1);
-%! assert(x.inraw, mean(img(2:4,2:4)(:)));
-%! assert(x.in, mean(img(2:4,2:4)(:)) / 2);
+%! assert(x.inraw, in1);
+%! assert(x.in, in1 / 2);
 
-%!assert(img_intensity(img, mask2), mean(img(logical(mask2))));
+%!assert(img_intensity(img, mask2), in2);
 
 %!test
 %! x.img = img;
 %! x.acc = 2;
 %! x = img_intensity(x, mask2);
-%! assert(x.inraw, mean(img(logical(mask2))));
-%! assert(x.in, mean(img(logical(mask2))) / 2);
+%! assert(x.inraw, in2);
+%! assert(x.in, in2 / 2);
