@@ -2,6 +2,8 @@ pkg load singon-ext;
 pkg load singon-plasma;
 addpath ../octave;
 
+regions;
+
 X = struct;
 x = load_iccd("data-2023-01-20/decay1.SPE");
 x.dt = 1e-9;
@@ -13,13 +15,13 @@ X(2) = x;
 
 X = arrayfun(@correct_iccd, X);
 
-s = size(X(1).img(:,:,1));
-poly_center = [95 72; 102 72; 102 88; 95 88];
-poly_edge1  = [73 72; 80 72; 80 88; 73 88];
-poly_edge2  = [117 72; 124 72; 124 88; 117 88];
-mask_center = maskpolygon(s, poly_center);
-mask_edge1  = maskpolygon(s, poly_edge1);
-mask_edge2  = maskpolygon(s, poly_edge2);
+poly_center = region(1).shape;
+poly_edge1  = region(2).shape;
+poly_edge2  = region(3).shape;
+
+mask_center = region(1).mask;
+mask_edge1  = region(2).mask;
+mask_edge2  = region(3).mask;
 
 lifetime = struct([]);
 for x = X
