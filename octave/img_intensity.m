@@ -1,6 +1,7 @@
 ## -*- texinfo -*-
 ## @deftypefn  {} {@var{x} =} img_intensity (@var{x})
 ## @deftypefnx {} {@var{x} =} img_intensity (@var{x}, @var{mask})
+## @deftypefnx {} {@var{struct} =} img_intensity (@var{struct}, @dots{})
 ## @end deftypefn
 function r = img_intensity(x, mask = [])
 	if (isstruct(x))
