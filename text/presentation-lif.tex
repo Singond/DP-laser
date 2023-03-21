@@ -8,6 +8,8 @@
 % \usepackage{fontspec}
 \usepackage[czech]{babel}
 \usepackage{icomma}
+
+\usepackage{physics}
 \usepackage{siunitx}
 \sisetup{
 	locale               = DE,
@@ -175,6 +177,49 @@
 		& & \lifetime_2 &= \SI{1.39}{\nano\second} \\
 		& & \lifetime_3 &= \SI{1.09}{\nano\second}
 	\end{align*}
+\end{frame}
+
+\newcommand\vol{V}
+\newcommand\freq{\nu}
+\newcommand\dens{n}
+\newcommand\lifsens{D_\text{F}}
+\newcommand\rayleighsens{D_\text{R}}
+\newcommand\lifsignal{M_\text{t}}
+\newcommand\rayleighsignal{M_\text{R}}
+\newcommand\rayleighxsec{\dv{\sigma_\text{R}}{\Omega}}
+\newcommand\enrayleigh{E_\text{lR}}
+\newcommand\specoverlap{\kappa}
+\renewcommand\dd[1]{\,\mathsf{d}#1}
+\renewcommand\dv[2]{\frac{\text{d}#1}{\text{d}#2}}
+
+\begin{frame}
+	\frametitle{Určení koncentrace}
+	V~lineárním režimu:
+	\begin{align*}
+		&\text{LIF:} &
+		\lifsignal &= A_{32}\,\lifetime \frac{\specoverlap B_{13}}{\lightspeed}
+		\dens \enlaser \iiint_\vol \lifsens \frac{\Omega}{4\pi} s \dd{\vol} \\
+		&\text{Rayleigh:} & \rayleighsignal &= \rayleighxsec \frac{p}{kT}
+		\frac{\enrayleigh}{\planck\freq}
+		\iiint_\vol \rayleighsens\,\Omega s \dd{\vol}
+	\end{align*}
+	\begin{block}{}
+		\begin{equation*}
+			\label{eq:label}
+			\dens = \frac{\lifsignal}{\rayleighsignal}
+			\frac{\enrayleigh}{\enlaser}\frac{\rayleighsens}{\lifsens}
+			\frac{1}{A_{32}\,\tau}
+			\frac{\lightspeed}{\planck\freq\specoverlap B_{13}}
+			\, 4\pi \rayleighxsec \frac{p}{kT}
+		\end{equation*}
+	\end{block}
+	\medskip
+	\begin{tabular}{l l}
+		$\lifsignal$, $\rayleighsignal$ & měřený signál \\
+		$\lifsens$, $\rayleighsens$ & citlivost přístroje \\
+		$\specoverlap = \int l(\freq)\,a(\freq) \dd{\freq}$
+		& spektrální překryv
+	\end{tabular}
 \end{frame}
 
 \end{document}
