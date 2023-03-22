@@ -52,3 +52,19 @@
 	\draw [transition] (5,10)
 		-- node [sloped, above] {LIF} (2,6);
 }
+
+% TODO: Find correct values
+\newcommand\seleniumlifgrotrian{
+	\draw [level] (4,0) -- (6,0)
+		node [right] {$1$};
+	\draw [level] (4,10) -- (6,10)
+		node [right] {$3$};
+	\draw [level] (3,6) -- (1,6)
+		node [left] {$2$};
+
+	\draw [transition] (5,0) -- (5,10);
+	\path (5,0)
+		-- node [sloped, below] {$\SI{196.032}{\nano\metre}$} (5,10);
+	\draw [transition] (5,10)
+		-- node [sloped, above] {LIF} (2,6);
+}
