@@ -53,18 +53,17 @@
 		-- node [sloped, above] {LIF} (2,6);
 }
 
-% TODO: Find correct values
 \newcommand\seleniumlifgrotrian{
 	\draw [level] (4,0) -- (6,0)
-		node [right] {$1$};
+		(5,-1) node {$4s^2 4p^4\ {}^3\mathsf{P}_2$};
 	\draw [level] (4,10) -- (6,10)
-		node [right] {$3$};
+		(5,11) node {$4s^2 4p^3({}^4\mathsf{S}^o) 5s\ {}^3\mathsf{S^o}_1$};
 	\draw [level] (3,6) -- (1,6)
-		node [left] {$2$};
+		node [left] {$4s^2 4p^4\ {}^1\mathsf{S}_0$};
 
 	\draw [transition] (5,0) -- (5,10);
 	\path (5,0)
-		-- node [sloped, below] {$\SI{196.032}{\nano\metre}$} (5,10);
+		-- node [sloped, below] {\SI{196.09}{\nano\metre}} (5,10);
 	\draw [transition] (5,10)
-		-- node [sloped, above] {LIF} (2,6);
+		-- node [sloped, above] {\SI{350.25}{\nano\metre}} (2,6);
 }
