@@ -37,11 +37,13 @@ function x = fit_decay(varargin)
 	p.addRequired("y", @isnumeric);
 	p.addParameter("from", "auto");
 	p.addParameter("dim", 1, @isnumeric);
+	p.addSwitch("progress");
 	p.parse(varargin{:});
 	t = p.Results.x;
 	in = p.Results.y;
 	t0 = p.Results.from;
 	dim = p.Results.dim;
+	progress = p.Results.progress;
 
 	if (ischar(t0) && strcmp(t0, "auto"))
 		[~, pk] = max(in);
@@ -70,7 +72,11 @@ function x = fit_decay(varargin)
 		m = t >= t0;
 		t = t(m);
 		x = cell(sz(otherdims));
+		totalk = numel(x);
 		for k = 1:columns(in)
+			if (progress && mod(k, 10) == 0)
+				fprintf(stderr, "fit_decay: %d/%d\n", k, totalk);
+			end
 			ink = in(m, k);
 			x{k} = _fit_decay(t - t0, ink);
 		end
