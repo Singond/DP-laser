@@ -1,7 +1,24 @@
 ## -*- texinfo -*-
-## @deftypefn  {} {@var{x} =} img_intensity (@var{x})
-## @deftypefnx {} {@var{x} =} img_intensity (@var{x}, @var{mask})
+## @deftypefn  {} {@var{in} =} img_intensity (@var{x})
+## @deftypefnx {} {@var{in} =} img_intensity (@var{x}, @var{mask})
 ## @deftypefnx {} {@var{struct} =} img_intensity (@var{struct}, @dots{})
+##
+## Return the overall intensity of image @var{x}.
+## The overall intensity is the mean of the intensities of each pixel.
+##
+## If the image has more than two dimensions, treat higher dimensions
+## as additional images and return the intensities in a column vector.
+##
+## The weight of each pixel can be specified as @var{mask}, which must
+## be a 2D numeric array of the same dimensions as image.
+## Multiple masks can be given in one cell array argument;
+## in that case, return the intensities for k-th mask in k-th column.
+##
+## The first argument can also be a struct.
+## In such case, use field @code{img} as the image and divide the resulting
+## intensity by the number of accumulations in the field @code{acc},
+## storing the original intensity as @code{inraw} and the corrected one
+## as @code{in}.
 ## @end deftypefn
 function r = img_intensity(x, mask = [])
 	if (isstruct(x))
