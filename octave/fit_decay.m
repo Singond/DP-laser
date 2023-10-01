@@ -36,26 +36,24 @@ function x = fit_decay(varargin)
 	x.fitl.f = @(t) exp(polyval(x.fitl.beta, t));
 
 	## Exponential model
-	model = @(t, b) b(1) .* exp(-t./b(2));
 	b0 = [in(1), x.fitl.tau];
 	s = struct();
-	[~, s.beta, s.cvg, s.iter] = leasqr(t - t0, in, b0, model, [], 30);
+	[~, s.beta, s.cvg, s.iter] = leasqr(t, in, b0, @model_simple, [], 30);
 	if (!s.cvg)
 		warning("Convergence not reached after %d iterations.", s.iter);
 	end
-	s.f = @(t) model(t - t0, s.beta);
+	s.f = @(t) model_simple(t, s.beta);
 	s.tau = s.beta(2);
 	x.fite = s;
 
 	## Exponential model with constant
-	modelb = @(t, b) b(1) .* exp(-t./b(2)) + b(3);
 	b0 = [in(1), x.fite.tau, 0];
 	s = struct();
-	[~, s.beta, s.cvg, s.iter] = leasqr(t - t0, in, b0, modelb, [], 30);
+	[~, s.beta, s.cvg, s.iter] = leasqr(t, in, b0, @model_yconst, [], 30);
 	if (!s.cvg)
 		warning("Convergence not reached after %d iterations.", s.iter);
 	end
-	s.f = @(t) modelb(t - t0, s.beta);
+	s.f = @(t) model_yconst(t, s.beta);
 	s.tau = s.beta(2);
 	s.bg = s.beta(3);
 	x.fitb = s;
@@ -63,11 +61,19 @@ function x = fit_decay(varargin)
 	## Correct exponential model using new y-intercept
 	b0 = x.fitb.beta(1:2);
 	s = struct();
-	[~, s.beta, s.cvg, s.iter] = leasqr(t - t0, in, b0, model, [], 30);
+	[~, s.beta, s.cvg, s.iter] = leasqr(t, in, b0, @model_simple, [], 30);
 	if (!s.cvg)
 		warning("Convergence not reached after %d iterations.", s.iter);
 	end
-	s.f = @(t) model(t - t0, s.beta);
+	s.f = @(t) model_simple(t, s.beta);
 	s.tau = s.beta(2);
 	x.fite = s;
+end
+
+function r = model_simple(t, b)
+	r = b(1) .* exp(-t./b(2));
+end
+
+function r = model_yconst(t, b)
+	r = b(1) .* exp(-t./b(2)) + b(3);
 end
