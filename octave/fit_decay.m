@@ -27,8 +27,11 @@ function x = fit_decay(varargin)
 	t0 = t(1);
 	in = in(pk:end);
 
+	## Non-zero elements
+	nz = in > 0;
+
 	## Linearized model (preliminary fit)
-	x.fitl.beta = polyfit(t, log(in), 1);
+	x.fitl.beta = polyfit(t(nz), log(in(nz)), 1);
 	x.fitl.tau = -1 / x.fitl.beta(1);
 	x.fitl.f = @(t) exp(polyval(x.fitl.beta, t));
 
