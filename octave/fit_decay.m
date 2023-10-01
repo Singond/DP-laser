@@ -1,12 +1,24 @@
 ## -*- texinfo -*-
 ## @deftypefn  {} {@var{r} =} fit_decay (@var{x}, @var{y})
-## @deftypefnx {} {@var{r} =} fit_decay (@var{struct})
+## @deftypefnx {} {@var{r} =} fit_decay (@dots{}, @qcode{"from"}, @var{x0})
+## @deftypefnx {} {@var{r} =} fit_decay (@dots{}, @qcode{"dim"}, @var{dim})
+## @deftypefnx {} {@var{s} =} fit_decay (@var{struct})
 ##
 ## Fit exponential decay to @code{x(y)}.
+##
+## The fitted data are clipped by the optional argument @var{x0}.
+## All data points with lower values of @var{x} will be ignored.
+## The default is @qcode{"auto"}, which sets @var{x0} to the value
+## corresponding to maximum @var{y}.
+##
+## If @var{y} is a matrix, fit along columns of @var{y}
+## and put the results into a cell array with the remaining dimensions.
+## The operating dimension can be changed by the @var{dim} parameter.
 ## @end deftypefn
 function x = fit_decay(varargin)
 	pkg load optim;
 
+	## Overload for struct argument
 	if (isstruct(varargin{1}))
 		x = varargin{1};
 		if (nargin > 1)
@@ -18,15 +30,54 @@ function x = fit_decay(varargin)
 		x.fite = r.fite;
 		x.fitb = r.fitb;
 		return;
-	else
-		[t, in] = varargin{1:2};
 	end
 
-	[~, pk] = max(in);
-	t = t(pk:end);
-	t0 = t(1);
-	in = in(pk:end);
+	p = inputParser;
+	p.addRequired("x", @isnumeric);
+	p.addRequired("y", @isnumeric);
+	p.addParameter("from", "auto");
+	p.addParameter("dim", 1, @isnumeric);
+	p.parse(varargin{:});
+	t = p.Results.x;
+	in = p.Results.y;
+	t0 = p.Results.from;
+	dim = p.Results.dim;
 
+	if (ischar(t0) && strcmp(t0, "auto"))
+		[~, pk] = max(in);
+		t0 = t(1);
+	elseif (!isnumeric(t0))
+		print_usage();
+	end
+
+	if (isvector(in))
+		t = t(t >= t0);
+		in = in(t >= t0);
+		x = _fit_decay(t - t0, in);
+	else
+		sz = size(in);
+		if (length(t) != size(in, dim))
+			error("Incompatible dimensions");
+		end
+
+		## Move dimension DIM to the beginning
+		dims = 1:ndims(in);
+		otherdims = dims(dims != dim);
+		in = permute(in, [dim otherdims]);
+		## Squash higher dimensions
+		in = reshape(in, length(t), []);
+
+		m = t >= t0;
+		t = t(m);
+		x = cell(sz(otherdims));
+		for k = 1:columns(in)
+			ink = in(m, k);
+			x{k} = _fit_decay(t - t0, ink);
+		end
+	end
+end
+
+function x = _fit_decay(t, in)
 	## Non-zero elements
 	nz = in > 0;
 
