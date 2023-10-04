@@ -1,0 +1,37 @@
+## -*- texinfo -*-
+## @deftypefn  {} {} show_fit_decay (@var{s}, @var{fit}, @var{r}, @var{c})
+## @deftypefnx {} {} show_fit_decay (@dots{}, @var{field})
+##
+## Inspect the fit produced by @code{fit_decay}.
+## @end deftypefn
+function show_fit_decay(s, fit, r, c, field="fite")
+	x = s.t;
+	y = s.in(r,c,:);
+
+	[xmin, xmax] = bounds(x);
+	[ymin, ymax] = bounds(y);
+
+	xx = linspace(xmin, xmax);
+	yl = fit(r,c).fitl.f(xx);    # linear fit in log scale
+	ye = fit(r,c).fite.f(xx);    # exponential fit
+	taue = fit(r,c).fite.tau;
+
+	## Limit fitted functions to similar y-range as data
+	yrange = ymax - ymin;
+	ml = (ymin - 0.1 * yrange) < yl & yl < (ymax + 0.1 * yrange);
+	me = (ymin - 0.1 * yrange) < ye & ye < (ymax + 0.1 * yrange);
+
+	cidx = get(gca(), "colororderindex");
+	cc = get(gca(), "colororder")(cidx,:);
+	plot(
+		x, y, "bd",
+			"color", cc, "displayname",
+			sprintf("[%d, %d] \\tau_e = %.3f ns", r, c, taue*1e9),
+		xx(ml), yl(ml),
+			"b:", "color", cc, "handlevisibility", "off",
+		xx(me), ye(me),
+			"--", "color", cc, "handlevisibility", "off");
+	xlabel("time t [ns]");
+	ylabel("inensity I [a.u.]");
+	legend("interpreter", "tex");
+end
