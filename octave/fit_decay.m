@@ -8,8 +8,9 @@
 ##
 ## The fitted data are clipped by the optional argument @var{x0}.
 ## All data points with lower values of @var{x} will be ignored.
-## The default is @qcode{"auto"}, which sets @var{x0} to the value
-## corresponding to maximum @var{y}.
+## The special value "peak" sets @var{x0} to the value corresponding
+## to maximum @var{y}.
+## The default is @qcode{-Inf}.
 ##
 ## If @var{y} is a matrix, fit along columns of @var{y}
 ## and put the results into a cell array with the remaining dimensions.
@@ -35,7 +36,7 @@ function x = fit_decay(varargin)
 	p = inputParser;
 	p.addRequired("x", @isnumeric);
 	p.addRequired("y", @isnumeric);
-	p.addParameter("from", "auto");
+	p.addParameter("from", -Inf);
 	p.addParameter("dim", 1, @isnumeric);
 	p.addSwitch("progress");
 	p.parse(varargin{:});
@@ -45,9 +46,9 @@ function x = fit_decay(varargin)
 	dim = p.Results.dim;
 	progress = p.Results.progress;
 
-	if (ischar(t0) && strcmp(t0, "auto"))
+	if (ischar(t0) && strcmp(t0, "peak"))
 		[~, pk] = max(in);
-		t0 = t(1);
+		t0 = t(pk(1));
 	elseif (!isnumeric(t0))
 		print_usage();
 	end

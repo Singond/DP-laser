@@ -28,5 +28,5 @@ D = D([1:10 12:15]);
 D = arrayfun(@(x) crop_iccd(x, [143 167], [220 779]), D);
 X = arrayfun(@correct_iccd, D);
 X = arrayfun(@img_intensity, X);
-X = arrayfun(@fit_decay, X);
+X = arrayfun(@(x) fit_decay(x, "from", "peak"), X);
 X = arrayfun(@process_lifetime, X);
