@@ -2,7 +2,7 @@
 ## @deftypefn  {} {@var{r} =} fit_decay (@var{x}, @var{y})
 ## @deftypefnx {} {@var{r} =} fit_decay (@dots{}, @qcode{"from"}, @var{x0})
 ## @deftypefnx {} {@var{r} =} fit_decay (@dots{}, @qcode{"dim"}, @var{dim})
-## @deftypefnx {} {@var{s} =} fit_decay (@var{struct})
+## @deftypefnx {} {@var{s} =} fit_decay (@var{s})
 ##
 ## Fit exponential decay to @code{x(y)}.
 ##
@@ -12,11 +12,19 @@
 ## to maximum @var{y}.
 ## The default is @qcode{-Inf}.
 ##
-## If @var{y} is a matrix, fit along columns of @var{y}
-## and put the results into a cell array with the remaining dimensions.
-## The operating dimension can be changed by the @var{dim} parameter.
+## If @var{y} is a matrix, fit vectors along dimension @var{dim}
+## individually, putting the results into a struct array.
+## The dimensions of the result are the same as those of @var{y}
+## with size in dimension @var{dim} set to one.
+## When not specified, the default @var{dim} is one.
+##
+## If instead of @var{x} and @var{y} a single struct argument @var{s}
+## is provided, use its fields @code{@var{s}.t} and @code{@var{s}.in}
+## as the arguments @var{x} and @var{y}, respectively,
+## and put the fields @code{fitl}, @code{fite} and @code{fitb} directly
+## into a copy of @var{s}, which is returned.
 ## @end deftypefn
-function x = fit_decay(varargin)
+function r = fit_decay(varargin)
 	pkg load optim;
 
 	## Overload for struct argument
@@ -53,11 +61,16 @@ function x = fit_decay(varargin)
 		print_usage();
 	end
 
+	## Select region to be fitted
+	m = t >= t0;
+
 	if (isvector(in))
-		t = t(t >= t0);
-		in = in(t >= t0);
-		x = _fit_decay(t - t0, in);
+		r = _fit_decay(t(m), in(m));
 	else
+		## Matrix argument.
+		## Process each vector in dimension DIM individually.
+
+		## Check dimensions
 		sz = size(in);
 		if (length(t) != size(in, dim))
 			error("Incompatible dimensions");
@@ -67,20 +80,24 @@ function x = fit_decay(varargin)
 		dims = 1:ndims(in);
 		otherdims = dims(dims != dim);
 		in = permute(in, [dim otherdims]);
-		## Squash higher dimensions
+		## Squash higher dimensions to obtain a 2D array
 		in = reshape(in, length(t), []);
 
-		m = t >= t0;
-		t = t(m);
-		x = cell(sz(otherdims));
-		totalk = numel(x);
+		## Process each column
+		r = struct();
+		resultsize = sz;
+		resultsize(dim) = 1;
+		totalk = prod(resultsize);
 		for k = 1:columns(in)
 			if (progress && mod(k, 10) == 0)
 				fprintf(stderr, "fit_decay: %d/%d\n", k, totalk);
 			end
-			ink = in(m, k);
-			x{k} = _fit_decay(t - t0, ink);
+			r(k) = _fit_decay(t(m), in(m,k));
 		end
+
+		## Make the result match the input in dimensions
+		## other than DIM.
+		r = reshape(r, resultsize);
 	end
 end
 
@@ -135,3 +152,61 @@ end
 function r = model_yconst(t, b)
 	r = b(1) .* exp(-t./b(2)) + b(3);
 end
+
+%!shared x, y
+%! x = (0:7)';
+%! y = [87 95 100 * exp(-0.8 * (0:5))]';
+
+## Fit whole data.
+## The value -0.60438927 is equal to polyfit(x, log(y), 1)(1).
+%!test
+%! fit = fit_decay(x, y);
+%! assert(fit.fitl.beta(1), -0.60438927, 1e-6);
+
+## Fit the data from the maximum (which is at the start
+## of the exponential data and should provide an exact result).
+%!test
+%! fit = fit_decay(x, y, "from", "peak");
+%! assert(fit.fitl.beta(1), -0.8, 1e-12);
+
+## Fit the data with x >= 2, which is the same data as above.
+%!test
+%! fit = fit_decay(x, y, "from", 2);
+%! assert(fit.fitl.beta(1), -0.8, 1e-12);
+
+%!shared x, y, z
+%! x = (0:2)';
+%! y = exp([4  3.5  3
+%!          3  2.5  2
+%!          2  1.5  1]);
+%! z = cat(3, y * exp(4), y * exp(2), y);
+
+## Fit 2D matrix along dimension 1 (columns).
+%!test
+%! fits = fit_decay(x, y);
+%! assert(size(fits), [1, 3]);
+%! beta = arrayfun(@(c) c.fitl.beta(1), fits);
+%! assert(beta, [-1 -1 -1], 1e-12);
+
+## Fit 2D matrix along dimension 2 (rows).
+%!test
+%! fits = fit_decay(x, y, "dim", 2);
+%! assert(size(fits), [3, 1]);
+%! beta = arrayfun(@(c) c.fitl.beta(1), fits);
+%! assert(beta, [-0.5; -0.5; -0.5], 1e-12);
+
+## Fit 3D matrix along dimension 3.
+%!test
+%! fits = fit_decay(x, z, "dim", 3);
+%! assert(size(fits), [3, 3]);
+%! beta = arrayfun(@(c) c.fitl.beta(1), fits);
+%! assert(beta, [-2 -2 -2; -2 -2 -2; -2 -2 -2], 1e-12);
+
+## Clipping data (parameter "from") in higher dimensions.
+%!test
+%! x2 = (0:3)';
+%! y2 = [exp([3 2 0.8]); y];
+%! fits = fit_decay(x2, y2, "from", 1);
+%! assert(size(fits), [1, 3]);
+%! beta = arrayfun(@(c) c.fitl.beta(1), fits);
+%! assert(beta, [-1 -1 -1], 1e-12);
