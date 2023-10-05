@@ -2,6 +2,9 @@ if (!exist("lifetime", "var"))
 	lifetime_full;
 end
 
+warning("off", "Octave:negative-data-log-axis");
+warning("off", "Octave:imshow-NaN");
+
 f1 = figure("name", "Lifetime");
 imshow(tau, [0 1e-8], "colormap", ocean);
 title('lifetime \tau [ns]', "interpreter", "tex");
@@ -26,7 +29,6 @@ function inspect_fit(s, fits, f1, f2, f3)
 	hold off;
 
 	figure(f3, "name", "Fit detail (log)", "visible", "on");
-	warning("off", "Octave:negative-data-log-axis", "local");
 	set(gca, "yscale", "log");
 	hold on;
 	show_fit_decay(s, fits, yr, xr);
