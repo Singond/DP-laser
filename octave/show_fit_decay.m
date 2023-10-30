@@ -23,13 +23,14 @@ function show_fit_decay(s, fit, r, c, field="fite")
 
 	cidx = get(gca(), "colororderindex");
 	cc = get(gca(), "colororder")(cidx,:);
+	xscale = 1e9;
 	plot(
-		x, y, "bd",
+		x * xscale, y, "bd",
 			"color", cc, "displayname",
 			sprintf("[%d, %d] \\tau_e = %.3f ns", r, c, taue*1e9),
-		xx(ml), yl(ml),
+		xx(ml) * xscale, yl(ml),
 			"b:", "color", cc, "handlevisibility", "off",
-		xx(me), ye(me),
+		xx(me) * xscale, ye(me),
 			"--", "color", cc, "handlevisibility", "off");
 	xlabel("time t [ns]");
 	ylabel("inensity I [a.u.]");

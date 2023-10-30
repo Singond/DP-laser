@@ -6,7 +6,7 @@ warning("off", "Octave:negative-data-log-axis");
 warning("off", "Octave:imshow-NaN");
 
 f1 = figure("name", "Lifetime");
-imshow(tau, [0 1e-8], "colormap", ocean);
+imshow(tau * 1e9, [], "colormap", ocean);
 title('lifetime \tau [ns]', "interpreter", "tex");
 colorbar SouthOutside;
 
