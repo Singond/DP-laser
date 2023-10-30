@@ -6,6 +6,8 @@ warning("off", "Octave:negative-data-log-axis");
 warning("off", "Octave:imshow-NaN");
 
 f1 = figure("name", "Lifetime");
+ax = axes("position", [0.1 0.2 0.8 0.65]);
+axes(ax);
 imshow(tau * 1e9, [], "colormap", ocean);
 title('lifetime \tau [ns]', "interpreter", "tex");
 colorbar SouthOutside;
@@ -36,5 +38,5 @@ function inspect_fit(s, fits, f1, f2, f3)
 end
 
 figure(f1);
-uicontrol(gcf, "string", "Inspect fit", "position", [40 40 160 40],
+uicontrol("parent", f1, "string", "Inspect fit", "position", [10 10 120 30],
 	"callback", @(a,b) inspect_fit(x, fits, f1, f2, f3));
