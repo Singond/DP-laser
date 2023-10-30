@@ -37,6 +37,14 @@ function inspect_fit(s, fits, f1, f2, f3)
 	hold off;
 end
 
+function clear_figs(figs)
+	for f = figs
+		clf(f)
+	end
+end
+
 figure(f1);
 uicontrol("parent", f1, "string", "Inspect fit", "position", [10 10 120 30],
 	"callback", @(a,b) inspect_fit(x, fits, f1, f2, f3));
+uicontrol("parent", f1, "string", "Clear fits", "position", [140 10 120 30],
+	"callback", @(a,b) clear_figs([f2, f3]));
