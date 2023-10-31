@@ -34,5 +34,12 @@ function show_fit_decay(s, fit, r, c, field="fite")
 			"--", "color", cc, "handlevisibility", "off");
 	xlabel("time t [ns]");
 	ylabel("inensity I [a.u.]");
-	legend("interpreter", "tex");
+
+	## Compatibility hack for older Octave versions (tested on 5.2.0):
+	## Set location and orientation explicitly to "default" to force
+	## an update of the legend from current "displayname" properties.
+	## This is not necessary in newer versions, where the legend is
+	## updated automatically.
+	hleg = legend("location", "default", "orientation", "default");
+	set(hleg, "interpreter", "tex");
 end
