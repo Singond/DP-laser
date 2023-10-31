@@ -17,9 +17,15 @@ function show_fit_decay(s, fit, r, c, field="fite")
 	taue = fit(r,c).fite.tau;
 
 	## Limit fitted functions to similar y-range as data
-	yrange = ymax - ymin;
-	ml = (ymin - 0.1 * yrange) < yl & yl < (ymax + 0.1 * yrange);
-	me = (ymin - 0.1 * yrange) < ye & ye < (ymax + 0.1 * yrange);
+	if (strcmp(get(gca, "yscale"), "log"))
+		ymin = min(y(y > 0));
+		ml = (ymin * 0.1) < yl & yl < (ymax * 10);
+		me = (ymin * 0.1) < ye & ye < (ymax * 10);
+	else
+		yrange = ymax - ymin;
+		ml = (ymin - 0.1 * yrange) < yl & yl < (ymax + 0.1 * yrange);
+		me = (ymin - 0.1 * yrange) < ye & ye < (ymax + 0.1 * yrange);
+	end
 
 	cidx = get(gca(), "colororderindex");
 	cc = get(gca(), "colororder")(cidx,:);
