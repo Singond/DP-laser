@@ -33,7 +33,7 @@ function show_fit_decay(s, fit, r, c, field="fite")
 	plot(
 		x * xscale, y, "bd",
 			"color", cc, "displayname",
-			sprintf("[%d, %d] \\tau_e = %.3f ns", r, c, taue*1e9),
+			sprintf("[%d, %d] \\tau_e = %.3f ns", r, c, taue * xscale),
 		xx(ml) * xscale, yl(ml),
 			"b:", "color", cc, "handlevisibility", "off",
 		xx(me) * xscale, ye(me),
