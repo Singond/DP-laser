@@ -1,16 +1,33 @@
 ## -*- texinfo -*-
 ## @deftypefn  {} {@var{r} =} fit_decay (@var{x}, @var{y})
-## @deftypefnx {} {@var{r} =} fit_decay (@dots{}, @qcode{"from"}, @var{x0})
+## @deftypefnx {} {@var{r} =} fit_decay (@dots{}, @var{param}, @var{value})
 ## @deftypefnx {} {@var{r} =} fit_decay (@dots{}, @qcode{"dim"}, @var{dim})
 ## @deftypefnx {} {@var{s} =} fit_decay (@var{s})
 ##
-## Fit exponential decay to @code{x(y)}.
+## Fit exponential decay to data.
 ##
-## The fitted data are clipped by the optional argument @var{x0}.
-## All data points with lower values of @var{x} will be ignored.
-## The special value "peak" sets @var{x0} to the value corresponding
-## to maximum @var{y}.
-## The default is @qcode{-Inf}.
+## @var{x} and @var{y} are the x- and y-coordinates of the data points.
+##
+## The function accepts several optional parameters:
+##
+## @table @code
+##
+## @item xmin
+## @itemx xmax
+## @itemx ymin
+## @itemx ymax
+## Fit only data where @var{x} is larger than @var{xmin}.
+## All other data points will be ignored.
+## The options @var{xmax}, @var{ymin} and @var{ymax} are analogous.
+## The default values are @code{-Inf} and @code{Inf}, meaning that
+## no points are ignored.
+## As a special case, setting @var{xmin} to "peak" sets @var{xmin}
+## to the value corresponding to maximum @var{y}.
+##
+## @item dim
+## Fit matrix @var{y} along dimension @qcode{"dim"} (see below).
+##
+## @end table
 ##
 ## If @var{y} is a matrix, fit vectors along dimension @var{dim}
 ## individually, putting the results into a struct array.
@@ -44,27 +61,34 @@ function r = fit_decay(varargin)
 	p = inputParser;
 	p.addRequired("x", @isnumeric);
 	p.addRequired("y", @isnumeric);
-	p.addParameter("from", -Inf);
+	p.addParameter("xmin", -Inf);
+	p.addParameter("xmax", Inf);
+	p.addParameter("ymin", -Inf);
+	p.addParameter("ymax", Inf);
 	p.addParameter("dim", 1, @isnumeric);
 	p.addSwitch("progress");
 	p.parse(varargin{:});
 	t = p.Results.x;
 	in = p.Results.y;
-	t0 = p.Results.from;
+	tmin = p.Results.xmin;
+	tmax = p.Results.xmax;
+	ymin = p.Results.ymin;
+	ymax = p.Results.ymax;
 	dim = p.Results.dim;
 	progress = p.Results.progress;
 
-	if (ischar(t0) && strcmp(t0, "peak"))
+	if (ischar(tmin) && strcmp(tmin, "peak"))
 		[~, pk] = max(in);
-		t0 = t(pk(1));
-	elseif (!isnumeric(t0))
+		tmin = t(pk(1));
+	elseif (!isnumeric(tmin))
 		print_usage();
 	end
 
 	## Select region to be fitted
-	m = t >= t0;
+	m = tmin <= t & t <= tmax;
 
 	if (isvector(in))
+		m = m & ymin <= in & in <= ymax;
 		r = _fit_decay(t(m), in(m));
 	else
 		## Matrix argument.
@@ -92,6 +116,7 @@ function r = fit_decay(varargin)
 			if (progress && mod(k, 10) == 0)
 				fprintf(stderr, "fit_decay: %d/%d\n", k, totalk);
 			end
+			m = m & ymin <= in(:,k) & in(:,k) <= ymax;
 			r(k) = _fit_decay(t(m), in(m,k));
 		end
 
