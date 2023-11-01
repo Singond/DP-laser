@@ -18,5 +18,5 @@ results/lifetime-regions.png: lifetime_regions_export.m lifetime_main.m
 results/timeev-%.png: timeev_export.m lifetime_main.m
 	octave --norc $<
 
-results/vertical-%.png: vertical_export.m vertical.m
+results/vertical-%.tex: vertical_export.m vertical.m
 	octave --norc $<

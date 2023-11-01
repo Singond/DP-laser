@@ -49,7 +49,7 @@ function r = img_intensity(x, mask = [])
 			masksum = sum(mask(:));
 		else
 			imgk = img;
-			masksum = prod(size(img, 1, 2));
+			masksum = prod(size(img)(1:2));
 		end
 
 		y = squeeze(sum(sum(imgk, 1), 2));

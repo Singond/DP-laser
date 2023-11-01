@@ -10,7 +10,9 @@
 \usepackage{icomma}
 
 \usepackage{physics}
-\usepackage{mhchem}
+\usepackage[version=4]{mhchem}
+\mhchemoptions{textfontcommand=\sffamily}
+\mhchemoptions{mathfontcommand=\mathsf}
 \usepackage{siunitx}
 \sisetup{
 	locale               = DE,
@@ -113,11 +115,20 @@
 	\begin{columns}[c]
 		\begin{column}{0.48\textwidth}
 			\begin{itemize}
-				\item selen ve~vodíkovém plameni
-				\item roztok 10 ppb Se v~\SI{1}{\mol\per\litre} \ce{HCl}
-				\item borohydrid \SI{0.5}{\percent} \ce{BH4}
-					v~$0,4\%$ \ce{KOH}
-				\item argon (\SI{700}{\sccm})
+				\item vzorek: roztok 10 ppb \ce{Se}
+					v~\SI[per-mode=symbol]{1}{\mol\per\litre} \ce{HCl}
+				\item reaguje s~borohydridem
+					(\SI{0.5}{\percent} \ce{BH4} v~$0,4\%$ \ce{KOH})
+					na~\ce{SeH2}
+				\item nosný plyn: argon (\SI{775}{\sccm})
+				\item přidán vodík (\SI{300}{\sccm})
+				\item atomizace ve~vodíkovém plameni
+					\begin{align*}
+						\ce{
+							H + SeH2 &-> H2 + SeH \\
+							H + SeH &-> H2 + Se
+						}
+					\end{align*}
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.48\textwidth}
@@ -221,7 +232,7 @@
 		\end{column}
 	\end{columns}
 	\begin{align*}
-		\itylif &\propto \eu^{\frac{\tim}{\lifetime}}
+		\itylif &\propto \eu^{-\frac{\tim}{\lifetime}}
 		& \lifetime_1 &= \SI{1.77}{\nano\second} \\
 		& & \lifetime_2 &= \SI{1.39}{\nano\second} \\
 		& & \lifetime_3 &= \SI{1.09}{\nano\second}
