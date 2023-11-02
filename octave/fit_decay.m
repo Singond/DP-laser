@@ -136,7 +136,7 @@ function x = _fit_decay(t, in)
 	x.fitl.f = @(t) exp(polyval(x.fitl.beta, t));
 
 	## Exponential model
-	b0 = [in(1), x.fitl.tau];
+	b0 = [exp(x.fitl.beta(2)), x.fitl.tau];
 	s = struct();
 	[~, s.beta, s.cvg, s.iter] = leasqr(t, in, b0, @model_simple, [], 30);
 	if (!s.cvg)
@@ -147,7 +147,7 @@ function x = _fit_decay(t, in)
 	x.fite = s;
 
 	## Exponential model with constant
-	b0 = [in(1), x.fite.tau, 0];
+	b0 = [exp(x.fitl.beta(2)), x.fite.tau, 0];
 	s = struct();
 	[~, s.beta, s.cvg, s.iter] = leasqr(t, in, b0, @model_yconst, [], 30);
 	if (!s.cvg)
