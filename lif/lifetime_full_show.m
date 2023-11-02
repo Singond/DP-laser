@@ -8,7 +8,8 @@ warning("off", "Octave:imshow-NaN");
 f1 = figure("name", "Lifetime");
 ax = axes("position", [0.1 0.2 0.8 0.65]);
 axes(ax);
-imshow(tau * 1e9, [], "colormap", ocean);
+maxtau = quantile(tau(:), 0.95);
+imshow(tau * 1e9, [0 maxtau * 1e9], "colormap", ocean);
 title('lifetime \tau [ns]', "interpreter", "tex");
 colorbar SouthOutside;
 
