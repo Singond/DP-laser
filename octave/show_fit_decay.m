@@ -45,7 +45,7 @@ function show_fit_decay(s, fit, r, c, fields={})
 
 	cidx = get(gca(), "colororderindex");
 	cc = get(gca(), "colororder")(cidx,:);
-	xscale = 1e9;
+	xscale = 1;
 	plot(
 		x * xscale, y, "d",
 			"color", cc, "displayname",

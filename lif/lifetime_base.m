@@ -6,11 +6,11 @@ regions;
 
 X = struct;
 x = load_iccd("data-2023-01-20/decay1.SPE");
-x.dt = 1e-9;
+x.dt = 1;    # [ns]
 X(1) = x;
 
 x = load_iccd("data-2023-01-20/decay2.SPE");
-x.dt = 5e-10;
+x.dt = 0.5;  # [ns]
 X(2) = x;
 
 X = arrayfun(@correct_iccd, X);

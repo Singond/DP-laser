@@ -6,5 +6,5 @@ x.aoi.cols = [50 150];
 x = crop_iccd(x, x.aoi.rows, x.aoi.cols);
 x.in = x.img ./ x.acc;
 fits = fit_decay(x.t, x.in,
-	"dim", 3, "xmin", 7e-9, "xmax", 15e-9, "progress");
+	"dim", 3, "xmin", 7, "xmax", 15, "progress");
 tau = arrayfun(@(a) a.fite.tau, fits);
