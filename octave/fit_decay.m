@@ -131,9 +131,10 @@ function x = _fit_decay(t, in)
 	nz = in > 0;
 
 	## Linearized model (preliminary fit)
-	x.fitl.beta = polyfit(t(nz), log(in(nz)), 1);
+	[x.fitl.beta, s] = polyfit(t(nz), log(in(nz)), 1);
 	x.fitl.tau = -1 / x.fitl.beta(1);
 	x.fitl.f = @(t) exp(polyval(x.fitl.beta, t));
+	x.fitl.beta_std = s.normr * sqrt(diag(s.C) / s.df);
 
 	## Exponential model
 	b0 = [exp(x.fitl.beta(2)), x.fitl.tau];
@@ -161,12 +162,19 @@ function x = _fit_decay(t, in)
 	## Correct exponential model using new y-intercept
 	b0 = x.fitb.beta(1:2);
 	s = struct();
-	[~, s.beta, s.cvg, s.iter] = leasqr(t, in, b0, @model_simple, [], 30);
+	[inm, s.beta, s.cvg, s.iter, s.cor, s.cov]...
+		= leasqr(t, in, b0, @model_simple, [], 30);
 	if (!s.cvg)
 		warning("Convergence not reached after %d iterations.", s.iter);
 	end
 	s.f = @(t) model_simple(t, s.beta);
+	s.dof = length(in) - length(s.beta);
+	s.resid = sumsq(in - inm);
+	s.sig2 = s.resid ./ s.dof;
+	s.betacov = s.sig2 * s.cov;
+	s.betasig = sqrt(diag(s.betacov));
 	s.tau = s.beta(2);
+	s.tausig = s.betasig(2);
 	x.fite = s;
 end
 
