@@ -53,3 +53,7 @@ uicontrol("parent", f1, "string", "Inspect fit", "position", [10 10 120 30],
 	"callback", @(a,b) inspect_fit(x, x.fits, f1, f2, f3));
 uicontrol("parent", f1, "string", "Clear fits", "position", [140 10 120 30],
 	"callback", @(a,b) clear_figs([f2, f3]));
+
+f4 = figure("name", "Lifetime along x");
+errorbar(x.taux, x.tausigx, "d");
+ylim([0 2*quantile(x.taux, 0.99)]);
