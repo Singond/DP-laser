@@ -1,6 +1,11 @@
 if (!exist("lifetime", "var"))
-	lifetime_full;
+	if (isfile("results/lifetime.dat"))
+		load results/lifetime.dat
+	else
+		lifetime_full;
+	end
 end
+x = lifetime;
 
 warning("off", "Octave:negative-data-log-axis");
 warning("off", "Octave:imshow-NaN");
