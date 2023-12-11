@@ -8,8 +8,8 @@ warning("off", "Octave:imshow-NaN");
 f1 = figure("name", "Lifetime");
 ax = axes("position", [0.1 0.2 0.8 0.65]);
 axes(ax);
-maxtau = quantile(tau(:), 0.95);
-imshow(tau, [0 maxtau], "colormap", ocean,
+maxtau = quantile(x.tau(:), 0.95);
+imshow(x.tau, [0 maxtau], "colormap", ocean,
 	"xdata", x.aoi.cols, "ydata", x.aoi.rows);
 axis on;
 set(ax, "ticklength", [0 0])
@@ -50,6 +50,6 @@ end
 
 figure(f1);
 uicontrol("parent", f1, "string", "Inspect fit", "position", [10 10 120 30],
-	"callback", @(a,b) inspect_fit(x, fits, f1, f2, f3));
+	"callback", @(a,b) inspect_fit(x, x.fits, f1, f2, f3));
 uicontrol("parent", f1, "string", "Clear fits", "position", [140 10 120 30],
 	"callback", @(a,b) clear_figs([f2, f3]));
