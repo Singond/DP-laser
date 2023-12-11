@@ -13,5 +13,10 @@ x.in = x.img ./ x.acc;
 x.fits = fit_decay(x.t, x.in,
 	"dim", 3, "xmin", 7, "xmax", 15, "progress");
 x.tau = arrayfun(@(a) a.fite.tau, x.fits);
+x.tausig = arrayfun(@(a) a.fite.tausig, x.fits);  # uncertainty of tau
+
+# Select valid data points
+x.tauvalid = arrayfun(@(a) a.fite.cvg, x.fits);
+x.tau(!x.tauvalid) = NaN;
 
 lifetime = x;
