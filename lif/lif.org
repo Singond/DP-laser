@@ -38,7 +38,7 @@ Selen proudí spolu s argonem a vodíkem do atomizátoru.
 Snímek samotného plamene bez laserové excitace je na obrázku č. [[fig:flame]].
 
 #+name:flame
-#+begin_src octave :results output file link :file flame.png
+#+begin_src octave :results file link :file flame.png
 	<<common>>
 	pkg load singon-plasma;
 	img = read_princeton_spe("data-2023-01-20/obr1.SPE");
@@ -64,7 +64,7 @@ V druhé sérii byl použit prostorový filtr,
 tato je na obrázku č. [[fig:exc-filter]].
 
 #+name:exc-nofilter
-#+begin_src octave :results output file link :file exc-nofilter.png
+#+begin_src octave :results file link :file exc-nofilter.png
 	<<common>>
 	wavelen;
 	figure(1, "visible", "off");
@@ -90,7 +90,7 @@ tato je na obrázku č. [[fig:exc-filter]].
 [[file:results/exc-nofilter.png]]
 
 #+name:exc-filter
-#+begin_src octave :results output file link :file exc-filter.png
+#+begin_src octave :results file link :file exc-filter.png
 	<<common>>
 	wavelen;
 	figure(1, "visible", "off");
@@ -122,7 +122,7 @@ Osa laserového svazku se nacházela zhruba \SI{4}{\milli\metre} nad horním
 okrajem atomizátoru.
 Naměřená data jsou na obrázku č. [[fig:saturation]].
 
-#+begin_src octave :results output file link :file saturation.png
+#+begin_src octave :results file link :file saturation.png
 	<<common>>
 	saturation;
 	figure(1, "visible", "off");
@@ -154,7 +154,7 @@ spočtena doba života $\tau$.
 Naměřená data a proložené křivky jsou na obrázku č. [[fig:lifetime]].
 Doba života $\tau$ činila \SI{1.78}{\nano\second} a \SI{1.64}{\nano\second}.
 
-#+begin_src octave :results output file link :file lifetime.png
+#+begin_src octave :results file link :file lifetime.png
 	<<common>>
 	<<figure>>
 	lifetime_regions;
@@ -190,7 +190,7 @@ Poloha svazku i kamery je neměnná, svislá poloha atomizátoru $h$ je postupn
 nastavována na různé hodnoty mikrometrickým posuvem.
 Zesílení laseru zůstalo nastaveno na 50.
 Měření bylo opakováno pro různé průtoky plynové směsi.
-#+begin_src octave :results output file link :file vertical.png
+#+begin_src octave :results file link :file vertical.png
 	<<common>>
 	vertical;
 	figure(1, "visible", "off");
