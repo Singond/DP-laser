@@ -167,12 +167,12 @@ Doba života $\tau$ činila \SI{1.78}{\nano\second} a \SI{1.64}{\nano\second}.
 	ylim([0 1.0e2]);
 	hold on
 	tt = linspace(min(X(2).t), max(X(2).t), 1000);
-	plot(X(2).t*1e9, X(2).in_center, "d", "color", co(1,:), "markerfacecolor", "none");
-	plot(tt*1e9, X(2).fit_center.fite.f(tt), "--", "color", co(1,:));
-	plot(X(2).t*1e9, X(2).in_edge1, "o", "color", co(2,:), "markerfacecolor", "none");
-	plot(tt*1e9, X(2).fit_edge1.fite.f(tt), ":", "color", co(2,:));
-	plot(X(2).t*1e9, X(2).in_edge2, "x", "color", co(3,:), "markerfacecolor", "none");
-	plot(tt*1e9, X(2).fit_edge2.fite.f(tt), "-.", "color", co(3,:));
+	plot(X(2).t, X(2).in_center, "d", "color", co(1,:), "markerfacecolor", "none");
+	plot(tt, X(2).fit_center.fite.f(tt), "--", "color", co(1,:));
+	plot(X(2).t, X(2).in_edge1, "o", "color", co(2,:), "markerfacecolor", "none");
+	plot(tt, X(2).fit_edge1.fite.f(tt), ":", "color", co(2,:));
+	plot(X(2).t, X(2).in_edge2, "x", "color", co(3,:), "markerfacecolor", "none");
+	plot(tt, X(2).fit_edge2.fite.f(tt), "-.", "color", co(3,:));
 	hold off
 	print -dpng results/lifetime.png
 #+end_src
@@ -180,7 +180,7 @@ Doba života $\tau$ činila \SI{1.78}{\nano\second} a \SI{1.64}{\nano\second}.
 #+caption: Časový vývoj signálu LIF při excitaci laserovým pulzem.
 #+caption: Podmínky byly při obou měřeních stejné.
 #+label: fig:lifetime
-#+RESULTS[019fc71adf5bc037cdf6f739f3e40988c6cce12d]:
+#+RESULTS[7fb01ef79eaa583ccb6a125b7cdfca34c419f7e9]:
 [[file:results/lifetime.png]]
 
 * Svislý profil plamene
