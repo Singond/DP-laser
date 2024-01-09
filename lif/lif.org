@@ -157,7 +157,7 @@ Doba života $\tau$ činila \SI{1.78}{\nano\second} a \SI{1.64}{\nano\second}.
 #+begin_src octave :results output file link :file lifetime.png
 	<<common>>
 	<<figure>>
-	lifetime_main;
+	lifetime_regions;
 	X = lifetime;
 	title("Časový vývoj");
 	xlabel("čas t [ns]");
