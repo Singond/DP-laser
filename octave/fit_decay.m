@@ -199,12 +199,12 @@ end
 ## Fit the data from the maximum (which is at the start
 ## of the exponential data and should provide an exact result).
 %!test
-%! fit = fit_decay(x, y, "from", "peak");
+%! fit = fit_decay(x, y, "xmin", "peak");
 %! assert(fit.fitl.beta(1), -0.8, 1e-12);
 
 ## Fit the data with x >= 2, which is the same data as above.
 %!test
-%! fit = fit_decay(x, y, "from", 2);
+%! fit = fit_decay(x, y, "xmin", 2);
 %! assert(fit.fitl.beta(1), -0.8, 1e-12);
 
 %!shared x, y, z
@@ -235,11 +235,11 @@ end
 %! beta = arrayfun(@(c) c.fitl.beta(1), fits);
 %! assert(beta, [-2 -2 -2; -2 -2 -2; -2 -2 -2], 1e-12);
 
-## Clipping data (parameter "from") in higher dimensions.
+## Clipping data (parameter "xmin") in higher dimensions.
 %!test
 %! x2 = (0:3)';
 %! y2 = [exp([3 2 0.8]); y];
-%! fits = fit_decay(x2, y2, "from", 1);
+%! fits = fit_decay(x2, y2, "xmin", 1);
 %! assert(size(fits), [1, 3]);
 %! beta = arrayfun(@(c) c.fitl.beta(1), fits);
 %! assert(beta, [-1 -1 -1], 1e-12);
