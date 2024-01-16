@@ -207,6 +207,16 @@ end
 %! fit = fit_decay(x, y, "xmin", 2);
 %! assert(fit.fitl.beta(1), -0.8, 1e-12);
 
+## Use a struct argument and preserve its fields.
+%!test
+%! s = struct;
+%! s.t = x;
+%! s.in = y;
+%! s.myfield = 45;
+%! s = fit_decay(s);
+%! assert(s.fitl.beta(1), -0.60438927, 1e-6);
+%! assert(s.myfield, 45);
+
 %!shared x, y, z
 %! x = (0:2)';
 %! y = exp([4  3.5  3
