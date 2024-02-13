@@ -6,6 +6,7 @@ results/
 *~
 \#*\#
 .\#*
+* backup [0-9].jl
 .latexmkrc
 octave-workspace
 
