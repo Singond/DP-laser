@@ -95,8 +95,9 @@ end
 md"""
 ## Normalizovaná odezva
 Pro snazší porovnání tvaru byla každá odezva dělena svou maximální hodnotou.
-Zdá se, že průběh hlavního pulzu odpovídá, nesedí ale střední hodnoty
-normalizovaného signálu.
+Zdá se, že průběh hlavního pulzu odpovídá, a díky odečtení pozadí také
+základní signál.
+Největší rozdíly jsou patrny v poklesové části pulzu.
 """
 
 # ╔═╡ 6465f45d-a08f-4444-9fd4-441c4acf6921
@@ -125,7 +126,7 @@ X = Xcorr
 md"""
 # Intenzita odezvy
 Dále je nutno najít vhodný parametr pro popis intenzity odezvy EFISH.
-Nabízí se její integrál, ale v úvahu připadá také prostý extrém signálu.
+Nabízí se její integrál, ale v úvahu připadá také prostý extrém signálu.
 Pro vyhodnocení byla použita data uvedená výše.
 """
 
@@ -207,8 +208,8 @@ end
 # ╠═0a2d69cb-e8e5-4f9d-acbc-4440a5f63f50
 # ╠═b245859c-7519-4825-ba16-d654ed3fce24
 # ╠═6a82cf94-1707-468b-8c85-c101ec82b138
-# ╠═70472573-f8e8-4230-8c77-42087b4f84e8
+# ╟─70472573-f8e8-4230-8c77-42087b4f84e8
 # ╠═97a59953-1e19-48b6-a4c6-4029eddbb236
 # ╠═35266884-6576-4517-a495-97bfc77401f1
-# ╠═635fb8b5-16ac-406b-bc99-977fb1a7519e
+# ╟─635fb8b5-16ac-406b-bc99-977fb1a7519e
 # ╠═bfb0a570-4aa4-461f-a47c-e7d10840799a
