@@ -5,6 +5,7 @@ using Markdown
 using InteractiveUtils
 
 # ╔═╡ 62484b61-c048-4e22-b14a-e44c22b58fec
+# ╠═╡ show_logs = false
 begin
 	import Pkg
 	Pkg.activate(Base.current_project())
