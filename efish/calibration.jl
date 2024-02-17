@@ -297,7 +297,7 @@ elfield(efish) = max(sqrt(efish/p) - q, 0)
 with(legend = :none) do
 	plot(elfield)
 	xlabel!("I [a.u.]")
-	ylabel!("U [V]")
+	ylabel!("E [V/m]")
 end
 
 # ╔═╡ Cell order:
