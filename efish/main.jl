@@ -31,6 +31,21 @@ md"""
 # E-FISH
 """
 
+# ╔═╡ cee03886-7477-4b64-ab87-22affe4128fd
+md"""
+Měřením signálu E-FISH generovaného ve známém elektrickém poli
+byla získána následující kalibrační funkce (viz `calibration.jl`):
+"""
+
+# ╔═╡ 6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
+md"""
+## Měření elektrického pole výboje
+Získaná kalibrační funkce byla využita k určení elektrického pole
+v zapáleném výboji.
+Laser byl nastaven na zesílení 15, energie pulzu činila 4,00 mJ.
+Osciloskop zaznamenával data s 16 akumulacemi.
+"""
+
 # ╔═╡ 17006e36-a1f7-4fe9-ad6f-4dfd828e7228
 function loaddata(dataname::String, energyname::String, y::Float64)
 	index = readdlm("data-22-02-03/$(dataname)_info.txt",
@@ -84,6 +99,7 @@ y = map(x -> x.y[1], X)
 # ╔═╡ 8216d6a0-61cb-4d96-bc40-4d5be490ca7e
 md"""
 ## Pulz
+Zde je příklad časového vývoje intenzity E-FISH z jednoho laserového pulzu.
 """
 
 # ╔═╡ c57517a5-acb0-49dc-be11-0df4de36d87f
@@ -91,7 +107,7 @@ n = 100
 
 # ╔═╡ 90f6fb3f-72d7-4cb9-a7a3-22144551ad66
 md"""
-Časový vývoj intenzity E-FISH při $(n). pulzu:
+Například $(n). pulz:
 """
 
 # ╔═╡ 74daeaaf-f5a2-4a19-8918-36f2d2710fe8
@@ -127,10 +143,24 @@ Příslušná intenzita elektrického pole:
 with(legend = :none) do
 	plot()
 	for x in X
-		#plot3d!(x.t, x.y, x.E, fc=:match, fillto=0)
-		#plot!(x.t, x.y, x.E, ribbon=2e5)
-		plot!(x.t, x.y, x.E, ribbon=2e5)
+		plot!(x.t, x.y, x.E)
 	end
+	xlabel!("čas \$t\$ [s]")
+	ylabel!("poloha \$y\$ [mm]")
+	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
+end
+
+# ╔═╡ 23d18426-81ef-41db-846e-96305d4f97c7
+md"""
+Totéž jako plocha (Julia neumí výše uvedený graf vyplnit).
+"""
+
+# ╔═╡ ad9d4cce-3e96-4e84-b868-a9fafc6639cf
+with(legend = :none) do
+	local t = X[1].t
+	local E = reduce(hcat, map(x -> x.E, X))
+	local p = sortperm(y)
+	surface(t, y[p], E[:,p]')
 	xlabel!("čas \$t\$ [s]")
 	ylabel!("poloha \$y\$ [mm]")
 	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
@@ -139,7 +169,9 @@ end
 # ╔═╡ Cell order:
 # ╟─b0ee89cd-7f55-4ede-b8ef-963f669abef6
 # ╠═66784c75-f417-4302-bc45-01d4749633e0
+# ╟─cee03886-7477-4b64-ab87-22affe4128fd
 # ╠═8dbb2228-6ea2-11ed-2f9e-df0225fee6bb
+# ╠═6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 # ╠═17006e36-a1f7-4fe9-ad6f-4dfd828e7228
 # ╠═c41639b2-19bc-4e49-ab6f-835c8fcbe218
 # ╠═9c5600ab-836e-471f-8f1b-a04e0d60ce1a
@@ -152,3 +184,5 @@ end
 # ╠═cde6d098-33fc-4a7d-9498-81584e8d235f
 # ╟─db270dba-8414-4a35-b837-964f5cdfb63d
 # ╠═50a2722b-66e1-4310-a398-152f28caf118
+# ╟─23d18426-81ef-41db-846e-96305d4f97c7
+# ╠═ad9d4cce-3e96-4e84-b868-a9fafc6639cf
