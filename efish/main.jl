@@ -23,7 +23,7 @@ end
 # ╔═╡ 8dbb2228-6ea2-11ed-2f9e-df0225fee6bb
 # ╠═╡ show_logs = false
 begin
-	include("calibration.nb.jl");
+	include("calibration.jl");
 end
 
 # ╔═╡ b0ee89cd-7f55-4ede-b8ef-963f669abef6
