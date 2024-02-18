@@ -191,10 +191,29 @@ md"""
 Takto určená intenzita E-FISH je pro jednotlivá napětí zde:
 """
 
-# ╔═╡ c82f6174-9f76-4aed-8fb2-10731c0a3628
+# ╔═╡ 535b799a-b1e4-4761-af75-8953cba1ab2d
 with(legend = :none) do
 	scatter(Ud, efish, markersize = 6)
 	xlabel!("\$U_d\$ [V]")
+	ylabel!("\$I\$ [a.u.]")
+end
+
+# ╔═╡ b3a5d91a-0195-45d9-b29d-5ee55b9e43a4
+with(legend = :none) do
+	scatter(Ud.^2, efish, markersize = 6)
+	xlabel!("\$U_d^2\$ [V2]")
+	ylabel!("\$I\$ [a.u.]")
+end
+
+# ╔═╡ 876c5625-d10b-40af-b032-e5acd192d894
+md"""
+Po přepočtení napětí na intenzitu elektrického pole:
+"""
+
+# ╔═╡ c82f6174-9f76-4aed-8fb2-10731c0a3628
+with(legend = :none) do
+	scatter(E, efish, markersize = 6)
+	xlabel!("\$E\$ [V/m]")
 	ylabel!("\$I\$ [a.u.]")
 end
 
@@ -334,6 +353,9 @@ end
 # ╟─2004ff82-d8bc-4ea4-ba8a-186efe12f8a5
 # ╠═12730d22-ba1c-4fa3-9240-b1740315211a
 # ╟─1e193865-c02d-4782-9bf4-1031287d9ec1
+# ╠═535b799a-b1e4-4761-af75-8953cba1ab2d
+# ╠═b3a5d91a-0195-45d9-b29d-5ee55b9e43a4
+# ╟─876c5625-d10b-40af-b032-e5acd192d894
 # ╠═c82f6174-9f76-4aed-8fb2-10731c0a3628
 # ╟─09bb19e9-d7c4-434e-bffd-39eccf28bc6e
 # ╠═aaed6db3-1865-4947-8996-28cf291981ee
