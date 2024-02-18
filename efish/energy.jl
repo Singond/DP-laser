@@ -148,8 +148,8 @@ efish_peak = [x.efish_peak for x in X]
 with(legend = :none) do
 	plot(Epulse*1e3, efish_peak; markershape = :circle)
 	title!("Intenzita EFISH podle maximální hodnoty")
-	xlabel!(L"E_\mathrm{laser}\ [\mathrm{mJ}]")
-	ylabel!(L"I\ [\mathrm{a.u.}]")
+	xlabel!(L"E_\mathrm{laser}")
+	ylabel!(L"\max(I)\ [\mathrm{a.u.}]")
 end
 
 # ╔═╡ 70472573-f8e8-4230-8c77-42087b4f84e8
@@ -171,8 +171,8 @@ efish_int = [-integrate(x.efish...)[1] for x in X]
 with(legend = :none) do
 	plot(Epulse*1e3, efish_int*1e8; markershape = :circle, markersize = 4)
 	title!("Intenzita EFISH podle integrálu")
-	xlabel!(L"E_\mathrm{laser}\ [\mathrm{mJ}]")
-	ylabel!(L"I\ [\mathrm{a.u.}]")
+	xlabel!(L"E_\mathrm{laser}")
+	ylabel!(L"\int(I)\mathrm{d}t\ [\mathrm{a.u.}]")
 end
 
 # ╔═╡ 635fb8b5-16ac-406b-bc99-977fb1a7519e
@@ -187,8 +187,8 @@ hodnotu signálu E-FISH brát jeho maximum.
 with(legend = :none, markeralpha = 0.5) do
 	plot(efish_peak, efish_int*1e8, markershape = :circle, markeralpha = 0.5)
 	title!("Porovnání maxima a integrálu EFISH")
-	xlabel!(L"\max(E)")
-	ylabel!(L"\int(E)\mathrm{d}t")
+	xlabel!(L"\max(I)\ [\mathrm{a.u.}]")
+	ylabel!(L"\int(I)\mathrm{d}t\ [\mathrm{a.u.}]")
 end
 
 # ╔═╡ Cell order:
