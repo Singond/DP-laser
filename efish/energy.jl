@@ -191,6 +191,45 @@ with(legend = :none, markeralpha = 0.5) do
 	ylabel!(L"\int(I)\mathrm{d}t\ [\mathrm{a.u.}]")
 end
 
+# ╔═╡ aa8a6929-02f8-4035-8caa-8effc6e5b94b
+md"""
+# Závislost na energii laseru
+Na závěr je porovnána intenzita E-FISH na energii laseru určenou dvěma způsoby:
+Z měřiče výkonu a z integrálu signálu fotodiody.
+"""
+
+# ╔═╡ a698dbd3-49ab-4bb7-aad1-ba3332bb2c30
+md"Z měřiče výkonu:"
+
+# ╔═╡ 348b66a1-2c77-4df1-9845-69ad003bd08d
+with(legend = :none) do
+	plot()
+	local Epulse = [x.Epulse for x in X]
+	local efish = [x.efish for x in X]
+	scatter(Epulse.^2*1e6, efish_peak)
+	xlabel!(L"E_\mathrm{laser}^2")
+	ylabel!(L"I\ [\mathrm{a.u.}]")
+end
+
+# ╔═╡ 0028c9c4-7b9e-4a8e-aef7-bcc3037178e2
+md"Z fotodiody:"
+
+# ╔═╡ e0a1a2ab-f3f3-4e21-a337-f4c896abc518
+Xen = map(X) do x
+	Epulse_fd = integrate(x.fd...)[1]
+	(; x..., Epulse_fd)
+end
+
+# ╔═╡ d7c60c6c-03bd-48ed-acc0-f9c7e461d023
+with(legend = :none) do
+	plot()
+	local Epulse_fd = [x.Epulse_fd for x in Xen]
+	local efish = [x.efish for x in Xen]
+	scatter(Epulse_fd.^2*1e20, efish_peak)
+	xlabel!(L"E_\mathrm{fd}^2")
+	ylabel!(L"I\ [\mathrm{a.u.}]")
+end
+
 # ╔═╡ Cell order:
 # ╟─16167ec8-0a91-4a41-ac66-45349cf2df65
 # ╠═4f7cb0ef-c9c9-4d84-91d0-2e261836c03d
@@ -213,3 +252,9 @@ end
 # ╠═35266884-6576-4517-a495-97bfc77401f1
 # ╟─635fb8b5-16ac-406b-bc99-977fb1a7519e
 # ╠═bfb0a570-4aa4-461f-a47c-e7d10840799a
+# ╟─aa8a6929-02f8-4035-8caa-8effc6e5b94b
+# ╟─a698dbd3-49ab-4bb7-aad1-ba3332bb2c30
+# ╠═348b66a1-2c77-4df1-9845-69ad003bd08d
+# ╟─0028c9c4-7b9e-4a8e-aef7-bcc3037178e2
+# ╠═e0a1a2ab-f3f3-4e21-a337-f4c896abc518
+# ╠═d7c60c6c-03bd-48ed-acc0-f9c7e461d023
