@@ -76,9 +76,6 @@ md"""
 Opakovatelnost pokusu se zdá být dobrá.
 """
 
-# ╔═╡ 0fc821fe-28c5-47d8-b129-0550cd4a603d
-
-
 # ╔═╡ f9baabe8-c809-4061-8e23-a2654d6adf04
 md"""
 ## Závislost na napětí
@@ -103,6 +100,7 @@ end
 
 # ╔═╡ b07fcef5-e4e1-4e8c-b57d-6f0d5f346784
 md"""
+### Příklad dat
 Níže je ukázka všech kanálů osciloskopu z jedné sady dat:
 """
 
@@ -140,8 +138,51 @@ md"Signál z fotodiody _Thorlabs_ je v kanálu 4:"
 # ╔═╡ 2cfa5484-3ad6-45f1-aea2-a5476c676587
 plot(x.fd)
 
+# ╔═╡ 58a6bb5a-5ec1-4b14-89e3-1bdf1c6f2fb5
+md"""
+### Ověření konstantnosti pulzu
+Protože energie laseru byla nastavena na konstantní hodnotu,
+nabízí se ověřit, zdali je konstantní i energie pulzu zaznamenaná fotodiodou.
+Zde je signál fotodiody pro všechna měření:
+"""
+
+# ╔═╡ eea4bf6d-1409-4f52-b577-b4e6e3e56aa4
+with(legend = :none) do
+	plot(xlim=(40, 70))
+	for (k, x) in enumerate(calibration)
+		plot!(x.fd[1] * 1e9, k * ones(size(x.fd[2])), x.fd[2])
+	end
+	xlabel!("čas \$t\$ [ns]")
+	ylabel!("číslo měření")
+	zlabel!("signál fotodiody \$E_d\$ [a.u.]")
+end
+
+# ╔═╡ dd961d3e-d15f-4668-86e9-a4f71ef80a6d
+md"""
+Rozdíly jsou nepostřehnutelné, zde jsou táž data vykreslena přes sebe.
+"""
+
+# ╔═╡ 5c481058-7db3-4acb-8924-c1983d6b284a
+fd_plot = with(legend = :none) do
+	plot()
+	for (k, x) in enumerate(calibration)
+		plot!(x.fd[1]*1e9, x.fd[2])
+	end
+	xlabel!("čas \$t\$ [ns]")
+	ylabel!("signál fotodiody \$E_d\$ [a.u.]")
+end
+
+# ╔═╡ 804fcb70-4875-436e-9783-5bc28219b571
+md"""
+Odlišnosti se projeví až při přiblížení. Zde je detail špičky signálu:
+"""
+
+# ╔═╡ 3bc61c71-b563-4fb4-a33a-c70826b22417
+plot(fd_plot, xlim=(45, 45.6), ylim=(0.16, 0.18))
+
 # ╔═╡ 74b7b696-67ca-4a6c-8eec-82d8cd7a1cb2
 md"""
+### Vyhodnocení
 Celkem bylo provedeno $(length(calibration)) měření pro různé hodnoty napětí.
 Napětí na zdroji $$U_s$$ bylo postupně nastavováno na hodnoty:
 """
@@ -329,7 +370,6 @@ end
 # ╟─77aea516-8998-4745-9999-74bbbb362a1f
 # ╠═ada7162b-c6de-4fe6-b772-18e56e1760f0
 # ╟─7e6a0eb4-c8da-416f-83b2-f09ecf3833b2
-# ╠═0fc821fe-28c5-47d8-b129-0550cd4a603d
 # ╟─f9baabe8-c809-4061-8e23-a2654d6adf04
 # ╠═37331088-c330-4c9b-8ddd-2b773bfd59b1
 # ╟─b07fcef5-e4e1-4e8c-b57d-6f0d5f346784
@@ -342,6 +382,12 @@ end
 # ╠═b3276e7d-977c-4de6-b36a-44c043f22ffe
 # ╟─e6db65b3-2e6d-4313-8a2f-785a63b9b61b
 # ╠═2cfa5484-3ad6-45f1-aea2-a5476c676587
+# ╟─58a6bb5a-5ec1-4b14-89e3-1bdf1c6f2fb5
+# ╠═eea4bf6d-1409-4f52-b577-b4e6e3e56aa4
+# ╟─dd961d3e-d15f-4668-86e9-a4f71ef80a6d
+# ╠═5c481058-7db3-4acb-8924-c1983d6b284a
+# ╟─804fcb70-4875-436e-9783-5bc28219b571
+# ╠═3bc61c71-b563-4fb4-a33a-c70826b22417
 # ╟─74b7b696-67ca-4a6c-8eec-82d8cd7a1cb2
 # ╠═81e003ac-028f-4787-a593-bd7efd9e98bb
 # ╟─7476cbae-0d64-4aca-b02c-20842ca44322
