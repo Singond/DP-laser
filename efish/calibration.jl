@@ -80,10 +80,9 @@ Opakovatelnost pokusu se zdá být dobrá.
 md"""
 ## Závislost na napětí
 Dále byla naměřena závislost signálu E-FISH na napětí mezi elektrodami.
-Zpoždění laseru za napětím bylo konstantní, zesílení bylo nastaveno na 1
+Zpoždění laseru za napětím bylo konstantní, zesílení bylo nastaveno na 15
 a vlnová délka na λ = 1064 nm.
-Energie pulzu byla nastavena na 1,160 mJ,
-měřák nastavený na λ = 619 nm ukazoval stabilně hodnotu 0,900–0,910 mJ.
+Měřák energie ukazoval stabilně hodnotu 3,920–3,940 mJ.
 Data byla zaznamenávána osciloskopem, každý snímek obsahuje 256 akumulací.
 """
 
@@ -351,7 +350,7 @@ aby nevracela záporné hodnoty intenzity $E$:
 """
 
 # ╔═╡ 664f233b-0b35-4d95-b832-6475e97f3ab7
-elfield(efish) = max(sqrt(efish/p) - q, 0)
+elfield(efish) = sqrt(efish/p) - q
 
 # ╔═╡ 141ffd5e-315a-4718-9da7-333793698511
 with(legend = :none) do
