@@ -206,7 +206,7 @@ with(legend = :none) do
 	plot()
 	local Epulse = [x.Epulse for x in X]
 	local efish = [x.efish for x in X]
-	scatter(Epulse.^2*1e6, efish_peak)
+	plot(Epulse.^2*1e6, efish_peak, markershape=:circle)
 	xlabel!(L"E_\mathrm{laser}^2")
 	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
@@ -225,7 +225,7 @@ with(legend = :none) do
 	plot()
 	local Epulse_fd = [x.Epulse_fd for x in Xen]
 	local efish = [x.efish for x in Xen]
-	scatter(Epulse_fd.^2*1e20, efish_peak)
+	plot(Epulse_fd.^2*1e20, efish_peak, markershape=:circle)
 	xlabel!(L"E_\mathrm{fd}^2")
 	ylabel!(L"I\ [\mathrm{a.u.}]")
 end
