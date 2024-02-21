@@ -28,10 +28,7 @@ md"""
 intenzitě elektrického pole $E$ v reaktoru.
 Elektrické pole bylo realizováno přiložením známého napětí na elektrody
 v reaktoru před zapálením výboje. Elektrické pole je v tom případě považováno
-za homogenní a určeno podle vztahu
-
-$$E = \frac{U}{d}$$
-
+za homogenní a určeno podle jednoduchého vztahu.
 Intenzita odezvy byla naměřena pro několik hodnot napětí $U$ a získaná zívislost aproximována vhodnou modelovou funkcí.
 """
 
@@ -209,11 +206,26 @@ md"""
 Dokud nehoří výboj, považujeme elektrické pole mezi elektrodami
 za homogenní a jeho intenzitu můžeme určit podle vztahu:
 
-$$E = \frac{U}{d}$$
+$$E = \frac{U}{d + 2\frac{d_d}{\epsilon}}$$
+
+kde $d$ je šířka mezery, $t$ je tloušťka každé z dielektrických bariér
+a $\epsilon$ je jejich permitivita.
+Bariéru tvoří podložní sklíčka o tloušťce 1,1 mm:
 """
 
+# ╔═╡ c34e42c6-5042-46e9-b945-0476e6ecef9b
+d_d = 1.1e-3;  # [m]
+
+# ╔═╡ 59717cac-ea2d-4f11-880d-c0db8e7011dd
+md"""
+Jejich permitivita byla Martinou stanovena na 4.7:
+"""
+
+# ╔═╡ d4582726-d248-4a90-96a7-f4abd5b21b80
+ϵ = 4.7
+
 # ╔═╡ 4a0404ae-46e7-4398-a31d-19998b0132da
-E = Ud ./ d
+E = Ud ./ (d + 2 * d_d/ϵ)
 
 # ╔═╡ 2004ff82-d8bc-4ea4-ba8a-186efe12f8a5
 md"""
@@ -360,7 +372,7 @@ with(legend = :none) do
 end
 
 # ╔═╡ Cell order:
-# ╟─ad1ee392-40a9-4711-8771-20173bde62d5
+# ╠═ad1ee392-40a9-4711-8771-20173bde62d5
 # ╠═62484b61-c048-4e22-b14a-e44c22b58fec
 # ╟─3f209503-07a9-46c6-b41a-585c2d57d814
 # ╠═5f5e7440-d895-44de-b115-f33b7a61bb13
@@ -394,6 +406,9 @@ end
 # ╟─6edd6341-9d1f-478c-b56c-c1fd1de05bb3
 # ╠═8562d85a-c83e-4dda-bedc-d3f168a6a8e6
 # ╟─6e671f64-2154-4d90-85f5-49faf5f471f9
+# ╠═c34e42c6-5042-46e9-b945-0476e6ecef9b
+# ╟─59717cac-ea2d-4f11-880d-c0db8e7011dd
+# ╠═d4582726-d248-4a90-96a7-f4abd5b21b80
 # ╠═4a0404ae-46e7-4398-a31d-19998b0132da
 # ╟─2004ff82-d8bc-4ea4-ba8a-186efe12f8a5
 # ╠═12730d22-ba1c-4fa3-9240-b1740315211a
