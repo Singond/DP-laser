@@ -31,10 +31,11 @@ f3 = figure("visible", "off");
 function inspect_fit(s, fits, f1, f2, f3)
 	figure(f1);
 	[x, y, btn] = ginput(1);
-	xr = round(x) - s.xpos(1) + 1;
-	yr = round(y) - s.ypos(1) + 1;
+	xr = round(x);
+	yr = round(y);
 
-	if (yr > size(fits, 1) || xr > size(fits, 2))
+	if (yr > max(s.ypos(:)) || yr < min(s.ypos(:))...
+		|| xr > max(s.xpos(:)) || xr < min(s.ypos(:)))
 		return;
 	end
 
