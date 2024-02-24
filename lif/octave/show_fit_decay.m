@@ -1,6 +1,6 @@
 function show_fit_decay(varargin)
 	s = varargin{1};
-	offset = [s.aoi.rows(1) - 1, s.aoi.cols(1) - 1];
+	offset = [s.ypos(1) - 1, s.xpos(1) - 1];
 	plot_fit_decay(varargin{1:2}, "idx", varargin(3:end),
 		"dim", 3, "label", @(fit, subs) label_fit(fit, subs, offset));
 	hleg = legend;

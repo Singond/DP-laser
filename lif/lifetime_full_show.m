@@ -18,7 +18,7 @@ ax = axes("position", [0.1 0.2 0.8 0.65]);
 axes(ax);
 maxtau = quantile(x.tau(:), 0.95);
 imshow(x.tau, [0 maxtau], "colormap", ocean,
-	"xdata", x.aoi.cols, "ydata", x.aoi.rows);
+	"xdata", x.xpos, "ydata", x.ypos);
 axis on;
 set(ax, "ticklength", [0 0])
 grid off;
@@ -31,8 +31,8 @@ f3 = figure("visible", "off");
 function inspect_fit(s, fits, f1, f2, f3)
 	figure(f1);
 	[x, y, btn] = ginput(1);
-	xr = round(x) - s.aoi.cols(1) + 1;
-	yr = round(y) - s.aoi.rows(1) + 1;
+	xr = round(x) - s.xpos(1) + 1;
+	yr = round(y) - s.ypos(1) + 1;
 
 	if (yr > size(fits, 1) || xr > size(fits, 2))
 		return;

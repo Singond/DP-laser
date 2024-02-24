@@ -11,7 +11,7 @@ end
 x = lifetime;
 
 fig_inx = figure("name", "Time evolution along x");
-surf(0:size(x.inx,2)-1, x.t, squeeze(x.inx)');
+surf(x.xpos, x.t, squeeze(x.inx)');
 title("Time evolution of intensity summed along y");
 set(gca, "ydir", "reverse");
 xlabel("position x [px]");
@@ -20,5 +20,6 @@ zlabel("intensity I_x [a.u.]");
 view(-75, 20);
 
 fig_taux = figure("name", "Lifetime along x");
-errorbar(x.taux, x.tausigx, "d");
+errorbar(x.xpos, x.taux, x.tausigx, "d");
+xlim([min(x.xpos) max(x.xpos)]);
 ylim([0 2*quantile(x.taux, 0.99)]);

@@ -2,9 +2,9 @@ lifetime_base;
 
 x = lifetime(2);
 # Select area of interest and crop the data to it
-x.aoi.rows = [60 90];
-x.aoi.cols = [50 150];
-x = crop_iccd(x, x.aoi.rows, x.aoi.cols);
+x.ypos = (60:90)';  # rows
+x.xpos = 50:150;    # columns
+x = crop_iccd(x, [x.ypos(1) x.ypos(end)], [x.xpos(1) x.xpos(end)]);
 
 # Normalize intensity
 x.in = x.img ./ x.acc;
