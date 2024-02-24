@@ -11,6 +11,7 @@ function show_fit_decay(s, fits, ypos, xpos)
 	end
 
 	offsetsubs = {ypos, xpos};
+	warning("off", "Octave:negative-data-log-axis", "local");
 	plot_fit_decay(s, fits, "idx", {yidx, xidx},
 		"dim", 3, "label", @(fit, subs) label_fit(fit, offsetsubs));
 	hleg = legend;
