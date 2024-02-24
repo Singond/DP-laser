@@ -1,3 +1,6 @@
+pkg load singon-plasma;
+addpath octave;
+
 if (!exist("lifetime", "var"))
 	if (isfile("results/lifetime.dat"))
 		load results/lifetime.dat
