@@ -19,7 +19,10 @@ x.tausig = arrayfun(@(a) a.fite.tausig, x.fits);  # uncertainty of tau
 x.tauvalid = arrayfun(@(a) a.fite.cvg, x.fits);
 x.tau(!x.tauvalid) = NaN;
 
-x.taux = mean(x.tau, 1);
-x.tausigx = sqrt(meansq(x.tausig, 1));
+x.inx = sum(x.in, 1);
+x.fitsx = fit_decay(x.t, x.inx,
+	"dim", 3, "xmin", 0, "xmax", 15, "progress");
+x.taux = arrayfun(@(a) a.fite.tau, x.fitsx);
+x.tausigx = arrayfun(@(a) a.fite.tausig, x.fitsx);
 
 lifetime = x;
