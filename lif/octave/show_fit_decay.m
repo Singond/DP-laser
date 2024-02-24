@@ -17,7 +17,7 @@ function show_fit_decay(s, fits, ypos, xpos)
 	hleg = legend;
 	set(hleg, "interpreter", "tex");
 	xlabel("time t [ns]");
-	ylabel("inensity I [a.u.]");
+	ylabel("intensity I [a.u.]");
 end
 
 function l = label_fit(fit, subs)
