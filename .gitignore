@@ -10,6 +10,8 @@ results/
 .latexmkrc
 octave-workspace
 
-.project
 *.geany
+*.kilepr
+.project
+.kile/
 .vscode/
