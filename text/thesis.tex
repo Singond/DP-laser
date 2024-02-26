@@ -19,8 +19,12 @@
 
 \usepackage{graphicx}
 \graphicspath{
+	{../efish/}
+	{../img/}
+	{build/epstopdf}
 	{img/}
 }
+\usepackage[outdir=build/epstopdf/]{epstopdf}
 \usepackage{tikz}
 
 % Tables
@@ -61,6 +65,7 @@
 \phantomsection\addcontentsline{toc}{chapter}{Obsah}
 \tableofcontents
 \pagestyle{headings}
+\include{efish}
 
 \backmatter
 \printbibliography[heading=bibintoc,title=Seznam použité literatury]
