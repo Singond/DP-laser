@@ -224,8 +224,11 @@ Jejich permitivita byla Martinou stanovena na 4.7:
 # ╔═╡ d4582726-d248-4a90-96a7-f4abd5b21b80
 ϵ = 4.7
 
+# ╔═╡ 5e53f5b5-ff41-41cb-a3a5-a60038c8c8f7
+reference_field(U) = U ./ (d + 2 * d_d/ϵ)
+
 # ╔═╡ 4a0404ae-46e7-4398-a31d-19998b0132da
-E = Ud ./ (d + 2 * d_d/ϵ)
+E = reference_field(Ud)
 
 # ╔═╡ 2004ff82-d8bc-4ea4-ba8a-186efe12f8a5
 md"""
@@ -409,6 +412,7 @@ end
 # ╠═c34e42c6-5042-46e9-b945-0476e6ecef9b
 # ╟─59717cac-ea2d-4f11-880d-c0db8e7011dd
 # ╠═d4582726-d248-4a90-96a7-f4abd5b21b80
+# ╠═5e53f5b5-ff41-41cb-a3a5-a60038c8c8f7
 # ╠═4a0404ae-46e7-4398-a31d-19998b0132da
 # ╟─2004ff82-d8bc-4ea4-ba8a-186efe12f8a5
 # ╠═12730d22-ba1c-4fa3-9240-b1740315211a
