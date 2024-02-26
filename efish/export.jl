@@ -1,6 +1,6 @@
 using Gnuplot
 
-include("calib.jl")
+include("calibration.jl")
 
 if !isdir("plots")
 	mkdir("plots")
@@ -19,7 +19,8 @@ end
 @gp :- E./1e6 efish "w p ls 1 t 'naměřená data'" :-
 E1 = LinRange(minimum(E), maximum(E), 100)
 @gp :- E1./1e6 calib(E1) "w l ls 1 dt 2 t 'model \$\\efish \\sim \\elfield^2\$'" :-
-save(term="epslatex size 12cm,8cm", output="plots/calib.tex")
+Gnuplot.save("plots/calib.tex", term="epslatex size 12cm,8cm")
+#Gnuplot.save("plots/calib.tikz", term="tikz size 12cm,8cm")
 
 include("main.jl")
 @gp """
@@ -43,4 +44,5 @@ for k in [8:-1:1; 10:13]
 	zz = zeros(size(x.t))
 	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w zerrorfill ls 1" :-
 end
-save(term="epslatex size 12cm,8cm", output="plots/period-elfield.tex")
+Gnuplot.save("plots/period-elfield.tex", term="epslatex size 12cm,8cm")
+#Gnuplot.save("plots/period-elfield.tikz", term="tikz size 12cm,8cm")
