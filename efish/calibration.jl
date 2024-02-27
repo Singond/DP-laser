@@ -334,11 +334,22 @@ function calibration_nonlinear(E, Iefish; β0 = [])
 		(a, b, c), _ = calibration_linear(E, Iefish)
 		β0 = [a; b/(2a)]
 	end
+
+	# Fit the data
 	calib(E, β) = β[1] .* (E .+ β[2]).^2
 	fit = curve_fit(calib, E, Iefish, β0)
-	calib(E) = calib(E, fit.param)
 	p, q = fit.param
-	elfield(efish) = sqrt(efish/p) - q
+
+	# Model function
+	calib(E) = calib(E, fit.param)
+
+	# Reverse model function
+	elfield(efish; left_branch=false) = if left_branch
+		-sqrt(efish/p) - q
+	else
+		sqrt(efish/p) - q
+	end
+
 	fit.param, calib, elfield
 end
 
