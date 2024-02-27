@@ -12,6 +12,7 @@ begin
 	Pkg.instantiate()
 
 	using DelimitedFiles
+	using Statistics
 	using Printf
 
 	using DataFrames
@@ -24,6 +25,7 @@ end
 # ╠═╡ show_logs = false
 begin
 	include("calibration.jl");
+	nothing
 end
 
 # ╔═╡ b0ee89cd-7f55-4ede-b8ef-963f669abef6
@@ -33,8 +35,57 @@ md"""
 
 # ╔═╡ cee03886-7477-4b64-ab87-22affe4128fd
 md"""
+## Kalibrace
 Měřením signálu E-FISH generovaného ve známém elektrickém poli
-byla získána následující kalibrační funkce (viz `calibration.jl`):
+bylo získáno několik kalibračních funkcí pro různé polohy paprsku.
+Postup je obdobný tomu popsanému v `calibration.jl`.
+"""
+
+# ╔═╡ 6a2506ef-95bf-4c2d-8d89-fd1de690bf0e
+load_calibration(dir) = map(filter(isfile, readdir(dir, join=true))) do file
+	local U, efish, I, fd, meta = importkeysightbin(file)
+	(; U, fd, I, efish, meta)
+end
+
+# ╔═╡ 99e960a4-815f-4245-9979-64b6598e1583
+function process_calibration(data, Udmax=Inf)
+	frames = map(data) do x
+		Ud = mean(x.U[2])
+		Iefish = -minimum(x.efish[2])
+		(; x..., Ud, Iefish)
+	end
+
+	Ud = [x.Ud for x in frames]
+	Iefish = [x.Iefish for x in frames]
+	E = reference_field.(Ud)
+
+	s = Ud .< Udmax
+	(p, q), model, elfield = calibration_nonlinear(E[s], Iefish[s])
+
+	(Ud, E, Iefish, model, model_params=(p, q), elfield, frames)
+end
+
+# ╔═╡ cc31ba73-065b-42a1-999b-16101563d3f4
+function process_calibration(dir::String, args...)
+	process_calibration(load_calibration(dir), args...)
+end
+
+# ╔═╡ ad460ed7-cfb6-4465-a7ba-c17f2450ddf1
+calib0 = process_calibration("data-22-02-03/kalibrace0")
+
+# ╔═╡ cbfe5e58-83ad-4649-9153-eb987f8adc73
+calib1 = process_calibration("data-22-02-03/kalibrace-0p35mm")
+
+# ╔═╡ 72c871fb-91a6-4b66-b6db-a471d5884be6
+calib2 = process_calibration("data-22-02-03/kalibrace0b")
+
+# ╔═╡ dea1ee50-ec75-462f-b66b-ec773e6e8ced
+length(calib0.frames)
+
+# ╔═╡ 117b54e6-fa77-4d4c-b830-d062d1375485
+md"""
+!!! note
+	Remove dark frame from `calib0`.
 """
 
 # ╔═╡ 6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
@@ -171,6 +222,14 @@ end
 # ╠═66784c75-f417-4302-bc45-01d4749633e0
 # ╟─cee03886-7477-4b64-ab87-22affe4128fd
 # ╠═8dbb2228-6ea2-11ed-2f9e-df0225fee6bb
+# ╠═6a2506ef-95bf-4c2d-8d89-fd1de690bf0e
+# ╠═99e960a4-815f-4245-9979-64b6598e1583
+# ╠═cc31ba73-065b-42a1-999b-16101563d3f4
+# ╠═ad460ed7-cfb6-4465-a7ba-c17f2450ddf1
+# ╠═cbfe5e58-83ad-4649-9153-eb987f8adc73
+# ╠═72c871fb-91a6-4b66-b6db-a471d5884be6
+# ╠═dea1ee50-ec75-462f-b66b-ec773e6e8ced
+# ╟─117b54e6-fa77-4d4c-b830-d062d1375485
 # ╟─6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 # ╠═17006e36-a1f7-4fe9-ad6f-4dfd828e7228
 # ╠═c41639b2-19bc-4e49-ab6f-835c8fcbe218
