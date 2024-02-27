@@ -79,9 +79,6 @@ calib1 = process_calibration("data-22-02-03/kalibrace-0p35mm")
 # ╔═╡ 72c871fb-91a6-4b66-b6db-a471d5884be6
 calib2 = process_calibration("data-22-02-03/kalibrace0b")
 
-# ╔═╡ dea1ee50-ec75-462f-b66b-ec773e6e8ced
-length(calib0.frames)
-
 # ╔═╡ 117b54e6-fa77-4d4c-b830-d062d1375485
 md"""
 !!! note
@@ -228,7 +225,6 @@ end
 # ╠═ad460ed7-cfb6-4465-a7ba-c17f2450ddf1
 # ╠═cbfe5e58-83ad-4649-9153-eb987f8adc73
 # ╠═72c871fb-91a6-4b66-b6db-a471d5884be6
-# ╠═dea1ee50-ec75-462f-b66b-ec773e6e8ced
 # ╟─117b54e6-fa77-4d4c-b830-d062d1375485
 # ╟─6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 # ╠═17006e36-a1f7-4fe9-ad6f-4dfd828e7228
