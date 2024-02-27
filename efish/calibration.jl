@@ -299,10 +299,14 @@ byly proloženy polynomem druhého stupně metodou nejmenších čtverců:
 """
 
 # ╔═╡ 1bd3a07e-f592-4099-878b-587805e68004
-a, b, c = [E[s].^2 E[s] ones(sum(s))] \ efish[s]
+function calibration_linear(E, Iefish)
+	a, b, c = [E.^2 E ones(length(E))] \ Iefish
+	calib_l(E) = a*E^2 + b*E + c
+	(a, b, c), calib_l
+end
 
 # ╔═╡ 38aa525f-a59b-4bad-aaab-0fbad160a3ff
-calib_l(E) = a*E^2 + b*E + c
+(a, b, c), calib_l = calibration_linear(E[s], efish[s])
 
 # ╔═╡ ad0486f8-f6a8-413b-8dff-02d4b2360329
 md"""
@@ -325,15 +329,21 @@ s výchozími hodnotami spočtenými podle předchozího modelu:
 """
 
 # ╔═╡ e83da9e3-f27d-4848-842d-901a21ec9a51
-begin
+function calibration_nonlinear(E, Iefish; β0 = [])
+	if isempty(β0)
+		(a, b, c), _ = calibration_linear(E, Iefish)
+		β0 = [a; b/(2a)]
+	end
 	calib(E, β) = β[1] .* (E .+ β[2]).^2
-	β0 = [a; b/(2a)]
-	fit = curve_fit(calib, E[s], efish[s], β0)
+	fit = curve_fit(calib, E, Iefish, β0)
+	calib(E) = calib(E, fit.param)
 	p, q = fit.param
+	elfield(efish) = sqrt(efish/p) - q
+	fit.param, calib, elfield
 end
 
 # ╔═╡ ce4be157-807c-4324-b09d-fb7c253317cc
-calib(E) = calib(E, fit.param)
+(p, q), calib, elfield = calibration_nonlinear(E[s], efish[s], β0=[a; b/(2a)])
 
 # ╔═╡ f451d831-6eb7-4317-8fc2-ce7f29515bb5
 md"""
@@ -365,7 +375,7 @@ aby nevracela záporné hodnoty intenzity $E$:
 """
 
 # ╔═╡ 664f233b-0b35-4d95-b832-6475e97f3ab7
-elfield(efish) = sqrt(efish/p) - q
+elfield
 
 # ╔═╡ 141ffd5e-315a-4718-9da7-333793698511
 with(legend = :none) do
