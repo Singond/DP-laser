@@ -71,14 +71,17 @@ function process_calibration(dir::String, args...)
 	process_calibration(load_calibration(dir), args...)
 end
 
+# ╔═╡ 498f248b-b16e-467e-ab0c-a903b14d8883
+Udmax = 5200
+
 # ╔═╡ ad460ed7-cfb6-4465-a7ba-c17f2450ddf1
-calib0 = process_calibration("data-22-02-03/kalibrace0")
+calib0 = process_calibration("data-22-02-03/kalibrace0", Udmax)
 
 # ╔═╡ cbfe5e58-83ad-4649-9153-eb987f8adc73
-calib1 = process_calibration("data-22-02-03/kalibrace-0p35mm")
+calib1 = process_calibration("data-22-02-03/kalibrace-0p35mm", Udmax)
 
 # ╔═╡ 72c871fb-91a6-4b66-b6db-a471d5884be6
-calib2 = process_calibration("data-22-02-03/kalibrace0b")
+calib2 = process_calibration("data-22-02-03/kalibrace0b", Udmax)
 
 # ╔═╡ f591ed8e-adb1-42de-8976-19474917a0bb
 with(legend = :topleft) do
@@ -98,6 +101,30 @@ end
 # ╔═╡ f8c28b0f-1362-4680-9ab6-8113ef4240bd
 with(legend = :topleft) do
 	plot(calib0.frames[20].fd...)
+end
+
+# ╔═╡ 6e8db23b-0f31-4159-ac16-6e23ef8a89d5
+with(legend = :topleft) do
+	scatter(calib0.E, calib0.Iefish, label="0 mm", color=1)
+	plot!(calib0.model, color=1, label=nothing)
+	scatter!(calib1.E, calib1.Iefish, label="-0.35 mm", color=2)
+	plot!(calib1.model, color=2, label=nothing)
+	scatter!(calib2.E, calib2.Iefish, label="0 mm (later)", color=3)
+	plot!(calib2.model, color=3, label=nothing)
+	xlabel!("E [V/m]")
+	ylabel!("I [a.u.]")
+end
+
+# ╔═╡ 6e3ba49e-da04-42e2-b6f4-1d529f1ed504
+with(legend = :topleft) do
+	plot(calib0.elfield, label="0 mm", color=1)
+	plot!(E -> calib0.elfield(E, left_branch=true), label=nothing, color=1)
+	plot!(calib1.elfield, label="-0.35 mm", color=2)
+	plot!(E -> calib1.elfield(E, left_branch=true), label=nothing, color=2)
+	plot!(calib2.elfield, label="0 mm (later)", color=3)
+	plot!(E -> calib2.elfield(E, left_branch=true), label=nothing, color=3)
+	xlabel!("I [a.u.]")
+	ylabel!("E [V/m]")
 end
 
 # ╔═╡ 6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
@@ -237,6 +264,7 @@ end
 # ╠═6a2506ef-95bf-4c2d-8d89-fd1de690bf0e
 # ╠═99e960a4-815f-4245-9979-64b6598e1583
 # ╠═cc31ba73-065b-42a1-999b-16101563d3f4
+# ╠═498f248b-b16e-467e-ab0c-a903b14d8883
 # ╠═ad460ed7-cfb6-4465-a7ba-c17f2450ddf1
 # ╠═cbfe5e58-83ad-4649-9153-eb987f8adc73
 # ╠═72c871fb-91a6-4b66-b6db-a471d5884be6
@@ -244,6 +272,8 @@ end
 # ╠═c21000e4-8540-44ee-bf99-8fd8b1064ab3
 # ╠═1111eb0c-d64d-4480-8bc0-9caaedd01c7d
 # ╠═f8c28b0f-1362-4680-9ab6-8113ef4240bd
+# ╠═6e8db23b-0f31-4159-ac16-6e23ef8a89d5
+# ╠═6e3ba49e-da04-42e2-b6f4-1d529f1ed504
 # ╟─6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 # ╠═17006e36-a1f7-4fe9-ad6f-4dfd828e7228
 # ╠═c41639b2-19bc-4e49-ab6f-835c8fcbe218
