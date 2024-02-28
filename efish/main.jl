@@ -43,7 +43,7 @@ Postup je obdobný tomu popsanému v `calibration.jl`.
 
 # ╔═╡ 6a2506ef-95bf-4c2d-8d89-fd1de690bf0e
 load_calibration(dir) = map(filter(isfile, readdir(dir, join=true))) do file
-	local U, efish, I, fd, meta = importkeysightbin(file)
+	local U, fd, I, efish, meta = importkeysightbin(file)
 	(; U, fd, I, efish, meta)
 end
 
@@ -84,6 +84,25 @@ md"""
 !!! note
 	Remove dark frame from `calib0`.
 """
+# ╔═╡ f591ed8e-adb1-42de-8976-19474917a0bb
+with(legend = :topleft) do
+	plot(calib0.frames[20].U...)
+end
+
+# ╔═╡ c21000e4-8540-44ee-bf99-8fd8b1064ab3
+with(legend = :topleft) do
+	plot(calib0.frames[20].I...)
+end
+
+# ╔═╡ 1111eb0c-d64d-4480-8bc0-9caaedd01c7d
+with(legend = :topleft) do
+	plot(calib0.frames[20].efish...)
+end
+
+# ╔═╡ f8c28b0f-1362-4680-9ab6-8113ef4240bd
+with(legend = :topleft) do
+	plot(calib0.frames[20].fd...)
+end
 
 # ╔═╡ 6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 md"""
@@ -226,6 +245,10 @@ end
 # ╠═cbfe5e58-83ad-4649-9153-eb987f8adc73
 # ╠═72c871fb-91a6-4b66-b6db-a471d5884be6
 # ╟─117b54e6-fa77-4d4c-b830-d062d1375485
+# ╠═f591ed8e-adb1-42de-8976-19474917a0bb
+# ╠═c21000e4-8540-44ee-bf99-8fd8b1064ab3
+# ╠═1111eb0c-d64d-4480-8bc0-9caaedd01c7d
+# ╠═f8c28b0f-1362-4680-9ab6-8113ef4240bd
 # ╟─6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 # ╠═17006e36-a1f7-4fe9-ad6f-4dfd828e7228
 # ╠═c41639b2-19bc-4e49-ab6f-835c8fcbe218
