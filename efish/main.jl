@@ -312,6 +312,22 @@ with(legend = :none) do
 	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
 end
 
+# ╔═╡ b734020f-b233-44d7-a826-801c8904f6eb
+md"""
+Totéž v plošném grafu:
+"""
+
+# ╔═╡ 8a680393-58c3-46e5-8ec0-3e1c30482ab3
+with(legend = :none) do
+	plot()
+	for x in X
+		plot!(x.t, x.E, label="y=$(y) mm")
+	end
+	xlabel!("čas \$t\$ [s]")
+	ylabel!("poloha \$y\$ [mm]")
+	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
+end
+
 # ╔═╡ accb4638-773c-4c0c-8897-2352bc04192e
 md"""
 Pro srovnání intenzita elektrického pole spočtená
@@ -327,6 +343,20 @@ with(legend = :none) do
 	xlabel!("čas \$t\$ [s]")
 	ylabel!("poloha \$y\$ [mm]")
 	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
+end
+
+# ╔═╡ 64195fc9-5a18-4e35-a9d3-81d3ccf2f864
+Imax = [maximum(x.E[50:end]) for x in X]
+
+# ╔═╡ ef7295da-8f83-4eeb-8b2b-a41554f68bf3
+Imin = [minimum(x.E) for x in X]
+
+# ╔═╡ c30b052d-72f8-4ad1-a344-e96c5692dd9f
+with() do
+	scatter(y, Imax, label="max(E)")
+	scatter!(y, -Imin, label="min(E)")
+	xlabel!("poloha \$y\$ [mm]")
+	ylabel!("amplituda intenzity elektrického pole \$E\$ [V/m]")
 end
 
 # ╔═╡ Cell order:
@@ -367,5 +397,10 @@ end
 # ╟─3ea88b51-e314-424b-99a4-b455a8af5598
 # ╠═7d81a798-44a8-4f02-8b3e-5f784a8120b7
 # ╠═ad9d4cce-3e96-4e84-b868-a9fafc6639cf
+# ╟─b734020f-b233-44d7-a826-801c8904f6eb
+# ╠═8a680393-58c3-46e5-8ec0-3e1c30482ab3
 # ╟─accb4638-773c-4c0c-8897-2352bc04192e
 # ╠═6a2faa47-111f-4a62-89c8-f5a9ab53e7f4
+# ╠═64195fc9-5a18-4e35-a9d3-81d3ccf2f864
+# ╠═ef7295da-8f83-4eeb-8b2b-a41554f68bf3
+# ╠═c30b052d-72f8-4ad1-a344-e96c5692dd9f
