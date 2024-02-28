@@ -128,14 +128,15 @@ with(legend = :topleft) do
 end
 
 # ╔═╡ a93b4d5c-4167-42a4-a01c-f721faf5edd6
-function elfield(Iefish, y)
+function elfield(Iefish, y; kwargs...)
 	if (y <= -0.35)
-		calib1.elfield(Iefish)
+		calib1.elfield(Iefish; kwargs...)
 	elseif -0.35 < y <= 0
 		q = -y / 0.35
-		q * calib1.elfield(Iefish) + (1 - q) * calib0.elfield(Iefish)
+		q * calib1.elfield(Iefish; kwargs...) +
+		(1 - q) * calib0.elfield(Iefish; kwargs...)
 	else
-		calib2.elfield(Iefish)
+		calib2.elfield(Iefish; kwargs...)
 	end
 end
 
@@ -189,16 +190,28 @@ begin
 end
 
 # ╔═╡ 9c5600ab-836e-471f-8f1b-a04e0d60ce1a
-Xold = map(D) do x
+Xold = map(copy(D)) do x
 	x.Iefish = [-minimum(xi.efish[2]) for xi in eachrow(x)]
-	x.E = calib_example.elfield.(x.Iefish)
+	x.Eold = calib_example.elfield.(x.Iefish)
 	x
 end
 
 # ╔═╡ b25f98da-b4e2-4847-a7e9-06a8d84b8ed8
-X = map(D) do x
+X = map(copy(D)) do x
 	x.Iefish = [-minimum(xi.efish[2]) for xi in eachrow(x)]
-	x.E = elfield.(x.Iefish, x.y)
+
+	# Using only one (left or right) branch of calibration function
+	x.Eright = elfield.(x.Iefish, x.y, left_branch=false)
+	x.Eleft = elfield.(x.Iefish, x.y, left_branch=true)
+
+	# Using both branches. Left branch between the two minima, right elsewhere:
+	split = round(Int, length(x.Iefish) / 2)
+	_, imin1 = findmin(x.Iefish[1:split])
+	_, imin2 = findmin(x.Iefish[split+1:end])
+	imin2 += split
+	x.E = copy(x.Eright)
+	x.E[imin1:imin2] = x.Eleft[imin1:imin2]
+
 	x
 end
 
@@ -245,14 +258,15 @@ end
 
 # ╔═╡ db270dba-8414-4a35-b837-964f5cdfb63d
 md"""
-Příslušná intenzita elektrického pole:
+Příslušná intenzita elektrického pole při použití pouze pravé větve
+kalibrační funkce:
 """
 
 # ╔═╡ 50a2722b-66e1-4310-a398-152f28caf118
 with(legend = :none) do
 	plot()
 	for x in X
-		plot!(x.t, x.y, x.E)
+		plot!(x.t, x.y, x.Eright)
 	end
 	xlabel!("čas \$t\$ [s]")
 	ylabel!("poloha \$y\$ [mm]")
@@ -263,6 +277,33 @@ end
 md"""
 Totéž jako plocha (Julia neumí výše uvedený graf vyplnit).
 """
+
+# ╔═╡ 8151b80f-486b-49d1-a27f-6b56fa192eb2
+with(legend = :none) do
+	local t = X[1].t
+	local E = reduce(hcat, map(x -> x.Eright, X))
+	local p = sortperm(y)
+	surface(t, y[p], E[:,p]')
+	xlabel!("čas \$t\$ [s]")
+	ylabel!("poloha \$y\$ [mm]")
+	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
+end
+
+# ╔═╡ 3ea88b51-e314-424b-99a4-b455a8af5598
+md"""
+Pokud střední část mezi minimy přepočteme podle levé větve:
+"""
+
+# ╔═╡ 7d81a798-44a8-4f02-8b3e-5f784a8120b7
+with(legend = :none) do
+	plot()
+	for x in X
+		plot!(x.t, x.y, x.E)
+	end
+	xlabel!("čas \$t\$ [s]")
+	ylabel!("poloha \$y\$ [mm]")
+	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
+end
 
 # ╔═╡ ad9d4cce-3e96-4e84-b868-a9fafc6639cf
 with(legend = :none) do
@@ -284,7 +325,7 @@ podle jediné kalibrační funkce z předchozí sady:
 # ╔═╡ 6a2faa47-111f-4a62-89c8-f5a9ab53e7f4
 with(legend = :none) do
 	local t = Xold[1].t
-	local E = reduce(hcat, map(x -> x.E, Xold))
+	local E = reduce(hcat, map(x -> x.Eold, Xold))
 	local p = sortperm(y)
 	surface(t, y[p], E[:,p]')
 	xlabel!("čas \$t\$ [s]")
@@ -326,6 +367,9 @@ end
 # ╟─db270dba-8414-4a35-b837-964f5cdfb63d
 # ╠═50a2722b-66e1-4310-a398-152f28caf118
 # ╟─23d18426-81ef-41db-846e-96305d4f97c7
+# ╠═8151b80f-486b-49d1-a27f-6b56fa192eb2
+# ╟─3ea88b51-e314-424b-99a4-b455a8af5598
+# ╠═7d81a798-44a8-4f02-8b3e-5f784a8120b7
 # ╠═ad9d4cce-3e96-4e84-b868-a9fafc6639cf
-# ╠═accb4638-773c-4c0c-8897-2352bc04192e
+# ╟─accb4638-773c-4c0c-8897-2352bc04192e
 # ╠═6a2faa47-111f-4a62-89c8-f5a9ab53e7f4
