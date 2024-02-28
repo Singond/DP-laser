@@ -61,7 +61,7 @@ function process_calibration(data, Udmax=Inf)
 	E = reference_field.(Ud)
 
 	s = Ud .< Udmax
-	(p, q), model, elfield = calibration_nonlinear(E[s], Iefish[s])
+	p, q, model, elfield = calibration_nonlinear(E[s], Iefish[s])
 
 	(Ud, E, Iefish, model, model_params=(p, q), elfield, frames)
 end

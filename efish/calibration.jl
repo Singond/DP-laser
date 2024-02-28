@@ -350,11 +350,12 @@ function calibration_nonlinear(E, Iefish; β0 = [])
 		sqrt(efish/p) - q
 	end
 
-	fit.param, calib, elfield
+	p, q = fit.param
+	(; p, q, calib, elfield)
 end
 
 # ╔═╡ ce4be157-807c-4324-b09d-fb7c253317cc
-(p, q), calib, elfield = calibration_nonlinear(E[s], efish[s], β0=[a; b/(2a)])
+calib_example = calibration_nonlinear(E[s], efish[s], β0=[a; b/(2a)])
 
 # ╔═╡ f451d831-6eb7-4317-8fc2-ce7f29515bb5
 md"""
@@ -362,7 +363,10 @@ Výsledná závislost je tato:
 """
 
 # ╔═╡ c39dddb1-0371-42b7-a5a3-2e38c9bba4e0
-latexstring("🐟 = $(round(p*1e14, sigdigits=3))\\cdot10^{-14} (E + $(round(q*1e-5, sigdigits=3))\\cdot10^{5})^2")
+latexstring("""
+🐟 = $(round(calib_example.p*1e14, sigdigits=3))\\cdot10^{-14}
+(E + $(round(calib_example.q*1e-5, sigdigits=3))\\cdot10^{5})^2
+""")
 
 # ╔═╡ 672cd756-20bd-4421-abf0-8a02e3ba901f
 md"""
@@ -374,7 +378,7 @@ Oba modely se dobře shodují, rozdíl mezi nimi je nepostřehnutelný:
 with(legend = :topleft) do
 	scatter(E, efish, label = "naměřená data", markersize = 6)
 	plot!(calib_l, color = 1, label = "lineární model")
-	plot!(calib, color = 2, label = "nelineární model")
+	plot!(calib_example.calib, color = 2, label = "nelineární model")
 	xlabel!("E [V/m]")
 	ylabel!("I [a.u.]")
 end
@@ -386,11 +390,11 @@ aby nevracela záporné hodnoty intenzity $E$:
 """
 
 # ╔═╡ 664f233b-0b35-4d95-b832-6475e97f3ab7
-elfield
+calib_example.elfield
 
 # ╔═╡ 141ffd5e-315a-4718-9da7-333793698511
 with(legend = :none) do
-	plot(elfield)
+	plot(calib_example.elfield)
 	xlabel!("I [a.u.]")
 	ylabel!("E [V/m]")
 end
