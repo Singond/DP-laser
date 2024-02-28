@@ -116,11 +116,11 @@ end
 
 # ╔═╡ 6e3ba49e-da04-42e2-b6f4-1d529f1ed504
 with(legend = :topleft) do
-	plot(calib_mid1.elfield, label="0 mm", color=1)
+	plot(calib_mid1.elfield, label="mid1 (0 mm)", color=1)
 	plot!(E -> calib_mid1.elfield(E, left_branch=true), label=nothing, color=1)
-	plot!(calib_bot.elfield, label="-0.35 mm", color=2)
+	plot!(calib_bot.elfield, label="bot (-0.35 mm)", color=2)
 	plot!(E -> calib_bot.elfield(E, left_branch=true), label=nothing, color=2)
-	plot!(calib_mid2.elfield, label="0 mm (later)", color=3)
+	plot!(calib_mid2.elfield, label="mid2 (0 mm)", color=3)
 	plot!(E -> calib_mid2.elfield(E, left_branch=true), label=nothing, color=3)
 	xlabel!("I [a.u.]")
 	ylabel!("E [V/m]")
