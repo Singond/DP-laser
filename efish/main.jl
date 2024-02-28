@@ -127,6 +127,18 @@ with(legend = :topleft) do
 	ylabel!("E [V/m]")
 end
 
+# ╔═╡ a93b4d5c-4167-42a4-a01c-f721faf5edd6
+function elfield(Iefish, y)
+	if (y <= -0.35)
+		calib1.elfield(Iefish)
+	elseif -0.35 < y <= 0
+		q = -y / 0.35
+		q * calib1.elfield(Iefish) + (1 - q) * calib0.elfield(Iefish)
+	else
+		calib2.elfield(Iefish)
+	end
+end
+
 # ╔═╡ 6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 md"""
 ## Měření elektrického pole výboje
@@ -177,9 +189,16 @@ begin
 end
 
 # ╔═╡ 9c5600ab-836e-471f-8f1b-a04e0d60ce1a
+Xold = map(D) do x
+	x.Iefish = [-minimum(xi.efish[2]) for xi in eachrow(x)]
+	x.E = calib_example.elfield.(x.Iefish)
+	x
+end
+
+# ╔═╡ b25f98da-b4e2-4847-a7e9-06a8d84b8ed8
 X = map(D) do x
 	x.Iefish = [-minimum(xi.efish[2]) for xi in eachrow(x)]
-	x.E = elfield.(x.Iefish)
+	x.E = elfield.(x.Iefish, x.y)
 	x
 end
 
@@ -256,6 +275,23 @@ with(legend = :none) do
 	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
 end
 
+# ╔═╡ accb4638-773c-4c0c-8897-2352bc04192e
+md"""
+Pro srovnání intenzita elektrického pole spočtená
+podle jediné kalibrační funkce z předchozí sady:
+"""
+
+# ╔═╡ 6a2faa47-111f-4a62-89c8-f5a9ab53e7f4
+with(legend = :none) do
+	local t = Xold[1].t
+	local E = reduce(hcat, map(x -> x.E, Xold))
+	local p = sortperm(y)
+	surface(t, y[p], E[:,p]')
+	xlabel!("čas \$t\$ [s]")
+	ylabel!("poloha \$y\$ [mm]")
+	zlabel!("intenzita elektrického pole \$E\$ [V/m]")
+end
+
 # ╔═╡ Cell order:
 # ╟─b0ee89cd-7f55-4ede-b8ef-963f669abef6
 # ╠═66784c75-f417-4302-bc45-01d4749633e0
@@ -274,10 +310,12 @@ end
 # ╠═f8c28b0f-1362-4680-9ab6-8113ef4240bd
 # ╠═6e8db23b-0f31-4159-ac16-6e23ef8a89d5
 # ╠═6e3ba49e-da04-42e2-b6f4-1d529f1ed504
+# ╠═a93b4d5c-4167-42a4-a01c-f721faf5edd6
 # ╟─6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 # ╠═17006e36-a1f7-4fe9-ad6f-4dfd828e7228
 # ╠═c41639b2-19bc-4e49-ab6f-835c8fcbe218
 # ╠═9c5600ab-836e-471f-8f1b-a04e0d60ce1a
+# ╠═b25f98da-b4e2-4847-a7e9-06a8d84b8ed8
 # ╠═d65f93a9-124a-4a94-9ba7-39f6983773a5
 # ╟─8216d6a0-61cb-4d96-bc40-4d5be490ca7e
 # ╠═c57517a5-acb0-49dc-be11-0df4de36d87f
@@ -289,3 +327,5 @@ end
 # ╠═50a2722b-66e1-4310-a398-152f28caf118
 # ╟─23d18426-81ef-41db-846e-96305d4f97c7
 # ╠═ad9d4cce-3e96-4e84-b868-a9fafc6639cf
+# ╠═accb4638-773c-4c0c-8897-2352bc04192e
+# ╠═6a2faa47-111f-4a62-89c8-f5a9ab53e7f4
