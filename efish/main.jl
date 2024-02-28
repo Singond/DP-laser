@@ -74,54 +74,54 @@ end
 Udmax = 5200
 
 # ╔═╡ ad460ed7-cfb6-4465-a7ba-c17f2450ddf1
-calib0 = process_calibration("data-22-02-03/kalibrace0", Udmax)
+calib_mid1 = process_calibration("data-22-02-03/kalibrace0", Udmax)
 
 # ╔═╡ cbfe5e58-83ad-4649-9153-eb987f8adc73
-calib1 = process_calibration("data-22-02-03/kalibrace-0p35mm", Udmax)
+calib_bot = process_calibration("data-22-02-03/kalibrace-0p35mm", Udmax)
 
 # ╔═╡ 72c871fb-91a6-4b66-b6db-a471d5884be6
-calib2 = process_calibration("data-22-02-03/kalibrace0b", Udmax)
+calib_mid2 = process_calibration("data-22-02-03/kalibrace0b", Udmax)
 
 # ╔═╡ f591ed8e-adb1-42de-8976-19474917a0bb
 with(legend = :topleft) do
-	plot(calib0.frames[20].U...)
+	plot(calib_mid1.frames[20].U...)
 end
 
 # ╔═╡ c21000e4-8540-44ee-bf99-8fd8b1064ab3
 with(legend = :topleft) do
-	plot(calib0.frames[20].I...)
+	plot(calib_mid1.frames[20].I...)
 end
 
 # ╔═╡ 1111eb0c-d64d-4480-8bc0-9caaedd01c7d
 with(legend = :topleft) do
-	plot(calib0.frames[20].efish...)
+	plot(calib_mid1.frames[20].efish...)
 end
 
 # ╔═╡ f8c28b0f-1362-4680-9ab6-8113ef4240bd
 with(legend = :topleft) do
-	plot(calib0.frames[20].fd...)
+	plot(calib_mid1.frames[20].fd...)
 end
 
 # ╔═╡ 6e8db23b-0f31-4159-ac16-6e23ef8a89d5
 with(legend = :topleft) do
-	scatter(calib0.E, calib0.Iefish, label="0 mm", color=1)
-	plot!(calib0.model, color=1, label=nothing)
-	scatter!(calib1.E, calib1.Iefish, label="-0.35 mm", color=2)
-	plot!(calib1.model, color=2, label=nothing)
-	scatter!(calib2.E, calib2.Iefish, label="0 mm (later)", color=3)
-	plot!(calib2.model, color=3, label=nothing)
+	scatter(calib_mid1.E, calib_mid1.Iefish, label="mid1 (0 mm)", color=1)
+	plot!(calib_mid1.model, color=1, label=nothing)
+	scatter!(calib_bot.E, calib_bot.Iefish, label="bot (-0.35 mm)", color=2)
+	plot!(calib_bot.model, color=2, label=nothing)
+	scatter!(calib_mid2.E, calib_mid2.Iefish, label="mid2 (0 mm)", color=3)
+	plot!(calib_mid2.model, color=3, label=nothing)
 	xlabel!("E [V/m]")
 	ylabel!("I [a.u.]")
 end
 
 # ╔═╡ 6e3ba49e-da04-42e2-b6f4-1d529f1ed504
 with(legend = :topleft) do
-	plot(calib0.elfield, label="0 mm", color=1)
-	plot!(E -> calib0.elfield(E, left_branch=true), label=nothing, color=1)
-	plot!(calib1.elfield, label="-0.35 mm", color=2)
-	plot!(E -> calib1.elfield(E, left_branch=true), label=nothing, color=2)
-	plot!(calib2.elfield, label="0 mm (later)", color=3)
-	plot!(E -> calib2.elfield(E, left_branch=true), label=nothing, color=3)
+	plot(calib_mid1.elfield, label="0 mm", color=1)
+	plot!(E -> calib_mid1.elfield(E, left_branch=true), label=nothing, color=1)
+	plot!(calib_bot.elfield, label="-0.35 mm", color=2)
+	plot!(E -> calib_bot.elfield(E, left_branch=true), label=nothing, color=2)
+	plot!(calib_mid2.elfield, label="0 mm (later)", color=3)
+	plot!(E -> calib_mid2.elfield(E, left_branch=true), label=nothing, color=3)
 	xlabel!("I [a.u.]")
 	ylabel!("E [V/m]")
 end
@@ -129,13 +129,13 @@ end
 # ╔═╡ a93b4d5c-4167-42a4-a01c-f721faf5edd6
 function elfield(Iefish, y; kwargs...)
 	if (y <= -0.35)
-		calib1.elfield(Iefish; kwargs...)
+		calib_bot.elfield(Iefish; kwargs...)
 	elseif -0.35 < y <= 0
 		q = -y / 0.35
-		q * calib1.elfield(Iefish; kwargs...) +
-		(1 - q) * calib0.elfield(Iefish; kwargs...)
+		q * calib_bot.elfield(Iefish; kwargs...) +
+		(1 - q) * calib_mid2.elfield(Iefish; kwargs...)
 	else
-		calib2.elfield(Iefish; kwargs...)
+		calib_mid1.elfield(Iefish; kwargs...)
 	end
 end
 
