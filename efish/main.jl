@@ -15,7 +15,6 @@ begin
 	using Statistics
 	using Printf
 
-	using DataFrames
 	using ImportKeysightBin
 	using LsqFit
 	using Plots
@@ -158,21 +157,21 @@ function loaddata(dataname::String, energyname::String, y::Float64)
 			skipstart = 36)
 	end
 
-	x = DataFrame()
-	for (row, (delay, fileno)) in enumerate(eachrow(index))
+	frames = map(eachrow(index)) do (delay, fileno)
 		filenostr = @sprintf("%05d", fileno)
 		file = "data-22-02-03/$(dataname)/$(dataname)$(filenostr).bin"
 		d = importkeysightbin(file)
-		push!(x, (;t = delay, U = d[1], fd = d[2], I = d[3], efish = d[4], y))
+		(; t = delay, U = d[1], fd = d[2], I = d[3], efish = d[4])
 	end
 
-	#x.E = elfield.(-minimum.(x.efish[2]))
-	x
+	t = [f.t for f in frames]
+	Iefish = [-minimum(f.efish[2]) for f in frames]
+	(; frames, y, t, Iefish)
 end
 
 # ╔═╡ c41639b2-19bc-4e49-ab6f-835c8fcbe218
 begin
-	D = Array{DataFrame}(undef, 13)
+	D = Vector{NamedTuple}(undef, 13)
 	D[1]  = loaddata("perioda14kv0mm",     "571777_03", 0.0)
 	D[2]  = loaddata("perioda14kv0p1mm",   "571777_04", 0.1)
 	D[3]  = loaddata("perioda14kv0p2mm",   "571777_05", 0.2)
@@ -190,29 +189,26 @@ begin
 end
 
 # ╔═╡ 9c5600ab-836e-471f-8f1b-a04e0d60ce1a
-Xold = map(copy(D)) do x
-	x.Iefish = [-minimum(xi.efish[2]) for xi in eachrow(x)]
-	x.Eold = calib_example.elfield.(x.Iefish)
-	x
+Xold = map(D) do x
+	E = calib_example.elfield.(x.Iefish)
+	(; x..., E)
 end
 
 # ╔═╡ b25f98da-b4e2-4847-a7e9-06a8d84b8ed8
-X = map(copy(D)) do x
-	x.Iefish = [-minimum(xi.efish[2]) for xi in eachrow(x)]
-
+X = map(D) do x
 	# Using only one (left or right) branch of calibration function
-	x.Eright = elfield.(x.Iefish, x.y, left_branch=false)
-	x.Eleft = elfield.(x.Iefish, x.y, left_branch=true)
+	Eright = elfield.(x.Iefish, x.y, left_branch=false)
+	Eleft = elfield.(x.Iefish, x.y, left_branch=true)
 
 	# Using both branches. Left branch between the two minima, right elsewhere:
 	split = round(Int, length(x.Iefish) / 2)
 	_, imin1 = findmin(x.Iefish[1:split])
 	_, imin2 = findmin(x.Iefish[split+1:end])
 	imin2 += split
-	x.E = copy(x.Eright)
-	x.E[imin1:imin2] = x.Eleft[imin1:imin2]
+	E = copy(Eright)
+	E[imin1:imin2] = Eleft[imin1:imin2]
 
-	x
+	(; x..., Eright, Eleft, E)
 end
 
 # ╔═╡ d65f93a9-124a-4a94-9ba7-39f6983773a5
@@ -234,7 +230,7 @@ Například $(n). pulz:
 
 # ╔═╡ 74daeaaf-f5a2-4a19-8918-36f2d2710fe8
 with(legend = :none) do
-	plot(X[1].efish[n])
+	plot(X[1].frames[n].efish)
 	xlabel!("čas \$t\$ [s]")
 	ylabel!("signál E-FISH \$I\$ [a.u.]")
 end
@@ -249,7 +245,7 @@ Průběh maxima (absolutní) intenzity jednotlivých pulzů v jedné periodě:
 with(legend = :none) do
 	plot()
 	for x in X
-		plot3d!(x.t, x.y, x.Iefish)
+		plot3d!(x.t, x.y * ones(size(x.t)), x.Iefish)
 	end
 	xlabel!("čas \$t\$ [s]")
 	ylabel!("poloha \$y\$ [mm]")
@@ -266,7 +262,7 @@ kalibrační funkce:
 with(legend = :none) do
 	plot()
 	for x in X
-		plot!(x.t, x.y, x.Eright)
+		plot!(x.t, x.y * ones(size(x.t)), x.Eright)
 	end
 	xlabel!("čas \$t\$ [s]")
 	ylabel!("poloha \$y\$ [mm]")
@@ -298,7 +294,7 @@ Pokud střední část mezi minimy přepočteme podle levé větve:
 with(legend = :none) do
 	plot()
 	for x in X
-		plot!(x.t, x.y, x.E)
+		plot!(x.t, x.y * ones(size(x.t)), x.E)
 	end
 	xlabel!("čas \$t\$ [s]")
 	ylabel!("poloha \$y\$ [mm]")
@@ -325,7 +321,7 @@ podle jediné kalibrační funkce z předchozí sady:
 # ╔═╡ 6a2faa47-111f-4a62-89c8-f5a9ab53e7f4
 with(legend = :none) do
 	local t = Xold[1].t
-	local E = reduce(hcat, map(x -> x.Eold, Xold))
+	local E = reduce(hcat, map(x -> x.E, Xold))
 	local p = sortperm(y)
 	surface(t, y[p], E[:,p]')
 	xlabel!("čas \$t\$ [s]")
