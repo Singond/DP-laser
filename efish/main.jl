@@ -42,7 +42,8 @@ Postup je obdobný tomu popsanému v `calibration.jl`.
 """
 
 # ╔═╡ 6a2506ef-95bf-4c2d-8d89-fd1de690bf0e
-load_calibration(dir) = map(filter(isfile, readdir(dir, join=true))) do file
+load_calibration(dir) = map(readdir(dir, join=true) |>
+                            filter(contains("000"))) do file
 	local U, fd, I, efish, meta = importkeysightbin(file)
 	(; U, fd, I, efish, meta)
 end
@@ -79,11 +80,6 @@ calib1 = process_calibration("data-22-02-03/kalibrace-0p35mm")
 # ╔═╡ 72c871fb-91a6-4b66-b6db-a471d5884be6
 calib2 = process_calibration("data-22-02-03/kalibrace0b")
 
-# ╔═╡ 117b54e6-fa77-4d4c-b830-d062d1375485
-md"""
-!!! note
-	Remove dark frame from `calib0`.
-"""
 # ╔═╡ f591ed8e-adb1-42de-8976-19474917a0bb
 with(legend = :topleft) do
 	plot(calib0.frames[20].U...)
@@ -244,7 +240,6 @@ end
 # ╠═ad460ed7-cfb6-4465-a7ba-c17f2450ddf1
 # ╠═cbfe5e58-83ad-4649-9153-eb987f8adc73
 # ╠═72c871fb-91a6-4b66-b6db-a471d5884be6
-# ╟─117b54e6-fa77-4d4c-b830-d062d1375485
 # ╠═f591ed8e-adb1-42de-8976-19474917a0bb
 # ╠═c21000e4-8540-44ee-bf99-8fd8b1064ab3
 # ╠═1111eb0c-d64d-4480-8bc0-9caaedd01c7d
