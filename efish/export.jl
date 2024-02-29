@@ -28,6 +28,11 @@ if !@isdefined X
 	include("main.jl")
 end
 
+# For some reason, next save flushes some data at the beginning,
+# corrupting the file being written.
+# Saving to a trash file now seems to avoid the issue.
+Gnuplot.save("plots/trash.tex", term="cairolatex")
+
 @gp """
 	load '../style.gp'
 	set xyplane at 0
@@ -35,7 +40,7 @@ end
 	set grid xtics vertical
 	set grid ytics vertical
 	set grid ztics
-	set style fill solid 0.5
+	set style fill transparent solid 0.2
 	set xlabel '\$\\tim\\,[\\si{\\micro\\second}]\$' offset 0,-1
 	set xtics offset 0,-0.5
 	set ylabel '\$y\\,[\\si{\\milli\\metre}]\$' offset 0,-1
@@ -49,5 +54,5 @@ for k in [8:-1:1; 10:13]
 	zz = zeros(size(x.t))
 	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w zerrorfill ls 1" :-
 end
-Gnuplot.save("plots/period-elfield.tex", term="epslatex size 12cm,8cm")
+Gnuplot.save("plots/period-elfield.tex", term="cairolatex pdf size 12cm,8cm")
 #Gnuplot.save("plots/period-elfield.tikz", term="tikz size 12cm,8cm")
