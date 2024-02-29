@@ -1,6 +1,8 @@
 using Gnuplot
 
-include("calibration.jl")
+if !@isdefined calib_example
+	include("calibration.jl")
+end
 
 if !isdir("plots")
 	mkdir("plots")
@@ -22,7 +24,10 @@ E1 = LinRange(minimum(E), maximum(E), 100)
 Gnuplot.save("plots/calib.tex", term="epslatex size 12cm,8cm")
 #Gnuplot.save("plots/calib.tikz", term="tikz size 12cm,8cm")
 
-include("main.jl")
+if !@isdefined X
+	include("main.jl")
+end
+
 @gp """
 	load '../style.gp'
 	set xyplane at 0
