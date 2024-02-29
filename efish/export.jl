@@ -18,7 +18,7 @@ end
 """ :-
 @gp :- E./1e6 efish "w p ls 1 t 'naměřená data'" :-
 E1 = LinRange(minimum(E), maximum(E), 100)
-@gp :- E1./1e6 calib(E1) "w l ls 1 dt 2 t 'model \$\\efish \\sim \\elfield^2\$'" :-
+@gp :- E1./1e6 calib_example.calib(E1) "w l ls 1 dt 2 t 'model \$\\efish \\sim \\elfield^2\$'" :-
 Gnuplot.save("plots/calib.tex", term="epslatex size 12cm,8cm")
 #Gnuplot.save("plots/calib.tikz", term="tikz size 12cm,8cm")
 
