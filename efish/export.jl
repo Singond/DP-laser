@@ -21,17 +21,12 @@ end
 @gp :- E./1e6 efish "w p ls 1 t 'naměřená data'" :-
 E1 = LinRange(minimum(E), maximum(E), 100)
 @gp :- E1./1e6 calib_example.calib(E1) "w l ls 1 dt 2 t 'model \$\\efish \\sim \\elfield^2\$'" :-
-Gnuplot.save("plots/calib.tex", term="epslatex size 12cm,8cm")
+Gnuplot.save("plots/calib.tex", term="cairolatex pdf size 12cm,8cm")
 #Gnuplot.save("plots/calib.tikz", term="tikz size 12cm,8cm")
 
 if !@isdefined X
 	include("main.jl")
 end
-
-# For some reason, next save flushes some data at the beginning,
-# corrupting the file being written.
-# Saving to a trash file now seems to avoid the issue.
-Gnuplot.save("plots/trash.tex", term="cairolatex")
 
 @gp """
 	load '../style.gp'
