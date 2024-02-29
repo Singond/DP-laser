@@ -43,7 +43,7 @@ end
 	unset key
 """
 for k in [8:-1:1; 10:13]
-	x = X[k]
+	local x = X[k]
 	t = x.t .- x.t[1]
 	yy = ones(size(x.t)) * y[k]
 	zz = zeros(size(x.t))
