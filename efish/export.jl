@@ -10,6 +10,7 @@ end
 
 @gp """
 	load '../style.gp'
+	load '../style-cairo.gp'
 	set key top left
 	set xlabel 'intenzita elektrického pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$'
 	set ylabel 'signál E-FISH \$\\efish\\,[\\si{\\arbunit}]\$'
@@ -30,16 +31,19 @@ end
 
 @gp """
 	load '../style.gp'
-	set xyplane at 0
+	load '../style-cairo.gp'
+	set style fill transparent solid 0.2
+	set xyplane at -4
 	set border 895
 	set grid xtics vertical
 	set grid ytics vertical
 	set grid ztics
-	set style fill transparent solid 0.2
-	set xlabel '\$\\tim\\,[\\si{\\micro\\second}]\$' offset 0,-1
-	set xtics offset 0,-0.5
-	set ylabel '\$y\\,[\\si{\\milli\\metre}]\$' offset 0,-1
-	set zlabel '\$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$' rotate by 90
+	set xtics 20 offset 0,-0.5
+	set ytics 0.4 offset 0.5,0
+	set ztics
+	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$' offset 0,-1
+	set ylabel 'poloha \$y\\,[\\si{\\milli\\metre}]\$' offset 0,-1
+	set zlabel 'el. pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$' rotate by 90
 	unset key
 """
 for k in [8:-1:1; 10:13]
@@ -48,6 +52,8 @@ for k in [8:-1:1; 10:13]
 	yy = ones(size(x.t)) * y[k]
 	zz = zeros(size(x.t))
 	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w zerrorfill ls 1" :-
+	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w l ls 1" :-
 end
-Gnuplot.save("plots/period-elfield.tex", term="cairolatex pdf size 12cm,8cm")
+Gnuplot.save("plots/period-elfield.tex",
+	term="cairolatex color pdf size 12cm,8cm")
 #Gnuplot.save("plots/period-elfield.tikz", term="tikz size 12cm,8cm")
