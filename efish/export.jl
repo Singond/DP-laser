@@ -12,6 +12,9 @@ end
 	load '../style.gp'
 	load '../style-cairo.gp'
 	set key top left
+	set offsets graph 0.05, graph 0.05, graph 0.05, graph 0.05
+	set xrange noextend
+	set yrange noextend
 	set xlabel 'intenzita elektrického pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$'
 	set ylabel 'signál E-FISH \$\\efish\\,[\\si{\\arbunit}]\$'
 	Eb = 5.9
@@ -44,6 +47,7 @@ end
 	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$' offset 0,-1
 	set ylabel 'poloha \$y\\,[\\si{\\milli\\metre}]\$' offset 0,-1
 	set zlabel 'el. pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$' rotate by 90
+	set rmargin at screen 1
 	unset key
 """
 for k in [8:-1:1; 10:13]
@@ -55,5 +59,6 @@ for k in [8:-1:1; 10:13]
 	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w l ls 1" :-
 end
 Gnuplot.save("plots/period-elfield.tex",
-	term="cairolatex color pdf size 12cm,8cm")
-#Gnuplot.save("plots/period-elfield.tikz", term="tikz size 12cm,8cm")
+	term="cairolatex color pdf size 14cm,12cm")
+#Gnuplot.save("plots/period-elfield.tikz",
+	term="tikz tightboundingbox size 14cm,12cm")

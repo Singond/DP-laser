@@ -1,11 +1,20 @@
 \chapter[\EFISH]{{\EFISH} v~dielektrickém bariérovém výboji}
 
-\begin{figure}
-	\input{../efish/plots/calib}
-\end{figure}
+\newcommand\ypos{y}
 
 \begin{figure}
-	\input{../efish/plots/period-elfield}
+	\sisetup{per-mode = symbol}
+	\input{../efish/plots/calib}
+	\caption{Určená kalibrační funkce.}
+\end{figure}
+
+\begin{figure}[p]
+	\sisetup{per-mode = symbol}
+	\makebox[\textwidth]{\input{../efish/plots/period-elfield}}
 	\caption{Časový vývoj intenzity elektrického pole
-		v~různých místech výboje.}
+		v~různých místech výboje.
+		Spodní elektroda se nachází zhruba ve~výšce
+		$\ypos = \SI{-0.35}{\milli\metre}$,
+		horní elektroda přibližně ve~výšce
+		$\ypos = \SI{0.7}{\milli\metre}$.}
 \end{figure}
