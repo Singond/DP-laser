@@ -63,7 +63,20 @@ axialshade(react, box((-60,0), (60,8)), white, 8*N, magenta, 0);
 axialshade(react, box((-60,0), (60,-8)), white, 8*S, magenta, 0);
 label(react, "výboj", (0,0));
 
+pen shortdashed = linetype(new real[] {2, 2});
+
+pair gasin = (75,0);
+pair gasout = (-75,0);
+pen gaspen = lightblue + 4;
+draw(react, shift(gasin) * circle(0, 4), gaspen);
+draw(react, shift(gasout) * circle(0, 4), gaspen);
+
+draw(gasin + (100,40){W} .. {W}gasin + (5,0), gaspen + shortdashed);
 add(react);
+draw(gasout{W} .. {W}gasout - (100,40), gaspen);
+label("$\mathrm{N}_2$", gasin + (135,45), N);
+draw(gasout - (110,40) -- gasout - (150,40), gaspen + 1, Arrow(size=10));
+draw(gasin + (150,40) -- gasin + (110,40), gaspen + 1, Arrow(size=10));
 
 // path beam = (-200,0) -- (200,0);
 // draw(new path[] {shift(4*up) * beam, beam, shift(4*down) * beam},
