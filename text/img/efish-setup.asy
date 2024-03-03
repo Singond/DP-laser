@@ -1,6 +1,8 @@
 settings.outformat = "pdf";
 size(360pt);
 
+defaultpen(fontsize(10));
+
 picture bottom;
 picture beams;
 picture optics;
@@ -60,7 +62,7 @@ label("laser", (140,0));
 
 // Powermeter
 instr(shift(-80,0) * box((-10,-5), (10,5)));
-label(minipage("měřič\\energie", 35), (-80,15), N);
+label(minipage("\centering{měřič\\energie}", 35), (-80,5), N);
 
 // Main beam
 beam((-80,0) -- (100,0), red + 5);
@@ -91,9 +93,9 @@ pair mirror2 = shift(mirror1) * rotate(-70) * (100,0);
 path mirror2path = plate(mirror2, angle=65, face=true);
 beam(efish, mirror1 -- mirror2, efishpen);
 optics(mirror2path);
-pair lens2 = point(mirror1 -- mirror2, 0.3);
+pair lens2 = point(mirror1 -- mirror2, 0.4);
 optics(convexlens(lens2, angle=-70));
-label("$f = 50\,\mathrm{mm}$", lens2, 5W);
+label("$f = 50\,\mathrm{mm}$", lens2, 5E);
 
 pair prism1 = shift(mirror2) * rotate(20) * (70,0);
 path prism1path = shift(prism1 + 2down) * scale(10) * polygon(3);

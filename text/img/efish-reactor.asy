@@ -1,6 +1,9 @@
 import roundedpath;
 
 settings.outformat = "pdf";
+size(360pt);
+
+defaultpen(fontsize(10));
 
 picture react;
 pen reactpen = gray(0.4) + linewidth(2);
