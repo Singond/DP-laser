@@ -9,10 +9,12 @@ presentation_resources: ${presentation_figs:%=results/%}
 results/flame.png results/lif-example.png: example_export.m
 	octave --norc $<
 
-results/lifetime.tex results/lifetime-lg.tex: lifetime_export.m lifetime_main.m
+results/lifetime.tex results/lifetime-lg.tex: \
+lifetime_regions_export_fits.m lifetime_main.m
 	octave --norc $<
 
-results/lifetime-regions.png: lifetime_regions_export.m lifetime_main.m
+results/lifetime-regions.png: \
+lifetime_regions_export_img.m lifetime_regions.m
 	octave --norc $<
 
 results/timeev-%.png: timeev_export.m lifetime_main.m

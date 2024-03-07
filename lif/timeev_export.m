@@ -1,7 +1,7 @@
 pkg load report;
 
 if (!exist("lifetime", "var"))
-	lifetime_main;
+	lifetime_base;
 end
 
 img = lifetime(2).img;

@@ -2,7 +2,7 @@ pkg load report;
 pkg load singon-plasma;
 
 if (!exist("lifetime", "var"))
-	lifetime_main;
+	lifetime_base;
 end
 
 img = read_princeton_spe("data-2023-01-20/obr1.SPE");
