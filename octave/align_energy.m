@@ -1,3 +1,15 @@
+## -*- texinfo -*-
+## @deftypefn  {} {@var{avg} =} align_energy (@var{t}, @var{E}, @var{edges})
+##
+## Average energy @var{E} given in times @var{t} over intervals
+## given by @var{edges}.
+##
+## @var{edges} is a one- or two-column matrix specifying the start
+## (and optionally ends) of the intervals.
+##
+## The return value is a vector of length @var{N},
+## where @var{N} is the number of rows in @var{edges}.
+## @end deftypefn
 function r = align_energy(t, E, edges)
 	if (columns(edges) == 1)
 		skips = false;
