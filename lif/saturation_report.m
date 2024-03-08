@@ -22,6 +22,12 @@
 saturation_base;
 
 ##
+# Příklad snímku z kamery je zde:
+imshow(saturation(1).img(:,:,24), [0 9000],
+	"colormap", ocean);
+title("Snímek LIF");
+
+##
 # Energie laseru byla při každém měření plynyle měněna v požadovaném rozsahu.
 # Některé hodnoty uvnitř druhé sady měření (|saturation2|) byly mimo rozsah
 # detektoru, tyto nebyly uvažovány.
@@ -43,7 +49,7 @@ ylabel("energie laserového pulzu E [\\mu{}J]");
 plot(
 	saturation(1).E * Escale, "d",
 	saturation(2).E * Escale, "o");
-title("Energie pulzu v jednotlivých snímcích");
+title("Průměrná energie pulzu v jednotlivých snímcích");
 xlabel("snímek");
 ylabel("energie laserového pulzu E [\\mu{}J]");
 
