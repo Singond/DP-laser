@@ -12,8 +12,14 @@ function show_fit_saturation(s, fits, ypos, xpos)
 
 	#warning("off", "Octave:negative-data-log-axis", "local");
 	Escale = 1e6;
-	plot(s.E * Escale, s.in(yidx,xidx,:), "-d",
-		"displayname", label_fit({ypos, xpos}));
+	[Lmin, Lmax] = bounds(s.Ly);
+	LL = linspace(Lmin, Lmax);
+	c = get(gca, "colororder")(get(gca, "colororderindex"),:);
+	plot(s.Ly * Escale, s.lif(yidx,xidx,:), "d",
+			"color", c,
+			"displayname", label_fit(s, {yidx, xidx}, {ypos, xpos}),
+		LL * Escale, s.fitl.f(yidx, xidx, LL),
+			"b:", "color", c, "handlevisibility", "off");
 	hleg = legend;
 	set(hleg, "interpreter", "tex");
 	xlabel("energy E [uJ]");
@@ -24,7 +30,8 @@ function show_fit_saturation(s, fits, ypos, xpos)
 	end
 end
 
-function l = label_fit(subs)
-	subs_str = sprintf("%d,", cell2mat(subs))(1:end-1);
-	l = sprintf("[%s] \\beta = %.3f", subs_str, 0);
+function l = label_fit(s, idx, pos)
+	subs_str = sprintf("%d,", cell2mat(pos))(1:end-1);
+	l = sprintf("[%s] \\alpha = %.2fx10^9 \\beta = %.2fx10^6",
+		subs_str, s.fitl.a(idx{:})*1e-9, s.fitl.b(idx{:})*1e-6);
 end

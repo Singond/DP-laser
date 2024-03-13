@@ -14,23 +14,43 @@ x = saturation(1);
 #warning("off", "Octave:negative-data-log-axis");
 #warning("off", "Octave:imshow-NaN");
 
-f1 = figure("name", "Saturation parameter");
+f_F = figure("name", "Reference image");
+maxin = quantile(x.lif(:), 0.98);
+imshow(x.lif(:,:,24), [0 maxin], "colormap", ocean,
+	"xdata", x.xpos, "ydata", x.ypos);
+title("Reference image");
+axis on;
+grid off;
+
+f_alpha = figure("name", "Proportionality parameter");
 ax = axes("position", [0.1 0.2 0.8 0.65]);
 axes(ax);
-maxin = quantile(x.img(:,:,1)(:), 0.98);
-imshow(x.img(:,:,1), [0 maxin], "colormap", ocean,
+ascale = 1e-9;
+maxa = quantile(x.fitl.a(:), 0.98);
+imshow(x.fitl.a * ascale, [0 maxa] * ascale, "colormap", pink,
+	"xdata", x.xpos, "ydata", x.ypos);
+title(sprintf('Proportionality parameter \\alpha [10^{%d}]', -log10(ascale)));
+axis on;
+grid off;
+cb = colorbar("SouthOutside");
+
+f_beta = figure("name", "Saturation parameter");
+ax = axes("position", [0.1 0.2 0.8 0.65]);
+axes(ax);
+bscale = 1e-6;
+maxb = quantile(x.fitl.b(:), 0.98);
+imshow(x.fitl.b * bscale, [0 maxb] * bscale, "colormap", ocean,
 	"xdata", x.xpos, "ydata", x.ypos);
 axis on;
-set(ax, "ticklength", [0 0])
 grid off;
-title('Saturation parameter \beta [-]', "interpreter", "tex");
+title(sprintf('Saturation parameter \\beta [10^{%d}]', -log10(bscale)));
 cb = colorbar("SouthOutside");
 
 f2 = figure("visible", "off");
 f3 = figure("visible", "off");
 
-function inspect_fit(s, fits, f1, f2, f3)
-	figure(f1);
+function inspect_fit(s, fits, f_beta, f2, f3)
+	figure(f_beta);
 	[x, y, btn] = ginput(1);
 	xr = round(x);
 	yr = round(y);
@@ -52,8 +72,8 @@ function inspect_fit(s, fits, f1, f2, f3)
 ##	hold off;
 end
 
-figure(f1);
-uicontrol("parent", f1, "string", "Inspect fit", "position", [10 10 120 30],
-	"callback", @(a,b) inspect_fit(x, [], f1, f2, f3));
-uicontrol("parent", f1, "string", "Clear fits", "position", [140 10 120 30],
+figure(f_beta);
+uicontrol("parent", f_beta, "string", "Inspect fit", "position", [10 10 120 30],
+	"callback", @(a,b) inspect_fit(x, [], f_beta, f2, f3));
+uicontrol("parent", f_beta, "string", "Clear fits", "position", [140 10 120 30],
 	"callback", @(a,b) clear_figs([f2, f3]));
