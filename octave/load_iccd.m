@@ -31,6 +31,8 @@ function x = load_iccd(data, varargin)
 	end
 
 	[x.img, x.imgm] = read_princeton_spe(data);
+	x.xpos = 1:size(x.img, 2);
+	x.ypos = (1:size(x.img, 1))';
 	x.acc = x.imgm.accum;
 	x.readout = x.imgm.readouttime;
 

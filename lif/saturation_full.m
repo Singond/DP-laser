@@ -32,9 +32,7 @@ saturation = struct;
 k = 1;
 for x = X
 	## Crop to area of interest
-	x.ypos = (63:95)';  # rows
-	x.xpos = 50:150;    # columns
-	x = crop_iccd(x, [x.ypos(1) x.ypos(end)], [x.xpos(1) x.xpos(end)]);
+	x = crop_iccd(x, [63 95], [50 150]);
 
 	## Normalize LIF intensity
 	x.lif = x.img ./ x.acc;

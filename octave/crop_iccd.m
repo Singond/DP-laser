@@ -22,6 +22,8 @@ function x = crop_iccd(x, rows, cols, varargin)
 	end
 	x.img  = x.img (rows(1):rows(2), cols(1):cols(2), :);
 	x.dark = x.dark(rows(1):rows(2), cols(1):cols(2), :);
+	x.xpos = x.xpos(cols(1):cols(2));
+	x.ypos = x.ypos(rows(1):rows(2));
 end
 
 %!shared s
@@ -30,6 +32,8 @@ end
 %!          0.2 0.7 0.8 0
 %!          0   0.2 0.1 0.1];
 %! s.dark = zeros(4);
+%! s.xpos = 1:4;
+%! s.ypos = (1:4)';
 
 %!test
 %! c = crop_iccd(s, [2 3], [2 4]);
