@@ -60,3 +60,8 @@ ylabel("energie laserového pulzu E [\\mu{}J]");
 # Závislost intenzity integrované přes celý snímek
 saturation_overall_show
 
+## Horizontální rozlišení
+# Intenzity v jednotlivých sloupcích byly sečteny
+# a další vyhodnocení bylo tedy rozlišené jen v ose x.
+warning off;
+saturation_x_show;
