@@ -36,5 +36,6 @@ end
 
 X = arrayfun(@correct_iccd, X);
 X = arrayfun(@(x) frametimes(x, 25), X);
+X = arrayfun(@frame_pulse_energy, X);
 X = arrayfun(@img_intensity, X);
 X = arrayfun(@process, X);

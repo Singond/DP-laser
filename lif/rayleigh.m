@@ -18,7 +18,8 @@ x.amp = 10;
 R(end+1) = x;
 
 R = arrayfun(@img_intensity, R);
-R = arrayfun(@(x) frametimes(x, 50), R);
+R = arrayfun(@(x) frame_pulse_energy(x, 50), R);
+R = arrayfun(@frame_pulse_energy, R);
 
 Rold = R;
 R = struct([]);
@@ -34,3 +35,4 @@ Rt.t = 100:0.5:130;
 Rt.amp = 50;
 Rt = img_intensity(Rt);
 Rt = frametimes(Rt, 50);
+Rt = frame_pulse_energy(Rt);
