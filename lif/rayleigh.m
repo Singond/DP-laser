@@ -25,6 +25,7 @@ R = struct([]);
 for x = Rold
 	x.Em = mean(x.E);
 	x.inm = mean(x.in);
+	x.iny = mean(sum(x.img ./ x.acc, 2), 3);
 	R(end+1) = x;
 endfor
 
