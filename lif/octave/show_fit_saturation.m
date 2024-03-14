@@ -19,7 +19,9 @@ function show_fit_saturation(s, fits, ypos, xpos)
 			"color", c,
 			"displayname", label_fit(s, {yidx, xidx}, {ypos, xpos}),
 		LL * Escale, s.fitl.f(yidx, xidx, LL),
-			"b:", "color", c, "handlevisibility", "off");
+			"b:", "color", c, "handlevisibility", "off",
+		LL * Escale, s.fite.f(yidx, xidx, LL),
+			"b--", "color", c, "handlevisibility", "off");
 	hleg = legend;
 	set(hleg, "interpreter", "tex");
 	xlabel("energy E [uJ]");

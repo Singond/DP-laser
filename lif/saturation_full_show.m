@@ -26,8 +26,8 @@ f_alpha = figure("name", "Proportionality parameter");
 ax = axes("position", [0.1 0.2 0.8 0.65]);
 axes(ax);
 ascale = 1e-9;
-maxa = quantile(x.fitl.a(:), 0.98);
-imshow(x.fitl.a * ascale, [0 maxa] * ascale, "colormap", pink,
+maxa = quantile(x.fite.a(:), 0.98);
+imshow(x.fite.a * ascale, [0 maxa] * ascale, "colormap", pink,
 	"xdata", x.xpos, "ydata", x.ypos);
 title(sprintf('Proportionality parameter \\alpha [10^{%d}]', -log10(ascale)));
 axis on;
@@ -38,8 +38,8 @@ f_beta = figure("name", "Saturation parameter");
 ax = axes("position", [0.1 0.2 0.8 0.65]);
 axes(ax);
 bscale = 1e-6;
-maxb = quantile(x.fitl.b(:), 0.98);
-imshow(x.fitl.b * bscale, [0 maxb] * bscale, "colormap", ocean,
+maxb = quantile(x.fite.b(:), 0.98);
+imshow(x.fite.b * bscale, [0 maxb] * bscale, "colormap", ocean,
 	"xdata", x.xpos, "ydata", x.ypos);
 axis on;
 grid off;
