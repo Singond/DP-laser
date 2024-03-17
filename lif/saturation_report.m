@@ -56,7 +56,7 @@ title("Průměrná energie pulzu v jednotlivých snímcích");
 xlabel("snímek");
 ylabel("energie laserového pulzu E [\\mu{}J]");
 
-##
+## Bez rozlišení
 # Závislost intenzity integrované přes celý snímek
 saturation_overall_show
 
@@ -65,3 +65,19 @@ saturation_overall_show
 # a další vyhodnocení bylo tedy rozlišené jen v ose x.
 warning off;
 saturation_x_show;
+
+## Plné rozlišení
+# Energie laseru byla na základě Rayleighova rozptylu rozdělena
+# po svislé ose y.
+saturation_full;
+figure("name", "Svislé rozdělení energie laseru");
+clf;
+hold on;
+for k = 1:8:length(saturation(1).E)/2
+	plot(saturation(1).ypos, saturation(1).Ly(:,k), "d",
+		"displayname", sprintf("%g J", saturation(1).E(k)));
+end
+hold off;
+xlabel("svislá poloha y [px]");
+ylabel("intenzita laseru \\epsilon [\\mu{}J]");
+legend show;

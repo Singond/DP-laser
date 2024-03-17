@@ -1,5 +1,6 @@
 pkg load optim;
 
+rayleigh;
 saturation_base;
 
 X = saturation;
@@ -30,6 +31,9 @@ end
 
 saturation = struct;
 k = 1;
+## TODO: Using amp 50 for beam profile. Interpolate for other powers?
+beamprofile = R(1).iny ./ sum(R(1).iny);
+beamprofile_ypos = R(1).ypos;
 for x = X
 	## Crop to area of interest
 	x = crop_iccd(x, [63 95], [50 150]);
@@ -38,9 +42,11 @@ for x = X
 	x.lif = x.img ./ x.acc;
 
 	## Laser intensity. Called E in older code, but L is less ambiguous.
-	x.Ly = x.E ./ numel(x.ypos);
+	pr = interp1(beamprofile_ypos, beamprofile, x.ypos);
+	x.Ly = reshape(x.E, 1, 1, []) .* pr;    # Laser energy at y
+	Ly = repmat(x.Ly, [1 size(x.lif, 2) 1]);
 
-	p = polyfitm(reshape(x.Ly, 1, 1, []), x.lif, logical([1 1 0]), 3);
+	p = polyfitm(Ly, x.lif, logical([1 1 0]), 3);
 	x.fitl.a = p(:,:,2);
 	x.fitl.b = -p(:,:,1) * (3 / 2) ./ x.fitl.a;
 	x.fitl.f = @(yi,xi,Ly) polyval(p(yi,xi,:)(:), Ly);

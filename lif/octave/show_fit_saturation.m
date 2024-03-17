@@ -13,7 +13,7 @@ function show_fit_saturation(s, fits, ypos, xpos)
 	#warning("off", "Octave:negative-data-log-axis", "local");
 	Escale = 1e6;
 	if (!isempty(ypos))
-		L = s.Ly;
+		L = s.Ly(yidx,:);
 		lif = s.lif;
 		fitl = s.fitl;
 		fite = s.fite;
