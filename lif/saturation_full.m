@@ -16,7 +16,7 @@ function r = fit_saturation(x, y, p0)
 	calls += 1;
 	s = struct;
 	s.bounds = [0 Inf; 0 Inf];
-	warning off backtrace local
+	warning off backtrace local;
 	try
 		[~, p, cvg, iter] = leasqr(x, y, p0,
 			@(Ly, p) model_exp(Ly, p),
