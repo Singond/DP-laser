@@ -23,6 +23,7 @@ function x = frame_pulse_energy(x, varargin)
 	x.E = [];
 	for k = 1:length(x.pwrdata)
 		pwrdata = x.pwrdata{k};
-		x.E(:,k) = align_energy(pwrdata(:,1), pwrdata(:,2), x.imgt);
+		valid = !isinf(pwrdata(:,2));
+		x.E(:,k) = align_energy(pwrdata(valid,1), pwrdata(valid,2), x.imgt);
 	endfor
 end
