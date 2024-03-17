@@ -66,11 +66,13 @@ for x = X
 	x.Ly = reshape(x.E, 1, 1, []) .* pr;    # Laser energy at y
 	Ly = repmat(x.Ly, [1 size(x.lifsm, 2) 1]);
 
+	## Fit with approximate polynomial
 	p = polyfitm(Ly, x.lifsm, logical([1 1 0]), 3);
 	x.fitl.a = p(:,:,2);
 	x.fitl.b = -p(:,:,1) * (3 / 2) ./ x.fitl.a;
 	x.fitl.f = @(yi,xi,Ly) polyval(p(yi,xi,:)(:), Ly);
 
+	## Fit with true model, using the previous fit as a starting point
 	b0 = cat(3, 2 * max(x.fitl.a ./ x.fitl.b, 0), max(x.fitl.b, 0));
 	calls = 0;
 	total_calls = numel(x.lifsm(:,:,1));
