@@ -14,7 +14,7 @@ function show_fit_saturation(s, fits, ypos, xpos)
 	Escale = 1e6;
 	if (!isempty(ypos))
 		L = s.Ly(yidx,:);
-		lif = s.lif;
+		lif = s.lifsm;
 		fitl = s.fitl;
 		fite = s.fite;
 	else
