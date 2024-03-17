@@ -19,6 +19,7 @@
 ##
 # Byla provedena dvě měření závislosti intenzity LIF na energii laseru,
 # každá pro jiný rozsah energií laseru.
+log = false;
 saturation_base;
 
 ##

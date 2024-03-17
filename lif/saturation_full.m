@@ -10,6 +10,10 @@ function F = model_exp(Ly, p)
 end
 
 function r = fit_saturation(x, y, p0)
+	global log;
+	global calls;
+	global total_calls;
+	calls += 1;
 	s = struct;
 	s.bounds = [0 Inf; 0 Inf];
 	warning off backtrace local
@@ -24,8 +28,12 @@ function r = fit_saturation(x, y, p0)
 		end
 		r = [p(:); iter];
 	catch err
-		warning("fit_saturation: Fit failed: %s", err.message);
+		warning("dp-laser:fit-failed", ...
+			"fit_saturation: Fit failed: %s", err.message);
 		r = [p0; 0];
+	end
+	if (log && (mod(calls, 50) == 0) || calls == total_calls)
+		printf("fit_saturation: %d/%d\n", calls, total_calls);
 	end
 end
 
@@ -36,6 +44,10 @@ beamprofile_ypos = R(1).ypos;
 ## Smoothing kernel
 kernel = ones(5, 5);
 kernel = kernel ./ sum(kernel(:));
+
+global log = true;
+global calls;
+global total_calls;
 
 saturation = struct;
 k = 1;
@@ -60,11 +72,18 @@ for x = X
 	x.fitl.f = @(yi,xi,Ly) polyval(p(yi,xi,:)(:), Ly);
 
 	b0 = cat(3, 2 * max(x.fitl.a ./ x.fitl.b, 0), max(x.fitl.b, 0));
+	calls = 0;
+	total_calls = numel(x.lifsm(:,:,1));
+	warning off dp-laser:fit-failed;
 	r = dimfun(@fit_saturation, 3, x.Ly, x.lifsm, b0);
 	x.fite.a = r(:,:,1) .* r(:,:,2) ./ 2;
 	x.fite.b = r(:,:,2);
 	x.fite.iter = r(:,:,3);
 	x.fite.f = @(yi,xi,Ly) model_exp(Ly, r(yi,xi,1:2));
+	failed = sum((x.fite.iter == 0)(:));
+	if (failed > 0)
+		warning("General fit failed for %d data points\n", failed);
+	end
 
 	saturation(k++) = x;
 end
