@@ -35,24 +35,32 @@ title("Snímek LIF");
 # detektoru, tyto nebyly uvažovány.
 figure();
 Escale = 1e6;
-plot(
-	saturation(1).pwrdata{1}(:,1),
-	saturation(1).pwrdata{1}(:,2) * Escale,
-	"-", "displayname", "saturation1",
-	saturation(2).pwrdata{1}(:,1),
-	saturation(2).pwrdata{1}(:,2) * Escale,
-	"-", "displayname", "saturation2");
+clf;
+hold on;
+Emax = 0;
+for s = saturation_separate
+	p = s.pwrdata{1};
+	plot(p(:,1), p(:,2) * Escale, "-");
+	Emax = max(Emax, max(p(:,1)));
+end
+hold off;
 title("Energie pulzu v průběhu měření");
-xlim([0 max(saturation(2).pwrdata{1}(:,1))]);
+xlim([0 Emax]);
 xlabel("čas t [s]");
 ylabel("energie laserového pulzu E [\\mu{}J]");
+legend show;
 
 ##
 # Zaznamenaná energie byla pro každý snímek zprůměrována:
 figure();
-plot(
-	saturation(1).E * Escale, "d",
-	saturation(2).E * Escale, "o");
+clf;
+hold on;
+styles = {"d", "o"};
+k = 1;
+for s = saturation_separate
+	plot(s.E * Escale, styles{k++});
+end
+hold off;
 title("Průměrná energie pulzu v jednotlivých snímcích");
 xlabel("snímek");
 ylabel("energie laserového pulzu E [\\mu{}J]");
@@ -62,12 +70,20 @@ ylabel("energie laserového pulzu E [\\mu{}J]");
 saturation_overall_show
 
 ## Horizontální rozlišení
+# Datové sady lišící se pouze rozsahem energií byly před dalším
+# zpracováním kvůli přehlednosti sloučeny do jedné sady.
+# Od tohoto oddílu dále tedy vždy vystupují jako jedna sada.
+#
+# První variantou je zpracování v horizontálním rozlišení.
 # Intenzity v jednotlivých sloupcích byly sečteny
-# a další vyhodnocení bylo tedy rozlišené jen v ose x.
+# a výsledky jsou tedy rozlišené jen v ose x.
 warning off;
 saturation_x_show;
 
 ## Plné rozlišení
+# Ukazuje se, že svislé rozložení signálu není homogenní,
+# proto je vhodnější pracovat s plným rozlíšením.
+#
 # Energie laseru byla na základě Rayleighova rozptylu rozdělena
 # po svislé ose y.
 saturation_full;

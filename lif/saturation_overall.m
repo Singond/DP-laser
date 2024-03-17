@@ -1,3 +1,3 @@
 saturation_base;
 
-saturation = arrayfun(@img_intensity, saturation);
+saturation_separate = arrayfun(@img_intensity, saturation_separate);

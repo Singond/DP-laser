@@ -4,7 +4,7 @@ Escale = 1e6;
 k = 1;
 figure();
 hold on;
-for x = saturation;
+for x = saturation_separate;
 	plot(x.E * Escale, x.in, "-d");
 end
 hold off;
