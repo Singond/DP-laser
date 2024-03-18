@@ -29,12 +29,12 @@ gp.exec("\n\
 	set label 1 '3 mm' center at first 155,90 front tc 'white' font ',15' \n\
 ");
 for k = [10:14 15:2:19 21:4:29]
-	name = sprintf("results/timeev-%.1f.png", t(k) * 1e9);
+	name = sprintf("results/timeev-%.1f.png", t(k));
 	printf("Writing %s\n", name);
 	gp.exec(["set output '" name "'"]);
 	gp.exec(sprintf(
 		"set label 2 't = %.1f ns' left at first 20,90 front tc 'white' font ',15'",
-		t(k) * 1e9));
+		t(k)));
 	gp.exec("plot '-' matrix with image");
 	gp.data(flipud(img(20:end,:,k)));
 	gp.exec("unset output");

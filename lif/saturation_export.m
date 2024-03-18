@@ -1,6 +1,7 @@
 pkg load report;
 
-saturation;
+saturation_overall;
+X = saturation_separate;
 
 gp = gnuplotter;
 gp.load("../style.gp");
