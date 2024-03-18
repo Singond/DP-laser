@@ -11,7 +11,7 @@ img_flame -= min(img_flame(:));
 img_flame /= max(img_flame(:));
 gp = gnuplotter;
 gp.load("../style.gp");
-gp.exec("set palette model RGB functions 3 * (gray - 2/3.0), (3/2.0) * (gray - 1/3.0), gray");
+gp.load("style-lif.gp");
 gp.exec("\n\
 	set size ratio -1 \n\
 	set margins 0, 0, 0, 0 \n\
@@ -30,7 +30,7 @@ clear gp;
 img_lif = lifetime(2).img(:,:,12);
 gp = gnuplotter;
 gp.load("../style.gp");
-gp.exec("set palette model RGB functions 3 * (gray - 2/3.0), (3/2.0) * (gray - 1/3.0), gray");
+gp.load("style-lif.gp");
 gp.exec("\n\
 	set size ratio -1 \n\
 	set margins 0, 0, 0, 0 \n\
