@@ -20,11 +20,28 @@ gp.exec("\n\
 	unset colorbox \n\
 	set terminal pngcairo \n\
 	set output 'results/flame.png' \n\
-	set arrow nohead from first 130,100 to 180,100 front lw 3 lc 'white' \n\
-	set label '3 mm' center at first 155,110 front tc 'white' font ',15' \n\
+	set arrow 1 nohead from first 130,100 to 180,100 front lw 3 lc 'white' \n\
+	set label 1 '3 mm' center at first 155,110 front tc 'white' font ',15' \n\
 	plot '-' matrix with image \n\
 ");
 gp.data(flipud(img_flame));
+gp.exec("\n\
+	unset output \n\
+	unset arrow 1 \n\
+	unset label 1 \n\
+	set size ratio -1 \n\
+	unset margins \n\
+	set autoscale noextend \n\
+	set yrange reverse \n\
+	set xtics out nomirror \n\
+	set ytics out nomirror \n\
+	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
+	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
+	set terminal cairolatex \n\
+	set output 'results/flame.tex' \n\
+	plot '-' matrix with image pixels \n\
+");
+gp.data(img_flame);
 clear gp;
 
 img_lif = lifetime(2).img(:,:,12);
