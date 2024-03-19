@@ -7,12 +7,16 @@ end
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
+gp.exec("\n\
+	set key top left \n\
+	set autoscale noextend \n\
+	set offsets graph 0.04, graph 0.04, graph 0.04, graph 0.04 \n\
+");
 for r = R
-	gp.plot(r.ypos, r.iny, sprintf('w l t "L = %.3g \\muJ"', r.Em*1e6));
-##	gp.plot(r.ypos, r.iny, sprintf('w l t "L""', r.Em*1e6));
+	gp.plot(r.ypos, r.iny, sprintf(...
+		'w l t "$\\\\SI{%.2f}{\\\\micro\\\\joule}$"', r.Em*1e6));
 end
-gp.title("Beam vertical profile");
-gp.xlabel("vertical position y [px]");
-gp.ylabel("intensity I [a.u.]");
-gp.export("results/rayleigh-profile.tex", "cairolatex", "size 10cm,8cm");
+gp.xlabel('svislá poloha $\\ypos\\,[\\si\\pixel]$');
+gp.ylabel('intenzita LIF $\\lif\\,[\\si\\arbunit]$');
+gp.export("results/rayleigh-profile.tex", "cairolatex", "size 12cm,8cm");
 clear gp;
