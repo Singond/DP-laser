@@ -16,3 +16,12 @@ set style line 6 lw 2 lc rgb '#DDDD33' pt 15 ps 2   # yellow
 set style line 7 lw 2 lc rgb '#A65628' pt 3  ps 1.3 # brown
 set style line 8 lw 2 lc rgb '#F781BF' pt 9  ps 2   # pink
 set style increment user
+
+set macros
+
+# Padding axis ranges
+padding_amount = 0.05
+xpadding = "set offsets graph padding_amount, graph padding_amount"
+ypadding = "set offsets 0, 0, graph padding_amount, graph padding_amount"
+padding = "set offsets graph padding_amount, graph padding_amount, \
+	graph padding_amount, graph padding_amount"
