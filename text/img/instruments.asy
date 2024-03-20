@@ -5,8 +5,9 @@ picture optics;
 void beam(picture pic=beams, path g, pen p) {
 	real w = linewidth(p);
 	int nlayers = 8;
+	pen beampen = p + opacity(0.15) + squarecap;
 	for (int i = 0; i < nlayers; ++i) {
-		draw(pic, g, p + opacity(0.15) + linewidth(w * (i + 1) / nlayers));
+		draw(pic, g, beampen + linewidth(w * (i + 1) / nlayers));
 	}
 }
 
