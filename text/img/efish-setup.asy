@@ -24,8 +24,9 @@ instr(shift(-80,0) * box((-10,-5), (10,5)));
 label(minipage("\centering{měřič\\energie}", 35), (-80,5), N);
 
 // Main beam
-beam((-80,0) -- (100,0), red + 5);
-label("1064 nm", (45,0),1.5N, red);
+pen laserpen = heavyred + 5;
+beam((-80,0) -- (100,0), laserpen);
+label("1064 nm", (45,0),1.5N, laserpen);
 optics(convexlens((70,0), angle=0, scale=10));
 label("$f = 50\,\mathrm{mm}$", (70,10), N);
 
@@ -35,17 +36,17 @@ radialshade(top, scale(7) * box(SW, NE),
 
 // Photodiode
 transform pos = shift(24,0) * rotate(-50);
-beam(pos * ((0,0) -- (30,0)), red + 1);
+beam(pos * ((0,0) -- (30,0)), laserpen + 1);
 instr(pos * shift(30,0) * box((-10,-5), (10,5)));
 label(top, "fotodioda", pos * (30,0), 5S);
 
 // EFISH path
 picture efish;
-pen efishpen = green + 3;
+pen efishpen = heavygreen + 3;
 pair mirror1 = (-60,0);
 path mirror1path = plate(mirror1, angle=-35);
 beam(efish, (mirror1 + 2down) -- (0,-2), efishpen);
-label("532 nm", (-38,0), 2S, green);
+label("532 nm", (-38,0), 2S, efishpen);
 optics(mirror1path);
 
 pair mirror2 = shift(mirror1) * rotate(-70) * (100,0);
