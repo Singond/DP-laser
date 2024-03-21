@@ -11,6 +11,7 @@ for x = W([1:5])
 		"displayname", sprintf("amp %d", x.amp));
 endfor
 hold off;
+legend show;
 
 figure(fig++);
 clf;
@@ -23,3 +24,4 @@ for x = W([6:end])
 		"displayname", sprintf("amp %d", x.amp));
 endfor
 hold off;
+legend show;
