@@ -39,3 +39,10 @@ X = arrayfun(@(x) frametimes(x, 25), X);
 X = arrayfun(@frame_pulse_energy, X);
 X = arrayfun(@img_intensity, X);
 X = arrayfun(@process, X);
+
+W = struct([]);
+for x = X
+	x.inn = x.in ./ max(x.in(:));
+	x.Em = mean(x.E(:,1));
+	W(end+1) = x;
+end
