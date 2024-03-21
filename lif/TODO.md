@@ -18,3 +18,40 @@ Pro nás je g3/g1 = 3/5. (J3 = 1, J1 = 2, g = 2J+1)
 
 Zkontrolovat homogennost saturačního parametru \beta v prostoru
 a šířky excitační čáry.
+
+
+Saturace
+========
+Ani prostorový filtr nepomohl úplně, saturační parametr stále není homogenní.
+Podle Rayleigho rozptylu je vidět, že energie laseru není rozdělena stejně
+pro různé energie pulzu.
+Měření nízkého a vysokého rozsahu energií na sebe nesedí, protože se měnilo
+výškové rozložení intenzity laseru – i proto fity nedávají dobré výsledky.
+Je ale vidět, že ve vodorovném směru je beta homogenní, přestože se podmínky
+v plameni radiálně mění. Z toho je vidět, že beta nezávisí na podmínkách
+a lze proto vzít jednu konstatní hodnotu (integrální).
+Napsat, že výsledky nejsou pro prostorově rozlišené vyhodnocení vhodné
+a saturaci vyhodnotit z integrální intenzity.
+
+Excitační profil
+================
+(závislost na vlnové délce laseru)
+
+Fitnout Voigtův profil (možno i s pozadím) upravený pro saturaci
+(viz Pavlův papír).
+Ověřit, jak závisí parametry profilu na prostorové poloze.
+Kromě \sigma a \gamma se dívat hlavně na maximum.
+\sigma a \gamma můžou hodně lítat, protože jsou korelované
+(dvě různé hodnoty mohou vést k velmi podobnému tvaru),
+ale maximum by mělo vycházet rozumně.
+Používat data s prostorovým filtrem, protože tvary a intenzity
+na sebe sedí mnohem lépe.
+
+Použijeme-li saturovaný Voigtův profil, měla by se data shodovat lépe.
+
+Koncentrace
+===========
+Použít vztah (4) z Pavlova připravovaného článku.
+
+Pro d\sigma / d\Omega použít vztah (49) z Milesova článku o Rayleigho rozptylu
+a tabulku 2 tamtéž, kde jsou konstanty.
