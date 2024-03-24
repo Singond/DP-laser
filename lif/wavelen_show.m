@@ -1,3 +1,7 @@
+if (!exist("W", "var"))
+	wavelen_base;
+end
+
 fig = 1;
 
 figure(fig++);
