@@ -15,7 +15,7 @@ ylabel(sprintf("proportionality parameter \\alpha [10^{%d}]", -log10(ascale)));
 
 f_beta = figure("name", "Saturation parameter");
 bscale = 1e-6;
-plot(x.xpos, x.fitex.b * bscale, "d");
+plot(x.xpos, x.fitex.b * bscale, "d", "displayname", "x-resolved \\beta");
 title('Saturation parameter \beta');
 xlabel("horizontal position x [px]");
 ylabel('saturation parameter \beta [\mu{}J^{-1}]');
@@ -42,3 +42,12 @@ uicontrol("parent", f_beta, "string", "Inspect fit", "position", [10 10 120 30],
 	"callback", @(a,b) inspect_fit(x, [], f_beta, f2));
 uicontrol("parent", f_beta, "string", "Clear fits", "position", [140 10 120 30],
 	"callback", @(a,b) clear_figs([f2]));
+
+if (exist("saturationt", "var"))
+	figure(f_beta);
+	hold on;
+	plot(x.xpos, (saturationt.fite.b * bscale)(ones(size(x.xpos))),...
+		"k--", "displayname", "integral \\beta");
+	hold off;
+	legend show;
+end
