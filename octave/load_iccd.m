@@ -45,7 +45,7 @@ function x = load_iccd(data, varargin)
 	endif
 
 	if (isfile(pwr))
-		p = read_starlab(pwr, "emptyvalue", nan);
+		[p, x.pwrmeta] = read_starlab(pwr, "emptyvalue", nan);
 		c = cell();
 		for k = 2:size(p, 2)
 			t = p(:,1);

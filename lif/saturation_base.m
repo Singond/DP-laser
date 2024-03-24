@@ -28,6 +28,7 @@ function result = merge_saturation_data(a)
 		result.darkm = [result.darkm s.darkm];
 		result.imgt = [result.imgt; s.imgt];
 		result.pwrdata = [result.pwrdata; s.pwrdata];
+		result.pwrmeta = [result.pwrmeta; s.pwrmeta];
 		result.E = [result.E; s.E];
 	end
 end
@@ -49,6 +50,10 @@ X(k++) = load_iccd("data-2023-01-20/saturace2.SPE");
 X = arrayfun(@correct_iccd, X);
 X = arrayfun(@(x) frametimes(x, 50), X);
 X = arrayfun(@frame_pulse_energy, X);
+
+for x = X
+	assert(x.pwrmeta.channels(1).units, "J", "Unexpected units of power");
+end
 
 #saturation = X;
 saturation_separate = X;

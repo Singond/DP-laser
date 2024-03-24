@@ -23,7 +23,9 @@ plot(x.E * Escale, x.lif(:), "d",
 		"b:", "color", c, "displayname", "polynomial fit",
 	LL * Escale, x.fite.f(LL),
 		"b--", "color", c, "displayname", "general fit");
-title(sprintf("Integral LIF intensity, fitted \\beta = %g", x.fite.b));
+title(sprintf(...
+	"Integral LIF intensity\nfitted saturation parameter \\beta = %g \\mu{}J^{-1}",...
+	x.fite.b * 1e-6));
 xlabel("energy E [\\mu{}J]");
 ylabel("LIF intensity F [a.u.]");
 legend location northwest;

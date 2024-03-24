@@ -35,7 +35,7 @@ function show_fit_saturation(s, fits, ypos, xpos)
 			"b--", "color", c, "handlevisibility", "off");
 	hleg = legend;
 	set(hleg, "interpreter", "tex");
-	xlabel("energy E [uJ]");
+	xlabel('energy E [\mu{}J]');
 	ylabel("LIF intensity I [a.u.]");
 
 	if (compare_versions(version, "5.2.0", "<="))
@@ -45,6 +45,6 @@ end
 
 function l = label_fit(s, idx, pos, fit)
 	subs_str = sprintf("%d,", cell2mat(pos))(1:end-1);
-	l = sprintf("[%s] \\alpha = %.2fx10^9 \\beta = %.2fx10^6",
+	l = sprintf("[%s] \\alpha = %.2fx10^9, \\beta = %.3f \\mu{}J^{-1}",
 		subs_str, fit.a(idx{:})*1e-9, fit.b(idx{:})*1e-6);
 end
