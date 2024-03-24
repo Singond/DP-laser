@@ -16,7 +16,16 @@
 # }
 # </latex>
 
-wavelen_base;
+if (!exist("W", "var"))
+	wavelen_base;
+end
+
+## Naměřená data
+# Energie pulzu byla postupně nastavována na několik hodnot
+# a profil změřen pro každou z nich.
+# Zde jsou průměrné energie pulzu při každém snímku měření.
+# Tyto hodnoty byly pro každý profil zprůměrovány do jediné hodnoty,
+# která byla přisouzena všem pulzům.
 
 figure();
 hold on;
@@ -40,4 +49,49 @@ hold off;
 title("Průměrná energie pulzu jednotlivých snímků\ns prostorovým filtrem (1. měřič)");
 xlabel("snímek");
 ylabel("energie E [?]");
+legend show;
+
+## Excitační profil
+# Naměřené excitační profily jsou níže.
+# Na prvním obrázku jsou profily excitované neupraveným laserovým svazkem
+# podělené průměrnou energií pulzu.
+# Bohužel se ukázalo, že svislý profil laserového svazku se pro různé
+# energie pulzu výrazně liší a tato data proto nejsou věrohodná.
+
+figure();
+title("Excitační profil normalizovaný energií pulzu\n(bez prostorového filtru)");
+xlabel("vlnová délka \\lambda [nm]");
+ylabel("intenzita LIF F [a.u.]");
+hold on;
+for x = W([1:5])
+	plot(x.wl, x.in ./ x.Em,
+		"displayname", sprintf("%.3f \\mu{}J", x.Em*1e6));
+end
+hold off;
+xlim([min(x.wl) max(x.wl)]);
+legend show;
+
+##
+# Proměnlivost svazku jsme se pokusili potlačit použitím prostorového filtru.
+# Došlo tím ke snížení celkové energie svazku pronikajícího do plazmatu,
+# protože jeho větší část byla odstíněna filtrem, ale profil intenzity byl
+# méně náchylný na změnu energie pulzu.
+#
+# Profily jsou pro snazší porovnání opět vyděleny průměrnou energií pulzu.
+# Je vidět, že intenzita LIF odpovídající vyšším energiím pulzu
+# je po takovéto normalizaci nižší.
+# Tento stav odpovídá očekávání, neboť u vyšších energií je výraznější
+# vliv saturace.
+
+figure();
+title("Excitační profil normalizovaný energií pulzu\n(s~prostorovým filtrem)");
+xlabel("vlnová délka \\lambda [nm]");
+ylabel("intenzita LIF F [a.u.]");
+hold on;
+for x = W([6:end])
+	plot(x.wl, x.in ./ x.Em,
+		"displayname", sprintf("%.3f \\mu{}J", x.Em*1e6));
+end
+hold off;
+xlim([min(x.wl) max(x.wl)]);
 legend show;
