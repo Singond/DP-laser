@@ -25,18 +25,31 @@ gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
 gp.exec("\n\
-	set key top left \n\
+	set style fill transparent solid 0.3 \n\
+	set yrange [:] reverse \n\
+	set xyplane at 0 \n\
 	set autoscale noextend \n\
+	#set grid vertical \n\
+	#set grid ztics \n\
+	#set view 60, 360-37.5 \n\
+	set border 895 \n\
+	unset key \n\
 	set offsets graph 0.04, graph 0.04, graph 0.04, graph 0.04 \n\
-	set terminal cairolatex size 12cm,8cm \n\
+	set terminal cairolatex pdf size 12cm,8cm \n\
 	set output 'results/rayleigh-time.tex' \n\
 ");
-gp.xlabel('čas $\\tim\\,[\\si\\second]$');
-gp.ylabel('svislá poloha $\\ypos\\,[\\si\\pixel]$');
+gp.exec('set xlabel "čas $\\tim\\,[\\si\\second]$"');
+gp.exec('set ylabel "svislá poloha $\\ypos\\,[\\si\\pixel]$"');
 gp.exec('set zlabel "intenzita LIF $\\lif\\,[\\si\\arbunit]$"');
-gp.exec("splot '-' with lines");
+gp.exec("splot '-' with lines, '-' with zerrorfill ls 1");
+sz = size(Rt.ypos);
 for k = 1:rows(Rt.t')
-	D = [Rt.t(k)(ones(size(Rt.ypos))) Rt.ypos Rt.iny(:,k)];
+	D = [Rt.t(k)(ones(sz)) Rt.ypos Rt.iny(:,k)];
+	gp.data(D, "\n\n");
+end
+gp.exec("e");
+for k = 1:rows(Rt.t')
+	D = [Rt.t(k)(ones(sz)) Rt.ypos Rt.iny(:,k) zeros(sz) Rt.iny(:,k)];
 	gp.data(D, "\n\n");
 end
 gp.exec("e");
