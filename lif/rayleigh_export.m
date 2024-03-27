@@ -18,7 +18,7 @@ for r = R
 end
 gp.xlabel('svislá poloha $\\ypos\\,[\\si\\pixel]$');
 gp.ylabel('intenzita LIF $\\lif\\,[\\si\\arbunit]$');
-gp.export("results/rayleigh-profile.tex", "cairolatex", "size 12cm,8cm");
+gp.export("results/rayleigh-profile.tex", "cairolatex", "pdf size 12cm,8cm");
 clear gp;
 
 gp = gnuplotter;
