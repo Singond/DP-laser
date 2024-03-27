@@ -16,8 +16,8 @@
 # }
 # </latex>
 
-if (!exist("W", "var"))
-	wavelen_base;
+if (!exist("W", "var") || !isfield(W, "fit"))
+	wavelen_main;
 end
 
 ## Naměřená data
@@ -94,4 +94,40 @@ for x = W([6:end])
 end
 hold off;
 xlim([min(x.wl) max(x.wl)]);
+legend show;
+
+##
+# Excitační profily bez normalizace jsou níže.
+
+figure();
+title("Excitační profil\n(s prostorovým filtrem)");
+xlabel("vlnová délka \\lambda [nm]");
+ylabel("intenzita LIF F [a.u.]");
+hold on;
+for x = W([6:end])
+	plot(x.wl, x.in,...
+		"displayname", sprintf("%.3f \\mu{}J", x.Em*1e6));
+end
+hold off;
+xlim([min(x.wl) max(x.wl)]);
+legend show;
+
+##
+# Naměřenými daty byl proložen Voigtův profil.
+# Detail aproximace je níže spolu s určenými parametry \sigma a \gamma
+# Voigtova profilu.
+
+figure();
+title("Excitační profil\n(s prostorovým filtrem)");
+xlabel("vlnová délka \\lambda [nm]");
+ylabel("intenzita LIF F [a.u.]");
+hold on;
+for x = W([1:5])
+	plot_fit_voigt(x.wl, x.in, x.fit, "-",...
+		"displayname", sprintf(...
+			"%.3f \\mu{}J, \\sigma=%.2g nm, \\gamma=%.2g nm",...
+			x.Em*1e6, x.fit.p(1), x.fit.p(2)));
+end
+hold off;
+xlim([196.00 196.07]);
 legend show;
