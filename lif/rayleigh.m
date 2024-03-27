@@ -3,20 +3,23 @@ pkg load singon-plasma;
 addpath ../octave;
 addpath octave;
 
+unidark = "data-2023-01-20/rayleigh_dark.SPE";
+
 R = struct([]);
-x = load_iccd("data-2023-01-20/rayleigh1.SPE", "nodark");
+x = load_iccd("data-2023-01-20/rayleigh1.SPE", "dark", unidark);
 x.amp = 50;
 R(end+1) = x;
-x = load_iccd("data-2023-01-20/rayleigh2.SPE", "nodark");
+x = load_iccd("data-2023-01-20/rayleigh2.SPE", "dark", unidark);
 x.amp = 30;
 R(end+1) = x;
-x = load_iccd("data-2023-01-20/rayleigh3.SPE", "nodark");
+x = load_iccd("data-2023-01-20/rayleigh3.SPE", "dark", unidark);
 x.amp = 20;
 R(end+1) = x;
-x = load_iccd("data-2023-01-20/rayleigh4.SPE", "nodark");
+x = load_iccd("data-2023-01-20/rayleigh4.SPE", "dark", unidark);
 x.amp = 10;
 R(end+1) = x;
 
+R = arrayfun(@correct_iccd, R);
 R = arrayfun(@normalize_intensity, R);
 R = arrayfun(@(x) frame_pulse_energy(x, 50), R);
 R = arrayfun(@frame_pulse_energy, R);
@@ -31,9 +34,10 @@ for x = Rold
 	R(end+1) = x;
 endfor
 
-Rt = load_iccd("data-2023-01-20/rayleigh_cas.SPE", "nodark");
+Rt = load_iccd("data-2023-01-20/rayleigh_cas.SPE", "dark", unidark);
 Rt.t = 100:0.5:130;
 Rt.amp = 50;
+Rt = correct_iccd(Rt);
 Rt = normalize_intensity(Rt);
 Rt = frametimes(Rt, 50);
 Rt = frame_pulse_energy(Rt);
