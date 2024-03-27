@@ -7,6 +7,27 @@ end
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
+gp.load("style-lif.gp");
+gp.xlabel('svislá poloha $\\xpos\\,[\\si\\pixel]$');
+gp.ylabel('svislá poloha $\\ypos\\,[\\si\\pixel]$');
+gp.exec("\n\
+	set size ratio -1 \n\
+	set margins 0, 0, 0, 0 \n\
+	unset tics \n\
+	unset key \n\
+	unset colorbox \n\
+	set terminal cairolatex pdf size 12cm,8cm \n\
+	set output 'results/rayleigh-example.tex' \n\
+	set arrow nohead from first 130,100 to 180,100 front lw 3 lc 'white' \n\
+	set label '3 mm' center at first 155,110 front tc 'white' font ',15' \n\
+	plot '-' matrix with image \n\
+");
+gp.data(flipud(R(1).inm));
+clear gp;
+
+gp = gnuplotter;
+gp.load("../style.gp");
+gp.load("../style-cairo.gp");
 gp.exec("\n\
 	set key top left \n\
 	set autoscale noextend \n\
