@@ -84,9 +84,11 @@ for x = X
 	x.fite.b = r(:,:,2);
 	x.fite.iter = r(:,:,3);
 	x.fite.f = @(yi,xi,Ly) model_exp(Ly, r(yi,xi,1:2));
-	failed = sum((x.fite.iter == 0)(:));
-	if (failed > 0)
-		warning("General fit failed for %d data points\n", failed);
+
+	failed = (x.fite.iter == 0);
+	if (any(failed))
+		warning("General fit failed for %d/%d data points\n",...
+			sum(failed(:)), numel(x.fite.iter));
 	end
 
 	printf("\n");

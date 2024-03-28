@@ -54,6 +54,12 @@ for x = X
 	x.fitex.iter = r(:,:,3);
 	x.fitex.f = @(yi,xi,Ly) model_exp(Ly, r(yi,xi,1:2));
 
+	failed = (x.fitex.iter == 0);
+	if (any(failed))
+		warning("General fit failed for %d/%d data points\n",...
+			sum(failed(:)), numel(x.fitex.iter));
+	end
+
 	printf("\n");
 	saturation(k++) = x;
 end
