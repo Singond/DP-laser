@@ -55,6 +55,6 @@ for x = X
 	assert(x.pwrmeta.channels(1).units, "J", "Unexpected units of power");
 end
 
-#saturation = X;
 saturation_separate = X;
-saturation = merge_saturation_data(X(1:2));
+saturation_merged = merge_saturation_data(X(1:2));
+saturation = saturation_separate;
