@@ -31,6 +31,7 @@ gp.exec("\n\
 	unset label 1 \n\
 	set size ratio -1 \n\
 	unset margins \n\
+	load 'gnuplot/rule-lif.gp' \n\
 	set autoscale noextend \n\
 	set yrange reverse \n\
 	set xtics out nomirror \n\
