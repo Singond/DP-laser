@@ -16,7 +16,7 @@ gp.exec("\n\
 	unset tics \n\
 	unset key \n\
 	unset colorbox \n\
-	set terminal cairolatex pdf size 12cm,8cm \n\
+	set terminal cairolatex pdf colortext size 12cm,8cm \n\
 	set output 'results/rayleigh-example.tex' \n\
 	set arrow nohead from first 130,100 to 180,100 front lw 3 lc 'white' \n\
 	set label '3 mm' center at first 155,110 front tc 'white' font ',15' \n\

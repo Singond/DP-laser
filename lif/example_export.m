@@ -37,7 +37,7 @@ gp.exec("\n\
 	set ytics out nomirror \n\
 	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
 	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
-	set terminal cairolatex \n\
+	set terminal cairolatex pdf colortext size 12cm,8cm \n\
 	set output 'results/flame.tex' \n\
 	plot '-' matrix with image pixels \n\
 ");
