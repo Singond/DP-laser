@@ -44,15 +44,13 @@ clear gp;
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style-splot.gp");
 gp.exec("\n\
 	set style fill transparent solid 0.3 \n\
 	set yrange [:] reverse \n\
 	set xyplane at 0 \n\
 	set autoscale noextend \n\
-	#set grid vertical \n\
-	#set grid ztics \n\
 	#set view 60, 360-37.5 \n\
-	set border 895 \n\
 	unset key \n\
 	set offsets graph 0.04, graph 0.04, graph 0.04, graph 0.04 \n\
 	set terminal cairolatex pdf size 12cm,8cm \n\
