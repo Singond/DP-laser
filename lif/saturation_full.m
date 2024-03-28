@@ -52,6 +52,8 @@ global total_calls;
 saturation = struct;
 k = 1;
 for x = X
+	printf("Processing '%s'...\n", x.name);
+
 	## Crop to area of interest
 	x = crop_iccd(x, [63 95], [50 150]);
 
@@ -87,5 +89,6 @@ for x = X
 		warning("General fit failed for %d data points\n", failed);
 	end
 
+	printf("\n");
 	saturation(k++) = x;
 end

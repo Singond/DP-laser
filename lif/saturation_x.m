@@ -31,6 +31,8 @@ end
 saturation = struct;
 k = 1;
 for x = X
+	printf("Processing '%s'...\n", x.name);
+
 	## Crop to area of interest
 	x = crop_iccd(x, [63 95], [50 150]);
 
@@ -52,5 +54,6 @@ for x = X
 	x.fitex.iter = r(:,:,3);
 	x.fitex.f = @(yi,xi,Ly) model_exp(Ly, r(yi,xi,1:2));
 
+	printf("\n");
 	saturation(k++) = x;
 end
