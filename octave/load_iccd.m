@@ -30,7 +30,9 @@ function x = load_iccd(data, varargin)
 		pwr = args.power;
 	end
 
+	x.name = name;
 	[x.img, x.imgm] = read_princeton_spe(data);
+	x.img_file = data;
 	x.xpos = 1:size(x.img, 2);
 	x.ypos = (1:size(x.img, 1))';
 	x.acc = x.imgm.accum;
@@ -38,6 +40,7 @@ function x = load_iccd(data, varargin)
 
 	if (isfile(dark))
 		[x.dark, x.darkm] = read_princeton_spe(dark);
+		x.dark_file = dark;
 	elseif (!args.nodark)
 		x.dark = [];
 		x.darkm = [];
@@ -46,6 +49,7 @@ function x = load_iccd(data, varargin)
 
 	if (isfile(pwr))
 		[p, x.pwrmeta] = read_starlab(pwr, "emptyvalue", nan);
+		x.power_file = pwr;
 		c = cell();
 		for k = 2:size(p, 2)
 			t = p(:,1);
