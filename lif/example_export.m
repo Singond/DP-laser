@@ -40,7 +40,7 @@ gp.exec("\n\
 	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
 	set terminal cairolatex pdf colortext size 12cm,8cm \n\
 	set output 'results/flame.tex' \n\
-	plot '-' matrix with image pixels \n\
+	plot '-' matrix with image \n\
 ");
 gp.data(img_flame);
 clear gp;
