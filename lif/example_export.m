@@ -5,8 +5,8 @@ if (!exist("lifetime", "var"))
 	lifetime_base;
 end
 
-img = read_princeton_spe("data-2023-01-20/obr1.SPE");
-img_flame = mean(img, 3);
+flame = load_iccd("data-2023-01-20/obr1.SPE", "nodark", "nopower");
+img_flame = mean(flame.img, 3);
 img_flame -= min(img_flame(:));
 img_flame /= max(img_flame(:));
 gp = gnuplotter;
