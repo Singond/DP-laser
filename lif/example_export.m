@@ -27,12 +27,8 @@ gp.exec("\n\
 gp.data(flipud(img_flame));
 gp.exec("\n\
 	unset output \n\
-	unset arrow 1 \n\
-	unset label 1 \n\
-	set size ratio -1 \n\
 	unset margins \n\
 	load 'gnuplot/rule-lif.gp' \n\
-	set autoscale noextend \n\
 	set yrange reverse \n\
 	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
 	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
