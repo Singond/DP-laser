@@ -8,20 +8,20 @@ gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
 gp.load("gnuplot/style-lif.gp");
-gp.xlabel('svislá poloha $\\xpos\\,[\\si\\pixel]$');
-gp.ylabel('svislá poloha $\\ypos\\,[\\si\\pixel]$');
 gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
 	set size ratio -1 \n\
-	set margins 0, 0, 0, 0 \n\
-	unset tics \n\
+	set yrange reverse \n\
+	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
+	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
+	unset margins \n\
 	unset key \n\
 	unset colorbox \n\
 	set terminal cairolatex pdf colortext size 12cm,8cm \n\
 	set output 'results/rayleigh-example.tex' \n\
 	plot '-' matrix with image \n\
 ");
-gp.data(flipud(R(1).inm));
+gp.data(R(1).inm);
 clear gp;
 
 gp = gnuplotter;
@@ -47,27 +47,28 @@ gp.load("../style-cairo.gp");
 gp.load("../gnuplot/style-splot.gp");
 gp.exec("\n\
 	set style fill transparent solid 0.3 \n\
-	set yrange [:] reverse \n\
+	set yrange [0:] reverse \n\
+	set ztics 400 \n\
 	set xyplane at 0 \n\
 	set autoscale noextend \n\
 	#set view 60, 360-37.5 \n\
 	unset key \n\
 	set offsets graph 0.04, graph 0.04, graph 0.04, graph 0.04 \n\
-	set terminal cairolatex pdf size 12cm,8cm \n\
+	set terminal cairolatex pdf size 14cm,12cm \n\
 	set output 'results/rayleigh-time.tex' \n\
 ");
 gp.exec('set xlabel "čas $\\tim\\,[\\si\\second]$"');
 gp.exec('set ylabel "svislá poloha $\\ypos\\,[\\si\\pixel]$"');
 gp.exec('set zlabel "intenzita LIF $\\lif\\,[\\si\\arbunit]$"');
-gp.exec("splot '-' with lines, '-' with zerrorfill ls 1");
+gp.exec("splot '-' with zerrorfill ls 1, '-' with lines ls 1");
 sz = size(Rt.ypos);
 for k = 1:rows(Rt.t')
-	D = [Rt.t(k)(ones(sz)) Rt.ypos Rt.iny(:,k)];
+	D = [Rt.t(k)(ones(sz)) Rt.ypos Rt.iny(:,k) zeros(sz) Rt.iny(:,k)];
 	gp.data(D, "\n\n");
 end
 gp.exec("e");
 for k = 1:rows(Rt.t')
-	D = [Rt.t(k)(ones(sz)) Rt.ypos Rt.iny(:,k) zeros(sz) Rt.iny(:,k)];
+	D = [Rt.t(k)(ones(sz)) Rt.ypos Rt.iny(:,k)];
 	gp.data(D, "\n\n");
 end
 gp.exec("e");
