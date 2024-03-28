@@ -57,9 +57,9 @@ gp.exec("\n\
 	set terminal cairolatex pdf size 14cm,12cm \n\
 	set output 'results/rayleigh-time.tex' \n\
 ");
-gp.exec('set xlabel "čas $\\tim\\,[\\si\\second]$"');
-gp.exec('set ylabel "svislá poloha $\\ypos\\,[\\si\\pixel]$"');
-gp.exec('set zlabel "intenzita LIF $\\lif\\,[\\si\\arbunit]$"');
+gp.exec('set xlabel "čas $\\tim\\,[\\si\\second]$" offset -1,0');
+gp.exec('set ylabel "poloha $\\ypos\\,[\\si\\pixel]$" offset 1,-1');
+gp.exec('set zlabel "intenzita LIF $\\lif\\,[\\si\\arbunit]$" offset -1,0');
 gp.exec("splot '-' with zerrorfill ls 1, '-' with lines ls 1");
 sz = size(Rt.ypos);
 for k = 1:rows(Rt.t')
