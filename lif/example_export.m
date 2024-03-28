@@ -12,28 +12,26 @@ img_flame /= max(img_flame(:));
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("gnuplot/style-lif.gp");
+gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
-	set size ratio -1 \n\
-	set margins 0, 0, 0, 0 \n\
-	unset tics \n\
-	unset key \n\
-	unset colorbox \n\
-	set terminal pngcairo \n\
-	set output 'results/flame.png' \n\
-	set arrow 1 nohead from first 130,100 to 180,100 front lw 3 lc 'white' \n\
-	set label 1 '3 mm' center at first 155,110 front tc 'white' font ',15' \n\
-	plot '-' matrix with image \n\
-");
-gp.data(flipud(img_flame));
-gp.exec("\n\
-	unset output \n\
-	unset margins \n\
-	load 'gnuplot/rule-lif.gp' \n\
 	set yrange reverse \n\
 	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
 	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
+	unset key \n\
+	unset colorbox \n\
 	set terminal cairolatex pdf colortext size 12cm,8cm \n\
 	set output 'results/flame.tex' \n\
+	plot '-' matrix with image \n\
+");
+gp.data(img_flame);
+gp.exec("\n\
+	unset output \n\
+	set margins 0, 0, 0, 0 \n\
+	unset tics \n\
+	unset xlabel \n\
+	unset ylabel \n\
+	set terminal pngcairo \n\
+	set output 'results/flame.png' \n\
 	plot '-' matrix with image \n\
 ");
 gp.data(img_flame);
@@ -43,17 +41,16 @@ img_lif = lifetime(2).img(:,:,12);
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("gnuplot/style-lif.gp");
+gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
-	set size ratio -1 \n\
+	set yrange reverse \n\
 	set margins 0, 0, 0, 0 \n\
 	unset tics \n\
 	unset key \n\
 	unset colorbox \n\
 	set terminal pngcairo \n\
 	set output 'results/lif-example.png' \n\
-	set arrow nohead from first 130,100 to 180,100 front lw 3 lc 'white' \n\
-	set label '3 mm' center at first 155,110 front tc 'white' font ',15' \n\
 	plot '-' matrix with image \n\
 ");
-gp.data(flipud(img_lif));
+gp.data(img_lif);
 clear gp;

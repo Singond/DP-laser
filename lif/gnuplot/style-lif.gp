@@ -1,3 +1,4 @@
+set size ratio -1
 set autoscale noextend
 
 set xtics out nomirror
