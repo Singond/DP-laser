@@ -34,8 +34,6 @@ gp.exec("\n\
 	load 'gnuplot/rule-lif.gp' \n\
 	set autoscale noextend \n\
 	set yrange reverse \n\
-	set xtics out nomirror \n\
-	set ytics out nomirror \n\
 	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
 	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
 	set terminal cairolatex pdf colortext size 12cm,8cm \n\
