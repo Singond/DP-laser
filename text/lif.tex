@@ -1,4 +1,4 @@
-\chapter[LIF]{LIF v~selenu}
+\chapter[LIF]{Laserem indukovaná fluorescence v~selenu}
 
 \providecommand\xpos{x}
 \providecommand\ypos{y}
@@ -6,6 +6,7 @@
 \providecommand\lif{F}
 
 \section{Uspořádání experimentu}
+\label{sec:lif-setup}
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{lif-setup}
@@ -13,16 +14,40 @@
 		Laserový svazek je pomocí válcových rozptylek rozšířen
 		do roviného tvaru, který je zboku snímán kamerou.
 		Podle \cite{lif-oh}.}
+	\label{fig:lif-setup}
 \end{figure}
+
+\section{Vyhodnocení}
+\label{sec:lif-method}
 
 \begin{figure}
 	\input{../lif/results/flame}
 	\caption{Snímek plamene bez laseru.
 		Kamera byla bez filtru a~nastavena na \num{10000} akumulací.}
+	\label{fig:lif-results-flame}
 \end{figure}
+
+\begin{figure}
+	\input{../lif/results/rayleigh-example}
+	\caption{Snímek laserového paprsku ve vzduchu bez plamene.
+		Pozorovaný signál je Rayleighův rozptyl.
+		Kamera byla bez filtru a~nastavena na \num{100} akumulací.}
+	\label{fig:lif-rayleigh-example}
+\end{figure}
+cc
+\subsection{Rayleighův rozptyl}
+\label{sec:lif-rayleigh}
 
 \begin{figure}
 	\input{../lif/results/rayleigh-profile}
 	\caption{Svislý profil laserového svazku pro různé energie pulzu
-		určený pomocí Rayleigho rozptylu.}
+		určený pomocí Rayleighova rozptylu.}
+	\label{fig:lif-rayleigh-profile}
+\end{figure}
+
+\begin{figure}
+	\input{../lif/results/rayleigh-time}
+	\caption{Časový vývoj Rayleighova rozptylu.
+		Signál je integrován v~horizontálním směru (ve směry osy $x$).}
+	\label{fig:lif-rayleigh-time}
 \end{figure}
