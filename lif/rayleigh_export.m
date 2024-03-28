@@ -7,7 +7,7 @@ end
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
-gp.load("style-lif.gp");
+gp.load("gnuplot/style-lif.gp");
 gp.xlabel('svislá poloha $\\xpos\\,[\\si\\pixel]$');
 gp.ylabel('svislá poloha $\\ypos\\,[\\si\\pixel]$');
 gp.exec("\n\

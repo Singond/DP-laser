@@ -15,7 +15,7 @@ t = lifetime(2).t;
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
-gp.load("style-lif.gp");
+gp.load("gnuplot/style-lif.gp");
 gp.exec(sprintf("set cbrange [%g:%g]", imin, imax));
 gp.exec("\n\
 	set size ratio -1 \n\
