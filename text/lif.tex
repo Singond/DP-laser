@@ -17,6 +17,7 @@ Poté je válcovou rozptylkou rozšířen do svisle rozbíhavého svazku
 a~dále pomocí spojky a~druhé válcové rozptylky zaostřen
 do svisle orientovaného rovinného svazku,
 který vodorovně prochází zkoumaným plamenem.
+Schéma tohoto uspořádání je na obrázku č.~\ref{fig:lif-setup}.
 
 Intenzita svazku je měřena dvojicí detektorů
 zaznamenávajích energii jednotlivých pulzů.
@@ -34,7 +35,7 @@ Oblast, kde se kříží laserový svazek s~plamenem, je z~boku snímána
 ICCD kamerou \instrname{PIMAX-3} od Princeton Instruments.
 Před kamerou je dvojice křemenných sklíček sloužící jako filtr.
 
-\begin{figure}
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{lif-setup}
 	\caption{Uspořádání experimentu.
 		Laserový svazek je pomocí válcových rozptylek rozšířen
@@ -49,18 +50,34 @@ Záznamy z~kamery byly korigovány odečtením temného snímku změřeného
 s~vypnutým laserem za jinak stejných podmínek a~nastavení.
 
 Energie laserových pulzů byla zprůměrována v~časových intervalech
-odpovídajících jednotlivým snímkům.
-Rozmístění těchto časových intervalů bylo odhadnuto ze~známé spoušťové
-frekvence, počtu akumulací a~prodlevy mezi snímky.
+příslušejících jednotlivým snímkům.
+Rozmístění těchto intervalů bylo odhadnuto ze~známé spoušťové
+frekvence, počtu akumulací a~vyčítací prodlevy kamery mezi snímky.
 
-\begin{figure}
+Na obrázku č.~\ref{fig:lif-flame} je samotný plamen bez laserové excitace
+zaznamenaný ICCD kamerou bez použití filtru.
+Intenzita byla v~tomto případě velmi slabá
+(plamen byl pouhým okem neviditelný),
+snímek je výsledkem \num{10000} akumulací.
+
+Snímek samotného laserového svazku je na obrázku č.~\ref{fig:lif-beam}.
+Atomizátor byl vypnut, signál snímku je především Rayleighův rozptyl
+svazku na částicích vzduchu.
+Snímaná intenzita byla mnohem větší než u~prostého plamene,
+uvedený příklad je ze \num{100} akumulací.
+
+Série snímků na obrázku č.~\ref{fig:lif-timeev} ukazuje časový vývoj
+luminiscenčního signálu v~průběhu jednoho pulzu.
+Atomizátor je v~tomto případě nastaven na obvyklý průtok
+a~kamera zaznamenává 100 akumulací.
+
+\begin{figure}[p]
 	\input{../lif/results/flame}
 	\caption{Snímek plamene bez laseru.
 		Kamera byla bez filtru a~nastavena na \num{10000} akumulací.}
 	\label{fig:lif-flame}
 \end{figure}
-
-\begin{figure}
+\begin{figure}[p]
 	\input{../lif/results/rayleigh-example}
 	\caption{Snímek laserového paprsku ve vzduchu bez plamene.
 		Pozorovaný signál je Rayleighův rozptyl.
@@ -71,7 +88,9 @@ frekvence, počtu akumulací a~prodlevy mezi snímky.
 \begin{figure}[p]
 	\input{../lif/results/timeev}
 	\caption{Vývoj signálu LIF v~průběhu pulzu.
-		Kamera byla nastavena na \num{100} akumulací.}
+		Kamera byla ve všech snímcích nastavena na \num{100} akumulací.
+		Hloubka snímané oblasti, daná tloušťkou laserového svazku,
+		je zhruba \SI{1}{\milli\metre}.}
 	\label{fig:lif-timeev}
 \end{figure}
 
