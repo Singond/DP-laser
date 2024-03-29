@@ -7,6 +7,32 @@
 
 \section{Uspořádání experimentu}
 \label{sec:lif-setup}
+Měřený vzorek je 10 ppb selenu v roztoku kyseliny chlorovodíkové
+o koncentraci \SI{1}{\mol\per\litre}.
+Selen proudí spolu s argonem a vodíkem do atomizátoru.
+
+Laserový svazek je na začátku rozdělen děličem svazku.
+Odražený svazek prochází přes dva hranoly pro zvýšení jeho dráhy nad stolem.
+Poté je válcovou rozptylkou rozšířen do svisle rozbíhavého svazku
+a~dále pomocí spojky a~druhé válcové rozptylky zaostřen
+do svisle orientovaného rovinného svazku,
+který vodorovně prochází zkoumaným plamenem.
+
+Intenzita svazku je měřena dvojicí detektorů
+zaznamenávajích energii jednotlivých pulzů.
+Svazek procházející děličem putuje přímo do detektoru
+Ophir \instrname{Vega Pyroelectric PE9}
+s~rozsahem \SIrange{0.2}{1000}{\micro\joule}.
+Za~atomizátorem je umístěn citlivější detektor
+Ophir \instrname{Vega Pyroelectric PE9-ES-C}
+s~rozsahem \SIrange{0.1}{200}{\micro\joule},
+který měří svazek procházející plamenem.
+Pro velmi nízké energie pulzu je citlivější detektor přesunut
+za dělič (kde je svazek silnější) a~svazek za~atomizátorem není měřen.
+
+Oblast, kde se kříží laserový svazek s~plamenem, je z~boku snímána
+ICCD kamerou \instrname{PIMAX-3} od Princeton Instruments.
+Před kamerou je dvojice křemenných sklíček sloužící jako filtr.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{lif-setup}
@@ -19,6 +45,13 @@
 
 \section{Vyhodnocení}
 \label{sec:lif-method}
+Záznamy z~kamery byly korigovány odečtením temného snímku změřeného
+s~vypnutým laserem za jinak stejných podmínek a~nastavení.
+
+Energie laserových pulzů byla zprůměrována v~časových intervalech
+odpovídajících jednotlivým snímkům.
+Rozmístění těchto časových intervalů bylo odhadnuto ze~známé spoušťové
+frekvence, počtu akumulací a~prodlevy mezi snímky.
 
 \begin{figure}
 	\input{../lif/results/flame}
