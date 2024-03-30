@@ -30,6 +30,10 @@ for k = 1:length(D);
 end
 clear D;
 
+## Correct powermeter data
+[r, a] = correlate_powermeters(X(6:end-1));
+X(end).pwrdata{1} = recalibrate_powermeter(r, a, X(end), true);
+
 function x = process(x)
 	x;
 end
