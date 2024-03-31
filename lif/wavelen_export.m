@@ -20,6 +20,7 @@ for x = 1:5
 		"w l ls %d t '$\\SI{%.0f}{\\micro\\joule}$'", k, Em*1e6));
 	k++;
 end
+gp.export("results/excitprof-nofilter.tex", "cairolatex", "size 12cm,8cm");
 gp.export("results/excitprof-nofilter-lg.tex", "cairolatex", "size 10cm,8cm");
 clear gp k;
 
@@ -40,5 +41,33 @@ for x = X(6:10)
 		"w l ls %d t '$\\SI{%.2f}{\\micro\\joule}$'", k, Em*1e6));
 	k++;
 end
+gp.export("results/excitprof-filter.tex", "cairolatex", "size 12cm,8cm");
 gp.export("results/excitprof-filter-lg.tex", "cairolatex", "size 10cm,8cm");
+clear gp k;
+
+gp = gnuplotter();
+gp.load("../style.gp");
+gp.load("../style-cairo.gp");
+gp.xlabel('vlnová délka laseru $\\wavelen\\,[\\si{\\nano\\metre}]$');
+gp.ylabel('intenzita LIF $\\lif\\,[\\si\\arbunit]$');
+gp.exec("\n\
+	set xrange [0.009:0.051] \n\
+	set yrange [-0.5:12.5] \n\
+	set key top left samplen 2 offset 1,0 \n\
+");
+xtics = 196.01:0.01:196.05;
+gp.exec("set xtics (%s)",...
+	sprintf("'\\num{%.2f}' %.2f, ", xtics - [0; 196])(1:end-2));
+k = 1;
+xx = linspace(196.01, 196.05)';
+for x = W(6:10)
+	Em = mean(x.E(:,end));
+	m = 196.01 <= x.wl & x.wl <= 196.05;
+	gp.plot(x.wl(m) - 196, x.in(m), sprintf(
+		"w p ls %d t '$\\SI{%.2f}{\\micro\\joule}$'", k, Em*1e6));
+	gp.plot(xx - 196, x.fit.f(xx), sprintf(
+		"w l ls %d t ''", k));
+	k++;
+end
+gp.export("results/excitprof-fit.tex", "cairolatex", "pdf size 12cm,8cm");
 clear gp k;
