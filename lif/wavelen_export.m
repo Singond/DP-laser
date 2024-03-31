@@ -1,6 +1,6 @@
 pkg load report;
 
-wavelen;
+wavelen_main;
 
 gp = gnuplotter;
 gp.load("../style.gp");
