@@ -125,11 +125,24 @@ s~krokem \SI{0.001}{\nano\metre}.
 Pokus byl proveden pro několik energií laserového pulzu $\enlaser$,
 jak s~prostorovým filtrem, tak bez něj.
 
-Naměřená data byla aproximována Voigtovým profilem pomocí
+Na základě takto změřeného profilu byla poloha maxima LIF předběžně
+odhadnuta na \SI{196.032}{\nano\metre}.
+Při dalších měřeních byla vlnová délka laseru na\-stavena na tuto hodnotu.
+
+Naměřená data byla dále aproximována Voigtovým profilem pomocí
 Leven\-berg-Marquardtova algoritmu.
 Detail proložených profilů pro různé energie pulzu s~prostorovým filtrem
 je na obrázku č.~\ref{fig:lif-excitprof-fit}
 a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
+
+\begin{figure}
+	\input{../lif/results/excitprof-nofilter}
+	\bigskip\par
+	\input{../lif/results/excitprof-filter}
+	\caption{Excitační profil bez prostorového filtru (nahoře)
+		a~s~prostorovým filtrem (dole) pro několik energií pulzu.}
+	\label{fig:lif-excitprof-filter}
+\end{figure}
 
 \begin{figure}
 	\input{../lif/results/excitprof-fit}

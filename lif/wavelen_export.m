@@ -5,9 +5,9 @@ wavelen_main;
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
-gp.title("Excitační profil (bez~prostorového filtru)");
+gp.title("bez~prostorového filtru");
 gp.xlabel('vlnová délka laseru $\\enlaser\\,[\\si{\\nano\\metre}]$');
-gp.ylabel('intenzita $\\itylif\\,[\\si\\arbunit]$');
+gp.ylabel('intenzita $\\lif\\,[\\si\\arbunit]$');
 gp.exec("\n\
 	set xrange [195.95:196.20] \n\
 	set key top right samplen 2 height 1 \n\
@@ -27,9 +27,9 @@ clear gp k;
 gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
-gp.title("Excitační profil (s~prostorovým filtrem)");
+gp.title("s~prostorovým filtrem");
 gp.xlabel('vlnová délka laseru $\\enlaser\\,[\\si{\\nano\\metre}]$');
-gp.ylabel('intenzita $\\itylif\\,[\\si\\arbunit]$');
+gp.ylabel('intenzita $\\lif\\,[\\si\\arbunit]$');
 gp.exec("\n\
 	set xrange [195.95:196.20] \n\
 	set key top right samplen 2 height 1 \n\
