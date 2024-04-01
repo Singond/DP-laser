@@ -45,6 +45,7 @@ gp.export("results/excitprof-filter.tex", "cairolatex", "size 12cm,8cm");
 gp.export("results/excitprof-filter-lg.tex", "cairolatex", "size 10cm,8cm");
 clear gp k;
 
+## Excitation profile fit
 gp = gnuplotter();
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
@@ -70,3 +71,15 @@ for x = W(6:10)
 end
 gp.export("results/excitprof-fit.tex", "cairolatex", "pdf size 12cm,8cm");
 clear gp k;
+
+D = horzcat(...
+	[W.Em]'*1e6,...
+	[[W.fit].x0]',...
+	[[W.fit].sigma]',...
+	[[W.fit].gamma]',...
+	[[W.fit].residual]'...
+);
+f = fopen("results/excitprof-fit.tsv", "w");
+fputs(f, "Epulse[uJ]\tpeak[nm]\tsigma[nm]\tgamma[nm]\tresidual\n");
+dlmwrite(f, D, "\t");
+fclose(f);

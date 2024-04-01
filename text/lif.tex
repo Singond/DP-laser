@@ -4,6 +4,8 @@
 \providecommand\ypos{y}
 \providecommand\laser{L}
 \providecommand\lif{F}
+\providecommand\voigtsigma{\sigma}
+\providecommand\voigtgamma{\gamma}
 
 \section{Uspořádání experimentu}
 \label{sec:lif-setup}
@@ -117,6 +119,17 @@ a~kamera zaznamenává 100 akumulací.
 
 \subsection{Excitační profil}
 \label{sec:lif-excitprof}
+Excitační profil byl změřen postupným laděním laseru na vlnové délky
+v~rozsahu \SIrange{195.95}{196.20}{\nano\metre}
+s~krokem \SI{0.001}{\nano\metre}.
+Pokus byl proveden pro několik energií laserového pulzu $\enlaser$,
+jak s~prostorovým filtrem, tak bez něj.
+
+Naměřená data byla aproximována Voigtovým profilem pomocí
+Levenberg-Marquardtova algoritmu.
+Detail proložených profilů pro různé energie pulzu s~prostorovým filtrem
+je na obrázku č.~\ref{fig:lif-excitprof-fit}
+a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
 
 \begin{figure}
 	\input{../lif/results/excitprof-fit}
@@ -125,3 +138,74 @@ a~kamera zaznamenává 100 akumulací.
 		a~spočtených aproximací Voigtovým profilem.}
 	\label{fig:lif-excitprof-fit}
 \end{figure}
+
+\shorthandoff{-}
+\begin{table}[bh]
+	\centering
+	\caption{Parametry aproximovaných excitačních profilů.
+		$\enlaser$ je energie laserového pulzu,
+		$\wavelen_\mathrm{max}$ je střed profilu,
+		$\voigtsigma$ a~$\voigtgamma$ jsou šířky Gaussova a~Lorentzova profilu
+		a~$\sum\Delta\lif^{2}$ je reziduální suma čtverců.}
+	\label{tab:lif-excitprof-fit}
+	\sisetup{
+		table-alignment-mode = format,
+		table-number-alignment = center,
+	}
+	\pgfplotstabletypeset[
+		header = false,
+		col sep = tab,
+		skip first n = 1,
+		every head row/.style = {
+			before row = \toprule,
+			after row = {
+				\midrule
+			}
+		},
+		string type,
+		columns = {[index] 0, [index] 1, [index] 2, [index] 3, [index] 4},
+		skip rows between index = {0}{5},
+		columns/0/.style = {
+			column name = $\enlaser\ [\si{\micro\joule}]$,
+			column type = {S[
+				table-format = 1.2,
+				round-mode = places,
+				round-precision = 2
+			]},
+		},
+		columns/1/.style = {
+			column name = $\wavelen_\mathrm{max}\ [\si{\nano\metre}]$,
+			column type = {S[
+				table-format = 3.4,
+				round-mode = places,
+				round-precision = 4
+			]},
+		},
+		columns/2/.style = {
+			column name = $\voigtsigma\ [\si{\nano\metre}]$,
+			column type = {S[
+				table-format = 1.4,
+				round-mode = places,
+				round-precision = 4
+			]},
+		},
+		columns/3/.style = {
+			column name = $\voigtgamma\ [\si{\nano\metre}]$,
+			column type = {S[
+				table-format = 1.4,
+				round-mode = places,
+				round-precision = 4
+			]},
+		},
+		columns/4/.style = {
+			column name = $\sum\Delta\lif^{2}$,
+			column type = {S[
+				table-format = 3.2,
+				round-mode = places,
+				round-precision = 2
+			]},
+		},
+		every last row/.style = {after row = \bottomrule}
+	]{../lif/results/excitprof-fit.tsv}
+\end{table}
+\shorthandon{-}
