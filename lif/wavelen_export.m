@@ -14,10 +14,10 @@ gp.exec("\n\
 ");
 k = 1;
 for x = 1:5
-	x = X(k);
-	Em = mean(x.E(:,end));
+	x = W(k);
+	#Em = mean(x.E(:,end));
 	gp.plot(x.wl, x.in, sprintf(
-		"w l ls %d t '$\\SI{%.0f}{\\micro\\joule}$'", k, Em*1e6));
+		"w l ls %d t '$\\SI{%.0f}{\\micro\\joule}$'", k, x.Em*1e6));
 	k++;
 end
 gp.export("results/excitprof-nofilter.tex", "cairolatex", "size 12cm,8cm");
@@ -35,10 +35,10 @@ gp.exec("\n\
 	set key top right samplen 2 height 1 \n\
 ");
 k = 1;
-for x = X(6:10)
-	Em = mean(x.E(:,end));
+for x = W(6:10)
+	#Em = mean(x.E(:,end));
 	gp.plot(x.wl, x.in, sprintf(
-		"w l ls %d t '$\\SI{%.2f}{\\micro\\joule}$'", k, Em*1e6));
+		"w l ls %d t '$\\SI{%.2f}{\\micro\\joule}$'", k, x.Em*1e6));
 	k++;
 end
 gp.export("results/excitprof-filter.tex", "cairolatex", "size 12cm,8cm");
@@ -61,10 +61,9 @@ gp.exec("set xtics (%s)",...
 k = 1;
 xx = linspace(196.01, 196.05)';
 for x = W(6:10)
-	Em = mean(x.E(:,end));
 	m = 196.01 <= x.wl & x.wl <= 196.05;
 	gp.plot(x.wl(m) - 196, x.in(m), sprintf(
-		"w p ls %d t '$\\SI{%.2f}{\\micro\\joule}$'", k, Em*1e6));
+		"w p ls %d t '$\\SI{%.2f}{\\micro\\joule}$'", k, x.Em*1e6));
 	gp.plot(xx - 196, x.fit.f(xx), sprintf(
 		"w l ls %d t ''", k));
 	k++;
