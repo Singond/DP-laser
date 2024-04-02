@@ -5,6 +5,7 @@ if (!exist("saturation", "var") || !isfield(saturation, "lifx"))
 	saturation_x;
 end
 x = saturation(1);
+printf("Showing x-resolved saturation from set %s\n", x.name);
 
 f_alpha = figure("name", "Proportionality parameter");
 ascale = 1e-9;

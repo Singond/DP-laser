@@ -10,6 +10,7 @@ if (!exist("saturation", "var") || !isfield(saturation, "ypos"))
 	saturation_full;
 end
 x = saturation(1);
+printf("Showing full-resolved saturation from set %s\n", x.name);
 
 #warning("off", "Octave:negative-data-log-axis");
 #warning("off", "Octave:imshow-NaN");
