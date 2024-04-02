@@ -14,7 +14,7 @@ gp.load("../style.gp");
 gp.load("gnuplot/style-lif.gp");
 gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
-	set yrange reverse \n\
+	set yrange [:] reverse \n\
 	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
 	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
 	unset key \n\
@@ -43,7 +43,7 @@ gp.load("../style.gp");
 gp.load("gnuplot/style-lif.gp");
 gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
-	set yrange reverse \n\
+	set yrange [:] reverse \n\
 	set margins 0, 0, 0, 0 \n\
 	unset tics \n\
 	unset key \n\

@@ -54,7 +54,7 @@ gp.ylabel('intenzita LIF $\\lif\\,[\\si\\arbunit]$');
 gp.exec("\n\
 	set xrange [0.009:0.051] \n\
 	set yrange [-0.5:12.5] \n\
-	set key top left samplen 2 offset 1,0 \n\
+	set key top left samplen 2 width 1 \n\
 ");
 xtics = 196.01:0.01:196.05;
 gp.exec("set xtics (%s)",...

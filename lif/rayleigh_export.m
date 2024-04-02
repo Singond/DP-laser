@@ -11,7 +11,7 @@ gp.load("gnuplot/style-lif.gp");
 gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
 	set size ratio -1 \n\
-	set yrange reverse \n\
+	set yrange [:] reverse \n\
 	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
 	set ylabel '$\\ypos\\,[\\si\\pixel]$' \n\
 	unset margins \n\
