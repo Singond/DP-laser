@@ -3,7 +3,7 @@ pkg load optim;
 saturation_base;
 saturation_separate = arrayfun(@img_intensity, saturation_separate);
 
-x = img_intensity(saturation);
+x = img_intensity(saturation_merged);
 x.lif = x.in;
 
 p = polyfit(x.E, x.lif, logical([1 1 0]));
