@@ -1,7 +1,9 @@
 pkg load optim;
 
 rayleigh;
-saturation_base;
+if (!exist("saturation", "var"))
+	saturation_base;
+end
 
 X = saturation;
 
