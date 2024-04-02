@@ -17,7 +17,7 @@ for x = 1:5
 	x = W(k);
 	#Em = mean(x.E(:,end));
 	gp.plot(x.wl, x.in, sprintf(
-		"w l ls %d t '$\\SI{%.0f}{\\micro\\joule}$'", k, x.Em*1e6));
+		"w l ls %d t '$\\SI{%.1f}{\\micro\\joule}$'", k, x.Em*1e6));
 	k++;
 end
 gp.export("results/excitprof-nofilter.tex", "cairolatex", "size 12cm,8cm");
