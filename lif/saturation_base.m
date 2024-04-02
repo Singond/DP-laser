@@ -22,6 +22,7 @@ function result = merge_saturation_data(a)
 		assert(isequal(s.xpos, result.xpos), "different xpos");
 		assert(isequal(s.ypos, result.ypos), "different xpos");
 		assert(isequal(s.acc, result.acc), "different acc");
+		result.name = [result.name "+" s.name];
 		result.img = cat(3, result.img, s.img);
 		result.imgm = [result.imgm s.imgm];
 		result.dark = cat(3, result.dark, s.dark);
