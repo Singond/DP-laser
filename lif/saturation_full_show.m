@@ -1,7 +1,7 @@
 pkg load singon-plasma;
 addpath octave;
 
-if (!exist("saturation", "var") || !isfield(saturation, "ypos"))
+if (!exist("saturation", "var") || !isfield(saturation, "lifsm"))
 ##	if (isfile("results/saturation.dat"))
 ##		load results/saturation.dat
 ##	else
