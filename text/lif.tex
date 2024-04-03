@@ -2,8 +2,6 @@
 
 \providecommand\xpos{x}
 \providecommand\ypos{y}
-\providecommand\laser{L}
-\providecommand\lif{F}
 \providecommand\voigtsigma{\sigma}
 \providecommand\voigtgamma{\gamma}
 
@@ -229,3 +227,37 @@ a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
 	]{../lif/results/excitprof-fit.tsv}
 \end{table}
 \shorthandon{-}
+
+\subsection{Saturace}
+\label{sec:lif-saturation}
+Saturace byla vyšetřena ze závislosti LIF na energii pulzu.
+Vlnová délka laseru byla držena na konstantní
+hodnotě \SI{196.032}{\nano\metre},
+zatímco energie pulzu byla postupně nastavována v~rozsahu
+od zhruba \SI{0.5}{\micro\joule} do \SI{4.0}{\micro\joule}.
+
+\begin{equation}
+	\label{eq:lif-saturation}
+	\lif(\enlasery) = \frac{2\lifslope}{\lifsat}
+	\left( 1 - \frac{\ln(1 + \lifsat\enlasery)}{\lifsat\enlasery} \right)
+\end{equation}
+
+\begin{figure}
+	\centering
+	\input{../lif/results/saturation-full-example-index}
+	\input{../lif/results/saturation-full-example-1}%
+	\input{../lif/results/saturation-full-example-2}
+	\input{../lif/results/saturation-full-example-3}%
+	\input{../lif/results/saturation-full-example-4}
+	\caption{Příklad dat z~měření saturace pro několik vybraných bodů.
+		Přehledový snímek odpovídá energii pulzu \SI{3.99}{\micro\joule}.
+		Níže jsou průběhy signálu $\lif$ v~závislosti na energii
+		laseru $\enlaser$.
+		Hodnoty $\lif$ v~nižším a~vyšším intervalu energií na sebe
+		dobře nenavazují a~je mezi nimi patrný jistý skok,
+		který znesnadňuje proložení předpokládanou
+		závislostí \eqref{eq:lif-saturation}.
+		Tento nesoulad je pravděpodobě způsoben změnou svislého
+		rozložení intenzity laserového svazku při změně energie.}
+	\label{fig:lif-saturation-full-example}
+\end{figure}
