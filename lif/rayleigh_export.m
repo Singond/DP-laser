@@ -28,7 +28,7 @@ gp = gnuplotter;
 gp.load("../style.gp");
 gp.load("../style-cairo.gp");
 gp.exec("\n\
-	set key top left \n\
+	set key top left width 1 height 1 \n\
 	set autoscale noextend \n\
 	set offsets graph 0.04, graph 0.04, graph 0.04, graph 0.04 \n\
 ");
