@@ -20,7 +20,7 @@ gp.exec("\n\
 	#unset tics \n\
 	#unset key \n\
 	#unset colorbox \n\
-	set terminal cairolatex pdf colortext size 12cm,8cm \n\
+	set terminal cairolatex pdf colortext size 12cm,7cm \n\
 	set output 'results/saturation-full-example-index.tex' \n\
 ");
 for k = 1:rows(points)
