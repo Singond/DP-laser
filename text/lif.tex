@@ -112,7 +112,10 @@ a~kamera zaznamenává 100 akumulací.
 	\centering
 	\input{../lif/results/rayleigh-profile}
 	\caption{Svislý profil laserového svazku pro různé energie pulzu
-		určený pomocí Rayleighova rozptylu.}
+		určený pomocí Rayleighova rozptylu.
+		Je patrno, že profil je mírně závislý na nastavené energii,
+		neboť poloha maximální intenzity se s~rostoucí energií posouvá
+		vzhůru (v~grafu doleva).}
 	\label{fig:lif-rayleigh-profile}
 \end{figure}
 
@@ -233,17 +236,49 @@ a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
 
 \subsection{Saturace}
 \label{sec:lif-saturation}
-Saturace byla vyšetřena ze závislosti LIF na energii pulzu.
+Fluorescence podle očekávání vykazovala při vyšších intenzitách laseru
+znám\-ky saturace.
+Jelikož tento jev nebyl zanedbatelný, bylo nutno jej vyšetřit,
+aby jeho vliv mohl být zohledněn při stanovení koncentrace.
+
+Laserový svazek měl v~místě plamene rovinný nerozbíhavý tvar
+o~tloušťce asi \SI{1}{\milli\metre}.
+Teoretická závislost LIF v~rovinném svazku při pozorování zboku
+byla odvozena v~\cite{lif-pb}, kde je vyjádřena přibližným vztahem:
+\begin{equation}
+	\label{eq:lif-saturation}
+	\lif(\enlasery) = \frac{2\lifslope}{\lifsat}
+	\left( 1 - \frac{\ln(1 + \lifsat\enlasery)}{\lifsat\enlasery} \right).
+\end{equation}
+Zde $\lif$ je intenzita signálu LIF,
+$\enlasery$ je intenzita laserového svazku ve výšce $\ypos$
+(předpokládá se vodorovné vedení svazku),
+a~$\lifslope$, $\lifsat$ jsou neznámé parametry.
+Parametr $\lifslope$ popisuje lineární část závislosti před nasycením,
+parametr $\lifsat$ se nazývá saturační parametr a~udává tvar
+závislosti v~nasycené oblasti.
+
 Vlnová délka laseru byla držena na konstantní
 hodnotě \SI{196.032}{\nano\metre},
 zatímco energie pulzu byla postupně nastavována v~rozsahu
 od zhruba \SI{0.5}{\micro\joule} do \SI{4.0}{\micro\joule}.
 
-\begin{equation}
-	\label{eq:lif-saturation}
-	\lif(\enlasery) = \frac{2\lifslope}{\lifsat}
-	\left( 1 - \frac{\ln(1 + \lifsat\enlasery)}{\lifsat\enlasery} \right)
-\end{equation}
+Kvůli rozsahům použitých měřičů bylo nutno měření rozdělit do dvou sérií:
+první od \SI{2.0}{\micro\joule} do \SI{4.0}{\micro\joule}
+a~druhé od \SI{0.5}{\micro\joule} do \SI{2.0}{\micro\joule}.
+Při vyhodnocení se však ukázalo, že data z~obou sérií pro určité místo
+ve výboji na sebe nenavazují plynule a~je mezi nimi patrný skok.
+Obrázek \ref{fig:lif-saturation-full-example} toto chování ilustruje.
+Jako možné vysvětlení se nabízí proměnlivost profilu laserového svazku
+při změnách celkové energie pulzu, kterou ani prostorový filtr
+nedokázal potlačit úplně.
+Tato proměnlivost byla prokázána měřením rozptylu svazku ve~vzduchu,
+jak ukazuje obrázek č.~\ref{fig:lif-rayleigh-profile}.
+
+Data v~této podobě tedy nejsou vhodná pro prostorově rozlišené
+určení saturace.
+Bylo prozkoumáno několik řešení, jak se s~tímto nedostatkem vypořádat.
+První možností bylo zohlednit pouze jednu sadu dat.
 
 \begin{figure}
 	\centering
