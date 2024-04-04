@@ -79,7 +79,23 @@ která sloužila jako filtr pro odstínění parazitního světla.
 
 \section{Vyhodnocení}
 \label{sec:lif-method}
-Záznamy z~kamery byly korigovány odečtením temného snímku změřeného
+Před stanovením koncentrace atomů selenu bylo nutno určit několik
+dalších veličin, na nichž výpočet závisí.
+Prostřednictvím Rayleighova rozptylu byl zjištěn profil laserového svazku,
+který udává prostorové rozložení intenzity excitujícího záření.
+Změření excitačního profilu umožnilo nalézt přesnější polohu maxima
+fluorescenčního signálu
+a~stanovit spektrální překryv laseru a~excitace $\specoverlap$.
+Ukázalo se, že fluorescence i~navzdory nízké energii laserových pulzů
+projevovala saturaci, kterou bylo tudíž nutno zahrnout do výpočtů.
+Podstatným krokem bylo určení doby života zářivého stavu.
+
+Záznam z~ICCD kamery tvoří časová posloupnost jednokanálových sním\-ků,
+přičemž každý snímek je tvořen nastaveným počtem akumulací na čipu.
+Kamera kromě fluorescence snímá také parazitní signál pocházející
+ze zbytkového světla v~laboratoři nebo vlastního záření plamene.
+Pro potlačení jejich nežádoucího vlivu
+byly všechny snímky korigovány odečtením temného snímku změřeného
 s~vypnutým laserem za jinak stejných podmínek a~nastavení.
 
 Pro výpočty byla použita energie laserových pulzů změřená za~atomizátorem.
