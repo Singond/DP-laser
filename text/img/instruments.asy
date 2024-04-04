@@ -55,6 +55,13 @@ path rightprism(pair pos, real angle=0, real scale=10) {
 	return shift(pos) * scale(scale) * rotate(angle) * shape;
 }
 
+void diaphragm(picture pic=optics, transform T, real radius=1) {
+	path shape = (0,radius) -- (0,10);
+	pen p = black + 2 + squarecap;
+	draw(pic, T * shape, p);
+	draw(pic, T * reflect(E, W) * shape, p);
+}
+
 void camera(picture pic=instr, transform T) {
 	transform T = T * scale(10);
 	path body = box((-5,-1.2), (-1,1.2));

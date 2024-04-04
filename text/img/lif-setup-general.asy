@@ -57,7 +57,7 @@ label("měřič", detpos);
 
 pair flamepos = (180,0);
 radialshade(circle(flamepos, 10), orange, flamepos, 0, paleyellow, flamepos, 8);
-label("plamen", flamepos, 5N);
+label("plazma", flamepos, 5N);
 
 pair camerapos = (180,-60);
 transform cameratform = shift(camerapos) * rotate(90);
