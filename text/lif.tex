@@ -11,14 +11,28 @@ Měřený vzorek je 10 ppb selenu v roztoku kyseliny chlorovodíkové
 o koncentraci \SI{1}{\mol\per\litre}.
 Selen proudí spolu s argonem a vodíkem do atomizátoru.
 
-Laserový svazek je na začátku rozdělen děličem svazku.
-Odražená část prochází přes dva hranoly pro zvýšení její dráhy nad stolem.
-Poté je válcovou rozptylkou rozšířena do svisle rozbíhavého svazku
-a~dále pomocí spojky a~druhé válcové rozptylky zaostřena
-do svisle orientovaného rovinného svaz\-ku,
-který po ořezání clonkou vodorovně prochází zkoumaným plamenem.
-Průřez takto upraveného svazku v~oblasti plamene je přibližně obdélník
+\subsection{Optická část}
+Volba optické dráhy se odvíjela od dvou základních požadavků:
+Za prvé bylo potřeba eliminovat nebo alespoň dostatečně potlačit
+nehomogennost intenzity laserového svazku,
+jejíž rozdělení navíc závisí na nastaveném zesílení.
+Za druhé byla celková energie laserových pulzů pro účely LIF příliš
+velká a~bylo nutné ji před vstupem do plamene značně omezit.
+
+Pro zajištění rovnoměrnějšího rozložení intenzity byl laserový svazek
+po výstupu ze~zdroje veden do prostorového filtru tvořeného dvěma
+křemennými spojkami a~clonou s~kruhovou dírkou. % TODO: polomer
+Následně byl svazek rozdělen děličem svazku.
+Jako dělič sloužila skleněná destička,
+která většinu záření propouštěla do detektoru
+a~pouze malou část odrážela dále do aparatury,
+čímž došlo k~požadovanému snížení intenzity.
+
+Kvůli zlepšení prostorového rozlišení metody byl svazek dále ořezán
+průchodem svislou štěrbinou na rovinný tvar,
+takže konečný průřez svazku byl přibližně obdélník
 o~výšce \SI{3}{\milli\metre} a~tloušťce \SI{1}{\milli\metre}.
+Takto upravený svazek vodorovně procházel středovou oblastí plamene.
 Schéma celého uspořádání je na obrázku č.~\ref{fig:lif-setup}.
 
 Intenzita svazku je měřena dvojicí detektorů
@@ -33,9 +47,13 @@ který měří svazek procházející plamenem.
 Pro velmi nízké energie pulzu je citlivější detektor přesunut
 za dělič (kde je svazek silnější) a~svazek za~atomizátorem není měřen.
 
-Oblast, kde se kříží laserový svazek s~plamenem, je z~boku snímána
-ICCD kamerou \instrname{PIMAX-3} od Princeton Instruments.
-Před kamerou je dvojice křemenných sklíček sloužící jako filtr.
+V~oblasti, kde se křížil laserový svazek s~plamenem, docházelo k~fluorescenci.
+Její záření bylo z~boku snímáno ICCD kamerou synchronizovanou s~laserem.
+Použitý model kamery byl \instrname{PIMAX-3} od Princeton Instruments.
+Citlivost kamery byla zvýšena opakovanou akumulací signálu na čipu.
+Počet akumulací pro LIF byl obvykle 100, ale mohl být regulován dle potřeby.
+Před kamerou se nacházela dvojice křemenných sklíček,
+která sloužila jako filtr pro odstínění parazitního světla.
 
 \begin{figure}[htb]
 	\centering
