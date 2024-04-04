@@ -1,4 +1,4 @@
-\chapter[LIF]{Laserem indukovaná fluorescence v~selenu}
+\chapter[LIF]{Laserem indukovaná fluorescence selenu}
 
 \providecommand\xpos{x}
 \providecommand\ypos{y}
@@ -16,7 +16,8 @@
 	\caption{Excitační schéma selenu použité pro LIF.}
 \end{figure}
 
-Měřený vzorek je 10 ppb selenu v roztoku kyseliny chlorovodíkové
+Měřený vzorek je 10 ppb (tedy \SI{10}{\micro\gram\per\litre})
+selenu v roztoku kyseliny chlorovodíkové
 o koncentraci \SI{1}{\mol\per\litre}.
 Selen proudí spolu s argonem a vodíkem do atomizátoru.
 
@@ -87,9 +88,9 @@ byla energie za atomizátorem dopočtena podle závislosti obou energií
 v~ostatních měřeních.
 % Pro výpočty byla použita energie laserových pulzů změřená za děličem.
 Energie byla následně zprůměrována v~časových intervalech odpovídajících
-jednotlivým snímkům.
-Rozmístění těchto intervalů bylo odhadnuto ze~známé spoušťové
-frekvence, počtu akumulací a~vyčítací prodlevy kamery mezi sním\-ky.
+jednotlivým snímkům kamery.
+Hranice těchto intervalů byly odhadnuty ze~známé frekvence spouštění
+kamery, počtu akumulací na čipu a~vyčítací prodlevy mezi sním\-ky.
 
 Na obrázku č.~\ref{fig:lif-flame} je samotný plamen bez laserové excitace
 zaznamenaný ICCD kamerou bez použití filtru.
@@ -283,8 +284,8 @@ Zde $\lif$ je intenzita signálu LIF,
 $\enlasery$ je intenzita laserového svazku ve výšce $\ypos$
 (předpokládá se vodorovné vedení svazku),
 a~$\lifslope$, $\lifsat$ jsou neznámé parametry.
-Parametr $\lifslope$ popisuje lineární část závislosti před nasycením,
-parametr $\lifsat$ se nazývá saturační parametr a~udává tvar
+Parametr $\lifslope$ popisuje lineární část závislosti pro velmi nízké energie,
+parametr $\lifsat$ se nazývá saturační parametr a~udává zakřivení
 závislosti v~nasycené oblasti.
 
 Vlnová délka laseru byla držena na konstantní
