@@ -2,12 +2,14 @@ pkg load singon-plasma;
 addpath octave;
 
 if (!exist("saturation", "var") || !isfield(saturation, "lifsm"))
-##	if (isfile("results/saturation.dat"))
-##		load results/saturation.dat
-##	else
-##		saturation_full;
-##	end
-	saturation_full;
+	if (isfile("results/saturation.bin"))
+		load results/saturation.bin
+		if (isolderthan("results/saturation.bin", "saturation_full.m"))
+			warning("loading saturation data from file older than script");
+		end
+	else
+		saturation_full;
+	end
 end
 x = saturation(1);
 printf("Showing full-resolved saturation from set %s\n", x.name);
