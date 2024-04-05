@@ -57,7 +57,7 @@ for x = X
 	printf("Processing '%s'...\n", x.name);
 
 	## Crop to area of interest
-	x = crop_iccd(x, [63 95], [50 150]);
+	x = crop_iccd(x, [60 100], [50 150]);
 
 	## Normalize LIF intensity
 	x.lif = x.img ./ x.acc;
