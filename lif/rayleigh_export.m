@@ -5,8 +5,8 @@ if (!exist("R", "var") || !exist("Rt", "var"))
 end
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.load("gnuplot/style-lif.gp");
 gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
@@ -25,8 +25,8 @@ gp.data(R(1).inm);
 clear gp;
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.exec("\n\
 	set key top left width 1 height 1 \n\
 	set autoscale noextend \n\
@@ -42,8 +42,8 @@ gp.export("results/rayleigh-profile.tex", "cairolatex", "pdf size 12cm,8cm");
 clear gp;
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.load("../gnuplot/style-splot.gp");
 gp.exec("\n\
 	set style fill transparent solid 0.3 \n\

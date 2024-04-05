@@ -3,8 +3,8 @@ pkg load report;
 wavelen_main;
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.title("bez~prostorového filtru");
 gp.xlabel('vlnová délka laseru $\\enlaser\\,[\\si{\\nano\\metre}]$');
 gp.ylabel('intenzita $\\lif\\,[\\si\\arbunit]$');
@@ -25,8 +25,8 @@ gp.export("results/excitprof-nofilter-lg.tex", "cairolatex", "size 10cm,8cm");
 clear gp k;
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.title("s~prostorovým filtrem");
 gp.xlabel('vlnová délka laseru $\\enlaser\\,[\\si{\\nano\\metre}]$');
 gp.ylabel('intenzita $\\lif\\,[\\si\\arbunit]$');
@@ -47,8 +47,8 @@ clear gp k;
 
 ## Excitation profile fit
 gp = gnuplotter();
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.xlabel('vlnová délka laseru $\\wavelen\\,[\\si{\\nano\\metre}]$');
 gp.ylabel('intenzita LIF $\\lif\\,[\\si\\arbunit]$');
 gp.exec("\n\

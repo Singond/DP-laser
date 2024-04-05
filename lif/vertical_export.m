@@ -10,8 +10,8 @@ leg = {
 };
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 
 p{1} = gp.newplot();
 p{2} = gp.newplot();

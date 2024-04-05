@@ -10,7 +10,7 @@ img_flame = mean(flame.img, 3);
 img_flame -= min(img_flame(:));
 img_flame /= max(img_flame(:));
 gp = gnuplotter;
-gp.load("../style.gp");
+gp.load("../gnuplot/style.gp");
 gp.load("gnuplot/style-lif.gp");
 gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
@@ -39,7 +39,7 @@ clear gp;
 
 img_lif = lifetime(2).img(:,:,12);
 gp = gnuplotter;
-gp.load("../style.gp");
+gp.load("../gnuplot/style.gp");
 gp.load("gnuplot/style-lif.gp");
 gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\

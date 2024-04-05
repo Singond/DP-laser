@@ -6,8 +6,8 @@ end
 X = lifetime;
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.exec("set palette gray");
 gp.title('Časový vývoj');
 gp.xlabel('čas $\\tim\\,[\\si{\\nano\\second}]$');

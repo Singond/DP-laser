@@ -6,7 +6,7 @@ end
 
 img = lifetime(2).img(:,:,12);
 gp = gnuplotter;
-gp.load("../style.gp");
+gp.load("../gnuplot/style.gp");
 gp.exec("set palette gray");
 gp.exec("\n\
 	set size ratio -1 \n\

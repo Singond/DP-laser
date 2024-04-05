@@ -13,8 +13,8 @@ imax = 2000;
 t = lifetime(2).t;
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.load("gnuplot/style-lif.gp");
 gp.exec(sprintf("set cbrange [%g:%g]", imin, imax));
 gp.exec("\n\

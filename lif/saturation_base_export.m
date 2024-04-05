@@ -6,7 +6,7 @@ x = saturation_separate(1);
 points = [67 100; 73 101; 78 101; 89 102];
 
 gp = gnuplotter;
-gp.load("../style.gp");
+gp.load("../gnuplot/style.gp");
 gp.load("gnuplot/style-lif.gp");
 gp.load("gnuplot/rule-lif.gp");
 gp.exec("\n\
@@ -35,8 +35,8 @@ gp.data(x.img(:,:,24) ./ x.acc);
 clear gp;
 
 gp = gnuplotter;
-gp.load("../style.gp");
-gp.load("../style-cairo.gp");
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
 gp.xlabel('$\\enlaser\\,[\\si{\\micro\\joule}]$');
 gp.ylabel('$\\lif\\,[\\si\\arbunit]$');
 gp.exec("\n\
