@@ -52,6 +52,7 @@ saturation = struct;
 k = 1;
 for x = X
 	printf("Processing '%s'...\n", x.name);
+	tstart = time;
 
 	## Crop to area of interest
 	x = crop_iccd(x, [60 100], [50 150]);
@@ -90,6 +91,6 @@ for x = X
 			sum(failed(:)), numel(x.fite.iter));
 	end
 
-	printf("\n");
+	printf("Finished in %.0f s\n\n", time - tstart);
 	saturation(k++) = x;
 end
