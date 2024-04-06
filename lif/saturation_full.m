@@ -1,4 +1,5 @@
 pkg load optim;
+addpath octave;
 
 rayleigh;
 if (!exist("saturation", "var"))
@@ -6,10 +7,6 @@ if (!exist("saturation", "var"))
 end
 
 X = saturation;
-
-function F = model_exp(Ly, p)
-	F = p(1) - (p(1)/p(2)) * log(1 + p(2) * Ly) ./ Ly;
-end
 
 function r = fit_saturation(x, y, p0)
 	global log;
@@ -21,7 +18,7 @@ function r = fit_saturation(x, y, p0)
 	warning off backtrace local;
 	try
 		[~, p, cvg, iter] = leasqr(x, y, p0,
-			@(Ly, p) model_exp(Ly, p),
+			@(Ly, p) lif_planar_model_exp(Ly, p),
 			[], 30, [], [], [], s);
 		if (!cvg)
 			warning(
@@ -85,7 +82,7 @@ for x = X
 	x.fite.a = r(:,:,1) .* r(:,:,2) ./ 2;
 	x.fite.b = r(:,:,2);
 	x.fite.iter = r(:,:,3);
-	x.fite.f = @(yi,xi,Ly) model_exp(Ly, r(yi,xi,1:2));
+	x.fite.f = @(yi,xi,Ly) lif_planar_model_exp(Ly, r(yi,xi,1:2));
 
 	failed = (x.fite.iter == 0);
 	if (any(failed))

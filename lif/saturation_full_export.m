@@ -1,4 +1,5 @@
 pkg load report;
+addpath octave;
 
 if (!exist("saturation", "var") || !isfield(saturation, "lifsm"))
 	if (isfile("results/saturation.bin"))
