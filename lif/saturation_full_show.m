@@ -11,7 +11,7 @@ if (!exist("saturation", "var") || !isfield(saturation, "lifsm"))
 		saturation_full;
 	end
 end
-x = saturation(1);
+x = saturation(3);
 printf("Showing full-resolved saturation from set %s\n", x.name);
 
 #warning("off", "Octave:negative-data-log-axis");

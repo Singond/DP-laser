@@ -36,9 +36,13 @@ function r = fit_saturation(x, y, p0)
 	end
 end
 
-## TODO: Using amp 50 for beam profile. Interpolate for other powers?
-beamprofile = R(1).iny ./ sum(R(1).iny);
+## Beam profile
+beamprofile = [R.iny];
+beamprofile = movmean(beamprofile, 5);          # Smooth out in y-direction
+beamprofile = beamprofile ./ sum(beamprofile);  # Normalize to 1
+beamprofile_L = [R.Em];
 beamprofile_ypos = R(1).ypos;
+assert(diff([R.ypos], [], 2) == 0, "R(i).ypos is not equal for different i");
 
 ## Smoothing kernel
 kernel = ones(5, 5);
@@ -64,8 +68,16 @@ for x = X
 	x.lifsm = convn(x.lif, kernel, "same");
 
 	## Laser intensity. Called E in older code, but L is less ambiguous.
-	pr = interp1(beamprofile_ypos, beamprofile, x.ypos);
-	x.Ly = reshape(x.E, 1, 1, []) .* pr;    # Laser energy at y
+	## First, interpolate among the reference beam profiles based on energy.
+	beamprofile_Lk = interp1(beamprofile_L', beamprofile', x.E, "extrap")';
+	assert(sum(beamprofile_Lk), ones(1, length(x.E)), 1e-12);
+	## Next, extract the relevant part of beam profile.
+	x.beamprofile = interp1(beamprofile_ypos, beamprofile_Lk, x.ypos);
+	x.beamprofile = reshape(x.beamprofile, [length(x.ypos) 1 length(x.E)]);
+	## Smooth the profile in energy-direction.
+	x.beamprofile = ipermute(movmean(x.beamprofile, 5, 3), [3 1 2]);
+	## Distribute total laser energy into rows.
+	x.Ly = reshape(x.E, 1, 1, []) .* x.beamprofile;    # Laser energy at y
 	Ly = repmat(x.Ly, [1 size(x.lifsm, 2) 1]);
 
 	## Fit with approximate polynomial

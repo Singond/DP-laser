@@ -58,5 +58,5 @@ end
 
 saturation_separate = X;
 saturation_merged = merge_saturation_data(X(1:2));
-saturation = saturation_separate;
-#saturation = [saturation_separate saturation_merged];
+#saturation = saturation_separate;
+saturation = [saturation_separate saturation_merged];
