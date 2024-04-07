@@ -3,8 +3,10 @@ pkg load singon-plasma;
 addpath ../octave;
 addpath octave;
 
+## Dark image to be used for all Rayleigh measurements
 unidark = "data-2023-01-20/rayleigh_dark.SPE";
 
+## Rayleigh scattering for several energies
 R = struct([]);
 x = load_iccd("data-2023-01-20/rayleigh1.SPE", "dark", unidark);
 x.amp = 50;
@@ -34,6 +36,15 @@ for x = Rold
 	R(end+1) = x;
 endfor
 
+## Beam profile
+beamprofile = [R.iny];
+beamprofile = movmean(beamprofile, 5);          # Smooth out in y-direction
+beamprofile = beamprofile ./ sum(beamprofile);  # Normalize to 1
+beamprofile_L = [R.Em];                         # Corresponding laser energies
+beamprofile_ypos = R(1).ypos;
+assert(diff([R.ypos], [], 2) == 0, "R(i).ypos is not equal for different i");
+
+## Time evolution of Rayleigh scattering
 Rt = load_iccd("data-2023-01-20/rayleigh_cas.SPE", "dark", unidark);
 Rt.t = 100:0.5:130;
 Rt.amp = 50;
