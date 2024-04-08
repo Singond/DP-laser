@@ -8,7 +8,7 @@ end
 
 X = saturation;
 
-function r = fit_saturation(x, y, p0)
+function r = fit_saturation(x, y, p0, wt=[])
 	global log;
 	global calls;
 	global total_calls;
@@ -19,7 +19,7 @@ function r = fit_saturation(x, y, p0)
 	try
 		[~, p, cvg, iter] = leasqr(x, y, p0,
 			@(Ly, p) lif_planar_model_exp(Ly, p),
-			[], 30, [], [], [], s);
+			[], 30, wt, [], [], s);
 		if (!cvg)
 			warning(
 				"fit_saturation: Convergence not reached after %d iterations.",
@@ -81,6 +81,8 @@ for x = X
 	calls = 0;
 	total_calls = numel(x.lifsm(:,:,1));
 	warning off dp-laser:fit-failed;
+	# wt = x.lifsm;
+	# r = dimfun(@fit_saturation, 3, x.Ly, x.lifsm, b0, wt);
 	r = dimfun(@fit_saturation, 3, x.Ly, x.lifsm, b0);
 	x.fite.a = r(:,:,1) .* r(:,:,2) ./ 2;
 	x.fite.b = r(:,:,2);
