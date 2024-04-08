@@ -14,7 +14,9 @@ end
 
 x = saturation(3);
 
+##
 ## Fitted parameters only
+##
 disp("Exporting results/saturation-full-params.tex...");
 iscale = 1e-3;
 ascale = 1e-9;
@@ -75,7 +77,9 @@ gp.exec("\n\
 	reset \n\
 ");
 
+##
 ## Parameters and fits as one image
+##
 disp("Exporting results/saturation-full-paramsfits.tex...");
 points = [63 100; 71 100; 79 100; 92 100; 98 100];
 pointsi = points - [min(x.ypos) min(x.xpos)] + 1;
@@ -154,5 +158,47 @@ for k = 1:rows(pointsi)
 end
 gp.doplot();
 
+##
+## Beam profile
+##
+disp("Exporting results/saturation-full-profile.tex...");
+gp = gnuplotter;
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
+gp.load("../gnuplot/style-splot.gp");
+gp.exec("\n\
+	#set style fill transparent solid 0.3 \n\
+	set style line 100 lc 'black' lw 4 \n\
+	set yrange [0:4] \n\
+	set ytics 1 offset 1.5,0 \n\
+	set ztics format '%.2f' \n\
+	set xyplane at 0 \n\
+	set autoscale noextend \n\
+	#set view 60, 360-37.5 \n\
+	unset key \n\
+	set offsets graph 0.04, graph 0.04, graph 0.04, graph 0.04 \n\
+	set terminal cairolatex pdf size 12cm,12cm \n\
+	set output 'results/saturation-full-profile.tex' \n\
+");
+gp.exec('set xlabel "poloha $\\ypos\\,[\\si\\pixel]$" offset 1,-1');
+gp.exec('set ylabel "$\\enlaser\\,[\\si{\\micro\\joule}]$" offset -2,0');
+gp.exec('set zlabel "intenzita laseru $\\enlasery\\,[\\si{\\micro\\joule\\per\\pixel}]$" offset -1,0');
+gp.exec("splot '-' with lines ls 1, '-' with lines ls 2 lw 4");
+Lscale = 1e6;
+sz = size(x.ypos);
+[~, order] = sort(x.E);
+for k = order'
+	D = [x.ypos  x.E(k)(ones(sz)) * Lscale  x.Ly(:,1,k) * Lscale];
+	gp.data(D, "\n");
+end
+gp.exec("e");
+for k = 1:size(beamprofile, 2)
+	D = horzcat(...
+		x.ypos,...
+		beamprofile_L(k) * ones(size(x.ypos)) * Lscale,...
+		beamprofile(x.ypos,k) * beamprofile_L(k) * Lscale);
+	gp.data(D, "\n\n");
+end
+gp.exec("e");
 clear gp;
 
