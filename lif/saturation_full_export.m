@@ -12,7 +12,7 @@ if (!exist("saturation", "var") || !isfield(saturation, "lifsm"))
 	end
 end
 
-x = saturation(1);
+x = saturation(3);
 
 ## Fitted parameters only
 disp("Exporting results/saturation-full-params.tex...");
@@ -77,8 +77,7 @@ gp.exec("\n\
 
 ## Parameters and fits as one image
 disp("Exporting results/saturation-full-paramsfits.tex...");
-x = saturation(1);
-points = [67 100; 71 100; 79 100; 89 100; 96 100];
+points = [63 100; 71 100; 79 100; 92 100; 98 100];
 pointsi = points - [min(x.ypos) min(x.xpos)] + 1;
 gp.load("../gnuplot/style.gp");
 gp.load("../gnuplot/style-cairo.gp");
@@ -118,6 +117,7 @@ gp.data([0 x.xpos; x.ypos x.fite.a * ascale]);
 gp.settitle('saturační parametr $\\lifsat\\,[\\si{\\per\\micro\\joule}]$');
 gp.exec(sprintf("set cbrange [%g:%g]", 0, maxb * bscale));
 gp.exec("\n\
+	set cbrange [0:35] \n\
 	set xtics out nomirror 10 \n\
 	set cbtics 10 \n\
 	set xlabel '$\\xpos\\,[\\si\\pixel]$' \n\
@@ -132,7 +132,7 @@ gp.exec("\n\
 	set style line 2 ps 0.5 \n\
 	set style line 3 ps 0.5 \n\
 	set style line 4 ps 0.5 \n\
-	set style line 5 ps 0.45 \n\
+	set style line 5 ps 0.4 \n\
 	set margins screen 0.12, screen 0.98, screen 0.07, screen 0.38 \n\
 	set xlabel '$\\enlasery\\,[\\si{\\micro\\joule\\per\\pixel}]$' \n\
 	set ylabel '$\\lif\\,[\\si\\arbunit]$' \n\
