@@ -66,8 +66,6 @@ for x = X
 	## Next, extract the relevant part of beam profile.
 	x.beamprofile = interp1(beamprofile_ypos, beamprofile_Lk, x.ypos);
 	x.beamprofile = reshape(x.beamprofile, [length(x.ypos) 1 length(x.E)]);
-	## Smooth the profile in energy-direction.
-	x.beamprofile = ipermute(movmean(x.beamprofile, 5, 3), [3 1 2]);
 	## Distribute total laser energy into rows.
 	x.Ly = reshape(x.E, 1, 1, []) .* x.beamprofile;    # Laser energy at y
 	Ly = repmat(x.Ly, [1 size(x.lifsm, 2) 1]);
