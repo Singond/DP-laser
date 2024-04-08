@@ -39,6 +39,17 @@ end
 gp.xlabel('svislá poloha $\\ypos\\,[\\si\\pixel]$');
 gp.ylabel('intenzita LIF $\\lif\\,[\\si\\arbunit]$');
 gp.export("results/rayleigh-profile.tex", "cairolatex", "pdf size 12cm,8cm");
+## Beam profile
+gp.clearplot;
+gp.exec("set ytics 0.01");
+for k = 1:columns(beamprofile);
+	bpr = beamprofile(:,k);
+	L = beamprofile_L(k);
+	gp.plot(beamprofile_ypos, bpr, sprintf(...
+		'w l t "$\\\\SI{%.2f}{\\\\micro\\\\joule}$"', L*1e6));
+end
+gp.ylabel('normalizovaná intenzita $\\enlasery\\,[\\si{\\per\\pixel}]$');
+gp.export("results/rayleigh-profile-norm.tex", "cairolatex", "pdf size 12cm,8cm");
 clear gp;
 
 gp = gnuplotter;

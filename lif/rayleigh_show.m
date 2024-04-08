@@ -43,3 +43,17 @@ title("Beam vertical profile");
 xlabel("vertical position y [px]");
 ylabel("intensity I [a.u.]");
 legend show;
+
+figure(5, "name", "Beam profile (normalized)");
+clf;
+hold on;
+for k = 1:columns(beamprofile)
+	bpr = beamprofile(:,k);
+	plot(bpr, "-",...
+		"displayname", sprintf("L = %.3g \\muJ", beamprofile_L(k)*1e6));
+end
+hold off;
+title("Beam vertical profile (normalized)");
+xlabel("vertical position y [px]");
+ylabel("normalized laser intensity L_n [px^{-1}]");
+legend show;
