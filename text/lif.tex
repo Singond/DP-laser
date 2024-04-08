@@ -132,6 +132,10 @@ a~kamera zaznamenává 100 akumulací.
 		Kamera byla bez filtru a~nastavena na \num{10000} akumulací.}
 	\label{fig:lif-flame}
 \end{figure}
+
+\subsection{Rayleighův rozptyl}
+\label{sec:lif-rayleigh}
+
 \begin{figure}[p]
 	\centering
 	\input{../lif/results/rayleigh-example}
@@ -140,19 +144,6 @@ a~kamera zaznamenává 100 akumulací.
 		Kamera byla bez filtru a~nastavena na \num{100} akumulací.}
 	\label{fig:lif-beam}
 \end{figure}
-
-\begin{figure}[p]
-	\centering
-	\input{../lif/results/timeev}
-	\caption{Typický vývoj signálu LIF v~průběhu pulzu.
-		Kamera byla ve všech snímcích nastavena na \num{100} akumulací.
-		Hloubka snímané oblasti, daná tloušťkou laserového svazku,
-		je zhruba \SI{1}{\milli\metre}.}
-	\label{fig:lif-timeev}
-\end{figure}
-
-\subsection{Rayleighův rozptyl}
-\label{sec:lif-rayleigh}
 
 \begin{figure}
 	\centering
@@ -366,4 +357,20 @@ První možností bylo zohlednit pouze jednu sadu dat.
 		Je patrno, že saturační parametr $\lifsat$ je
 		v~oblasti plamene ve vodorovném směru přibližně homogenní.}
 	\label{fig:saturation-full-params}
+\end{figure}
+
+\subsection{Doba života}
+\label{sec:lif-lifetime}
+
+\begin{figure}[p]
+	\centering
+	\input{../lif/results/timeev}
+	\caption{Typický vývoj fluorescenčního signálu v~průběhu jedné periody.
+		Časové rozlišení bylo získáno opakovaným měřením mnoha period
+		s~postupnou změnou zpoždění kamery za začátkem pulzu.
+		Pulz začíná přibližně v~čase $\tim = \SI{5.0}{\nano\second}$.
+		Kamera byla ve všech snímcích nastavena na \num{100} akumulací.
+		Hloubka snímané oblasti, daná tloušťkou laserového svazku,
+		je zhruba \SI{1}{\milli\metre}.}
+	\label{fig:lif-timeev}
 \end{figure}
