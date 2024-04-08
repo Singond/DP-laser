@@ -41,7 +41,8 @@ f_beta = figure("name", "Saturation parameter");
 ax = axes("position", [0.1 0.2 0.8 0.65]);
 axes(ax);
 bscale = 1e-6;
-maxb = quantile(x.fite.b(:), 0.98);
+bcenter = x.fite.b(round(end/4):round(3*end/4),round(end/4):round(3*end/4));
+maxb = quantile(bcenter(:), 0.98);
 imshow(x.fite.b * bscale, [0 maxb] * bscale, "colormap", ocean,
 	"xdata", x.xpos, "ydata", x.ypos);
 axis on;
