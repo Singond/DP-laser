@@ -38,9 +38,13 @@ endfor
 
 ## Beam profile
 beamprofile = [R.iny];
-beamprofile = movmean(beamprofile, 5);          # Smooth out in y-direction
-beamprofile = beamprofile ./ sum(beamprofile);  # Normalize to 1
-beamprofile_L = [R.Em];                         # Corresponding laser energies
+beamprofile = movmean(beamprofile, 5);             # Smooth out in y-direction
+beamprofile(:,4) = movmean(beamprofile(:,4), 10);  # Smooth more (low signal/noise ratio)
+beamprofile -= min(beamprofile(1:30,:));           # Remove remaining background
+##beamprofile -= mean(beamprofile(1:30,:));        # (alternative)
+##beamprofile = max(beamprofile, 0);
+beamprofile = beamprofile ./ sum(beamprofile);     # Normalize to 1
+beamprofile_L = [R.Em];                            # Corresponding laser energy
 beamprofile_ypos = R(1).ypos;
 assert(diff([R.ypos], [], 2) == 0, "R(i).ypos is not equal for different i");
 
