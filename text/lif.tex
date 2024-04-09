@@ -340,18 +340,19 @@ jak ukazuje obrázek č.~\ref{fig:lif-rayleigh-profile}.
 	\label{fig:lif-saturation-full-example}
 \end{figure}
 
-Data v~této podobě tedy nejsou vhodná pro prostorově rozlišené
-určení saturace.
-Bylo prozkoumáno několik řešení, jak se s~tímto nedostatkem vypořádat.
-První možností bylo zohlednit pouze jednu sadu dat.
+Určení prostorově rozlišené saturace z~těchto dat se potýkalo s~obtížemi.
+Bylo nutno důkladně zohlednit prostorovou variabilitu intenzity.
 
 \begin{figure}[htp]
 	\centering
 	\input{../lif/results/saturation-full-profile}
-	\caption{Profil laserového svazku pro různé energie pulzu.
+	\caption{Profil laserového svazku pro různé energie pulzu,
+		integrovaný ve směru osy $\xpos$.
 		Červené křivky jsou naměřené profily,
 		modré křivky byly interpolovány z~naměřených.
-		Každá přísluší jednomu snímku.}
+		Každá interpolovaná křivka přísluší jednomu snímku kamery.
+		Je zřetelný posuv maxima intenzity k~nižším hodnotám $\ypos$
+		s~rostoucí energií.}
 	\label{fig:lif-saturation-full-profile}
 \end{figure}
 
