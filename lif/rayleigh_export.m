@@ -42,7 +42,7 @@ gp.ylabel('intenzita LIF $\\lif\\,[\\si\\arbunit]$');
 gp.export("results/rayleigh-profile.tex", "cairolatex", "pdf size 12cm,8cm");
 ## small version
 gp.exec("\n\
-	set key horizontal tmargin samplen 1 offset 0,1 \n\
+	set key tmargin horizontal samplen 1 width 0 \n\
 	set margins at screen 0.25, screen 1, screen 0.2, screen 0.75 \n\
 ");
 gp.export("results/rayleigh-profile-s.tex", "cairolatex", "pdf size 6cm,7cm");
@@ -66,8 +66,7 @@ gp.export("results/rayleigh-profile-norm.tex",...
 ## small version
 gp.ylabel('norm. int. $[\\si{\\per\\pixel}]$');
 gp.exec("\n\
-	set key outside top \n\
-	set key horizontal tmargin samplen 1 offset 0,1 \n\
+	set key tmargin horizontal samplen 1 width 0 \n\
 	set margins at screen 0.25, screen 1, screen 0.2, screen 0.75 \n\
 ");
 gp.export("results/rayleigh-profile-norm-s.tex",...
