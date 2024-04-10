@@ -20,7 +20,7 @@ for x = 1:5
 		"w l ls %d t '$\\SI{%.1f}{\\micro\\joule}$'", k, x.Em*1e6));
 	k++;
 end
-gp.export("results/excitprof-nofilter.tex", "cairolatex", "size 12cm,8cm");
+gp.export("results/excitprof-nofilter.tex", "cairolatex", "pdf size 12cm,8cm");
 gp.export("results/excitprof-nofilter-lg.tex", "cairolatex", "size 10cm,8cm");
 clear gp k;
 
@@ -41,7 +41,7 @@ for x = W(6:10)
 		"w l ls %d t '$\\SI{%.2f}{\\micro\\joule}$'", k, x.Em*1e6));
 	k++;
 end
-gp.export("results/excitprof-filter.tex", "cairolatex", "size 12cm,8cm");
+gp.export("results/excitprof-filter.tex", "cairolatex", "pdf size 12cm,8cm");
 gp.export("results/excitprof-filter-lg.tex", "cairolatex", "size 10cm,8cm");
 clear gp k;
 
