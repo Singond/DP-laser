@@ -11,7 +11,6 @@ disp("Exporting results/saturation-x-params.tex...");
 gp = gnuplotter;
 gp.load("../gnuplot/style.gp");
 gp.load("../gnuplot/style-cairo.gp");
-f_alpha = figure("name", "Proportionality parameter");
 ascale = 1e-9;
 gp.title('Proportionality parameter \alpha');
 gp.xlabel("horizontal position x [px]");
