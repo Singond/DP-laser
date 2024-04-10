@@ -8,6 +8,6 @@ Dependencies
 Octave packages:
   - `miscellaneous`
   - `optim`
-  - `report:0.7.0` (<https://github.com/Singond/Octave-report>)
+  - `report:0.8.0` (<https://github.com/Singond/Octave-report>)
   - `singon-ext:0.4.1` (<https://github.com/Singond/Octave-extensions>)
-  - `singon-plasma:0.6.0` (<https://github.com/Singond/Octave-plasma>)
+  - `singon-plasma:0.7.1` (<https://github.com/Singond/Octave-plasma>)
