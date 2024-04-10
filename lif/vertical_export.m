@@ -13,6 +13,7 @@ gp = gnuplotter;
 gp.load("../gnuplot/style.gp");
 gp.load("../gnuplot/style-cairo.gp");
 
+p = cell;
 p{1} = gp.newplot();
 p{2} = gp.newplot();
 p{3} = gp.newplot();
