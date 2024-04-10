@@ -17,8 +17,21 @@ results/lifetime-regions.png: \
 lifetime_regions_export_img.m lifetime_regions.m
 	octave --norc $<
 
+results/saturation-full-example-index.tex: saturation_base_export.m
+	octave --norc $<
+
+results/saturation-full-params.tex results/saturation-full-paramsfits.tex \
+results/saturation-full-profile.tex: \
+saturation_full_export.m
+	octave --norc $<
+
 results/timeev-%.png: timeev_export_png.m lifetime_main.m
 	octave --norc $<
 
 results/vertical-%.tex: vertical_export.m vertical.m
+	octave --norc $<
+
+results/excitprof-filter.tex results/excitprof-nofilter.tex \
+results/excitprof-fit.tex: \
+wavelen_export.m
 	octave --norc $<
