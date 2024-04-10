@@ -2,8 +2,8 @@ tex_args := --pdflua --auxdir=tmp/
 
 all: thesis.pdf presentation-efish.pdf presentation-lif.pdf
 
-%.tex %.pdf: %.asy
-	asy $<
+img/%.tex img/%.pdf: img/%.asy
+	cd img && asy $*
 
 thesis.pdf: ../lif/results/excitprof-nofilter.tex
 thesis.pdf: ../lif/results/saturation-full-example-index.tex
