@@ -341,7 +341,24 @@ jak ukazuje obrázek č.~\ref{fig:lif-rayleigh-profile}.
 \end{figure}
 
 Určení prostorově rozlišené saturace z~těchto dat se potýkalo s~obtížemi.
-Bylo nutno důkladně zohlednit prostorovou variabilitu intenzity.
+Bylo nutno důkladně zohlednit prostorovou variabilitu intenzity svazku.
+Z~měření Rayleighova rozptylu svazku ve vzduchu byly k~dispozici
+profily svazku naměřené pro čtyři různé celkové energie pulzu,
+tyto profily jsou na obrázku \ref{fig:lif-rayleigh-profile} vlevo.
+
+Profily byly pro odstranění šumu vyhlazeny klouzavým průměrem
+a~odečtením pozadí.
+Pak byly normovány na hodnotu 1 podle vztahu:
+\begin{equation}
+	\enlaserynorm = \frac{\enlasery}{\int \enlasery \mathrm{d}y},
+\end{equation}
+což je vidět na obrázku \ref{fig:lif-rayleigh-profile} vpravo.
+Normované profily pro mezilehlé energie byly získány lineární interpolací
+mezi naměřenými profily (lineární interpolace zachovává normovanost).
+Profil intenzity v~každém snímku byl spočten vynásobením příslušného
+normovaného profilu celkovou energií pulzu.
+Výsledný průběh intenzit je na obrázku
+č.~\ref{fig:lif-saturation-full-profile}.
 
 \begin{figure}[htp]
 	\centering
@@ -356,6 +373,28 @@ Bylo nutno důkladně zohlednit prostorovou variabilitu intenzity.
 	\label{fig:lif-saturation-full-profile}
 \end{figure}
 
+Závislost intenzity fluorescence $\lif$ na energii laseru $\enlaser$
+byla aproximována funkcí \eqref{eq:lif-saturation} pomocí metody
+nejmenších čtverců, čímž byly získány parametry $\lifslope$ a~$\lifsat$.
+Toto vyhodnocení bylo provedeno zvlášť pro každý pixel snímku,
+přičemž každý snímek byl za účelem potlačení šumu vyhlazen klouzavým
+průměrem ve čtverci o~rozměru \num{5}\times\SI{5}\pixel.
+
+Spočtené hodnoty fluorescenčního zesílení $\lifslope$ a~saturačního
+parametru $\lifsat$ jsou na obrázku~\ref{fig:lif-saturation-full-params}
+spolu s~ukázkou aproximovaných průběhů.
+Je vidět, že parametr $\lifslope$ je soustředěn do centrální oblasti
+nad atomizátorem, zatímco jinde jsou jeho hodnoty velmi nízké.
+Za povšimnutí stojí, že směrem vzhůru roste, navzdory předpokladu,
+že bude výraznější v~nižší části plamene.
+
+Saturační parametr $\lifsat$ vykazuje při aproximaci větší nestabilitu
+a~jeho hodnoty i~rozložení výrazně závisely na provedené korekci profilu
+intenzity svazku $\enlasery$.
+Na obrázku je jeho hodnota v~oblasti plamene zhruba homogenní:
+Je sice patrn nárůst s~rostoucí výškou, stejně jako u~parametru $\lifslope$,
+ale ve vodorovném směru se jeví stabilní.
+
 \begin{figure}
 	\centering
 	\small
@@ -367,7 +406,23 @@ Bylo nutno důkladně zohlednit prostorovou variabilitu intenzity.
 		průměrováním ve čtverci o~rozměrech \num{5}\times\SI{5}{\pixel}.
 		Je patrno, že saturační parametr $\lifsat$ je
 		v~oblasti plamene ve vodorovném směru přibližně homogenní.}
-	\label{fig:saturation-full-params}
+	\label{fig:lif-saturation-full-params}
+\end{figure}
+
+Alternativou k~tomuto postupu je svislé rozlišení vůbec neuvažovat
+a~obě veličiny, to jest intenzitu fluorescence $\lif$ i~intenzitu
+laseru $\enlasery$, integrovat ve směry $\ypos$.
+(V~případě intenzity laserového svazku to znamená vzít přímo
+naměřenou hodnoty energie pulzu $\enlaser$.)
+Obdobný postup, jako byl popsán výše, pak vede na vodorovně rozlišené
+parametry $\lifslope$ a~$\lifsat$ na obrázku~\ref{fig:lif-saturation-x-params}.
+
+\begin{figure}[htp]
+	\centering
+	\input{../lif/results/saturation-x-params}
+	\caption{Parametry $\lifslope$ a~$\lifsat$ spočtené z~dat integrovaných
+		ve směru svislé osy $\ypos$.}
+	\label{fig:lif-saturation-x-params}
 \end{figure}
 
 \subsection{Doba života}
