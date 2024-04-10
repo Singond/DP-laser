@@ -2,6 +2,7 @@ archive
 materials
 octave-local/
 results/
+*.bak
 *.log
 *.pdf
 *~
@@ -12,6 +13,7 @@ results/
 octave-workspace
 
 *.geany
+*.kate-swp
 *.kdev4
 *.kilepr
 .project
