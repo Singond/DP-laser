@@ -30,6 +30,32 @@ pro fluorescenci v~plazmatu.
 \section{Uspořádání experimentu}
 \label{sec:lif-setup}
 
+\subsection{Chemická část}
+\label{sec:lif-setup-chemistry}
+Za zkoumaný vzorek byl použit roztok \SI{10}{\ppb}
+(tedy \SI{10}{\micro\gram\per\litre})
+selenu v kyselině chlorovodíkové \ce{HCl} o koncentraci \SI{1}{\mol\per\litre}.
+Směs proudila do generátoru hydridů, kde byl selen redukován
+\num{0.5}\si{\percent} roztokem borohydridu sodného (\ce{NaBH4})
+v~\num{0.4}\si{\percent} hydroxidu draselném (\ce{KOH}).
+Redukovaný selen následně reagoval s~atomárním vodíkem za vzniku
+selanu (tj.~hydridu selenu, \ce{H2Se}).
+
+Selan je těkavá látka, která má za standardních podmínek podobu
+bezbarvého plynu.
+Ten byl veden do atomizátoru spolu s~nosným plynem argonem
+o~průtoku \SI{775}{\sccm}.
+Dalším kanálem atomizátoru byl přiváděn vodík o~průtoku \SI{300}{\sccm}.
+Nad ústím atomizátoru, kde se vodík mísil s~okolním vzduchem,
+hořel vodíkový plamen, v~němž docházelo ve dvou krocích
+k~atomizaci selenu rozpadem selanové molekuly \ce{H2Se}:
+\begin{align*}
+	\ce{
+		H + H2Se &-> H2 + HSe \\
+		H + HSe &-> H2 + Se
+	}
+\end{align*}
+
 \begin{figure}
 	\centering
 	\begin{tikzpicture}[scale=0.5]
@@ -37,11 +63,6 @@ pro fluorescenci v~plazmatu.
 	\end{tikzpicture}
 	\caption{Excitační schéma selenu použité pro LIF.}
 \end{figure}
-
-Měřený vzorek je 10 ppb (tedy \SI{10}{\micro\gram\per\litre})
-selenu v roztoku kyseliny chlorovodíkové
-o koncentraci \SI{1}{\mol\per\litre}.
-Selen proudí spolu s argonem a vodíkem do atomizátoru.
 
 \subsection{Optická část}
 Volba optické dráhy se odvíjela od dvou základních požadavků:
