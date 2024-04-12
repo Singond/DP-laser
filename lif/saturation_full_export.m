@@ -103,7 +103,7 @@ for s = saturation(1:2);
 	gp.clearplot();
 
 	if (k == 1)
-		gp.exec('set title "saturační parametr $\\lifsat\\,[\\lifsatunit]$"');
+		gp.exec('set title "saturační parametr $\\lifsat\\,[\\si\\lifsatunit]$"');
 	else
 		gp.xlabel('$\\xpos\\,[\\si\\pixel]$');
 	end
