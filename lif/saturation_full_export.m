@@ -11,6 +11,7 @@ if (!exist("saturation", "var") || !isfield(saturation, "lifsm"))
 		saturation_full;
 	end
 end
+rayleigh;
 
 x = saturation(3);
 
