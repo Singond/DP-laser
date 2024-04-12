@@ -14,7 +14,7 @@ gp.load("../gnuplot/style-cairo.gp");
 ascale = 1e-9;
 bscale = 1e-6;
 gp.xlabel('poloha $\\ypos\\,[\\si\\pixel]$');
-gp.ylabel('fluorescenční zesílení $\\lifslope\\,[10^9]$');
+gp.ylabel('intenzitní parametr $\\lifslope\\,[10^9]$');
 gp.exec("\n\
 	set ytics in nomirror \n\
 	set y2tics in nomirror \n\
