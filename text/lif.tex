@@ -475,6 +475,18 @@ ale ve vodorovném směru se jeví stabilní.
 	\label{fig:lif-saturation-full-params}
 \end{figure}
 
+Je nutno zdůraznit silnou závislost vypočteného saturačního parametru
+na předpokládaném profilu laserového svazku.
+Obrázek \ref{fig:lif-saturation-full-params-bad} ukazuje extrémní případ,
+kdy byla k~vyhodnocení použita vždy jen jedna sada měření ze dvou.
+První sada používala vyšší energie pulzu a~intenzita svazku byla soustředěna
+více nahoře, druhá sada se pohybovala v~nízkých energiích
+(zhruba do \SI{2}{\micro\joule}) a~největší intenzita svazku se nacházela níže.
+Jak je z~obrázků patrno, výsledky se zásadně liší.
+U~parametru $\lifslope$ je zachována vodorovná homogenita,
+ale výškové rozdělení je zcela jiné.
+U~saturačního parametru $\lifsat$ jakákoli rovnoměrnost zcela vymizela.
+
 \begin{figure}[htp]
 	\centering
 	\small
@@ -492,7 +504,7 @@ ale ve vodorovném směru se jeví stabilní.
 	\label{fig:lif-saturation-full-params-bad}
 \end{figure}
 
-Alternativou k~tomuto postupu je svislé rozlišení vůbec neuvažovat
+Alternativou k~výše uvedenému postupu je svislé rozlišení vůbec neuvažovat
 a~obě veličiny, to jest intenzitu fluorescence $\lif$ i~intenzitu
 laseru $\enlasery$, integrovat ve směry $\ypos$.
 (V~případě intenzity laserového svazku to znamená vzít přímo
