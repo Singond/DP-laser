@@ -75,6 +75,49 @@ gp.data([0 x.xpos; x.ypos x.fite.b * bscale]);
 gp.exec("\n\
 	unset multiplot \n\
 	unset output \n\
+	set terminal cairolatex pdf colortext size 12.5cm,7cm \n\
+	set output 'results/saturation-full-params-bad.tex' \n\
+	unset margins \n\
+	set multiplot layout 2,2 margins 0.1, 0.92, 0.2, 0.9 spacing 0.07 \n\
+	unset cbrange \n\
+	set xtics 20 \n\
+	set ytics 20 \n\
+	set cbtics auto \n\
+");
+k = 1;
+for s = saturation(1:2);
+	if (k == 1)
+		gp.exec('set title "intenzitní parametr $\\lifslope\\,[\\lifslopeunit]$"');
+		gp.exec("unset xtics");
+		gp.exec("unset xlabel");
+	else
+		gp.exec("unset title");
+		gp.exec("set xtics out nomirror");
+		gp.xlabel('$\\xpos\\,[\\si\\pixel]$');
+	end
+	gp.exec("set ytics out nomirror");
+	gp.exec('set ylabel "$\\ypos\\,[\\si\\pixel]$"');
+	gp.exec("set cbrange [0:5]");
+	gp.plotmatrix(s.xpos, s.ypos, s.fite.a * ascale, "with image");
+	gp.doplot();
+	gp.clearplot();
+
+	if (k == 1)
+		gp.exec('set title "saturační parametr $\\lifsat\\,[\\lifsatunit]$"');
+	else
+		gp.xlabel('$\\xpos\\,[\\si\\pixel]$');
+	end
+	gp.exec("unset ytics");
+	gp.exec("unset ylabel");
+	gp.exec("set cbrange [0:50]");
+	gp.plotmatrix(s.xpos, s.ypos, s.fite.b * bscale, "with image");
+	gp.doplot();
+	gp.clearplot();
+	k++;
+end
+gp.exec("\n\
+	unset multiplot \n\
+	unset output \n\
 	reset \n\
 ");
 

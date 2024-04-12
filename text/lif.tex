@@ -9,6 +9,8 @@
 \providecommand\lifslopet{\lifslope_\text{t}}
 \providecommand\lifsatx{\lifsat_\text{x}}
 \providecommand\lifsatt{\lifsat_\text{t}}
+\providecommand\lifslopeunit{10^9}
+\providecommand\lifsatunit{\si{\per\micro\joule}}
 
 \section{Úvod}
 \label{sec:lif-intro}
@@ -471,6 +473,23 @@ ale ve vodorovném směru se jeví stabilní.
 		Je patrno, že saturační parametr $\lifsat$ je
 		v~oblasti plamene ve vodorovném směru přibližně homogenní.}
 	\label{fig:lif-saturation-full-params}
+\end{figure}
+
+\begin{figure}[htp]
+	\centering
+	\small
+	\input{../lif/results/saturation-full-params-bad}
+	\caption{Ukázka nevhodného vyhodnocení parametrů $\lifslope$ a~$\lifsat$
+		jako důkaz toho, že výsledky jsou velice citlivé na korekci intenzit.
+		Nahoře jsou parametry spočítané z~datové sady vyšších energií,
+		dole ze~sady nižších energií, kde je intenzita laseru soustředěna níže.
+		Je vidět, že uvažovaný profil laserového svazku má značný vliv
+		na výsledky.
+		Zatímco parametr $\lifslope$ zůstává alespoň ve vodorovném směru
+		homogenní, o~parametru $\lifsat$ nelze nic takového říci.
+		Posun maxima intenzity směrem vzhůru navíc silně nadhodnocuje
+		horní část snímané oblasti oproti dolní (viz grafy nahoře).}
+	\label{fig:saturation-full-params-bad}
 \end{figure}
 
 Alternativou k~tomuto postupu je svislé rozlišení vůbec neuvažovat
