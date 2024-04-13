@@ -36,7 +36,7 @@ gp.plot(sprintf("%g", bt),...
 gp.exec(horzcat("set label '$\\lifsatt = \\SI{%.3f}{\\per\\micro\\joule}$' ",...
 	"tc ls 2 at graph 0.21, second %g center offset 0,0.6"),...
 	bt, bt);
-k = 1;
+k = 3;
 for xp = points
 	gp.exec("set arrow from first %g, graph 0 to first %g, graph 1 ls %d nohead",
 		xp, xp, k);
@@ -59,7 +59,7 @@ gp.exec("\n\
 	@padding \n\
 	set key top left Left reverse samplen 2 \n\
 ");
-k = 1;
+k = 3;
 for xp = points
 	xi = interp1(x.xpos, 1:length(x.xpos), xp, "nearest");
 	[Lmin, Lmax] = bounds(x.L);
