@@ -101,4 +101,4 @@ caliper.pxpermm2 = p(1);
 printf("image scale (offset):  %f px/mm\n", caliper.pxpermm2);
 printf("image scale offset:    %f px\n", caliper.dfit2(2));
 
-pxpermm = caliper.pxpermm1;
+location.pxpermm = caliper.pxpermm1;

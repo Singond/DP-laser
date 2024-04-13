@@ -15,3 +15,5 @@ x.center = interp1(1:length(x.xpos), x.xpos, mean(x.minidx(:)));
 printf("center position:       %f px\n", x.center);
 
 positioning = x;
+location.xcenter = positioning.center;
+location.ycenter = 95;
