@@ -18,10 +18,14 @@ function x = crop_iccd(x, rows, cols, varargin)
 
 	if (args.keepOriginal)
 		x.img_orig = x.img;
-		x.dark_orig = x.dark;
+		if (isfield(x, "dark"))
+			x.dark_orig = x.dark;
+		end
 	end
 	x.img  = x.img (rows(1):rows(2), cols(1):cols(2), :);
-	x.dark = x.dark(rows(1):rows(2), cols(1):cols(2), :);
+	if (isfield(x, "dark"))
+		x.dark = x.dark(rows(1):rows(2), cols(1):cols(2), :);
+	end
 	x.xpos = x.xpos(cols(1):cols(2));
 	x.ypos = x.ypos(rows(1):rows(2));
 end
