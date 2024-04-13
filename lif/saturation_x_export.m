@@ -39,7 +39,10 @@ gp.exec(horzcat("set label '$\\lifsatt = \\SI{%.3f}{\\per\\micro\\joule}$' ",...
 k = 1;
 for xp = points
 	gp.exec("set arrow from first %g, graph 0 to first %g, graph 1 ls %d nohead",
-		xp, xp, k++);
+		xp, xp, k);
+	gp.exec("set label '%d' right at first %g, graph 0.95 tc ls %d rotate by 90 offset -1,0",
+		xp, xp, k);
+	k++;
 end
 gp.export("results/saturation-x-params.tex",...
 	"cairolatex", "pdf colourtext size 12cm,8cm");
