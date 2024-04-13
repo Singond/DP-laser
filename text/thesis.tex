@@ -5,6 +5,8 @@
 
 \usepackage{amsmath}
 \usepackage{unicode-math}  % Fix some weird behaviour (like space before beta)
+\usepackage{physics}
+\usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \sisetup{
 	locale               = DE,
@@ -16,6 +18,10 @@
 	range-phrase         = \text{ až },
 	range-units          = single,
 }
+% Silence warning about conflict of siunitx and physics
+\ExplSyntaxOn
+\msg_redirect_name:nnn { siunitx } { physics-pkg } { none }
+\ExplSyntaxOff
 
 \usepackage{color}
 \usepackage{graphicx}
