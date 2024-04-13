@@ -5,5 +5,5 @@ end
 if (!isfolder("results"))
 	mkdir("results");
 end
-dlmwrite("results/lifetime.csv", x.tau);
-save -binary results/lifetime.dat lifetime
+dlmwrite("results/lifetime.csv", lifetime.tau);
+save -binary results/lifetime.bin lifetime
