@@ -65,7 +65,7 @@ gp.exec("\n\
 	set multiplot layout 2,1 margins 0.12, 0.98, 0.10, 0.98 spacing 0.1 \n\
 	set xrange [4.5:20.5] \n\
 	set yrange [-5:105] \n\
-	set ylabel '$\\lif\\,[\\si\\arbunit]$' \n\
+	set ylabel 'intenzita flurescence $\\lif\\,[\\si\\arbunit]$' \n\
 	set key top right Left reverse width 1 height 1 samplen 1 \n\
 ");
 p1 = gp.newplot;
@@ -87,7 +87,7 @@ gp.doplot(p1);
 gp.exec("\n\
 	set logscale y \n\
 	set yrange [5e-3:1.4e2] \n\
-	set xlabel '$\\tim\\,[\\si{\\nano\\second}]$' \n\
+	set xlabel 'čas $\\tim\\,[\\si{\\nano\\second}]$' \n\
 	unset key \n\
 ");
 gp.doplot(p1);
