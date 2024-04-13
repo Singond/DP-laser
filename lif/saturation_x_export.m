@@ -20,12 +20,12 @@ gp = gnuplotter;
 gp.load("../gnuplot/style.gp");
 gp.load("../gnuplot/style-cairo.gp");
 gp.xlabel('poloha $\\xpos\\,[\\si\\pixel]$');
-gp.ylabel('intenzitní parametr $\\lifslope\\,[10^9]$');
 gp.exec("\n\
 	set rmargin 8 \n\
 	set ytics in nomirror \n\
+	set ylabel 'intenzitní parametr $\\lifslope\\,[10^9]$' tc ls 1 \n\
 	set y2tics in nomirror \n\
-	set y2label 'saturační parametr $\\lifsat\\,[\\si{\\per\\micro\\joule}]$' \n\
+	set y2label 'saturační parametr $\\lifsat\\,[\\si{\\per\\micro\\joule}]$' tc ls 2 \n\
 	set key top left Left reverse samplen 2 width 1 \n\
 ");
 gp.plot(x.xpos, x.fitex.a * ascale, "w p ps 0.4 t '$\\lifslopex$'");
