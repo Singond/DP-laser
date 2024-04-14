@@ -1,7 +1,5 @@
-pkg load singon-ext;
 pkg load singon-plasma;
 addpath ../octave;
-addpath octave;
 
 X = struct([]);
 x = load_iccd("data-2023-01-20/vyska.SPE");
@@ -54,21 +52,6 @@ x.control = [
 	3	33	40];
 X(end+1) = x;
 
-regions;
 X = arrayfun(@correct_iccd, X);
-X = arrayfun(@(x) img_intensity(x, {region.mask}), X);
 
-Xold = X;
-X = struct([]);
-for x = Xold
-	x.h = x.control(:,1);
-	n = 1:length(x.in);
-	edges = x.control(:,2:3) + [0 1];  # Include right bound
-	[~, idx] = histc(n, edges'(:));
-	x.inh = zeros(rows(edges), columns(x.in));
-	for k = 1:columns(x.in)
-		x.inh(:,k) = accumarray(idx', x.in(:,k), [], @mean)(1:2:end);
-	end
-	X(end+1) = x;
-endfor
-clear Xold
+vertical = X;

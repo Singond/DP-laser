@@ -1,6 +1,6 @@
 pkg load report;
 
-vertical;
+vertical_regions;
 
 leg = {
 	'$\SI{700}{\sccm}\ \text{\ce{Ar}} + \SI{300}{\sccm}\ \text{\ce{H_2}}$'
@@ -29,8 +29,8 @@ gp.exec("\n\
 	set key below right samplen 2 height 2 \n\
 ");
 
-for k = 1:length(X)
-	x = X(k);
+for k = 1:length(verticalr)
+	x = verticalr(k);
 	for l = 1:columns(x.in)
 		p{l}.plot(x.h, x.inh(:,l), sprintf(
 			"w p t '%s'", leg{k}));
