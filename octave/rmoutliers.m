@@ -10,6 +10,6 @@ function A = rmoutliers(A, factor=0.05, windowsize=[3 3])
 	window = ones(windowsize);
 	window(ceil(end/2),ceil(end/2)) = 0;
 	window = window ./ sum(window(:));
-	Amean = conv2(Aclip, window, "same");
+	Amean = convn(Aclip, window, "same");
 	A(o) = Amean(o);
 end

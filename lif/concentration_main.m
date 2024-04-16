@@ -40,5 +40,19 @@ conc.Mr = conc.rayleigh_reference.inm(60:100,50:150);
 conc.kappa = 1;
 printf("spectral overlap:      %f\n", conc.kappa);
 
-conc.n = rmoutliers(numberdensity(conc), 0.5, 3);
+## Calculate concentration (density)
+conc.n = numberdensity(conc, "all");
+## Filter out negative and NAN values
+conc.nf = conc.n;
+conc.nf(conc.nf < 0) = 0;
+conc.nf(isnan(conc.nf)) = 0;
+## Remove outliers
+conc.nf = rmoutliers(conc.nf, 0.5, 3);
+
+## Average concentration from all images
+wt = reshape(conc.E, 1, 1, []);
+conc.nmw = sum(conc.nf .* wt ./ sum(wt(:)), 3);
+conc.nma = mean(conc.nf, 3);
+conc.nm = conc.nmw;
+conc.n_std = std(conc.nf, 0, 3);
 

@@ -1,10 +1,20 @@
-function n = numberdensity(C)
+function n = numberdensity(C, frame="all")
 	global lightspeed;
 	global planck;
 
-	[~, imax] = max(C.E);
-	Mf = C.lif(:,:,imax);
-	Lf = C.E(imax);
+	if (ischar(frame) && strcmp(frame, "max"))
+		[~, frame] = max(C.E);
+	end
+
+	if (ischar(frame) && strcmp(frame, "all"))
+		Mf = C.lif;
+		Lf = reshape(C.E, 1, 1, []);
+	elseif (isnumeric(frame) && !isempty(frame))
+		Mf = C.lif(:,:,frame);
+		Lf = C.E(frame);
+	else
+		error("numberdensity: frame must be a number");
+	end
 
 	## Line properties
 	lifeff = C.cameraeff.at_wavelen(C.liflines.wl);

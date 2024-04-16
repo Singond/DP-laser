@@ -12,6 +12,7 @@
 \providecommand\lifslopeunit{10^9}
 \providecommand\lifsatunit{\per\micro\joule}
 \providecommand\ndensse{n_\text{Se}}
+\providecommand\ndensseunc{\sigma_{\!n,\,\text{Se}}}
 
 \section{Úvod}
 \label{sec:lif-intro}
@@ -627,6 +628,16 @@ a~tím pádem přesnější proklady.
 \begin{figure}[htp]
 	\centering
 	\input{../lif/results/concentration-single}
-	\caption{Koncentrace atomů selenu určená z~jednoho snímku.}
+	\caption{Hustota atomů selenu určená ze snímku
+		s~maximální energií laserového pulzu $\enlaser$.}
 	\label{fig:lif-concentration-single}
+\end{figure}
+
+\begin{figure}[htp]
+	\centering
+	\input{../lif/results/concentration-mean}
+	\input{../lif/results/concentration-std}
+	\caption{Hustota atomů selenu jako průměr ze všech snímků
+		a~její nejistota spočtená jako směrodatná odchylka.}
+	\label{fig:lif-concentration-mean}
 \end{figure}

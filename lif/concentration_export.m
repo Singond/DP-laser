@@ -1,13 +1,10 @@
 pkg load report;
 addpath octave;
 
-if (!exist("conc", "var") || !isfield(conc, "n"))
-	concentration_main;
-end
+concentration_load;
 x = conc;
 
-maxn = quantile(x.n(:), 0.95);
-nscale = 10^(-floor(log10(maxn)));
+nscale = 1e-14;
 
 disp("Exporting results/concentration-single.tex...");
 gp = gnuplotter;
@@ -30,8 +27,28 @@ gp.exec("\n\
 gp.exec(...
 	'set title "hustota atomů selenu $\\ndensse\\,[10^{%d}\\,\\si{\\per\\metre\\cubed}]$"',...
 	-log10(nscale));
-gp.exec(sprintf("set cbrange [%g:%g]", 0, maxn * nscale));
-x.n(isnan(x.n)) = 0;
-gp.plotmatrix(x.xpos, x.ypos, x.n * nscale, "with image");
+[~, imax] = max(conc.E);
+n = x.nf(:,:,imax);
+gp.plotmatrix(x.xpos, x.ypos, n * nscale, "with image");
+gp.doplot();
+gp.clearplot();
+
+disp("Exporting results/concentration-mean.tex...");
+gp.exec("\n\
+	set output 'results/concentration-mean.tex' \n\
+");
+gp.plotmatrix(x.xpos, x.ypos, x.nm * nscale, "with image");
+gp.doplot();
+gp.clearplot();
+
+disp("Exporting results/concentration-std.tex...");
+gp.exec("\n\
+	unset cbrange \n\
+	set output 'results/concentration-std.tex' \n\
+");
+gp.exec(...
+	'set title "nejistota $\\ndensseunc\\,[10^{%d}\\,\\si{\\per\\metre\\cubed}]$"',...
+	-log10(nscale));
+gp.plotmatrix(x.xpos, x.ypos, x.n_std * nscale, "with image");
 gp.doplot();
 clear gp;
