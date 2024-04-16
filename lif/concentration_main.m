@@ -40,5 +40,5 @@ conc.Mr = conc.rayleigh_reference.inm(60:100,50:150);
 conc.kappa = 1;
 printf("spectral overlap:      %f\n", conc.kappa);
 
-conc.n = numberdensity(conc);
+conc.n = rmoutliers(numberdensity(conc), 0.5, 3);
 
