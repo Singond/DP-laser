@@ -42,13 +42,18 @@ unfill(beams, shift(filterpos) * reflect(N, S) * filterwedge);
 
 laser = laser + 2;
 
-pair dia1pos = (80,0);
+pair dia1pos = (50,0);
 beam(splitterpos -- dia1pos, laser);
 diaphragm(shift(dia1pos));
-label(minipage("\centering{svislá\\štěrbina}"), dia1pos + 10down, S);
+label(minipage("\centering{irisová\\clona}"), dia1pos + 10down, S);
+
+pair dia2pos = (100,0);
+beam(dia1pos -- dia2pos, laser);
+diaphragm(shift(dia2pos));
+label(minipage("\centering{(svislá\\štěrbina)}"), dia2pos + 10down, S);
 
 pair det2pos = (250,0);
-beam(dia1pos -- det2pos, laser);
+beam(dia2pos -- det2pos, laser);
 instr(shift(det2pos) * box((-20,-10), (20,10)));
 label("měřič", det2pos);
 
