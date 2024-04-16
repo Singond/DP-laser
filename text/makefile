@@ -5,6 +5,9 @@ all: thesis.pdf presentation-efish.pdf presentation-lif.pdf
 img/%.tex img/%.pdf: img/%.asy
 	cd img && asy $*
 
+img/%.tex img/%.pdf: img/%.gp
+	cd img && gnuplot -d $*.gp
+
 thesis.pdf: ../lif/results/excitprof-nofilter.tex
 thesis.pdf: ../lif/results/saturation-full-example-index.tex
 
