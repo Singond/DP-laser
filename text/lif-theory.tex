@@ -7,7 +7,7 @@
 		\small
 		\lifgrotrian
 	\end{tikzpicture}
-	\caption{Obecné schéma LIF.}
+	\caption{Obecné excitační schéma LIF.}
 \end{figure}
 
 \begin{figure}[htb]
@@ -19,3 +19,41 @@
 		Podle \cite{lif-oh}.}
 	\label{fig:lifth-setup}
 \end{figure}
+
+\section{Určení koncentrace částic}
+\label{sec:lifth-concentration}
+\providecommand\vol{V}
+\providecommand\solidangle{\Omega}
+\providecommand\sensabs{D_\text{a}}
+\providecommand\lifsens{D_\text{F}}
+\providecommand\rayleighsens{D_\text{R}}
+\providecommand\lifsignal{M_\text{F}}
+\providecommand\rayleighsignal{M_\text{R}}
+\providecommand\lifeff{\qeff_\text{F}}
+\providecommand\rayleigheff{\qeff_\text{R}}
+\providecommand\rayleighdxsect{\dv{\sigma_\text{R}}{\solidangle}}
+\providecommand\enlaserrayleigh{L_\text{R}}
+\providecommand\beamprofile{s}
+
+V~lineárním režimu:
+\begin{equation}
+	\lifsignal = \einsteina\,\lifetime
+	\frac{\specoverlap \einsteinb}{\lightspeed}
+	\ndens \enlaser \lifeff
+	\iiint_\vol \sensabs \frac{\solidangle}{4\pi} \beamprofile \dd{\vol}
+\end{equation}
+
+\begin{equation}
+	\rayleighsignal = \rayleighdxsect \frac{p}{kT}
+	\frac{\enlaserrayleigh}{\planck\freq} \rayleigheff
+	\iiint_\vol \sensabs \solidangle \beamprofile \dd{\vol}
+\end{equation}
+
+\begin{equation}
+	\label{eq:label}
+	\ndens = \frac{\lifsignal}{\rayleighsignal}
+	\frac{\enlaserrayleigh}{\enlaser}\frac{\rayleigheff}{\lifeff}
+	\frac{1}{A_{32}\,\tau}
+	\frac{\lightspeed}{\planck\freq\specoverlap B_{13}}
+	\, 4\pi \rayleighdxsect \frac{p}{kT}
+\end{equation}
