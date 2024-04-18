@@ -641,9 +641,7 @@ a~tím pádem přesnější proklady.
 	}
 	\pgfplotstabletypeset[
 		outfile = log.tex,
-		header = false,
 		col sep = tab,
-		skip first n = 1,
 		every head row/.style = {
 			before row = \toprule,
 			after row = {
@@ -652,8 +650,8 @@ a~tím pádem přesnější proklady.
 		},
 		every last row/.style = {after row = \bottomrule},
 		string type,
-		columns = {0, 1, 2, 3},
-		columns/0/.style = {
+		columns = {wl[nm], A32, B13, T, eff},
+		columns/{wl[nm]}/.style = {
 			column name = $\wavelen\ [\si{\nano\metre}]$,
 			column type = {S[
 				table-format = 3.3,
@@ -661,7 +659,7 @@ a~tím pádem přesnější proklady.
 				round-precision = 3
 			]},
 		},
-		columns/1/.style = {
+		columns/A32/.style = {
 			column name = $\einsteina\ [\si{\per\second}]$,
 			column type = {S[
 				exponent-mode = scientific,
@@ -670,7 +668,7 @@ a~tím pádem přesnější proklady.
 				round-precision = 2,
 			]},
 		},
-		columns/2/.style = {
+		columns/B13/.style = {
 			column name = $\einsteinb$,
 			column type = {S[
 				exponent-mode = scientific,
@@ -679,7 +677,15 @@ a~tím pádem přesnější proklady.
 				round-precision = 2,
 			]},
 		},
-		columns/3/.style = {
+		columns/T/.style = {
+			column name = $\transmittance$,
+			column type = {S[
+				table-format = 1.3,
+				round-mode = places,
+				round-precision = 3,
+			]},
+		},
+		columns/eff/.style = {
 			column name = $\qeff$,
 			column type = {S[
 				table-format = 1.3,
