@@ -1,4 +1,4 @@
-function n = numberdensity(C, frame="all")
+function [n, s] = numberdensity(C, frame="all")
 	global lightspeed;
 	global planck;
 
@@ -16,18 +16,16 @@ function n = numberdensity(C, frame="all")
 		error("numberdensity: frame must be a number");
 	end
 
-	## Line properties
-	lifeff = C.cameraeff.at_wavelen(C.liflines.wl);
 	lineprops = sum(C.liflines.wl .* C.liflines.A32...
-		.* C.liflines.B13 .* lifeff);
+		.* C.liflines.B13 .* C.liflines.eff .* C.liflines.T);
 
-	photoncount = C.Lr * C.rayleigh_wl / (planck * lightspeed);
-	lifrelative = Mf .* C.beta...
+	s.photoncount = C.Lr * C.rayleigh_wl / (planck * lightspeed);
+	s.lifrelative = Mf .* C.beta...
 		./ (2 * (1 - log(1 + C.beta .* Lf) ./ C.beta .* Lf));
 
 	n = 4 * pi * C.rayleigh_eff...
 		.* (C.densair ./ C.Mr)...
-		.* photoncount .* C.rayleigh_dxsect...
+		.* s.photoncount .* C.rayleigh_dxsect...
 		.* (lightspeed / (C.kappa * lineprops))...
-		.* lifrelative ./ C.tau;
+		.* s.lifrelative ./ C.tau;
 end

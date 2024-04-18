@@ -24,9 +24,25 @@ conc.cameraeff.wl = data(:,1);
 conc.cameraeff.eff = data(:,2);
 conc.cameraeff.at_wavelen = @(wl)...
 	interp1(conc.cameraeff.wl, conc.cameraeff.eff, wl, "extrap");
+
+for k = 1:2
+	data = dlmread(sprintf("data-common/sklo%d_filtrSe.dat", k), [], 16, 0);
+	conc.camerafilter(k).wl = data(:,1);
+	conc.camerafilter(k).T = data(:,2);
+	conc.camerafilter(k).weight = data(:,3);
+	conc.camerafilter(k).at_wavelen = @(wl)...
+		interp1(conc.camerafilter(k).wl, conc.camerafilter(k).T, wl, "extrap");
+end
 clear data;
 
 conc.liflines = liflines;
+conc.liflines.eff = conc.cameraeff.at_wavelen(conc.liflines.wl);
+T = 1;
+for cfilter = conc.camerafilter
+	T = T .* cfilter.at_wavelen(conc.liflines.wl);
+end
+conc.liflines.T = T;
+clear T;
 
 conc.rayleigh_wl = 196.032;
 conc.rayleigh_eff = conc.cameraeff.at_wavelen(conc.rayleigh_wl);
