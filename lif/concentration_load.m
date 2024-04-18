@@ -1,3 +1,5 @@
+addpath octave;
+
 if (!exist("conc", "var"))
 	if (isfile("results/concentration.bin"))
 		load results/concentration.bin
