@@ -1,5 +1,6 @@
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{bending}
+\usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{positioning}
 
 \tikzset{
@@ -7,6 +8,11 @@
 	transition/.style = {
 		thick,
 		arrows = {-Latex},
+	},
+	radiation/.style = {
+		arrows = {-Latex},
+		decorate,
+		decoration = {snake, post=lineto, post length=8pt},
 	}
 }
 
@@ -47,8 +53,8 @@
 \newcommand\lifsat{\beta}
 \newcommand\specoverlap{\kappa}
 \newcommand\qeff{\eta}
-\newcommand\einsteina{A_{32}}
-\newcommand\einsteinb{B_{13}}
+\newcommand\einsteina[2]{A_{#1#2}}
+\newcommand\einsteinb[2]{B_{#1#2}}
 
 % Typography
 \newcommand\EFISH{E-FISH}
@@ -72,19 +78,22 @@
 		-- node [sloped, above] {$\SI{826.3}{\nano\metre}$} (2,6);
 }
 
-\newcommand\lifgrotrian{
-	\draw [level] (4,0) -- (6,0)
-		node [right] {$1$};
-	\draw [level] (4,10) -- (6,10)
-		node [right] {$3$};
-	\draw [level] (3,6) -- (1,6)
-		node [left] {$2$};
+\newcommand\liflevels{
+	\draw [level] (0,0)  node [left] {$1$} -- (10,0);
+	\draw [level] (0,10) node [left] {$3$} -- (10,10);
+	\draw [level] (8,6) -- (14,6) node [right] {$2$};
 
-	\draw [transition] (5,0) -- (5,10);
-	\path (5,0)
-		-- node [sloped, below] {laserová excitace} (5,10);
-	\draw [transition] (5,10)
-		-- node [sloped, above] {LIF} (2,6);
+	\draw [radiation] (-4,4) -- node [sloped, above] {laser} (0,1);
+	\draw [transition] (1,0) -- node [left] {$\einsteinb13 I$} (1,10);
+	\draw [transition] (2,10) -- node [right] {$\einsteinb31 I$} (2,0);
+	\draw [transition] (5,10) -- node [right] {$\einsteina31 + Q_{31}$} (5,0);
+	\draw [transition] (9,10) -- node [right] {$\einsteina32 + Q_{32}$} (11,6);
+	\draw [transition] (11,6) -- node [right] {$\einsteina21 + Q_{21}$} (9,0);
+	\draw [radiation] (14,8) -- node [sloped, above] {LIF} (18,9);
+}
+
+\newcommand\lifgrotrian{
+	\liflevels
 }
 
 \newcommand\seleniumlifgrotrian{

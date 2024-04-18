@@ -1,5 +1,37 @@
 \chapter[LIF]{Laserem indukovaná fluorescence}
 \label{sec:lifth}
+Počátky laserem indukované fluorescence (LIF) sahají do roku 1968,
+kdy Richard Zare pomocí \num{632.8}\si{\nano\metre} čáry helium-neonového
+laseru analyzoval částice v~draslíkových výparech.
+\autocite{lif-original}
+Od té doby se s~úspěchem používá ke studiu průhledných médií,
+jako jsou plameny nebo plazma.
+Ve fyzice plazmatu hraje klíčovou roli při detekci reaktivních částic.
+% TODO: \autocite{dvorak1}
+
+Metoda v~sobě spojuje prvky absorpční a~emisní spektroskopie.
+Je sice obecně složitejší a~vyžaduje rozsáhlejší a~dražší přístrojové vybavení
+než obě tyto metody, ale na oplátku poskytuje několik zásadních výhod.
+Mezi nejdůležitější patří nízký detekční limit
+a~schopnost detekce nezářivých částic nebo částic s~krátkou dobou života.
+Velmi užitečné je také vysoké prostorové rozlišení metody:
+Pokud je laserový svazek zaostřen do úzkého profilu a~pozorován z~boku,
+je možné získat signál rozlišený ve všech třech prostorových rozměrech.
+Při použití krátkopulzního laseru navíc umožňuje výborné časové rozlišení
+v~řádu nanosekund až femtosekund.
+\autocite{lif-pb}
+
+\section{Princip}
+Základní myšlenka metody je pozorování fluorescenčního záření vznikajícího
+při deexcitaci zkoumaných částic ze stavu vybuzeného absorpcí laserového
+světla.
+Obecné schéma nejjednodušší varianty je na obrázku \ref{fig:lifth-levels}.
+Atomy či jiné částice jsou dopadem laseru excitovány ze~základní hladiny~1
+do excitovaného stavu~3.
+Tento stav je depopulován jednak samovolnou emisí zpět do základního stavu,
+jednak vynucenou emisí do základního stavu
+a~samovolnou emisí do stavu~2.
+Záření přechodu z~hladiny~3 na hladinu~2 je snímaný fluorescenční signál.
 
 \begin{figure}
 	\centering
@@ -7,7 +39,13 @@
 		\small
 		\lifgrotrian
 	\end{tikzpicture}
-	\caption{Obecné excitační schéma LIF.}
+	\caption{Obecné excitační schéma jednofotonové LIF.
+		Parametry $\einsteina{i}{j}$ a~$\einsteinb{i}{j}$ jsou Einsteinovy
+		koeficienty a~$I$ je intenzita záření.
+		Kromě samovolné emise jsou vyšší stavy depopulovány zhášením
+		(koeficienty $Q_{ij}$).
+		Podle \cite{lif-pb}.}
+	\label{fig:lifth-levels}
 \end{figure}
 
 \begin{figure}[htb]
@@ -32,28 +70,93 @@
 \providecommand\lifeff{\qeff_\text{F}}
 \providecommand\rayleigheff{\qeff_\text{R}}
 \providecommand\rayleighdxsect{\dv{\sigma_\text{R}}{\solidangle}}
+\providecommand\rayleighndens{\ndens_\text{R}}
 \providecommand\enlaserrayleigh{L_\text{R}}
 \providecommand\beamprofile{s}
+\providecommand\cameraangle{\solidangle}
+Velkou výhodou LIF je možnost určit absolutní koncentraci detekovaných částic,
+neboť intenzita fluorescence je funkcí této koncentrace.
+Závislost je v~limitě nízkých energií laseru lineární,
+s~rostoucí energií se pak objevují účinky saturace,
+které fluorescenci oslabují (viz dále v~oddíle \ref{sec:lifth-saturation}).
 
-V~lineárním režimu:
+Za předpokladu termodynamické rovnováhy rotačních stavů uvnitř každé
+vibrační hladiny lze intenzitu signálu $\lifsignal$ (pro jeden pozorovaný
+přechod) vyjádřit pomocí hustoty částic $\ndens$ v~základním stavu:
 \begin{equation}
-	\lifsignal = \einsteina\,\lifetime
-	\frac{\specoverlap \einsteinb}{\lightspeed}
+	\label{eq:lifth-lifsignal}
+	\lifsignal = \einsteina32\,\lifetime
+	\frac{\specoverlap \einsteinb13}{\lightspeed}
 	\ndens \enlaser \lifeff
-	\iiint_\vol \sensabs \frac{\solidangle}{4\pi} \beamprofile \dd{\vol}
+	\iiint_\vol \sensabs \frac{\solidangle}{4\pi} \beamprofile \dd{\vol}.
 \end{equation}
-
+Zde $\enlaser$ je energie laserového pulzu,
+$\lifetime$ je doba života zářivého stavu,
+$\cameraangle$ je prostorový úhel fluorescenčního záření dopadajícího
+na snímač,
+$\beamprofile$ je prostorový profil intenzity laseru normovaný na jedničku,
+$\einsteina{i}{j}$ a~$\einsteinb{i}{j}$ jsou Einsteinovy koeficienty,
+a~$\lightspeed$ je rychlost světla.
+Kromě toho vystupuje ve vztahu také takzvaný
+\emph{spektrální překryv} $\specoverlap$,
+definovaný pomocí profilu absorpční čáry $a$
+a~spektrálního složení laserového záření $l$ normovaných na jedničku:
 \begin{equation}
-	\rayleighsignal = \rayleighdxsect \frac{p}{kT}
-	\frac{\enlaserrayleigh}{\planck\freq} \rayleigheff
-	\iiint_\vol \sensabs \solidangle \beamprofile \dd{\vol}
+	\specoverlap = \int l(\freq)\,a(\freq) \dd{\freq}.
+\end{equation}
+Citlivost snímače na fluorescenční záření ($\lifsens$) byla rozepsána
+jako součin kvantové účinnosti snímače $\lifeff$ a~neznámé
+(nebo jen obtížně stanovitelné) konstanty $\sensabs$,
+protože relativní kvantová účinnost $\qeff$ pro různé vlnové délky
+je obvykle známa.
+
+Z~výše uvedeného plyne nutnost při měření zaznamenat nejen samotnou
+intenzitu fluorescence $\lifsignal$,
+ale také dobu života zářivého stavu $\lifetime$.
+Tu je možno změřit z~časového vývoje fluorescenčního záření,
+neboť doba života je definována jako parametr exponenciálního poklesu
+intenzity fluorescence:
+\begin{equation}
+	\lifsignal \propto \eu^{-\frac{\tim}{\lifetime}}.
 \end{equation}
 
+Větší potíže působí objemový integrál na konci, jehož hodnota není snadno
+vyčíslitelná.
+Obvykle se proto přistupuje ke kalibraci pomocí Ray\-leigh\-ova rozptylu
+ve známém médiu (například vzduchu),
+která umožní tento integrál eliminovat.
+Měřenou intenzitu Rayleighova rozptylu $\rayleighsignal$ lze popsat vztahem:
+\begin{equation}
+	\label{eq:lifth-rayleighsignal}
+	\rayleighsignal = \rayleighdxsect \rayleighndens
+	\frac{\enlaserrayleigh}{\planck\freq} \rayleigheff
+	\iiint_\vol \sensabs \solidangle \beamprofile \dd{\vol},
+\end{equation}
+kde $\rayleighndens$ je koncentrace rozptylujících částic,
+$\enlaserrayleigh$ je energie laserového pulzu,
+$\freq$ je frekvence laserového záření,
+$\rayleigheff$ je kvantová účinnost snímače pro použitou vlnovou délku
+a~$\rayleighdxsect$ je diferenciální účinný průřez Rayleighova rozptylu.
+
+V~případě vzduchu lze koncentraci částic přibližně vyjádřit pomocí
+stavové rovnice ideálního plynu:
+\begin{equation}
+	\frac{\pres}{\boltzmann\temp}.
+\end{equation}
+
+% TODO: účinný průřez
+
+Kombinace vztahů \eqref{eq:lifth-lifsignal} a~\eqref{eq:lifth-rayleighsignal}
+vede na následující vyjádření koncentrace částic,
+kde již objemový integrál nevystupuje:
 \begin{equation}
 	\label{eq:label}
 	\ndens = \frac{\lifsignal}{\rayleighsignal}
 	\frac{\enlaserrayleigh}{\enlaser}\frac{\rayleigheff}{\lifeff}
 	\frac{1}{A_{32}\,\tau}
 	\frac{\lightspeed}{\planck\freq\specoverlap B_{13}}
-	\, 4\pi \rayleighdxsect \frac{p}{kT}
+	\, 4\pi \rayleighdxsect \frac{p}{kT}.
 \end{equation}
+
+\section{Saturace}
+\label{sec:lifth-saturation}
