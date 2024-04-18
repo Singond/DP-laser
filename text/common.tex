@@ -98,16 +98,34 @@
 }
 
 \newcommand\seleniumlifgrotrian{
-	\draw [level] (4,0) -- (6,0)
-		(5,-1) node {$4s^2 4p^4\ {}^3\text{P}_2$};
-	\draw [level] (4,10) -- (6,10)
-		(5,11) node {$4s^2 4p^3({}^4\text{S}^o) 5s\ {}^3\text{S}^o_1$};
-	\draw [level] (3,6) -- (1,6)
-		node [left] {$4s^2 4p^4\ {}^1\text{S}_0$};
+	\draw [level] (0,0)
+		node [left] {$4s^2 4p^4\ {}^3\text{P}_2$}
+		-- (6,0);
+	\draw [level] (0,1)
+		node [left] {$4s^2 4p^4\ {}^3\text{P}_1$}
+		-- (4,1);
+	\draw [level] (0,2)
+		node [left] {$4s^2 4p^4\ {}^3\text{P}_0$}
+		-- (4,2);
+	\draw [level] (0,5)
+		node [left] {$4s^2 4p^4\ {}^1\text{D}_2$}
+		-- (4,5);
+	\draw [level] (0,7)
+		node [left] {$4s^2 4p^4\ {}^1\text{S}_0$}
+		-- (4,7);
+	\draw [level] (6,10)
+		-- (12,10)
+		node [right] {$4s^2 4p^3({}^4\text{S}^\circ) 5s\ {}^3\text{S}^\circ_1$};
 
-	\draw [transition] (5,0) -- (5,10);
-	\path (5,0)
-		-- node [sloped, below] {\SI{196.09}{\nano\metre}} (5,10);
-	\draw [transition] (5,10)
-		-- node [sloped, above] {\SI{350.25}{\nano\metre}} (2,6);
+	\draw [transition] (5,0)
+		-- node [sloped, below] {\SI{196.03}{\nano\metre}} (11,10);
+	\draw [transition] (10.5,10) -- (4.5,0);
+	\draw [transition] (9,10)
+		-- node [sloped, below, pos=0.5] {\SI{203.99}{\nano\metre}} (2,1);
+	\draw [transition] (8.5,10)
+		-- node [sloped, above, pos=0.8] {\SI{206.28}{\nano\metre}} (2,2);
+	\draw [transition] (7.5,10)
+		-- node [sloped, below, pos=0.5] {\SI{241.35}{\nano\metre}} (1,5);
+	\draw [transition] (7,10)
+		-- node [sloped, above] {\SI{350.15}{\nano\metre}} (1,7);
 }
