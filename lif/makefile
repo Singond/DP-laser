@@ -1,3 +1,5 @@
+OCTAVE := octave --norc
+
 presentation_figs := flame.png lif-example.png
 presentation_figs += lifetime-lg.tex lifetime-regions.png
 presentation_figs += timeev-5.0.png timeev-5.5.png timeev-6.0.png
@@ -35,3 +37,6 @@ results/excitprof-filter.tex results/excitprof-nofilter.tex \
 results/excitprof-fit.tex: \
 wavelen_export.m
 	octave --norc $<
+
+results/liflines.tsv: liflines_export.m liflines_load.m concentration_main.m
+	$(OCTAVE) $<
