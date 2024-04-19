@@ -6,10 +6,6 @@ if (!exist("W", "var"))
 	wavelen_base;
 end
 
-Dwn = 5;                                   # laser line FWHM [cm-1]
-Dfreq = lightspeed * Dwn * 1e-10;          # laser line FWHM [THz]
-sigmafreq = 2 * sqrt(2 * log(2)) * Dfreq;  # laser line sigma (normal) [THz]
-
 W_old = W;
 W = struct([]);
 for x = W_old
