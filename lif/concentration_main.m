@@ -26,7 +26,7 @@ conc.cameraeff.at_wavelen = @(wl)...
 	interp1(conc.cameraeff.wl, conc.cameraeff.eff, wl, "extrap");
 
 for k = 1:2
-	data = dlmread(sprintf("data-common/sklo%d_filtrSe.dat", k), [], 16, 0);
+	data = dlmread(sprintf("data-common/sklo%d_filtrSe.dat", k), "", 16, 0);
 	conc.camerafilter(k).wl = data(:,1);
 	conc.camerafilter(k).T = data(:,2);
 	conc.camerafilter(k).weight = data(:,3);
