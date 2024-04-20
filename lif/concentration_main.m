@@ -54,6 +54,7 @@ conc.Lr = conc.rayleigh_reference.Em;
 conc.Mr = conc.rayleigh_reference.inm(60:100,50:150);
 
 conc.kappa = 1;
+warning("Using default kappa of 1\n");
 printf("spectral overlap:      %f\n", conc.kappa);
 
 ## Calculate concentration (density)
@@ -63,6 +64,7 @@ conc.nf = conc.n;
 conc.nf(conc.nf < 0) = 0;
 conc.nf(isnan(conc.nf)) = 0;
 ## Remove outliers
+disp("Removing outliers...");
 conc.nf = rmoutliers(conc.nf, 0.5, 3);
 
 ## Average concentration from all images
