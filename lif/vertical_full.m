@@ -2,6 +2,7 @@ pkg load singon-plasma;
 addpath ../octave;
 
 location_load;
+rayleigh;
 vertical_base;
 
 X = vertical;
@@ -23,7 +24,8 @@ for x = X
 	x.ys = flipud(x.ys(:));
 	x.ins = ymosaic(x.ys,...
 		mat2cell(x.inh, rows(x.inh), columns(x.inh), ones(size(x.h))),
-		mat2cell(x.ymm, rows(x.ymm), ones(size(x.h))));
+		mat2cell(x.ymm, rows(x.ymm), ones(size(x.h))),
+		beamprofile(:,1));
 
 	vertical(end+1) = x;
 endfor
