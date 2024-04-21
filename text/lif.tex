@@ -13,6 +13,7 @@
 \providecommand\lifsatt{\lifsat_\text{t}}
 \providecommand\lifslopeunit{10^9}
 \providecommand\lifsatunit{\per\micro\joule}
+\providecommand\ndensair{n_\text{R}}
 \providecommand\ndensse{n_\text{Se}}
 \providecommand\ndensseunc{\sigma_{\!n,\,\text{Se}}}
 \renewcommand\einsteina{A_{32}}
@@ -631,6 +632,64 @@ a~tím pádem přesnější proklady.
 
 \subsection{Koncentrace atomů}
 \label{sec:lif-concentration}
+\input{../lif/results/concentration-vars}
+\providecommand{\rhoo}{\rho_0}
+
+Zbývající neznámou byl diferenciální účinný průřez Rayleighova rozptylu.
+Jeho hodnota byla určena podle \cite{rayleigh} jako:
+\begin{equation}
+	\rayleighdxsect = \frac{3\xsect}{8\pi}
+	\left( \frac{2}{2 + \rhoo} \right),
+\end{equation}
+kde $\xsect$ je celkový účinný průřez Rayleighova rozptylu
+a~$\rhoo$ je parametr zpětně spočtený podle Kingova korekčního faktoru $F_K$.
+Hodnoty $\xsect$ a~$F_K$ byly interpolovány z~tabulky v~tomtéž zdroji
+(\cite{rayleigh})
+pro vlnovou délku laseru použitou při měření Rayleighova rozptylu.
+Uvažovaná hodnota účinného průřezu činila
+$\rayleighdxsect={\SI[round-mode=places,round-precision=2]
+{\lifconcrayleighdxsect}{\metre\squared\per\steradian}}$.
+
+Vztah \eqref{eq:lifth-ndens} pro koncentraci atomů musel být upraven,
+aby zohledňoval saturaci fluorescence.
+To bylo provedeno nahrazením prostého podílu signálu a~energie pulzu
+výrazem z~\eqref{eq:lif-saturation}:
+\begin{equation}
+	\frac\lif\enlaser \longrightarrow
+	\frac{\lif\lifsat}
+		{2 \left(1 - \frac{\ln(1 + \lifsat\enlaser)}{\lifsat\enlaser}\right)}
+	= \lifslope.
+\end{equation}
+
+Tím se výraz pro koncentraci převedl do následující podoby:
+\begin{equation}
+	\label{eq:lif-ndens}
+	\ndens = 4\pi
+	\,\frac{\lightspeed\rayleigheff}
+		{\sum\einsteina\einsteinb\transmittance\,\lifeff}
+	\,\frac{\enlaserrayleigh}{\planck\rayleighfreq\rayleigh}
+	\,\frac{1}{\lifetime\specoverlap}
+	\,\ndensair
+	\,\rayleighdxsect
+	\,\frac{\lif\lifsat}
+		{2 \left(1 - \frac{\ln(1 + \lifsat\enlaser)}{\lifsat\enlaser}\right)}.
+\end{equation}
+% Zde
+
+Jelikož nebyla předpokládána přítomnost jevu, který by způsoboval významnou
+prostorovou proměnlivost saturačního parametru $\lifsat$
+a předchozí výpočet prokázal jeho přibližnou homogenitu
+(viz obrázek \ref{fig:lif-saturation-full-params}),
+byla uvažována globální hodnota
+$\lifsat=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
+{\lifconclifsat}{\per\joule}$
+zjištěná z~integrální intenzity celého snímku.
+
+Hustota částic vzduchu byla určena ze stavové rovnice pro ideální plyn:
+\begin{equation}
+	\ndensair = \frac{\pres}{\boltzmann\temp}.
+\end{equation}
+
 
 \begin{table}
 	\centering
