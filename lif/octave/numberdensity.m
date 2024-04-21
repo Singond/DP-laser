@@ -16,10 +16,10 @@ function [n, s] = numberdensity(C, frame="all")
 		error("numberdensity: frame must be a number");
 	end
 
-	lineprops = sum(C.liflines.wl .* C.liflines.A32...
+	lineprops = sum(C.liflines.A32...
 		.* C.liflines.B13 .* C.liflines.eff .* C.liflines.T);
 
-	s.photoncount = C.Lr * C.rayleigh_wl / (planck * lightspeed);
+	s.photoncount = C.Lr * 1e-9 * C.rayleigh_wl / (planck * lightspeed);
 	s.lifrelative = Mf .* C.beta...
 		./ (2 * (1 - log(1 + C.beta .* Lf) ./ C.beta .* Lf));
 
