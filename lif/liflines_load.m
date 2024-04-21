@@ -14,6 +14,9 @@ liflines.A32 = data(:,2);           # Einstein coefficient of emission [s-1]
 liflines.J2 = data(:,3);            # total ang. momentum of lower state
 liflines.g2 = 2 * liflines.J2 + 1;  # multiplicity of lower state
 g3 = 3;
+g1 = 5;
 
+liflines.B13 = (g3 ./ g1) .* liflines.A32(1)...
+	.* (liflines.wl(1) * 1e-9).^3 ./ (8 * pi * planck);
 liflines.B23 = (g3 ./ liflines.g2) .* liflines.A32...
 	.* (liflines.wl * 1e-9).^3 ./ (8 * pi * planck);

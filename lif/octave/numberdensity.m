@@ -17,7 +17,7 @@ function [n, s] = numberdensity(C, frame="all")
 	end
 
 	lineprops = sum(C.liflines.wl .* C.liflines.A32...
-		.* C.liflines.B23 .* C.liflines.eff .* C.liflines.T);
+		.* C.liflines.B13 .* C.liflines.eff .* C.liflines.T);
 
 	s.photoncount = C.Lr * C.rayleigh_wl / (planck * lightspeed);
 	s.lifrelative = Mf .* C.beta...
