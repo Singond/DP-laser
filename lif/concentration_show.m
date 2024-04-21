@@ -1,6 +1,4 @@
-if (!exist("conc", "var") || !isfield(conc, "n"))
-	concentration_main;
-end
+concentration_load;
 
 nscale = 1;
 
