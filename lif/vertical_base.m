@@ -3,6 +3,8 @@ addpath ../octave;
 
 X = struct([]);
 x = load_iccd("data-2023-01-20/vyska.SPE");
+x.sccmAr = 700;
+x.sccmH2 = 300;
 x.control = [
 	0	1	6
 	1	8	13
@@ -16,6 +18,8 @@ x.control = [
 X(end+1) = x;
 
 x = load_iccd("data-2023-01-20/vyska2.SPE");
+x.sccmAr = 700;
+x.sccmH2 = 300;
 x.control = [
 	0	1	5
 	1	8	13
@@ -35,6 +39,8 @@ x.control = [
 X(end+1) = x;
 
 x = load_iccd("data-2023-01-20/vyska3.SPE");
+x.sccmAr = 100 + 75;
+x.sccmH2 = 150;
 x.control = [
 	0	1	8
 	1	11	18
@@ -45,6 +51,8 @@ x.control = [
 X(end+1) = x;
 
 x = load_iccd("data-2023-01-20/vyska4.SPE");
+x.sccmAr = 100 + 75;
+x.sccmH2 = 50;
 x.control = [
 	0	1	7
 	1	10	18
