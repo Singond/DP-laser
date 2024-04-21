@@ -4,11 +4,11 @@ addpath octave;
 if (!exist("vertical", "var") || !isfield(vertical, "ins"))
 	concentration_vertical;
 end
-x = vertical(2);
 
 nscale = 1e-15;
 
 disp("Exporting results/concentration-vertical-700+300.tex...");
+x = vertical(2);
 gp = gnuplotter;
 gp.load("../gnuplot/style.gp");
 gp.load("../gnuplot/style-cairo.gp");
@@ -32,5 +32,25 @@ gp.exec(...
 gp.plotmatrix(x.xmm, x.ys, x.n * nscale, "with image");
 gp.doplot();
 gp.clearplot();
+
+gp.exec("\n\
+	set xrange [-11:11] \n\
+	set yrange [-1:16] \n\
+	set xtics 5 \n\
+	set ytics 5 \n\
+	set terminal cairolatex pdf colortext size 6cm,6cm \n\
+");
+for x = vertical(2:4)
+	name = sprintf("results/concentration-vertical-%d+%d-s.tex",...
+		x.sccmAr, x.sccmH2);
+	printf("Exporting %s...\n", name);
+	gp.exec("set output '%s'", name);
+	gp.exec(...
+		"set title '$\\SI{%d}{\\sccm}\\,\\ce{Ar} + \\SI{%d}{\\sccm}\\,\\ce{H2}$'",...
+		x.sccmAr, x.sccmH2);
+	gp.plotmatrix(x.xmm, x.ys, x.n * nscale, "with image");
+	gp.doplot();
+	gp.clearplot();
+end
 
 clear gp;
