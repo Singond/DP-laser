@@ -1,8 +1,8 @@
 pkg load report;
 addpath octave;
 
-if (!exist("vertical", "var") || !isfield(saturation, "ins"))
-	vertical_full;
+if (!exist("vertical", "var") || !isfield(vertical, "ins"))
+	concentration_vertical;
 end
 x = vertical(2);
 
