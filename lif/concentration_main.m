@@ -11,7 +11,7 @@ lifetime_full_load;
 conc = saturation(3);
 conc.alpha = conc.fite.a;
 conc.beta = conc.fite.b;
-conc.tau = lifetime.tau;
+conc.tau = lifetime.taux;
 
 pressure = 1e5;     # Ambient pressure [Pa]
 temperature = 293;  # Ambient temperature [K]
