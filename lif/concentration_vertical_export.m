@@ -62,8 +62,10 @@ gp.exec("\n\
 	set title offset 0,-0.5 \n\
 	set xrange [-11:11] \n\
 	set yrange [-1:16] \n\
+	set cbrange [0:1.5] \n\
 	set xtics 5 \n\
 	set ytics 5 \n\
+	set cbtics 0.5 \n\
 	unset xlabel \n\
 	set ylabel '$\\ymm\\,[\\si{\\milli\\metre}]$' \n\
 	unset colorbox \n\
