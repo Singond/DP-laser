@@ -2,16 +2,29 @@ if (!exist("vertical", "var") || !isfield(saturation, "ins"))
 	vertical_full;
 end
 
-x = vertical(1);
 
-iscale = 1;
+nscale = 1;
 
-figure();
-maxi = quantile(x.ins(:), 0.999);
-imshow(x.ins * iscale, [0 maxi] * iscale, "colormap", viridis,
+figure("name", "Concentration in whole flame");
+x = vertical(2);
+maxn = quantile(x.n(:), 0.999);
+imshow(x.n * nscale, [0 maxn] * nscale, "colormap", viridis,
 	"xdata", x.xmm, "ydata", x.ys);
 set(gca, "ydir", "normal");
-title("LIF signal over whole flame");
+title("Se concentration in whole flame\n700 sccm Ar + 300 sccm H_2");
+xlabel("position x [mm]");
+ylabel("position y [mm]");
+axis on;
+grid off;
+colorbar;
+
+figure("name", "Concentration in whole flame");
+x = vertical(3);
+maxn = quantile(x.n(:), 0.999);
+imshow(x.n * nscale, [0 maxn] * nscale, "colormap", viridis,
+	"xdata", x.xmm, "ydata", x.ys);
+set(gca, "ydir", "normal");
+title("Se concentration in whole flame\n175 sccm Ar + 150 sccm H_2");
 xlabel("position x [mm]");
 ylabel("position y [mm]");
 axis on;
