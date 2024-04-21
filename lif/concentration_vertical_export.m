@@ -21,8 +21,8 @@ gp.exec("\n\
 	set xrange [-12:12] \n\
 	set xtics 5 \n\
 	set ytics 5 \n\
-	set xlabel 'vodorovná poloha $\\xpos\\,[\\si{\\milli\\metre}]$' \n\
-	set ylabel 'výška nad atomizátorem $\\ypos\\,[\\si{\\milli\\metre}]$' \n\
+	set xlabel 'vodorovná poloha $\\xmm\\,[\\si{\\milli\\metre}]$' \n\
+	set ylabel 'výška nad atomizátorem $\\ymm\\,[\\si{\\milli\\metre}]$' \n\
 	set terminal cairolatex pdf colortext size 12.5cm,14cm \n\
 	set output 'results/concentration-vertical-700+300.tex' \n\
 ");
