@@ -79,7 +79,8 @@ gp.load("../gnuplot/style-cairo.gp");
 gp.load("../gnuplot/style-splot.gp");
 gp.exec("\n\
 	set style fill transparent solid 0.3 \n\
-	set yrange [0:] reverse \n\
+	set yrange [40:120] reverse \n\
+	set ytics 20 \n\
 	set ztics 400 \n\
 	set xyplane at 0 \n\
 	set autoscale noextend \n\
@@ -89,18 +90,19 @@ gp.exec("\n\
 	set terminal cairolatex pdf size 14cm,12cm \n\
 	set output 'results/rayleigh-time.tex' \n\
 ");
-gp.exec('set xlabel "čas $\\tim\\,[\\si\\second]$" offset -1,0');
+gp.exec('set xlabel "čas $\\tim\\,[\\si{\\nano\\second}]$" offset -1,-1');
 gp.exec('set ylabel "poloha $\\ypos\\,[\\si\\pixel]$" offset 1,-1');
 gp.exec('set zlabel "intenzita LIF $\\lif\\,[\\si\\arbunit]$" offset -1,0');
 gp.exec("splot '-' with zerrorfill ls 1, '-' with lines ls 1");
-sz = size(Rt.ypos);
+yr = (40:120)';
+sz = size(Rt.ypos(yr));
 for k = 1:rows(Rt.t')
-	D = [Rt.t(k)(ones(sz)) Rt.ypos Rt.iny(:,k) zeros(sz) Rt.iny(:,k)];
+	D = [Rt.t(k)(ones(sz)) Rt.ypos(yr) Rt.iny(yr,k) zeros(sz) Rt.iny(yr,k)];
 	gp.data(D, "\n\n");
 end
 gp.exec("e");
 for k = 1:rows(Rt.t')
-	D = [Rt.t(k)(ones(sz)) Rt.ypos Rt.iny(:,k)];
+	D = [Rt.t(k)(ones(sz)) Rt.ypos(yr) Rt.iny(yr,k)];
 	gp.data(D, "\n\n");
 end
 gp.exec("e");
