@@ -30,7 +30,7 @@ saturation_full_export.m
 results/timeev-%.png: timeev_export_png.m lifetime_main.m
 	octave --norc $<
 
-results/vertical-%.tex: vertical_export.m vertical.m
+results/vertical-%.tex: vertical_regions_export.m vertical.m
 	octave --norc $<
 
 results/excitprof-filter.tex results/excitprof-nofilter.tex \
