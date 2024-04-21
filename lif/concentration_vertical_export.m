@@ -6,9 +6,9 @@ if (!exist("vertical", "var") || !isfield(saturation, "ins"))
 end
 x = vertical(2);
 
-nscale = 1e-23;
+nscale = 1e-15;
 
-disp("Exporting results/vertical-concentration-700+300.tex...");
+disp("Exporting results/concentration-vertical-700+300.tex...");
 gp = gnuplotter;
 gp.load("../gnuplot/style.gp");
 gp.load("../gnuplot/style-cairo.gp");
@@ -24,7 +24,7 @@ gp.exec("\n\
 	set xlabel 'vodorovná poloha $\\xpos\\,[\\si{\\milli\\metre}]$' \n\
 	set ylabel 'výška nad atomizátorem $\\ypos\\,[\\si{\\milli\\metre}]$' \n\
 	set terminal cairolatex pdf colortext size 12.5cm,14cm \n\
-	set output 'results/vertical-concentration-700+300.tex' \n\
+	set output 'results/concentration-vertical-700+300.tex' \n\
 ");
 gp.exec(...
 	'set cblabel "hustota atomů $\\ndensse\\,[10^{%d}\\si{\\per\\metre\\cubed}]$" offset 1,0',...
