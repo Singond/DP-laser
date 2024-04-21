@@ -24,7 +24,7 @@ rayleigh_air.data = [...
 rayleigh_air.wl = rayleigh_air.data(:,1) * 1e3;            # [nm]
 rayleigh_air.Fk = rayleigh_air.data(:,2);                  # [-]
 rayleigh_air.refrind = 1 + rayleigh_air.data(:,3) * 1e-4;  # [-]
-rayleigh_air.xsect = rayleigh_air.data(:,4) * 1e4;         # [m2]
+rayleigh_air.xsect = rayleigh_air.data(:,4) * 1e-4;        # [m2]
 
 function xs = dxsect(wl, rayleigh_air)
 	xsect = interp1(rayleigh_air.wl, rayleigh_air.xsect, wl, "extrap");
