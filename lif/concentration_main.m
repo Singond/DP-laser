@@ -5,12 +5,13 @@ liflines_load;
 rayleigh_air_main;
 rayleigh;
 saturation_base;
+saturation_overall;
 saturation_full_load;
 lifetime_full_load;
 
 conc = saturation(3);
 conc.alpha = conc.fite.a;
-conc.beta = conc.fite.b;
+conc.beta = saturationt.fite.b;
 conc.tau = lifetime.taux;
 
 pressure = 1e5;     # Ambient pressure [Pa]
