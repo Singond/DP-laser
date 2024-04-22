@@ -4,6 +4,7 @@ constants;
 liflines_load;
 rayleigh_air_main;
 rayleigh;
+specoverlap_main;
 saturation_base;
 saturation_overall;
 saturation_full_load;
@@ -54,9 +55,9 @@ conc.rayleigh_reference = R(1);
 conc.Lr = conc.rayleigh_reference.Em;
 conc.Mr = conc.rayleigh_reference.inm(60:100,50:150);
 
-conc.kappa = 1;
+conc.kappa = specoverlap.profiles(1).kappa;
 warning("Using default kappa of 1\n");
-printf("spectral overlap:      %f\n", conc.kappa);
+printf("spectral overlap:      %g\n", conc.kappa);
 
 ## Calculate concentration (density)
 conc.n = numberdensity(conc, "all");
