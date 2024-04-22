@@ -1,6 +1,8 @@
 pkg load optim;
 
-saturation_base;
+if (!exist("saturation", "var"))
+	saturation_base;
+end
 saturation_separate = arrayfun(@img_intensity, saturation_separate);
 
 x = img_intensity(saturation_merged);
