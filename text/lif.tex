@@ -679,7 +679,15 @@ Tím se výraz pro koncentraci převedl do následující podoby:
 	\,\frac{\lif\lifsat}
 		{2 \left(1 - \frac{\ln(1 + \lifsat\enlaser)}{\lifsat\enlaser}\right)}.
 \end{equation}
-% Zde
+Zde $\lightspeed$ je rychlost světla,
+$\lifeff$ a~$\rayleigheff$ je kvantová účinnost kamery pro vlnovou délku
+fluorescence a Rayleighova rozptylu,
+$\transmittance$ je propustnost filtru před kamerou pro vlnovou délku
+fluorescence,
+$\enlaser$ a~$\enlaserrayleigh$ je energie laserového pulzu,
+$\ndensair$ je hustota rozptylujících částic při měření rozptylu,
+$\lif$ je měřený signál fluorescence
+a~$\rayleigh$ je naměřený signál Rayleighova rozptylu.
 
 Jelikož nebyla předpokládána přítomnost jevu, který by způsoboval významnou
 prostorovou proměnlivost saturačního parametru $\lifsat$
@@ -690,11 +698,16 @@ $\lifsat=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
 {\lifconclifsat}{\per\joule}$
 zjištěná z~integrální intenzity celého snímku.
 
-Hustota částic vzduchu byla určena ze stavové rovnice pro ideální plyn:
+Rayleighův rozptyl byl měřen ve vzduchu za atmosférického tlaku,
+hustota rozptylujících částic $\ndensair$ tedy byla rovna
+hustotě částic vzduchu,
+která byla určena ze stavové rovnice pro ideální plyn:
 \begin{equation}
 	\ndensair = \frac{\pres}{\boltzmann\temp}.
 \end{equation}
 
+Parametry jednotlivých fluorescenčních čar jsou shrnuty
+v~tabulce č.~\ref{tab:lif-liflines}.
 
 \begin{table}
 	\centering
