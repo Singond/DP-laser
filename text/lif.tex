@@ -18,6 +18,7 @@
 \providecommand\ndensseunc{\sigma_{\!n,\,\text{Se}}}
 \renewcommand\einsteina{A_{32}}
 \renewcommand\einsteinb{B_{13}}
+\providecommand\einsteinai{A_{31}}
 
 \section{Úvod}
 \label{sec:lif-intro}
@@ -693,7 +694,7 @@ Jelikož nebyla předpokládána přítomnost jevu, který by způsoboval význa
 prostorovou proměnlivost saturačního parametru $\lifsat$
 a předchozí výpočet prokázal jeho přibližnou homogenitu
 (viz obrázek \ref{fig:lif-saturation-full-params}),
-byla uvažována globální hodnota
+byla pro jednoduchost uvažována globální hodnota
 $\lifsat=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
 {\lifconclifsat}{\per\joule}$
 zjištěná z~integrální intenzity celého snímku.
@@ -705,9 +706,25 @@ která byla určena ze stavové rovnice pro ideální plyn:
 \begin{equation}
 	\ndensair = \frac{\pres}{\boltzmann\temp}.
 \end{equation}
+Pro laboratorní podmínky vychází hustota
+$\ndensair=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
+{\lifconcdensair}{\per\cubic\metre}$.
 
 Parametry jednotlivých fluorescenčních čar jsou shrnuty
 v~tabulce č.~\ref{tab:lif-liflines}.
+Propustnost filtru $\transmittance$ byla určena ze změřené závislosti
+na obrázku~\ref{fig:instruments-camerafilter},
+kvantová účinnost kamery $\qeff$
+ze závislosti~\ref{fig:instruments-cameraeff} dodané výrobcem.
+Einsteinův koeficient pro excitaci horního stavu $\einsteinb$
+byl spočten jako:
+\begin{equation}
+	\einsteinb = \frac{g_3}{g_1}
+	\frac{\einsteinai \wavelen^3}{8 \pi \planck}.
+\end{equation}
+Jeho hodnota vychází
+$\einsteinai=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
+{\lifconcb}{\cubic\metre\per\joule\per\second\squared}$.
 
 \begin{table}
 	\centering
@@ -775,6 +792,12 @@ v~tabulce č.~\ref{tab:lif-liflines}.
 		},
 	]{../lif/results/liflines.tsv}
 \end{table}
+
+Za dobu života zářivého stavu byly uvažovány hodnoty spočtené z~vertikálně
+integrované intenzity,
+které jsou vykresleny na obrázku \ref{fig:lif-lifetime-x-params}.
+Důvodem pro toto rozhodnutí byl především značný šum v~plně rozlišené
+době života na obrázku~\ref{fig:lif-lifetime-full-params}.
 
 \section{Výsledky}
 \label{sec:lif-results}
