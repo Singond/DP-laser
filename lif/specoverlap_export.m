@@ -1,7 +1,7 @@
 pkg load report;
 
-if (!exist("vertical", "var") || !all(isfield(vertical, {"ins", "n"})))
-	concentration_vertical;
+if (!exist("specoverlap", "var"))
+	specoverlap_main;
 end
 
 disp("Exporting results/specoverlap.tex...");
@@ -19,11 +19,8 @@ gp.exec("\n\
 	set ylabel 'normalizovaná intenzita $[\\si{\\per\\tera\\hertz}]$' \n\
 	set key top left Left reverse samplen 2 \n\
 ");
-##gp.exec(...
-##	'set cblabel "hustota atomů $\\ndensse\\,[10^{%d}\\si{\\per\\metre\\cubed}]$" offset 1,0',...
-##	-log10(nscale));
-gp.plot(p.ff, p.l,  "w l t'laser (model)'");
-gp.plot(p.ff, p.la, "w l t'laser + absorpce (data)'");
+gp.plot(p.ff, p.l,  "w l t'$\\profilelaser$ (model)'");
+gp.plot(p.ff, p.la, "w l t'$\\profileabs\\conv\\profilelaser$ (data)'");
 gp.export("results/specoverlap.tex",...
 	"cairolatex", "pdf colourtext size 12cm,8cm");
 
