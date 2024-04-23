@@ -163,6 +163,7 @@ Snímek skutečného provedení je na obrázku \ref{fig:lif-setup-photo}.
 
 \section{Vyhodnocení}
 \label{sec:lif-method}
+\input{../lif/results/location}
 Před stanovením koncentrace atomů selenu bylo nutno určit několik
 dalších veličin, na nichž výpočet závisí.
 Prostřednictvím Rayleighova rozptylu byl zjištěn profil laserového svazku,
@@ -181,6 +182,23 @@ ze zbytkového světla v~laboratoři nebo vlastního záření plamene.
 Pro potlačení jejich nežádoucího vlivu
 byly všechny snímky korigovány odečtením temného snímku změřeného
 s~vypnutým laserem za jinak stejných podmínek a~nastavení.
+
+Měřítko kamerových snímků, tedy převod souřadnic pixelů obrázku
+na prostorové souřadnice, bylo určeno pořízením několika snímků,
+na nichž byla aktivní fluorescenční oblast částečně zakryta posuvným
+měřidlem otevřeným na známou šířku.
+Šířka světlejší oblasti snímku pak odpovídala známé vzdálenosti čelistí
+posuvného měřidla násobené neznámou konstantou.
+Prokladem několika takto zjištěných hodnot lineární závislostí
+bylo určeno, že jednomu milimetru odpovídá zhruba
+\SI[round-mode=places,round-precision=1]{\pxpermm}{\pixel} na snímku.
+
+Poloha atomizátoru nebyla na snímcích přímo vidět, byla proto odhadnuta tak,
+že do středu plamene byla zavedena malá překážka (ocelový inbusový klíč)
+která na snímku odpovídala tmavšímu místu obklopenému silnějším signálem.
+Po zjištění měřítka a~polohy středu mohla být na snímku zavedena soustava
+souřadnic, kde vodorovná osa $\xmm$ procházela ústím atomizátoru
+a~svislá osa $\ymm$ směřovala vzhůru v~ose atomizátoru.
 
 Pro výpočty byla použita energie laserových pulzů změřená za~atomizátorem.
 V~případech, kdy bylo k~dispozici pouze měření za děličem,
