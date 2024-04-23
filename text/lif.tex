@@ -894,12 +894,27 @@ určenou k~měření saturace.
 Koncentrace atomů selenu spočtená podle vztahu \eqref{eq:lif-ndens}
 ze snímku s~nejvyšší energií laserového pulzu je
 na obrázku~\ref{fig:lif-concentration-single}.
+Je vidět, že signál je značně zatížen šumem, ale poloha plamene
+je přesto dobře patrna jako centrální oblast,
+kde je výrazně vyšší koncentrace selenových atomů
+(řádově kolem \SI{e19}{\per\metre\cubed}).
+
+Na obrázku \ref{fig:lif-concentration-mean} je koncentrace spočtená ze všech
+snímků této sady.
+Jedná se o~vážený průměr, kde byla snímkům s~vyšší energií pulzu $\enlaser$
+přisouzena vyšší váha, protože měly lepší poměr signálu k~šumu.
+Výsledek je znatelně rovnoměrnější.
+Průměrná hodnota je mírně nižší, ale řádově srovnatelná s~prvním výsledkem.
+Nejistota koncentrace byla odhadnuta jako směrodatná odchylka
+se stejnými vahami.
 
 \begin{figure}[htp]
 	\centering
 	\input{../lif/results/concentration-single}
-	\caption{Hustota atomů selenu určená ze snímku
-		s~maximální energií laserového pulzu $\enlaser$.}
+	\caption{Hustota atomů selenu určená z~jediného snímku
+		(snímku s~maximální energií laserového pulzu).
+		Směs v~atomizátoru byla tvořena \SI{775}{\sccm} \ce{Ar}
+		a~\SI{300}{\sccm} \ce{H2}.}
 	\label{fig:lif-concentration-single}
 \end{figure}
 
@@ -908,17 +923,73 @@ na obrázku~\ref{fig:lif-concentration-single}.
 	\input{../lif/results/concentration-mean}
 	\input{../lif/results/concentration-std}
 	\caption{Hustota atomů selenu jako průměr ze všech snímků
-		a~její nejistota spočtená jako směrodatná odchylka.}
+		a~její nejistota spočtená jako směrodatná odchylka.
+		Směs v~atomizátoru byla tvořena \SI{775}{\sccm} \ce{Ar}
+		a~\SI{300}{\sccm} \ce{H2}.}
 	\label{fig:lif-concentration-mean}
 \end{figure}
+
+Hlavním předmětem zájmu bylo prostorové rozložení koncentrace selenu
+v~plameni, které laserem indukovaná fluorescence umožňuje stanovit
+s~vysokým rozlišením.
+Laserový svazek procházel plamenem vodorovně, takže
+rozsah snímané fluorescenční oblasti byl ve vodorovném směru omezen pouze
+zorným polem kamery a bohatě postačoval na zachycení celé šířky plamene.
+Ve svislém směru byl rozsah omezem výškou laserového svazku, která
+činila zhruba \SI{3}{\milli\metre}.
+Pro zjištění výškového profilu bylo optické vybavení drženo ve stejné
+poloze a~výška atomizátoru byla pomocí mikrometrického posuvu postupně
+měněna v~krocích po $\SI{1}{\milli\metre}$.
+Výsledné snímky byly přes sebe přeloženy a zprůměrovány váženým průměrem,
+kde váhu představoval profil laserového svazku určený pomocí Rayleighova
+rozptylu.
+
+Pro tyto datové sady nebyla k~dispozici měření umožňující stanovení
+saturačího parametru $\lifsat$ a~doby života $\lifetime$,
+pročež byl výsledek kalibrován podle výše spočtené koncentrace:
+Fluorescenční signál byl vynásobem vhodnou konstantou tak,
+aby koncentrace ve spodní části plamene vycházela stejně
+jako v~předchozím případě.
+
+Výsledek tohoto postupu je vidět na obrázku
+č.~\ref{fig:lif-vertical-concentration-700+300}.
+Složení plynu bylo v~tomto případě stále stejné jako v~předchozích případech,
+tedy \SI{775}{\sccm} \ce{Ar} a~\SI{300}{\sccm} \ce{H2}.
+Na rozdíl od~měření s~jednou polohou laserového svazku je zde zřetelně vidět
+tvar celého plamene.
+% TODO: Okomentovat
 
 \begin{figure}[htp]
 	\centering
 	\input{../lif/results/concentration-vertical-700+300}
-	\caption{Prostorově rozlišená hustota atomů selenu v~plameni.
-		Koláž 15 snímků v~různých výškách.}
-	\label{fig:lif-vertical-concentration-700+300}
+	\caption{Prostorově rozlišená hustota atomů selenu v~difuzním
+		vodíkovém plameni hořícím ve vzduchu za atmosférického tlaku
+		určená pomocí laserem indukované fluorescence.
+		Atomizátor je orientován svisle pod plamenem,
+		jeho osa se nachází v~poloze $\xmm = \SI{0}{\milli\metre}$
+		a~ústí ve výšce $\ymm = \SI{0}{\milli\metre}$.
+		Průměr atomizátoru je $\SI{6}{\milli\metre}$.
+		Směs tvoří \SI{775}{\sccm} \ce{Ar} a~\SI{300}{\sccm} \ce{H2}.
+		Vážený průměr 15 snímků v~různých výškách.}
+	\label{fig:lif-concentration-vertical-700+300}
 \end{figure}
+
+Výškově rozlišené měření bylo opakováno pro několik průtoků argonu
+a~vodíku v~atomizátoru.
+Porovnání tvaru plamene a~související koncentrace pro různá složení
+plynu je na obrázku~\ref{fig:lif-concentration-vertical-compositions}.
+Svislé průřezy těmito průběhy ve středové a~okrajové oblasti jsou
+na obrázku~\ref{fig:lif-concentration-vertical-slices}.
+Dvě sady pro stejné průtoky plynu potvrzují,
+že metoda dává konzistentní výsledky
+(odchylka ve vyšší oblasti může být experimentální chybou
+či artefaktem zpracování).
+Je dobře patrna závislost koncentrace na průtoku nosného plynu.
+Dvě sady pro nižší průtok argonu mají podobné maximum koncentrace,
+přestože se liší průtoky vodíku.
+Vyšší průtok vodíku ale zřetelně vede k~pomalejšímu poklesu koncentrace
+směrem k~vyšším oblastem plamene.
+% TODO: Okomentovat
 
 \begin{figure}[htp]
 	\centering
