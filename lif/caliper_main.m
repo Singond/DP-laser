@@ -77,18 +77,19 @@ for x = C
 
 	idx = (1:rows(x.in))';
 	peak = 70:130;
-	#[x.dpx, x.dbounds] = width_quantile(idx, x.in, [0.1 0.9]);
+	#[x.dpx, x.dbounds] = width_quantile(idx, x.in, [0.05 0.95]);
 	#[x.dpx, x.dbounds, x.infit] = width_polyfit(idx(peak), x.in(peak,:), 8);
 	#[x.dpx, x.dbounds] = width_height(idx, x.in, 4.5e5);
 	#[x.dpx, x.dbounds] = width_height(idx, x.in, heights(k));
-	[x.dpx, x.dbounds] = width_height(idx, x.in, 0.60*mean(max(x.in)));
+	[x.dpx, x.dbounds] = width_height(idx, x.in, 0.50*mean(max(x.in)));
 	caliper.X(end+1) = x;
 	k++;
 endfor
 
-caliper.d = vertcat(caliper.X.d);
-caliper.dd = repelem(caliper.d, [caliper.X.N]');
-caliper.dpx = [caliper.X.dpx]';
+caliperX = caliper.X(2:3);
+caliper.d = vertcat(caliperX.d);
+caliper.dd = repelem(caliper.d, [caliperX.N]');
+caliper.dpx = [caliperX.dpx]';
 
 p = polyfit(caliper.dd, caliper.dpx, logical([1 0]));
 caliper.dfit1 = p;
@@ -101,4 +102,4 @@ caliper.pxpermm2 = p(1);
 printf("image scale (offset):  %f px/mm\n", caliper.pxpermm2);
 printf("image scale offset:    %f px\n", caliper.dfit2(2));
 
-location.pxpermm = caliper.pxpermm1;
+location.pxpermm = caliper.pxpermm2;
