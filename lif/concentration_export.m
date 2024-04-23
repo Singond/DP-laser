@@ -4,7 +4,7 @@ addpath octave;
 concentration_load;
 x = conc;
 
-nscale = 1e-14;
+nscale = 1e-18;
 
 disp("Exporting results/concentration-single.tex...");
 gp = gnuplotter;
