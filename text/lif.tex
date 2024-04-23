@@ -20,6 +20,8 @@
 \renewcommand\einsteinb{B_{13}}
 \providecommand\einsteinai{A_{31}}
 
+\input{../lif/results/concentration-vars}
+
 \section{Úvod}
 \label{sec:lif-intro}
 Posledním provedeným experimentem bylo určení absolutní koncentrace
@@ -266,10 +268,18 @@ v~rozsahu \SIrange{195.95}{196.20}{\nano\metre}
 s~krokem \SI{0.001}{\nano\metre}.
 Pokus byl proveden pro několik energií laserového pulzu $\enlaser$,
 jak s~prostorovým filtrem, tak bez něj.
+Výsledné průběhy jsou na obrázku~\ref{fig:lif-excitprof-filter}.
+Při tomto měření bylo rozhodnuto, že data získaná bez prostorového
+filtru jsou příliš zatížena prostorovou proměnlivostí profilu laserového
+svazku a~nejsou vhodná pro zpracování.
+Pozdější výpočty tedy vždy používaly profily svazku s~prostorovým filtrem.
 
 Na základě takto změřeného profilu byla poloha maxima LIF předběžně
 odhadnuta na \SI{196.032}{\nano\metre}.
 Při dalších měřeních byla vlnová délka laseru na\-stavena na tuto hodnotu.
+Je nutno poznamenat, že tato vlnová délka neodpovídá použité excitační čáře
+zcela přesně, ale tento nesoulad lze vysvětlit tím,
+že laser neprošel potřebnou kalibrací.
 
 Naměřená data byla dále aproximována Voigtovým profilem pomocí
 Le\-ven\-berg-Marquardtova algoritmu.
@@ -367,7 +377,44 @@ a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
 \end{table}
 \shorthandon{-}
 
-% TODO: Spektrální překryv
+Pro stanovení koncentrace je nutno znát spektrální překryv $\specoverlap$
+laserové a~absorpční čáry, definovaný vztahem \eqref{eq:lifth-specoverlap}.
+Hodnotu $\specoverlap$ lze určit z~definičního vztahu, je-li znám zvlášť
+spektrální profil laseru $\profilelaser$
+a~absorpční profil zkoumaného média $\profileabs$.
+
+Spektrální pološířku laserové čáry uvádí výrobce jako
+menší než \SI{5}{\per\centi\metre},
+čáru tedy lze modelovat jako gaussovský profil o~vhodném rozptylu.
+Absorpční čára $\profileabs$ však známa není:
+Naměřený excitační profil je její konvolucí s~laserovým profilem
+a~před výpočtem spektrálního překryvu je potřeba ji rekonstruovat.
+
+To je možno provést analytickou či numerickou dekonvolucí naměřeného
+excitačního profilu $(\profilelaser\conv\profileabs)$
+předpokládaným laserovým profilem $\profilelaser$.
+Při pohledu na průběhy normalizovaných čar na obrázku~\ref{fig:lif-specoverlap}
+je však zřejmé, že laserová čára $\profilelaser$ je širší než excitační,
+a~že by tedy došlo ke zúžení čáry, nikoli rozšíření, což je nefyzikální.
+Nejjednodušším řešením této situace je předpokládat,
+že laserová čára $\profilelaser$ je ve skutečnosti o~něco užší
+než deklarovaná horní hranice \SI{5}{\per\centi\metre}
+a~převážná většina šířky excitačního profilu je tvořena šířkou laserové čáry.
+Absorpční čára potom musí mít tvar $\delta$-funkce
+a~vztah~\eqref{eq:lifth-specoverlap} přechází do tvaru:
+\begin{equation}
+	\specoverlap = \int \profileabs(\freq)\,\profilelaser(\freq) \dd{\freq}
+	\approx \int \delta(\freq)\,\profilelaser(\freq) \dd{\freq}
+	= \profilelaser(\freq_0),
+\end{equation}
+tedy spektrální překryv je roven hodnotě laserového profilu v~maximu.
+Jelikož laserový profil není výrobcem přesně uveden, byl místo něj použit
+celý excitační profil $\profilelaser\conv\profileabs$ proložený naměřenými
+daty a~normovaný na jedničku.
+Takto spočtený spektrální překryv činil
+$\specoverlap=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
+{\lifconckappa}{\second}$.
+
 \begin{figure}[htp]
 	\centering%
 	\input{../lif/results/specoverlap}
@@ -655,7 +702,6 @@ a~tím pádem přesnější proklady.
 
 \subsection{Koncentrace atomů}
 \label{sec:lif-concentration}
-\input{../lif/results/concentration-vars}
 \providecommand{\rhoo}{\rho_0}
 
 Zbývající neznámou byl diferenciální účinný průřez Rayleighova rozptylu.
@@ -816,11 +862,6 @@ integrované intenzity,
 které jsou vykresleny na obrázku \ref{fig:lif-lifetime-x-params}.
 Důvodem pro toto rozhodnutí byl především značný šum v~plně rozlišené
 době života na obrázku~\ref{fig:lif-lifetime-full-params}.
-
-% TODO: Spočítat
-Spektrální překryv činil
-$\specoverlap=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
-{\lifconckappa}{\second}$.
 
 \section{Výsledky}
 \label{sec:lif-results}
