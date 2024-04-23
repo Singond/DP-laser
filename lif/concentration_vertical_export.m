@@ -61,7 +61,7 @@ gp.exec("\n\
 	set multiplot layout 2,2 margins 0.1, 0.92, 0.12, 0.98 spacing 0.07, 0.12 \n\
 	set title offset 0,-0.5 \n\
 	set xrange [-11:11] \n\
-	set yrange [-1:16] \n\
+	set yrange [-1:15.6] \n\
 	set cbrange [0:8] \n\
 	set xtics 5 \n\
 	set ytics 5 \n\
