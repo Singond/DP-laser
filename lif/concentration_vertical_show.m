@@ -43,3 +43,25 @@ ylabel("position y [mm]");
 axis on;
 grid off;
 colorbar;
+
+figure("name", "Concentration in centre of flame (0-2 mm from axis)");
+clf;
+hold on;
+for x = vertical
+	plot(x.ys, x.nc * nscale, "d",
+		"displayname", sprintf("%d sccm Ar + 300 %d H_2", x.sccmAr, x.sccmH2));
+end
+title("Se concentration in central part of flame");
+xlabel("position y [mm]");
+ylabel("concentration n [m^{-3}]");
+
+figure("name", "Concentration in flame edge (2-4 mm from axis)");
+clf;
+hold on;
+for x = vertical
+	plot(x.ys, x.nr * nscale, "d",
+		"displayname", sprintf("%d sccm Ar + 300 %d H_2", x.sccmAr, x.sccmH2));
+end
+title("Se concentration in right edge part of flame");
+xlabel("position y [mm]");
+ylabel("concentration n [m^{-3}]");

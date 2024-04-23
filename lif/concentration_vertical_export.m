@@ -97,4 +97,41 @@ for x = vertical(2:4);
 	k++;
 end
 
+disp("Exporting results/concentration-vertical-centre.tex...");
+gp = gnuplotter;
+gp.load("../gnuplot/style.gp");
+gp.load("../gnuplot/style-cairo.gp");
+gp.exec(...
+	'set ylabel "hustota atomů $\\ndensse\\,[10^{%d}\\si{\\per\\metre\\cubed}]$"',...
+	-log10(nscale));
+gp.exec("\n\
+	set title 'středová oblast' \n\
+	set yrange [0:8.5] \n\
+	set xlabel 'výška nad atomizátorem $\\ymm\\,[\\si{\\milli\\metre}]$' \n\
+	set key top right samplen 1 \n\
+");
+k = 1;
+for x = vertical(1:4);
+	gp.plot(x.ys, x.nc * nscale, sprintf(...
+		"w p pt 7 ps 0.3 t'\\SI{%d}{\\sccm} \\ce{Ar} + \\SI{%d}{\\sccm} \\ce{H2}'",...
+		x.sccmAr, x.sccmH2));
+end
+gp.export("results/concentration-vertical-centre.tex",...
+	"cairolatex", "pdf colourtext size 12cm,8cm");
+
+disp("Exporting results/concentration-vertical-right.tex...");
+gp.clearplot;
+gp.exec("\n\
+	set title 'okrajová oblast' \n\
+	set yrange [0:4.5] \n\
+	set ytics 1 \n\
+");
+k = 1;
+for x = vertical(1:4);
+	gp.plot(x.ys, x.nr * nscale, sprintf(...
+		"w p pt 7 ps 0.3 t'\\SI{%d}{\\sccm} \\ce{Ar} + \\SI{%d}{\\sccm} \\ce{H2}'",...
+		x.sccmAr, x.sccmH2));
+end
+gp.export("results/concentration-vertical-right.tex",...
+	"cairolatex", "pdf colourtext size 12cm,8cm");
 clear gp;

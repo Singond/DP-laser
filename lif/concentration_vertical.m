@@ -23,4 +23,14 @@ cref_scale_std = std(cref_ratio(:));
 for k = 1:numel(vertical)
 	## Do the rescaling
 	vertical(k).n = vertical(k).ins .* cref_scale;
+
+	## Mean concentration in centre
+	m = -2 < vertical(k).xmm & vertical(k).xmm < 2;
+	vertical(k).nc = mean(vertical(k).n(:,m), 2);
+	## in left edge
+	m = -4 < vertical(k).xmm & vertical(k).xmm < -2;
+	vertical(k).nl = mean(vertical(k).n(:,m), 2);
+	## in right edge
+	m = 2 < vertical(k).xmm & vertical(k).xmm < 4;
+	vertical(k).nr = mean(vertical(k).n(:,m), 2);
 end
