@@ -210,20 +210,6 @@ jednotlivým snímkům kamery.
 Hranice těchto intervalů byly odhadnuty ze~známé frekvence spouštění
 kamery, počtu akumulací na čipu a~vyčítací prodlevy mezi sním\-ky.
 
-Na obrázku č.~\ref{fig:lif-flame} je samotný plamen bez laserové excitace
-zaznamenaný ICCD kamerou bez použití filtru.
-Intenzita byla v~tomto případě velmi slabá
-(plamen byl pouhým okem neviditelný),
-snímek je výsledkem \num{10000} akumulací.
-
-\begin{figure}[p]
-	\centering
-	\input{../lif/results/flame}
-	\caption{Snímek plamene bez laseru.
-		Kamera byla bez filtru a~nastavena na \num{10000} akumulací.}
-	\label{fig:lif-flame}
-\end{figure}
-
 \subsection{Profil svazku}
 \label{sec:lif-rayleigh}
 Pro další vyhodnocení bylo nutno znát skutečný prostorový profil
@@ -237,7 +223,7 @@ Příklad takového snímku je na obrázku č.~\ref{fig:lif-beam}.
 Snímaná intenzita byla mnohem větší než u~prostého plamene,
 uvedený příklad je ze \num{100} akumulací.
 
-\begin{figure}[p]
+\begin{figure}[htp]
 	\centering
 	\input{../lif/results/rayleigh-example}
 	\caption{Snímek laserového paprsku ve vzduchu bez plamene.
@@ -836,6 +822,30 @@ $\specoverlap=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
 
 \section{Výsledky}
 \label{sec:lif-results}
+Výše uvedená měření byla provedena (až na uvedené odlišnosti) se stejným
+nastavením.
+Poloha kamery byla neměnná, stejná oblast snímku tedy odpovídá stejnému
+prostorovému umístění.
+% TODO: 700 nebo 775? Ostatní hodnoty jsou vždy zaznamenány jako 100+75 apod.
+Průtoky plynu činily \SI{775}{\sccm} pro argon
+a~\SI{300}{\sccm} pro vodík.
+
+Na obrázku č.~\ref{fig:lif-flame} je snímek samotného plamene bez laserové
+excitace, jedná se tedy o~jeho vlastní záření.
+Snímek byl pořízen ICCD kamerou bez filtru, aby byly zaznamenána i~střední
+ultrafialová oblast, kterou křemenná skla propouštějí málo.
+Intenzita signálu byla i~přesto velmi slabá
+(plamen byl pouhým okem neviditelný),
+snímek je výsledkem \num{10000} akumulací na čipu.
+
+\begin{figure}[htp]
+	\centering
+	\input{../lif/results/flame}
+	\caption{Snímek plamene bez laseru.
+		Kamera byla bez filtru a~nastavena na \num{10000} akumulací.}
+	\label{fig:lif-flame}
+\end{figure}
+
 Výše uvedený postup zpracování byl nejdříve aplikován na datovou sadu
 určenou k~měření saturace.
 Koncentrace atomů selenu spočtená podle vztahu \eqref{eq:lif-ndens}
