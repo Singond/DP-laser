@@ -1,7 +1,7 @@
 pkg load report;
 addpath octave;
 
-if (!exist("vertical", "var") || !isfield(vertical, "ins"))
+if (!exist("vertical", "var") || !all(isfield(vertical, {"ins", "n"})))
 	concentration_vertical;
 end
 
