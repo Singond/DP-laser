@@ -5,7 +5,7 @@ if (!exist("vertical", "var") || !all(isfield(vertical, {"ins", "n"})))
 	concentration_vertical;
 end
 
-nscale = 1e-15;
+nscale = 1e-18;
 
 disp("Exporting results/concentration-vertical-700+300.tex...");
 x = vertical(2);
@@ -27,7 +27,7 @@ gp.exec("\n\
 	set output 'results/concentration-vertical-700+300.tex' \n\
 ");
 gp.exec(...
-	'set cblabel "hustota atomů $\\ndensse\\,[10^{%d}\\si{\\per\\metre\\cubed}]$" offset 1,0',...
+	'set cblabel "hustota atomů $\\ndensse\\,[10^{%d}\\si{\\per\\metre\\cubed}]$" offset 2,0',...
 	-log10(nscale));
 gp.plotmatrix(x.xmm, x.ys, x.n * nscale, "with image");
 gp.doplot();
@@ -62,10 +62,10 @@ gp.exec("\n\
 	set title offset 0,-0.5 \n\
 	set xrange [-11:11] \n\
 	set yrange [-1:16] \n\
-	set cbrange [0:1.5] \n\
+	set cbrange [0:8] \n\
 	set xtics 5 \n\
 	set ytics 5 \n\
-	set cbtics 0.5 \n\
+	set cbtics 1 \n\
 	unset xlabel \n\
 	set ylabel '$\\ymm\\,[\\si{\\milli\\metre}]$' \n\
 	unset colorbox \n\
