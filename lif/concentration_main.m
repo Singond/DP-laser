@@ -74,5 +74,5 @@ wt = reshape(conc.E, 1, 1, []);
 conc.nmw = sum(conc.nf .* wt ./ sum(wt(:)), 3);
 conc.nma = mean(conc.nf, 3);
 conc.nm = conc.nmw;
-conc.n_std = std(conc.nf, 0, 3);
+conc.n_std = std(conc.nf, wt(:), 3);
 
