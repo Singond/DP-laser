@@ -1,3 +1,5 @@
+addpath octave;
+
 if (!exist("location", "var"))
 	if (isfile("results/location.txt"))
 		load results/location.txt
