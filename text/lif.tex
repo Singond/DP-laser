@@ -302,8 +302,17 @@ uvedený příklad je ze \num{100} akumulací.
 % TODO: Popsat v textu
 \begin{figure}
 	\centerline{\input{../lif/results/rayleigh-time}}
-	\caption{Časový vývoj Rayleighova rozptylu v~průběhu jednoho pulzu.
-		Signál je integrován v~horizontálním směru (ve směry osy $x$).}
+	\caption{Časový vývoj Rayleighova rozptylu v~průběhu jednoho pulzu
+		měřený v~krocích po \SI{0.5}{\nano\second}
+		s~délkou expozice \SI{2}{\nano\second}.
+		Signál je integrován v~horizontálním směru (ve směry osy $x$).
+		Toto měření sloužilo k~ověření délky trvání laserového pulzu
+		a~následného rozptylu, který je při fluorescenci parazitním jevem.
+		Je vidět, že trvání detekovatelného signálu je zhruba
+		\SI{3}{\nano\second} a~po něm následuje dlouhý interval
+		zanedbatelných hodnot.
+		To je příznivý výsledek, neboť to znamená, že signál zachycený
+		po odeznění rozptylu skutečně pochází od fluorescence.}
 	\label{fig:lif-rayleigh-time}
 \end{figure}
 
