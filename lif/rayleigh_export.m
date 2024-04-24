@@ -92,7 +92,7 @@ gp.exec("\n\
 ");
 gp.exec('set xlabel "čas $\\tim\\,[\\si{\\nano\\second}]$" offset -1,-1');
 gp.exec('set ylabel "poloha $\\ypos\\,[\\si\\pixel]$" offset 1,-1');
-gp.exec('set zlabel "intenzita LIF $\\lif\\,[\\si\\arbunit]$" offset -1,0');
+gp.exec('set zlabel "intenzita signálu $\\lif\\,[\\si\\arbunit]$" offset -1,0');
 gp.exec("splot '-' with zerrorfill ls 1, '-' with lines ls 1");
 yr = (40:120)';
 sz = size(Rt.ypos(yr));
