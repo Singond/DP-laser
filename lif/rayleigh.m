@@ -50,7 +50,9 @@ assert(diff([R.ypos], [], 2) == 0, "R(i).ypos is not equal for different i");
 
 ## Time evolution of Rayleigh scattering
 Rt = load_iccd("data-2023-01-20/rayleigh_cas.SPE", "dark", unidark);
-Rt.t = 100:0.5:130;                 # [ns]
+## The measured time was actually 100:0.5:130, but shift it to zero
+## to match time values used in lifetime calculations.
+Rt.t = 0:0.5:30;                 # [ns]
 Rt.amp = 50;
 Rt = correct_iccd(Rt);
 Rt = normalize_intensity(Rt);
