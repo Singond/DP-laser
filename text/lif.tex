@@ -94,10 +94,11 @@ pročež bylo nutné ji před vstupem do plamene značně omezit.
 
 Pro zajištění rovnoměrnějšího rozložení intenzity byl laserový svazek
 po výstupu ze~zdroje veden do prostorového filtru tvořeného dvěma
-křemennými spojkami a~clonou s~kruhovou dírkou. % TODO: polomer
+křemennými spojkami a~clonou s~kruhovou dírkou
+umístěnou mezi čočkami v~jejich společném ohnisku. % TODO: polomer
 Následně byl svazek rozdělen děličem svazku.
 Jako dělič sloužila skleněná destička,
-která většinu záření propouštěla do detektoru
+která většinu záření propouštěla do detektoru měřícího energii laserového pulzu
 a~pouze malou část odrážela dále do aparatury,
 čímž došlo k~požadovanému snížení intenzity.
 
@@ -169,16 +170,19 @@ Snímek skutečného provedení je na obrázku \ref{fig:lif-setup-photo}.
 Před stanovením koncentrace atomů selenu bylo nutno určit několik
 dalších veličin, na nichž výpočet závisí.
 Prostřednictvím Rayleighova rozptylu byl zjištěn profil laserového svazku,
-který udává prostorové rozložení intenzity excitujícího záření.
-Změření excitačního profilu umožnilo nalézt přesnější polohu maxima
-fluorescenčního signálu
+který udává prostorové rozložení intenzity excitujícího záření
+a~umožnil kalibrovat citlivost detekční sestavy
+Změření spektrálního excitačního profilu umožnilo nalézt přesnější
+hodnotu vlnové délky, pro niž je fluorescenční signál největší,
 a~stanovit spektrální překryv laseru a~excitace $\specoverlap$.
 Ukázalo se, že fluorescence i~navzdory nízké energii laserových pulzů
 projevovala saturaci, kterou bylo tudíž nutno zahrnout do výpočtů.
 Podstatným krokem bylo určení doby života zářivého stavu.
 
 Záznam z~ICCD kamery tvoří časová posloupnost černobílých sním\-ků,
-přičemž každý snímek je tvořen nastaveným počtem akumulací na čipu.
+přičemž signál každého snímku je součtem signálu zachyceného
+z~určeného počtu laserových pulzů.
+K~těmto tzv.~akumulacím dochází přímo na čipu kamery.
 Kamera kromě fluorescence snímá také parazitní signál pocházející
 ze zbytkového světla v~laboratoři nebo vlastního záření plamene.
 Pro potlačení jejich nežádoucího vlivu
@@ -212,13 +216,15 @@ jednotlivým snímkům kamery.
 Hranice těchto intervalů byly odhadnuty ze~známé frekvence spouštění
 kamery, počtu akumulací na čipu a~vyčítací prodlevy mezi sním\-ky.
 
-\subsection{Profil svazku}
+\subsection{Prostorový profil svazku}
 \label{sec:lif-rayleigh}
-Pro další vyhodnocení bylo nutno znát skutečný prostorový profil
+Pro další vyhodnocení bylo nutno znát skutečný vertikální profil
 laserového svazku v~oblasti atomizátoru.
 K~jeho zjištění bylo použito slabého rozptylu laserového záření ve vzduchu.
 Uspořádání pokusu bylo stejné, jako bylo popsáno výše,
-jen atomizátor byl vypnut (neproudil do něj žádný plyn).
+jen atomizátor byl vypnut (neproudil do něj žádný plyn)
+a~z~kamery byl sňat filtr v~podobě křemenných skel
+(který jindy sloužil právě k~odstínění rozptýleného laserového světla).
 Kamera snímala laserový svazek z~boku, zaznamenaný signál byl v~tomto
 případě tvořen především Rayleighovým rozptylem svazku na částicích vzduchu.
 Příklad takového snímku je na obrázku č.~\ref{fig:lif-beam}.
@@ -617,15 +623,17 @@ parametry $\lifslope$ a~$\lifsat$ na obrázku~\ref{fig:lif-saturation-x-params}.
 
 \subsection{Doba života}
 \label{sec:lif-lifetime}
-Druhým významným ukazatelem koncentrace částic je doba života $\lifetime$,
+Posledním významným parametrem luminiscenčního procesu
+je doba života $\lifetime$,
 tedy parametr exponenciálního poklesu signálu v~čase.
 Časový vývoj fluorescence byl zaznamenán opakovaným měřením mnoha pulzů
 s~postupně zvyšovaným zpožděním kamery za laserovým pulzem.
 Délka každé expozice byla nastavena na \SI{2}{\nano\second},
 po provedení 100 akumulací bylo vždy zpoždění kamery zvýšeno
 o~\SI{0.5}{\nano\second}.
-Takto byl zaznamenán časový interval o~délce \SI{30}{\nano\second}.
-Atomizátor byl přitom nastaven na obvyklý průtok.
+Takto byl zaznamenán průběh fluorescenčního signálu v~časovém intervalu
+o~délce \SI{30}{\nano\second}.
+Průtok plynů atomizátorem byl přitom nastaven na obvyklé hodnoty.
 
 Série snímků na obrázku č.~\ref{fig:lif-timeev} ukazuje výběr několika
 snímků z~tohoto měření.
@@ -652,8 +660,8 @@ na obrázku~\ref{fig:lif-lifetime-full-params} dole.
 \begin{figure}[p]
 	\centering
 	\input{../lif/results/timeev}
-	\caption{Typický vývoj fluorescenčního signálu v~průběhu jedné periody.
-		Časové rozlišení bylo získáno opakovaným měřením mnoha period
+	\caption{Typický vývoj fluorescenčního signálu v~čase.
+		Časové rozlišení bylo získáno opakovaným měřením mnoha pulzů
 		s~postupnou změnou zpoždění kamery za začátkem pulzu.
 		Pulz začíná přibližně v~čase $\tim = \SI{5.0}{\nano\second}$.
 		Kamera byla ve všech snímcích nastavena na \num{100} akumulací.
@@ -678,13 +686,23 @@ byla kromě ní spočtena i~doba života ze svisle integrovaných dat,
 obdobně jako v~případě saturace.
 Tato vodorovně rozlišená doba života je vykreslena
 na obrázku~\ref{fig:lif-lifetime-x-params}.
-Zde je jasně zřetelné, že její maximum leží zhruba ve středu plamene
-a~směrem ke krajům klesá.
-Pozoruhodné je, že závislost se zdá být velmi podobná lineární.
 Ukázka prokladů ve vybraných bodech je
 na obrázku~\ref{fig:lif-lifetime-x-fits}.
 Zde je patrno, že svislá integrace signálu měla za následek potlačení šumu
 a~tím pádem přesnější proklady.
+Pro výpočet koncentrace selenu v~další části bude proto použita pouze
+vodorovně rozlišená doba života.
+
+Z~obou způsobů stanovení doby života je jasně zřetelné,
+že její maximum leží zhruba ve středu plamene a~směrem ke krajům klesá.
+To je v~souladu s~očekáváním, neboť v~okrajových částech je přítomno
+více činitelů způsobujících zhášení excitovaných stavů.
+Prvním je vzdušný kyslík, jenž sem proniká z~okolní atmosféry,
+druhým je vodní pára, která vzniká spalováním vodíku.
+Její koncentrace může být v~okrajových částech vyšší v~důsledku
+vyšší koncentrace kyslíku a~tudíž rychlejšího spalování.
+Kyslík a~zejména vodní pára zhášejí excitované stavy mnohem rychleji
+než argon, který převládá ve středu plamene.
 
 \begin{figure}[htp]
 	\centering
