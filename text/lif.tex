@@ -74,16 +74,33 @@ k~atomizaci selenu rozpadem selanové molekuly \ce{H2Se}:
 	}
 \end{align*}
 
+\subsection{Optická část}
+\label{sec:lif-setup-optics}
+Možnosti laseru dovolovaly použít excitaci selenu z~jeho základního stavu
+$4s^2 4p^4\,{}^3\text{P}_2$
+do stavu $4s^2 4p^3({}^4\text{S}^\circ) 5s\,{}^3\text{S}^\circ_1$.
+Vlnová délka tohoto přechodu je $\SI{196.03}{\nano\metre}$.
+Z~horního stavu je možný přechod na pět nižších hladin včetně základní.
+Toto excitační schéma je na obrázku č.~\ref{fig:lif-grotrian}.%
+\footnote{Pozorný čtenář si všimne, že všechny uvažované přechody
+zahrnují změnu celkového spinu atomu a tím pádem i~jeho multiplicity.
+Přísně vzato bychom tedy měli hovořit o~laserem indukované
+\emph{fosforescenci}, nikoli fluorescenci.
+Česká zkratka by přitom dokonce mohla zůstat stejná.
+Dovolujeme si však přesto zůstat u~původního názvu, neboť je zavedený,
+navíc je selen tak těžký atom, že přestává být vhodná aproximace celkového
+momentu hybnosti $J$ pomocí LS-vazby i~vyjádření celkového spinu elektronů,
+a~rozdíl mezi fluorescencí a~fosforescencí se stírá.}
+
 \begin{figure}
 	\centering
 	\begin{tikzpicture}[scale=0.5]
 		\seleniumlifgrotrian
 	\end{tikzpicture}
 	\caption{Excitační schéma selenu použité pro LIF.}
+	\label{fig:lif-grotrian}
 \end{figure}
 
-\subsection{Optická část}
-\label{sec:lif-setup-optics}
 Volba optické dráhy se odvíjela od dvou základních požadavků:
 Za prvé bylo potřeba eliminovat nebo alespoň dostatečně potlačit
 nehomogennost intenzity laserového svazku,
@@ -1030,3 +1047,5 @@ směrem k~vyšším oblastem plamene.
 		\SIrange{2}{4}{\milli\metre}.}
 	\label{fig:lif-concentration-vertical-slices}
 \end{figure}
+
+% TODO: Diskuze?
