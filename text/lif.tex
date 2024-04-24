@@ -46,26 +46,32 @@ pro fluorescenci v~plazmatu.
 \section{Uspořádání experimentu}
 \label{sec:lif-setup}
 
-% TODO: Popsat atomizátor a generátor hydridu
 
 \subsection{Chemická část}
 \label{sec:lif-setup-chemistry}
-Za zkoumaný vzorek byl použit roztok \SI{10}{\ppb}
+Experiment byl proveden ve vzduchu za atmosférického tlaku.
+Schéma chemické aparatury je na obrázku č.~\ref{fig:lif-generator}.
+Jako zkoumaný vzorek byl použit roztok \SI{10}{\ppb}
 (tedy \SI{10}{\micro\gram\per\litre})
 selenu v kyselině chlorovodíkové \ce{HCl} o koncentraci \SI{1}{\mol\per\litre}.
-Směs proudila do generátoru hydridů, kde byl selen redukován
+Směs byla čerpána do generátoru hydridů, kde byl selen redukován
 \num{0.5}\si{\percent} roztokem borohydridu sodného (\ce{NaBH4})
 v~\num{0.4}\si{\percent} hydroxidu draselném (\ce{KOH}).
 Redukovaný selen následně reagoval s~atomárním vodíkem za vzniku
-selanu (tj.~hydridu selenu, \ce{H2Se}).
+selanu (tj.~hydridu selenu, \ce{H2Se}) a~vodíkových iontů \ce{H+}.
 
 Selan je těkavá látka, která má za standardních podmínek podobu
 bezbarvého plynu.
-Ten byl veden do atomizátoru spolu s~nosným plynem argonem
-o~průtoku \SI{775}{\sccm}.
-Dalším kanálem atomizátoru byl přiváděn vodík o~průtoku \SI{300}{\sccm}.
-Nad ústím atomizátoru, kde se vodík mísil s~okolním vzduchem,
-hořel vodíkový plamen, v~němž docházelo ve dvou krocích
+K~němu byl do aparatury přiveden nosný plyn argon o~průtoku \SI{775}{\sccm}.
+Selan se vypařoval do argonu a~směs proudila do separátoru,
+kde došlo k~odloučení plynné složky od kapalné.
+Kapalná složka představovala odpad a~byla odváděna ze dna separátoru pryč.
+Plynná směs pokračovala do takzvaného atomizátoru,
+což byla trubička z~křemenného skla o~vnitřním průměru \SI{6}{\milli\metre}.
+Bočním kanálem atomizátoru byl do směsi přiváděn další vodík
+o~průtoku \SI{300}{\sccm}.
+Nad ústím atomizátoru se vodík mísil se vzdušným kyslíkem
+a~hořel plamenem, v~němž docházelo ve dvou krocích
 k~atomizaci selenu rozpadem selanové molekuly \ce{H2Se}:
 \begin{align*}
 	\ce{
@@ -73,6 +79,23 @@ k~atomizaci selenu rozpadem selanové molekuly \ce{H2Se}:
 		H + HSe &-> H2 + Se
 	}
 \end{align*}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{img/lif-generator}
+	\caption{Schéma uspořádání chemické aparatury pro atomizaci selenu.
+		Zdrojem selenu je jeho roztok v~kyselině chlorovodíkové.
+		Ten se mísí s~roztokem borohydridu sodného,
+		přičemž vzniká vodík a~těkavý selan \ce{H2Se},
+		který se vypařuje do přivedeného nosného plynu, jímž je argon.
+		Směs je v~separátoru rozdělena na kapalnou a~plynnou složku.
+		Kapalná složka je odvedena jako odpad a~plynná směs proudí
+		do atomizátoru tvořeného trubičkou z~křemenného skla
+		o~vnitřním průměru \SI{6}{\milli\metre}.
+		V~ústí atomizátoru vodík hoří se vzdušným kyslíkem
+		a~vzniklý plamen rozkládá selan na vodík a~atomární selen.}
+	\label{fig:lif-generator}
+\end{figure}
 
 \subsection{Optická část}
 \label{sec:lif-setup-optics}
@@ -904,7 +927,6 @@ Výše uvedená měření byla provedena (až na uvedené odlišnosti) se stejn�
 nastavením.
 Poloha kamery byla neměnná, stejná oblast snímku tedy vždy odpovídá stejnému
 prostorovému umístění.
-% TODO: 700 nebo 775? Ostatní hodnoty jsou vždy zaznamenány jako 100+75 apod.
 Průtoky plynu činily \SI{775}{\sccm} pro argon
 a~\SI{300}{\sccm} pro vodík.
 

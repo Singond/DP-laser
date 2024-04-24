@@ -11,6 +11,9 @@ img/%.tex img/%.pdf: img/%.gp
 thesis.pdf: ../lif/results/excitprof-nofilter.tex
 thesis.pdf: ../lif/results/saturation-full-example-index.tex
 thesis.pdf: ../lif/results/liflines.tsv
+thesis.pdf: img/lif-generator.pdf
+thesis.pdf: img/lif-setup-general.pdf
+thesis.pdf: img/lif-setup-se.pdf
 
 thesis.pdf: thesis.tex frontmatter.tex efish.tex lif.tex references.bib
 	latexmk ${tex_args} thesis && touch $@
