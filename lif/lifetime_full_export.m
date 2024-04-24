@@ -63,8 +63,7 @@ k = 2;
 for p = points
 	xi = interp1(x.xpos, 1:length(x.xpos), p(2), "nearest");
 	yi = interp1(x.ypos, 1:length(x.ypos), p(1), "nearest");
-	[tmin, tmax] = bounds(x.t);
-	tt = linspace(tmin, tmax, 250);
+	tt = linspace(8, 15, 250);
 	m = 5 <= x.t & x.t <= 20;
 	p1.plot(x.t(m), squeeze(x.in(yi,xi,m)), sprintf(
 		"w p ls %d t'$\\lbrack%d,%d\\rbrack\\,\\lifetime=\\SI{%.2f}{\\nano\\second}$'",

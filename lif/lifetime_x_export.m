@@ -52,7 +52,7 @@ for xp = points
 	xi = interp1(x.xpos, 1:length(x.xpos), xp, "nearest");
 	tmin = 5;
 	tmax = 20;
-	tt = linspace(tmin, tmax);
+	tt = linspace(8, 15);
 	m = tmin <= x.t & x.t <= tmax;
 	gp.plot(x.t(m), squeeze(x.inx(1,xi,m)), sprintf(...
 		"w p ls %d t'$\\lbrack%d\\rbrack, \\lifetime=\\SI{%.2f}{\\nano\\second}$'",...
