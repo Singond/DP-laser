@@ -17,7 +17,7 @@ gp.exec("\n\
 	set palette viridis \n\
 	set lmargin at screen 0.12 \n\
 	set rmargin at screen 0.83 \n\
-	set title '$\\SI{700}{\\sccm}\\,\\ce{Ar} + \\SI{300}{\\sccm}\\,\\ce{H2}$' \n\
+	set title '$\\SI{775}{\\sccm}\\,\\ce{Ar} + \\SI{300}{\\sccm}\\,\\ce{H2}$' \n\
 	set xrange [-12:12] \n\
 	set xtics 5 \n\
 	set ytics 5 \n\
