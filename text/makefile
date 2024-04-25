@@ -8,9 +8,15 @@ img/%.tex img/%.pdf: img/%.asy
 img/%.tex img/%.pdf: img/%.gp
 	cd img && gnuplot -d $*.gp
 
+thesis.pdf: ../lif/results/concentration-vertical-centre.tex
 thesis.pdf: ../lif/results/excitprof-nofilter.tex
-thesis.pdf: ../lif/results/saturation-full-example-index.tex
+thesis.pdf: ../lif/results/lifetime-x-time.tex
 thesis.pdf: ../lif/results/liflines.tsv
+thesis.pdf: ../lif/results/location.tex
+thesis.pdf: ../lif/results/saturation-full-example-index.tex
+thesis.pdf: ../lif/results/specoverlap.tex
+thesis.pdf: img/cameraeff.pdf
+thesis.pdf: img/camerafilter.pdf
 thesis.pdf: img/lif-generator.pdf
 thesis.pdf: img/lif-setup-general.pdf
 thesis.pdf: img/lif-setup-se.pdf
