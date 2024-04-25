@@ -25,12 +25,15 @@ v~řádu nanosekund až femtosekund.
 Základní myšlenka metody je pozorování fluorescenčního záření vznikajícího
 při deexcitaci zkoumaných částic ze stavu vybuzeného absorpcí laserového
 světla.
-Obecné schéma nejjednodušší varianty je na obrázku \ref{fig:lifth-levels}.
+Obecné schéma nejjednodušší varianty, čítající pouhé tři hladiny,
+je na obrázku \ref{fig:lifth-levels}.
 Atomy či jiné částice jsou dopadem laseru excitovány ze~základní hladiny~1
 do excitovaného stavu~3.
-Tento stav je depopulován jednak samovolnou emisí zpět do základního stavu,
-jednak vynucenou emisí do základního stavu
-a~samovolnou emisí do stavu~2.
+Tento stav je depopulován samovolnou emisí zpět do nižších stavů
+(v~tříhladinovém modelu do hladin 1 a~2),
+vynucenou emisí do základního stavu způsobenou laserovým zářením
+a~řadou dalších procesů probíhajících při srážkách s~okolními částicemi,
+které je možno souhrnně nazvat zhášením.
 Záření přechodu z~hladiny~3 na hladinu~2 je snímaný fluorescenční signál.
 
 \begin{figure}
@@ -112,7 +115,8 @@ je obvykle známa.
 Z~výše uvedeného plyne nutnost při měření zaznamenat nejen samotnou
 intenzitu fluorescence $\lifsignal$,
 ale také dobu života zářivého stavu $\lifetime$.
-Tu je možno změřit z~časového vývoje fluorescenčního záření,
+Tu je možno změřit z~časového vývoje fluorescenčního záření po odeznění
+laserového pulzu,
 neboť doba života je definována jako parametr exponenciálního poklesu
 intenzity fluorescence:
 \begin{equation}
@@ -127,8 +131,8 @@ která umožní tento integrál eliminovat.
 Měřenou intenzitu Rayleighova rozptylu $\rayleighsignal$ lze popsat vztahem:
 \begin{equation}
 	\label{eq:lifth-rayleighsignal}
-	\rayleighsignal = \rayleighdxsect \rayleighndens
-	\frac{\enlaserrayleigh}{\planck\freq} \rayleigheff
+	\rayleighsignal = \rayleighdxsect \, \rayleighndens
+	\frac{\enlaserrayleigh}{\planck\freq} \, \rayleigheff
 	\iiint_\vol \sensabs \solidangle \beamprofile \dd{\vol},
 \end{equation}
 kde $\rayleighndens$ je koncentrace rozptylujících částic,
@@ -143,7 +147,11 @@ stavové rovnice ideálního plynu:
 	\frac{\pres}{\boltzmann\temp}.
 \end{equation}
 
-% TODO: účinný průřez
+Stanovení účinného průřezu $\rayleighdxsect$ je obtížnější,
+ale pro obvyklá média je dobře popsáno v~literatuře.
+Rayleighově rozptylu ve vzduchu se věnuje například Miles v~\cite{rayleigh},
+kde udává hodnoty indexu lomu a~diferenciálního účinného průřezu vzduchu
+pro vlnové délky v~rozsahu \SIrange{200}{1000}{\nano\metre}.
 
 Kombinace vztahů \eqref{eq:lifth-lifsignal} a~\eqref{eq:lifth-rayleighsignal}
 vede na následující vyjádření koncentrace částic,
