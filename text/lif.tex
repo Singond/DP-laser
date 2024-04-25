@@ -312,7 +312,9 @@ uvedený příklad je ze \num{100} akumulací.
 		\SI{3}{\nano\second} a~po něm následuje dlouhý interval
 		zanedbatelných hodnot.
 		To je příznivý výsledek, neboť to znamená, že signál zachycený
-		po odeznění rozptylu skutečně pochází od fluorescence.}
+		po odeznění rozptylu skutečně pochází od fluorescence.
+		Srovnej s~časovým průběhem fluorescence
+		na obrázku \ref{fig:lif-lifetime-x-time}.}
 	\label{fig:lif-rayleigh-time}
 \end{figure}
 
@@ -717,6 +719,16 @@ na obrázku~\ref{fig:lif-lifetime-full-params} dole.
 		Hloubka snímané oblasti, daná tloušťkou laserového svazku,
 		je zhruba \SI{1}{\milli\metre}.}
 	\label{fig:lif-timeev}
+\end{figure}
+
+\begin{figure}[htp]
+	\centering
+	\input{../lif/results/lifetime-x-time}
+	\caption{Časový vývoj fluorescenčního signálu.
+		Intenzita fluorescence je integrována ve směru svislé osy.
+		Je dobře patrný exponenciální pokles intenzity,
+		který je větší ve středu plamene (kolem $\xpos = \SI{100}{\pixel}$).}
+	\label{fig:lif-lifetime-x-time}
 \end{figure}
 
 \begin{figure}[htp]
