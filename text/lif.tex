@@ -288,7 +288,7 @@ výškách.
 	\label{fig:lif-beam}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[htb]
 	\centering
 	\input{../lif/results/rayleigh-profile-s}%
 	\hfill
@@ -379,7 +379,7 @@ a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
 	\label{fig:lif-excitprof-filter}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\input{../lif/results/excitprof-fit}
 	\caption{Detail maxima integrálního excitačního profilu
@@ -389,7 +389,7 @@ a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
 \end{figure}
 
 \shorthandoff{-}
-\begin{table}[bh]
+\begin{table}[b]
 	\centering
 	\caption{Parametry aproximovaných excitačních profilů.
 		$\enlaser$ je energie laserového pulzu,
@@ -497,7 +497,7 @@ Takto spočtený spektrální překryv činil
 $\specoverlap=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
 {\lifconckappa}{\second}$.
 
-\begin{figure}[htp]
+\begin{figure}[p]
 	\centering
 	\input{../lif/results/specoverlap}
 	\caption{Porovnání tvaru excitačního profilu získaného z~proložených dat
@@ -511,6 +511,7 @@ $\specoverlap=\SI[exponent-mode=scientific,round-mode=places,round-precision=2]
 	\label{fig:lif-specoverlap}
 \end{figure}
 
+\clearpage
 \subsection{Saturace}
 \label{sec:lif-saturation}
 Fluorescence podle očekávání vykazovala při použití vyšších intenzit laseru
@@ -627,7 +628,7 @@ Na obrázku je jeho hodnota v~oblasti plamene zhruba homogenní:
 Je sice patrn nárůst s~rostoucí výškou, stejně jako u~parametru $\lifslope$,
 ale ve vodorovném směru se jeví stabilní.
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\small
 	\input{../lif/results/saturation-full-paramsfits}
@@ -653,7 +654,7 @@ U~parametru $\lifslope$ je zachována vodorovná homogenita,
 ale výškové rozdělení je zcela jiné.
 U~saturačního parametru $\lifsat$ jakákoli rovnoměrnost zcela vymizela.
 
-\begin{figure}[htp]
+\begin{figure}[htbp]
 	\centering
 	\small
 	\input{../lif/results/saturation-full-params-bad}
@@ -697,6 +698,7 @@ parametry $\lifslope$ a~$\lifsat$ na obrázku~\ref{fig:lif-saturation-x-params}.
 	\label{fig:lif-saturation-x-fits}
 \end{figure}
 
+\clearpage
 \subsection{Doba života}
 \label{sec:lif-lifetime}
 Posledním významným parametrem luminiscenčního procesu
