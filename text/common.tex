@@ -92,13 +92,15 @@
 }
 
 \newcommand\liflevels{
-	\draw [level] (0,0)  node [left] {$1$} -- (10,0);
-	\draw [level] (0,10) node [left] {$3$} -- (10,10);
+	\draw [level] (-1,0)  node [left] {$1$} -- (10,0);
+	\draw [level] (-1,10) node [left] {$3$} -- (10,10);
 	\draw [level] (8,6) -- (14,6) node [right] {$2$};
 
-	\draw [radiation] (-4,4) -- node [sloped, above] {laser} (0,1);
-	\draw [transition] (1,0) -- node [left] {$\einsteinb13 I$} (1,10);
-	\draw [transition] (2,10) -- node [right] {$\einsteinb31 I$} (2,0);
+	\draw [radiation] (-5,4) -- node [sloped, above] {laser} (-1,1);
+	\draw [transition] (0,0) -- node [left]
+		{$\specoverlap\displaystyle\frac{\einsteinb13 I}{\lightspeed}$} (0,10);
+	\draw [transition] (1,10) -- node [right]
+		{$\specoverlap\displaystyle\frac{\einsteinb13 I}{\lightspeed}$} (1,0);
 	\draw [transition] (5,10) -- node [right] {$\einsteina31 + Q_{31}$} (5,0);
 	\draw [transition] (9,10) -- node [right] {$\einsteina32 + Q_{32}$} (11,6);
 	\draw [transition] (11,6) -- node [right] {$\einsteina21 + Q_{21}$} (9,0);
