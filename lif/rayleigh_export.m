@@ -79,6 +79,10 @@ gp.load("../gnuplot/style-cairo.gp");
 gp.load("../gnuplot/style-splot.gp");
 gp.exec("\n\
 	set style fill transparent solid 0.3 \n\
+	set tmargin at screen 0.82 \n\
+	set bmargin at screen 0.25 \n\
+	set lmargin at screen 0.24 \n\
+	set rmargin at screen 0.85 \n\
 	set yrange [40:120] reverse \n\
 	set ytics 20 \n\
 	set ztics 400 \n\
@@ -87,11 +91,11 @@ gp.exec("\n\
 	#set view 60, 360-37.5 \n\
 	unset key \n\
 	set offsets graph 0.04, graph 0.04, graph 0.04, graph 0.04 \n\
-	set terminal cairolatex pdf size 14cm,12cm \n\
+	set terminal cairolatex pdf size 12.5cm,10cm \n\
 	set output 'results/rayleigh-time.tex' \n\
 ");
-gp.exec('set xlabel "čas $\\tim\\,[\\si{\\nano\\second}]$" offset -1,-1');
-gp.exec('set ylabel "poloha $\\ypos\\,[\\si\\pixel]$" offset 1,-1');
+gp.exec('set xlabel "čas $\\tim\\,[\\si{\\nano\\second}]$" offset -1,-0.5 rotate parallel');
+gp.exec('set ylabel "poloha $\\ypos\\,[\\si\\pixel]$" offset -1,0 rotate parallel');
 gp.exec('set zlabel "intenzita signálu $\\lif\\,[\\si\\arbunit]$" offset -1,0');
 gp.exec("splot '-' with zerrorfill ls 1, '-' with lines ls 1");
 yr = (40:120)';
