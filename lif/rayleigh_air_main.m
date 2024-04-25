@@ -26,11 +26,11 @@ rayleigh_air.Fk = rayleigh_air.data(:,2);                  # [-]
 rayleigh_air.refrind = 1 + rayleigh_air.data(:,3) * 1e-4;  # [-]
 rayleigh_air.xsect = rayleigh_air.data(:,4) * 1e-4;        # [m2]
 
-function xs = dxsect(wl, rayleigh_air)
+function [dxs, xsect, Fk, rho0]  = dxsect(wl, rayleigh_air)
 	xsect = interp1(rayleigh_air.wl, rayleigh_air.xsect, wl, "extrap");
 	Fk = interp1(rayleigh_air.wl, rayleigh_air.Fk, wl, "extrap");
 	rho0 = 6 * (Fk  - 1) / (3 + 7 * Fk);
-	xs = (3 * xsect / (8 * pi)) * 2 / (2 + rho0);
+	dxs = (3 * xsect / (8 * pi)) * (2 - rho0) / (2 + rho0);
 end
 
 rayleigh_air.dxsect = @(wl) dxsect(wl, rayleigh_air);
