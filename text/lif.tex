@@ -271,16 +271,24 @@ Příklad takového snímku je na obrázku č.~\ref{fig:lif-beam}.
 Snímaná intenzita byla mnohem větší než u~prostého plamene,
 uvedený příklad je ze \num{100} akumulací.
 
+Získaný signál byl integrován ve směru vodorovné osy,
+čímž vznikl svislý profil laserového svazku
+na obrázku~\ref{fig:lif-rayleigh-profile}.
+Ten byl po normování na jedničku a~vyhlazení klouzavým průměrem
+použit k~výpočtu svislého rozdělení intenzity v~laserovém svazku,
+případně jako váhová funkce při skládání snímků naměřených v~různých
+výškách.
+
 \begin{figure}[htp]
 	\centering
 	\input{../lif/results/rayleigh-example}
-	\caption{Snímek laserového paprsku ve vzduchu bez plamene.
+	\caption{Snímek laserového svazku ve vzduchu bez plamene.
 		Pozorovaný signál je Rayleighův rozptyl.
 		Kamera byla bez filtru a~nastavena na \num{100} akumulací.}
 	\label{fig:lif-beam}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp]
 	\centering
 	\input{../lif/results/rayleigh-profile-s}%
 	\hfill
@@ -295,13 +303,30 @@ uvedený příklad je ze \num{100} akumulací.
 		Tento posuv je lépe vidět v~pravém grafu, kde jsou profily
 		vyhlazené a~normalizované na jedničku.
 		Normalizované profily byly použity k~výpočtu svislého
-		rozdělení intenzity laserového paprsku pro známé energie pulzu.}
+		rozdělení intenzity laserového svazku pro známé energie pulzu.}
 	\label{fig:lif-rayleigh-profile}
 \end{figure}
 
-% TODO: Popsat v textu
-\begin{figure}
-	\centerline{\input{../lif/results/rayleigh-time}}
+Stejně důležité jako rozdělení signálu v~prostoru byl jeho časový průběh.
+K~Rayleighově rozptylu totiž dochází i~při měření fluorescence,
+kdy se stává nažádoucím jevem a~vytváří parazitní signál.
+Podle očekávání by trvání rozptylu mělo být výrazně kratší
+než časový horizont fluorescence.
+Tato skutečnost byla ověřena snímáním signálu v~různých okamžicích
+po laserovém pulzu.
+Kamera snímala rozptyl v~časovém okně o~délce \SI{2}{\nano\second},
+jehož zpoždění za pulzem bylo postupně zvyšováno v~krocích
+po \SI{0.5}{\nano\second}.
+Získaný časový vývoj je na obrázku~\ref{fig:lif-rayleigh-time},
+kde je signál každého snímku pro přehlednost integrován ve vodorovném směru.
+Jak je patrno, rozptyl je pozorovatelný po dobu asi \SI{3}{\nano\second},
+poté je jeho vliv zanedbatelný.
+Signál naměřený po vymizení rozptylu bude proto z~většiny tvořen
+fluorescenčním zářením, což je žádoucí stav.
+
+\begin{figure}[hbp]
+	\centering
+	\input{../lif/results/rayleigh-time}
 	\caption{Časový vývoj Rayleighova rozptylu v~průběhu jednoho pulzu
 		měřený v~krocích po \SI{0.5}{\nano\second}
 		s~délkou expozice \SI{2}{\nano\second}.
