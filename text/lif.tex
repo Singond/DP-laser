@@ -152,7 +152,7 @@ po výstupu ze~zdroje veden do prostorového filtru tvořeného dvěma
 křemennými spojkami a~clonou s~kruhovou dírkou
 umístěnou mezi čočkami v~jejich společném ohnisku. % TODO: polomer
 Následně byl svazek rozdělen děličem svazku.
-Jako dělič sloužila skleněná destička,
+Jako dělič sloužila křemenná destička,
 která většinu záření propouštěla do detektoru měřícího energii laserového pulzu
 a~pouze malou část odrážela dále do aparatury,
 čímž došlo k~požadovanému snížení intenzity.
@@ -176,11 +176,11 @@ Ophir \instrname{Vega Pyroelectric PE9-ES-C}
 s~rozsahem \SIrange{0.1}{200}{\micro\joule},
 který měří svazek procházející plamenem.
 Pro velmi nízké energie pulzu je citlivější detektor přesunut
-za dělič (kde je svazek silnější) a~svazek za~atomizátorem není měřen.
+za dělič (kde je svazek silnější) a~energie svazku za~atomizátorem není měřena.
 
 V~oblasti, kde se křížil laserový svazek s~plamenem, docházelo k~fluorescenci.
 Její záření bylo z~boku snímáno ICCD kamerou synchronizovanou s~laserem.
-Použitý model kamery byl \instrname{PIMAX-3} od Princeton Instruments.
+Použitý model kamery byl \instrname{PI-MAX: 1024} od Princeton Instruments.
 Citlivost kamery byla zvýšena opakovanou akumulací signálu na čipu.
 Počet akumulací pro LIF byl obvykle 100, ale mohl být regulován dle potřeby.
 Před kamerou se nacházela dvojice křemenných sklíček,
@@ -497,7 +497,7 @@ Nejjednodušším řešením této situace je předpokládat,
 že laserová čára $\profilelaser$ je ve skutečnosti o~něco užší
 než deklarovaná horní hranice \SI{5}{\per\centi\metre}
 a~převážná většina šířky excitačního profilu je tvořena šířkou laserové čáry.
-Absorpční čára potom musí mít tvar $\delta$-funkce
+Absorpční čára se potom blíží $\delta$-funkci
 a~vztah~\eqref{eq:lifth-specoverlap} přechází do tvaru:
 \begin{equation}
 	\specoverlap = \int \profileabs(\freq)\,\profilelaser(\freq) \dd{\freq}
@@ -806,11 +806,11 @@ Z~obou způsobů stanovení doby života je jasně zřetelné,
 že její maximum leží zhruba ve středu plamene a~směrem ke krajům klesá.
 To je v~souladu s~očekáváním, neboť v~okrajových částech je přítomno
 více činitelů způsobujících zhášení excitovaných stavů.
-Prvním je vzdušný kyslík, jenž sem proniká z~okolní atmosféry,
-druhým je vodní pára, která vzniká spalováním vodíku.
+Prvními jsou vzdušný kyslík a~dusík, jež sem pronikají z~okolní atmosféry,
+dalším je vodní pára, která vzniká spalováním vodíku.
 Její koncentrace může být v~okrajových částech vyšší v~důsledku
 vyšší koncentrace kyslíku a~tudíž rychlejšího spalování.
-Kyslík a~zejména vodní pára zhášejí excitované stavy mnohem rychleji
+Kyslík, dusík a~zejména vodní pára zhášejí excitované stavy mnohem rychleji
 než argon, který převládá ve středu plamene.
 
 \begin{figure}[htp]
@@ -832,7 +832,8 @@ než argon, který převládá ve středu plamene.
 \providecommand{\rhoo}{\rho_0}
 
 Zbývající neznámou byl diferenciální účinný průřez Rayleighova rozptylu.
-Jeho hodnota byla určena podle \cite{rayleigh} jako:
+Jeho hodnota pro svisle polarizované světlo, jaké měl laserový svazek,
+byla určena podle \cite{rayleigh} jako:
 \begin{equation}
 	\rayleighdxsect = \frac{3\xsect}{8\pi}
 	\left( \frac{2 - \rhoo}{2 + \rhoo} \right),
