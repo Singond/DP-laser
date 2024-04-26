@@ -171,7 +171,7 @@ kde je možno využít přímé úměry mezi integrálem intenzity
 a~energií laserového pulzu $\enlaser$.
 
 Intenzita signálu snímaná v~tomto lineárním režimu je potom
-integrálem výše fluorescenčního záření přes celý objem $\vol$:
+integrálem fluorescenčního záření přes celý objem $\vol$:
 \begin{equation}
 	\label{eq:lifth-lifsignal}
 	\lifsignal = \einsteina32\,\lifetime
@@ -202,13 +202,16 @@ jako parametr exponenciálního poklesu intenzity fluorescence v~čase:
 \begin{equation}
 	\lifsignal \propto \eu^{-\frac{\tim}{\lifetime}}.
 \end{equation}
+Dobu života lze tedy získat proložením časového vývoje fluorescenčního
+signálu exponenciální fukncí.
 
 Větší potíže působí objemový integrál na konci, jehož hodnota není snadno
 vyčíslitelná.
 Obvykle se proto přistupuje ke kalibraci pomocí Ray\-leigh\-ova rozptylu
 ve známém médiu (například vzduchu),
 která umožní tento integrál eliminovat.
-Měřenou intenzitu Rayleighova rozptylu $\rayleighsignal$ lze popsat vztahem:
+Měřenou intenzitu Rayleighova rozptylu $\rayleighsignal$ lze popsat vztahem:%
+\autocite{lif-oh}
 \begin{equation}
 	\label{eq:lifth-rayleighsignal}
 	\rayleighsignal = \rayleighdxsect \, \rayleighndens
@@ -253,6 +256,41 @@ Začne se projevovat vyčerpání základní hladiny $\ndens_1$
 a~laserem stimulovaná emise zpět do základního stavu nabude nezanedbatelné
 hodnoty.
 Dostatečná energie laseru navíc může vést k~fotoionizaci excitovaného stavu.
+Konečným důsledkem je, že intenzita fluorescenčního záření je nižší,
+než předpovídá lineární model.
+Tomuto jevu se říká saturace.
 
-V~těchto případech již není možno použít výše odvozeného
-vztahu~\eqref{eq:lifth-ndens} pro lineární režim.
+Saturace ztěžuje vyhodnocení experimentálních dat, neboť pro stanovení
+koncentrace již není možno použít výše popsaný lineární model
+a~vztah~\eqref{eq:lifth-ndens}.
+Existují však možnosti, jak jej pro saturaci korigovat.
+
+\Citeauthor{lif-saturation} odvodili v~roce \citeyear{lif-saturation}
+následující vztah pro přibližný popis částečně saturovaného
+fluorescenčního jevu\autocite{lif-saturation}:
+\begin{equation}
+	\liftotal(\enlaser) = \frac{\lifslope\enlaser}{1 + \lifsat\enlaser}.
+\end{equation}
+Zde $\lifslope\enlaser$ je hypotetická fluorescence bez účinků saturace
+a~$\lifsat$ je takzvaný saturační parametr.
+V~navazující studii z~roku \citeyear{lif-pb} uvádí \citeauthor{lif-pb},
+že saturaci lze ve vztahu \eqref{eq:lifth-ndens} zohlednit,
+pokud se podíl $\lifsignal/\enlaser$ nahradí vhodným výrazem
+závisejícím na konkrétním provedení experimentu.
+Zároveň doplňuje příklady pro dvě nejběžnější uspořádání.%
+\autocite{lif-pb}
+
+Pro úzký rovinný svazek pozorovaný z~kolmého směru má výraz tvar:
+\begin{equation}
+	\label{eq:lifth-sheet}
+	\liftotal = \frac{2\lifslope}{\lifsat}
+	\left( 1 - \frac{\ln(1 + \lifsat\enlasery)}{\lifsat\enlasery} \right),
+\end{equation}
+kde $\enlasery$ je lineární hustota laserové energie podél osy $y$.
+Pro osově souměrný gaussovský svazek nabývá výraz podoby:
+\begin{equation}
+	\label{eq:lifth-cylindric}
+	\liftotal = \frac{\lifslope}{\lifsat}
+	\ln(1 + \lifsat\enlaser),
+\end{equation}
+kde $\enlaser$ je celková energie laserového pulzu.
