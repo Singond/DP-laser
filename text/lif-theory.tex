@@ -75,28 +75,29 @@ Záření přechodu z~hladiny~3 na hladinu~2 je snímaný fluorescenční signá
 \providecommand\rayleighndens{\ndens_\text{R}}
 \providecommand\enlaserrayleigh{L_\text{R}}
 \providecommand\beamprofile{s}
+\providecommand\quenching{Q}
+\providecommand\liftotal{F}
 Velkou výhodou LIF je možnost určit absolutní koncentraci detekovaných částic,
 neboť intenzita fluorescence je funkcí této koncentrace.
 Závislost je v~limitě nízkých energií laseru lineární,
 s~rostoucí energií se pak objevují účinky saturace,
 které fluorescenci oslabují (viz dále v~oddíle \ref{sec:lifth-saturation}).
 
-Za předpokladu termodynamické rovnováhy rotačních stavů uvnitř každé
-vibrační hladiny lze intenzitu signálu $\lifsignal$ (pro jeden pozorovaný
-přechod) vyjádřit pomocí hustoty částic $\ndens$ v~základním stavu:
+Za předpokladu tříhladinového modelu fluorescenčního procesu uvedeného výše
+lze při určování koncentrace vyjít z~rychlostní rovnice popisující
+koncentraci horního stavu $\ndens_3$:
 \begin{equation}
-	\label{eq:lifth-lifsignal}
-	\lifsignal = \einsteina32\,\lifetime
-	\frac{\specoverlap \einsteinb13}{\lightspeed}
-	\ndens \enlaser \lifeff
-	\iiint_\vol \sensabs \frac{\solidangle}{4\pi} \beamprofile \dd{\vol}.
+	\label{eq:lifth-rate-simple}
+	\dv{\ndens_3}{\tim}
+	= \specoverlap \frac{\einsteinb13 \ity}{\lightspeed} \ndens_1
+	- \specoverlap \frac{\einsteinb31 \ity}{\lightspeed} \ndens_3
+	- ( \einsteina32 + \quenching_{32} ) \ndens_3,
 \end{equation}
-Zde $\enlaser$ je energie laserového pulzu,
-$\lifetime$ je doba života zářivého stavu,
-$\cameraangle$ je prostorový úhel fluorescenčního záření dopadajícího
-na snímač,
-$\beamprofile$ je prostorový profil intenzity laseru normovaný na jedničku,
-$\einsteina{i}{j}$ a~$\einsteinb{i}{j}$ jsou Einsteinovy koeficienty,
+kde $\ndens_1$ je koncentrace základního stavu,
+$\einsteina{i}{j}$ je Einsteinův koeficient spontánní emise,
+$\einsteinb{i}{j}$ jsou Einsteinovy koeficienty absorpce,
+$\quenching_{ij}$ je koeficient zohledňující zhášení,
+$\ity$ je intenzita ozáření laserem
 a~$\lightspeed$ je rychlost světla.
 Kromě toho vystupuje ve vztahu také takzvaný
 \emph{spektrální překryv} $\specoverlap$,
@@ -106,19 +107,98 @@ a~spektrálního složení laserového záření $l$ normovaných na jedničku:
 	\label{eq:lifth-specoverlap}
 	\specoverlap = \int l(\freq)\,a(\freq) \dd{\freq}.
 \end{equation}
-Citlivost snímače na fluorescenční záření ($\lifsens$) byla rozepsána
-jako součin kvantové účinnosti snímače $\lifeff$ a~neznámé
-(nebo jen obtížně stanovitelné) konstanty $\sensabs$,
-protože relativní kvantová účinnost $\qeff$ pro různé vlnové délky
-je obvykle známa.
+
+Obvykle se mezi základní a~horní hladinou nacházejí další stavy,
+které je potřeba do úvahy zahrnout.
+Vztah~\eqref{eq:lifth-rate-simple} potom nabývá podoby:
+\begin{equation}
+	\label{eq:lifth-rate}
+	\dv{\ndens_3}{\tim}
+	= \specoverlap \frac{\einsteinb13 \ity}{\lightspeed} \ndens_1
+	- \specoverlap \frac{\einsteinb31 \ity}{\lightspeed} \ndens_3
+	- \left( \sum_i \einsteina3i + \sum_i \quenching_{3i} \right) \ndens_3,
+\end{equation}
+kde sumy probíhají přes všechny mezilehlé stavy $i$.
+Výraz v~závorce udává rychlost úbytku horního stavu všemi samovolnými
+procesy (tedy těmi, které nejsou způsobeny laserovým zářením).
+Převrácená hodnota této veličiny se nazývá \emph{doba života} $\lifetime$:
+\begin{equation}
+	\label{eq:lifth-lifetime-def}
+	\lifetime = \frac{1}{\sum_i \einsteina3i + \sum_i \quenching_{3i}}.
+\end{equation}
+
+Za předpokladu, že se po odeznění laseru vrátí soustava do původního stavu,
+musí být celková změna koncentrace $\ndens_3$ rovna nule.
+Integrací vzta\-hu~\eqref{eq:lifth-rate} podle času lze tedy získat rovnici:
+\begin{equation}
+	\label{eq:lifth-rate-int}
+	0 = \frac\specoverlap\lightspeed
+	\int_0^\infty (\einsteinb13 \ndens_1 - \einsteinb31 \ndens_3) \ity\,\dd\tim
+	- \frac1\lifetime \int_0^\infty \ndens_3 \dd{\tim}.
+\end{equation}
+Celkové množství fluorescenčního záření lze vyjádřit jako:
+\begin{equation}
+	\label{eq:lifth-liftotal-def}
+	\liftotal = \einsteina32 \int_0^\infty \ndens_3 \dd{t}.
+\end{equation}
+Po dosazení tohoto výrazu do rovnice \eqref{eq:lifth-rate-int}
+lze celkové vyzářené množství vyjádřit jako:
+\begin{equation}
+	\label{eq:lifth-liftotal-general}
+	\liftotal = \einsteina32 \lifetime \frac\specoverlap\lightspeed
+	\int_0^\infty
+	(\einsteinb13 \ndens_1 - \einsteinb31 \ndens_3)
+	\ity\,\dd\tim.
+\end{equation}
+Součin $\einsteina32 \lifetime$ se nazývá kvantový výtěžek a~popisuje,
+jaký podíl přechodů se podílí na fluorescenčním záření.
+
+Za předpokladu, že množství stimulované emise do základního stavu
+je výrazně menší než absorpce laserového záření
+a~že celkové množství popsaných jevů je dostatečně malé, aby mohla být
+koncentrace základního stavu $\ndens_1 = \ndens$ považována za konstantní,
+lze výraz \eqref{eq:lifth-liftotal-general} zjednodušit následovně:
+\begin{equation}
+	\label{eq:lifth-liftotal-linear}
+	\liftotal \approx \einsteina32 \lifetime
+	\frac{\specoverlap\einsteinb13}{\lightspeed}
+	\ndens
+	\int_0^\infty \ity\,\dd\tim
+	\qquad
+	\text{kde} \int_0^\infty \ity\,\dd\tim \propto \enlaser,
+\end{equation}
+kde je možno využít přímé úměry mezi integrálem intenzity
+a~energií laserového pulzu $\enlaser$.
+
+Intenzita signálu snímaná v~tomto lineárním režimu je potom
+integrálem výše fluorescenčního záření přes celý objem $\vol$:
+\begin{equation}
+	\label{eq:lifth-lifsignal}
+	\lifsignal = \einsteina32\,\lifetime
+	\frac{\specoverlap \einsteinb13}{\lightspeed}
+	\ndens \enlaser \lifeff
+	\iiint_\vol \sensabs \frac{\solidangle}{4\pi} \beamprofile \dd{\vol},
+\end{equation}
+kde bylo zavedeno několik parametrů popisujících uspořádání:
+$\cameraangle$ je prostorový úhel fluorescenčního záření dopadajícího
+na snímač
+a~$\beamprofile$ je prostorový profil intenzity laseru normovaný na jedničku.
+
+Citlivost snímače na fluorescenční záření ($\lifsens$) obvykle není přímo
+známa,
+a~byla proto rozepsána jako součin dvou veličin $\lifeff$ a~$\sensabs$.
+Relativní citlivost $\lifeff$ je funkcí vlnové délky a~běžně bývá dodávána
+výrobcem; mnohdy představuje kvantovou účinnost detektoru.
+Absolutní citlivost $\sensabs$ nezávisí na vlnové délce,
+ale její hodnota je zpravidla neznámá nebo jen obtížně stanovitelná.
 
 Z~výše uvedeného plyne nutnost při měření zaznamenat nejen samotnou
 intenzitu fluorescence $\lifsignal$,
 ale také dobu života zářivého stavu $\lifetime$.
 Tu je možno změřit z~časového vývoje fluorescenčního záření po odeznění
 laserového pulzu,
-neboť doba života je definována jako parametr exponenciálního poklesu
-intenzity fluorescence:
+neboť doba života definovaná vztahem~\eqref{eq:lifth-lifetime-def} vystupuje
+jako parametr exponenciálního poklesu intenzity fluorescence v~čase:
 \begin{equation}
 	\lifsignal \propto \eu^{-\frac{\tim}{\lifetime}}.
 \end{equation}
@@ -144,17 +224,16 @@ a~$\rayleighdxsect$ je diferenciální účinný průřez Rayleighova rozptylu.
 V~případě vzduchu lze koncentraci částic přibližně vyjádřit pomocí
 stavové rovnice ideálního plynu:
 \begin{equation}
-	\frac{\pres}{\boltzmann\temp}.
+	\rayleighndens = \frac{\pres}{\boltzmann\temp}.
 \end{equation}
-
 Stanovení účinného průřezu $\rayleighdxsect$ je obtížnější,
-ale pro obvyklá média je dobře popsáno v~literatuře.
+ale pro běžná média je dobře popsáno v~literatuře.
 Rayleighově rozptylu ve vzduchu se věnuje například Miles v~\cite{rayleigh},
 kde udává hodnoty indexu lomu a~diferenciálního účinného průřezu vzduchu
 pro vlnové délky v~rozsahu \SIrange{200}{1000}{\nano\metre}.
 
 Kombinace vztahů \eqref{eq:lifth-lifsignal} a~\eqref{eq:lifth-rayleighsignal}
-vede na následující vyjádření koncentrace částic,
+vede (v~lineárním režimu) na následující vyjádření koncentrace částic,
 kde již objemový integrál nevystupuje:
 \begin{equation}
 	\label{eq:lifth-ndens}
@@ -167,3 +246,13 @@ kde již objemový integrál nevystupuje:
 
 \section{Saturace}
 \label{sec:lifth-saturation}
+Podmínky pro dosažení lineárního režimu však nemusejí být vždy splněny.
+Při zvýšení intenzity laseru nad určitou hodnotu přestanou platit oba
+výše uvedené předpoklady:
+Začne se projevovat vyčerpání základní hladiny $\ndens_1$
+a~laserem stimulovaná emise zpět do základního stavu nabude nezanedbatelné
+hodnoty.
+Dostatečná energie laseru navíc může vést k~fotoionizaci excitovaného stavu.
+
+V~těchto případech již není možno použít výše odvozeného
+vztahu~\eqref{eq:lifth-ndens} pro lineární režim.
