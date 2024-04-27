@@ -132,3 +132,27 @@ Jejich naměřená propustnost je na obrázku~\ref{fig:instruments-camerafilter}
 		před kamerou.}
 	\label{fig:instruments-camerafilter}
 \end{figure}
+
+\section{Měřiče energie Ophir}
+\label{sec:instruments-powermeter}
+K~měření energie laserového svazku sloužily pyroelektrické měřiče energie
+od firmy Ophir.
+Byly použity modely \instrname{PE9-SH-ROHS} a~\instrname{PE9-ES-C}.
+Oba jsou vybaveny kovovým absorbérem se spektrálním rozsahem
+\SIrange{0.15}{12}{\micro\metre}
+a~opakovací frekvencí až \SI{25}{\kilo\hertz}.
+Apertura přístroje je $\SI{8}{\milli\metre}$
+a~maximální délka pulzu je $\SI{20}{\micro\second}$.
+\autocites{pe9-datasheet,pe9esc-datasheet}
+Měřitelný rozsah energií pulzu je \SIrange{0.2}{1000}{\micro\joule}
+v~případě \instrname{PE9-SH-ROHS}\autocite{pe9-datasheet}
+a~\SIrange{0.1}{200}{\micro\joule} v~případě \instrname{PE9-ES-C}
+\autocite{pe9esc-datasheet}.
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/ophir-pe9esc}
+	\caption{Pyroelektrický měřič energie \instrname{PE9-ES-C}.
+		Převzato z~\cite{pe9esc-datasheet}.}
+	\label{fig:instruments-powermeter}
+\end{figure}
