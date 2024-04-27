@@ -4,8 +4,11 @@ Na úvod experimentální části je vhodné popsat konkrétní přístroje
 a~další součásti používané při pokusech,
 neboť některé se opakují ve více aparaturách.
 
-\section{Laser Ekspla \instrname{PL2231-50}}
+\section{Laserová aparatura}
 \label{sec:instruments-laser}
+
+\subsection{Laser Ekspla \instrname{PL2231-50}}
+\label{sec:instruments-laser-source}
 Ústřední součástí všech prováděných pokusů byl samozřejmě laser.
 Vždy bylo použito totéž zařízení, konkrétně model \instrname{PL2231-50}
 od firmy Ekspla.
@@ -54,10 +57,6 @@ Jeho profil je podle výrobce přibližně gaussovský
 o~průměru cca \SI{6}{\milli\metre} na úrovni $1/e^2$ maxima
 pro vlnovou délku \SI{1064}{\nano\metre}.
 \autocite{ekspla-datasheet}
-Navzdory těmto specifikacím se ukázalo, že profil svazku je závislý
-na nastavené energii pulzu v~míře, kterou nelze zanedbat.
-Tato problematika je podrobněji popsána v~dalších kapitolách,
-viz především oddíl \ref{sec:lif-rayleigh}.
 
 Laser je vybaven vlastním měřičem, který průběžně zaznamenává energii pulzu.
 K~synchronizaci dalších zařízení slouží spouštěcí signál s~nastavitelným
@@ -71,6 +70,43 @@ předstihem.\autocite{ekspla-datasheet}
 		Převzato z~\cite{ekspla-datasheet}.}
 	\label{fig:instruments-beamprofile}
 \end{figure}
+
+\subsection{Optický zesilovač Ekspla \instrname{PG411-SH-DUV}}
+\label{sec:instruments-laser-source}
+Součástí zdroje laserového záření je laditelný optický parametrický
+zesilovač \instrname{PG411-SH-DUV} od téhož výrobce,
+který produkuje intenzivní laserové pulzy s~laditelnou vlnovou délkou.
+
+Zesilovač sestává ze dvou základních částí.
+První je synchronně čerpaný optický parametrický oscilátor (SOPO),
+který je čerpán sekvencemi pulzů o~četnosti přibližně \SI{87}{\mega\hertz}
+a~vlnové délce záření \SI{355}{\nano\metre},
+tedy třetí harmonické frekvenci laseru Nd:YAG.
+Jeho výstupem je další sekvence pulzů pokračující do druhé části,
+optického parametrického zesilovače (OPA).
+Ten je čerpán jedním pulzem synchronizovaným s~výstupem SOPO.
+Výsledkem je pak jeden vysokointenzitní pulz na pozadí sekvence slabých
+pulzů o~rezonanční frekvenci parametrického oscilátoru,
+v~ostatních frekvencích pozadí vymizí a je přítomen pouze hlavní pulz.
+\autocite{ekspla-amp-datasheet}
+
+Model \instrname{PG411} je optimalizován pro nejvyšší enegii pulzu
+v~oblasti viditelného světla.
+Sám o~sobě umožňuje ladění vlnových délek v~rozsahu
+\SIrange{410}{2300}{\nano\metre},
+ale navíc je vybaven generátorem druhé harmonické frekvence (SHG)
+a~generátorem součtových frekvencí (DUV),
+jež laditelný rozsah zvyšují na \SIrange{193}{2300}{\nano\metre}.
+
+Nejvyšší opakovací frekvence pulzů je \SI{50}{\hertz}
+a~maximální energie pulzu je \SI{50}{\micro\joule}.
+Šířka čáry je nižší než \SI{3}{\per\centi\metre} ve středním rozsahu
+(\SIrange{409}{710}{\nano\metre}),
+v~ostatních oblastech nižší než \SI{5}{\per\centi\metre}.
+Délka trvání pulzu je kolem \SI{20}{\pico\second}.
+Výstupní svazek je svisle polarizovaný a~jeho průměr
+jsou zhruba \SI{4}{\milli\metre}.
+\autocite{ekspla-amp-datasheet}
 
 \section{ICCD kamera \instrname{PI-MAX 1024}}
 \label{sec:instruments-iccd}
@@ -133,6 +169,15 @@ Jejich naměřená propustnost je na obrázku~\ref{fig:instruments-camerafilter}
 	\label{fig:instruments-camerafilter}
 \end{figure}
 
+Na rozdíl od prvního laseru výrobce nezaručuje prostorový profil
+laserového svazku.
+Při pokusech se ukázalo, že profil svazku je závislý
+na nastavené energii pulzu v~míře, kterou nelze zanedbat.
+Částečné nápravy tohoto stavu bylo dosaženo použitím prostorového filtru
+(viz oddíl~\ref{sec:instruments-spatialfilter}).
+Tato problematika je podrobněji popsána v~dalších kapitolách,
+viz především oddíl \ref{sec:lif-rayleigh}.
+
 \section{Měřiče energie Ophir}
 \label{sec:instruments-powermeter}
 K~měření energie laserového svazku sloužily pyroelektrické měřiče energie
@@ -156,3 +201,23 @@ a~\SIrange{0.1}{200}{\micro\joule} v~případě \instrname{PE9-ES-C}
 		Převzato z~\cite{pe9esc-datasheet}.}
 	\label{fig:instruments-powermeter}
 \end{figure}
+
+\section{Prostorový filtr}
+\label{sec:instruments-spatialfilter}
+Méně běžným optickým prvkem, který se v~některých aparaturách vyskytoval,
+byl takzvaný prostorový filtr.
+To je zařízení, které umožňuje upravit prostorový profil laserového svazku
+do vhodnější podoby, což nejčastěji znamená odstranit náhodné fluktuace,
+aby se lépe podobal gaussovskému.
+
+Základní myšlenka prostorového filtru je jednoduchá:
+Vytvořit fourierovský obraz původního svazku,
+z~něj odfiltrovat nežádoucí prostorové frekvence
+a~svazek rekonstruovat.
+V~praxi se obvykle realizuje pomocí dvou spojek nebo jiných spojných soustav,
+které jsou umístěny na ose svazku tak, že jejich ohniska mezi nimi splývají.
+Ve~společné ohniskové rovině je clonka s~malým kruhovým otvorem,
+která propouští jen středovou část obrazu (Airyho disk)
+a~ořezává vyšší prostorové frekvence.
+Při vhodně zvolené apertuře je možné takto za filtrem získat přibližně
+gaussovský svazek.
