@@ -72,13 +72,49 @@ předstihem.\autocite{ekspla-datasheet}
 	\label{fig:instruments-beamprofile}
 \end{figure}
 
-\section{ICCD kamera \instrname{Pimax}}
+\section{ICCD kamera \instrname{PI-MAX 1024}}
 \label{sec:instruments-iccd}
+Pro obrazový záznam rychlých dějů s~malou intenzitou záření byla použita
+intenzifikovaná CCD kamera (ICCD) od Princeton Instruments.
+Šlo o~zakázkově upravený model \instrname{PI-MAX 1024RB-25-FG-43}
+se zmenšeným intenzifikátorem pro kratší integrační časy.
+
+Snímačem kamery je CCD čip s~rozlišením \num{1024}\times\SI{256}{\pixel}.
+Před snímačem je umístěn intenzifikátor \instrname{Gen II RB},
+který je s~čipem spojen prostřednictvím svazku optických vláken.
+Intenzifikátor typu \instrname{RB} má široký spektrální rozsah
+od přibližně \SI{200}{\nano\metre} do \SI{900}{\nano\metre}
+(viz obrázek \ref{fig:instruments-cameraeff}).
+
+Intenzifikátor je zepředu chráněn křemenným vstupním sklem,
+za nímž se nachází alkalická fotokatoda.
+Jádrem intenzifikátoru je mikrokanálová destička,
+která funguje jako fotonásobič každého kanálu
+(jeden kanál odpovídá jednomu pixelu na čipu).
+Pracovní napětí je kolem \SI{200}{\volt}.
+Na vnitřní straně destičky je luminofor P43,
+který znásobené elektrony převádí zpět na fotony,
+jež putují svazkem optických vláken do CCD čipu.
+Čip je vybaven termoelektrickým chlazením pro potlačení temného proudu.
+
+Kamera umožňuje velmi krátké integrační časy pod \SI{2}{\nano\second}
+a~záznam obrazu v~dlouhodobě udržitelné frekvenci 50 snímků za sekundu.
+Časování je zajištěno vestavěným programovatelným generátorem \instrname{PTG}.
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.4]{img/pimax-1024}
+	\caption{Intenzifikovaná CCD kamera \instrname{PI-MAX 1024}
+		(fotografie z~katalogu).
+		Převzato z~\cite{pimax-datasheet}.}
+	\label{fig:instruments-camera}
+\end{figure}
 
 \begin{figure}[htp]
 	\centering
 	\input{img/cameraeff}
-	\caption{Kvantová účinnost kamery deklarovaná výrobcem.}
+	\caption{Kvantová účinnost kamery deklarovaná výrobcem.
+		Podle \cite{pimax-datasheet}.}
 	\label{fig:instruments-cameraeff}
 \end{figure}
 
