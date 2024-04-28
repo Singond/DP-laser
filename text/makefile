@@ -12,6 +12,7 @@ thesis.pdf: ../efish/results/energy-corrected.tex
 thesis.pdf: ../efish/results/energy-norm.tex
 thesis.pdf: ../efish/results/overview-full.tex
 thesis.pdf: ../efish/results/overview-period.tex
+thesis.pdf: ../efish/results/period-calib.tex
 thesis.pdf: ../efish/results/pulse-compare.tex
 thesis.pdf: ../efish/results/singleshot.tex
 thesis.pdf: ../efish/results/singleshots-compare.tex

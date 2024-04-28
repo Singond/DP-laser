@@ -90,14 +90,21 @@
 	\label{fig:efish-energy-norm}
 \end{figure}
 
-\begin{figure}
-	\sisetup{per-mode = symbol}
-	\input{../efish/plots/calib}
-	\caption{Určená kalibrační funkce.}
-\end{figure}
-
 \section{Výsledky}
 \label{sec:efish-results}
+
+\begin{figure}
+	\centering
+	\input{../efish/results/period-calib-bilateral}
+	\caption{Kalibrační funkce použité pro vyhodnocení časového vývoje.
+		Funkce ve středu mezery byla změřena dvakrát, poprvé před měřením
+		elektrického pole v~dolní části mezery (střed 1)
+		a~podruhé před měřením horní části (střed 2).
+		Záporná větev je extrapolována z~pravé.
+		Označená minima ukazují, že všechny funkce jsou mírně posunuty
+		doleva (zhruba o~\SI{0.4}{\mega\volt\per\metre}).}
+	\label{fig:efish-period-calib}
+\end{figure}
 
 \begin{figure}[p]
 	\sisetup{per-mode = symbol}

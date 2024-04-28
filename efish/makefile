@@ -9,5 +9,8 @@ results/energy-%.tex: energy_export.jl energy.jl
 results/overview-%.tex: overview_export.jl
 	$(JULIA) $<
 
+results/period-%.tex: period_export.jl main.jl
+	$(JULIA) $<
+
 results/pulse-compare.tex: pulse_compare_export.jl calibration.jl
 	$(JULIA) $<
