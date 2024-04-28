@@ -9,8 +9,8 @@ if !isdir("plots")
 end
 
 @gp """
-	load '../style.gp'
-	load '../style-cairo.gp'
+	load '../gnuplot/style.gp'
+	load '../gnuplot/style-cairo.gp'
 	set key top left
 	set offsets graph 0.05, graph 0.05, graph 0.05, graph 0.05
 	set xrange noextend
@@ -33,8 +33,8 @@ if !@isdefined X
 end
 
 @gp """
-	load '../style.gp'
-	load '../style-cairo.gp'
+	load '../gnuplot/style.gp'
+	load '../gnuplot/style-cairo.gp'
 	set style fill transparent solid 0.2
 	set xyplane at -4
 	set border 895
@@ -61,4 +61,4 @@ end
 Gnuplot.save("plots/period-elfield.tex",
 	term="cairolatex color pdf size 14cm,12cm")
 #Gnuplot.save("plots/period-elfield.tikz",
-	term="tikz tightboundingbox size 14cm,12cm")
+#	term="tikz tightboundingbox size 14cm,12cm")
