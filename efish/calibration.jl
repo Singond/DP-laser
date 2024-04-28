@@ -94,6 +94,12 @@ begin
 	end
 end
 
+# ╔═╡ 176a1ee3-a40d-4b5e-b903-3ac4c94e0c6d
+begin
+	powdata = readdlm("data-22-01-24/powermeter/571777_20.txt", skipstart = 36)
+	calibration_E = (t = powdata[:,1], E = powdata[:,2], Em = mean(powdata[:,2]))
+end
+
 # ╔═╡ b07fcef5-e4e1-4e8c-b57d-6f0d5f346784
 md"""
 ### Příklad dat
@@ -133,6 +139,20 @@ md"Signál z fotodiody _Thorlabs_ je v kanálu 4:"
 
 # ╔═╡ 2cfa5484-3ad6-45f1-aea2-a5476c676587
 plot(x.fd)
+
+# ╔═╡ f06ed922-570c-4d28-aff0-95dd36f849ea
+md"""
+Energie pulzu změřená měřičem je zde:
+"""
+
+# ╔═╡ 8db3cc4a-0f82-48d5-80ac-7f351001322c
+plot(calibration_E.t, calibration_E.E)
+
+# ╔═╡ db5fb874-7d97-4c84-bd1e-9730fa2f4d92
+md"Průměrná hodnota je:"
+
+# ╔═╡ 2ad965b4-9a61-4d16-8845-b5bafa6f31ee
+calibration_E.Em
 
 # ╔═╡ 58a6bb5a-5ec1-4b14-89e3-1bdf1c6f2fb5
 md"""
@@ -434,6 +454,7 @@ end
 # ╟─7e6a0eb4-c8da-416f-83b2-f09ecf3833b2
 # ╟─f9baabe8-c809-4061-8e23-a2654d6adf04
 # ╠═37331088-c330-4c9b-8ddd-2b773bfd59b1
+# ╠═176a1ee3-a40d-4b5e-b903-3ac4c94e0c6d
 # ╟─b07fcef5-e4e1-4e8c-b57d-6f0d5f346784
 # ╠═8413b7b1-32da-46e5-93f4-23ad83379666
 # ╟─2acaa8f7-f074-4973-b86b-ef1fe38de3c9
@@ -444,6 +465,10 @@ end
 # ╠═b3276e7d-977c-4de6-b36a-44c043f22ffe
 # ╟─e6db65b3-2e6d-4313-8a2f-785a63b9b61b
 # ╠═2cfa5484-3ad6-45f1-aea2-a5476c676587
+# ╟─f06ed922-570c-4d28-aff0-95dd36f849ea
+# ╠═8db3cc4a-0f82-48d5-80ac-7f351001322c
+# ╟─db5fb874-7d97-4c84-bd1e-9730fa2f4d92
+# ╠═2ad965b4-9a61-4d16-8845-b5bafa6f31ee
 # ╟─58a6bb5a-5ec1-4b14-89e3-1bdf1c6f2fb5
 # ╠═eea4bf6d-1409-4f52-b577-b4e6e3e56aa4
 # ╟─dd961d3e-d15f-4668-86e9-a4f71ef80a6d
