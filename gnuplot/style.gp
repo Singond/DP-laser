@@ -16,6 +16,9 @@ set linetype 6 lw 2 lc rgb '#DDDD33' pt 15 ps 2   # yellow
 set linetype 7 lw 2 lc rgb '#A65628' pt 3  ps 1.3 # brown
 set linetype 8 lw 2 lc rgb '#F781BF' pt 9  ps 2   # pink
 
+# Load palette (using `set palette viridis` requires Gnuplot 6.0+)
+load "viridis.pal"
+
 set macros
 
 # Padding axis ranges
