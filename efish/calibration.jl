@@ -176,6 +176,29 @@ Odlišnosti se projeví až při přiblížení. Zde je detail špičky signálu
 # ╔═╡ 3bc61c71-b563-4fb4-a33a-c70826b22417
 plot(fd_plot, xlim=(45, 45.6), ylim=(0.16, 0.18))
 
+# ╔═╡ de5ff4dd-fe7a-4d81-8566-1dd90749ab3a
+md"""
+### Přehled
+Vývoj napětí a proudu ve výboji v čase.
+"""
+
+# ╔═╡ 02fd1cfd-dfee-4509-8788-836406dd9eeb
+overviews = readdir("data-22-01-24/oscilo/energie_napeti", join=true) |>
+filter(contains("prehled")) |>
+files -> map(files) do file
+	local U, efish, I, fd, meta = importkeysightbin(file)
+	(; U, efish, I, fd, meta)
+end
+
+# ╔═╡ 492ce0d3-72c2-469d-8831-216a521e3577
+tmin, tmax = extrema(overviews[1].U[1])
+
+# ╔═╡ 70e41476-6a45-45fd-80dd-d60a76928168
+with() do
+	plot([x[1:100:end] for x in overviews[1].U]...)
+	plot!(twinx(), [x[1:100:end] for x in overviews[1].I]..., c=2)
+end
+
 # ╔═╡ 74b7b696-67ca-4a6c-8eec-82d8cd7a1cb2
 md"""
 ### Vyhodnocení
@@ -427,6 +450,10 @@ end
 # ╠═5c481058-7db3-4acb-8924-c1983d6b284a
 # ╟─804fcb70-4875-436e-9783-5bc28219b571
 # ╠═3bc61c71-b563-4fb4-a33a-c70826b22417
+# ╟─de5ff4dd-fe7a-4d81-8566-1dd90749ab3a
+# ╠═02fd1cfd-dfee-4509-8788-836406dd9eeb
+# ╠═492ce0d3-72c2-469d-8831-216a521e3577
+# ╠═70e41476-6a45-45fd-80dd-d60a76928168
 # ╟─74b7b696-67ca-4a6c-8eec-82d8cd7a1cb2
 # ╠═81e003ac-028f-4787-a593-bd7efd9e98bb
 # ╟─7476cbae-0d64-4aca-b02c-20842ca44322
