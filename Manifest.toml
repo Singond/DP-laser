@@ -2,7 +2,7 @@
 
 julia_version = "1.10.0"
 manifest_format = "2.0"
-project_hash = "7a907632609a57054a6728876568e52b71cdc2f1"
+project_hash = "efe2a32669e5cbf2b442d9e4eae3e308e89a9aa4"
 
 [[deps.Adapt]]
 deps = ["LinearAlgebra", "Requires"]
@@ -373,6 +373,12 @@ deps = ["Artifacts", "Bzip2_jll", "Cairo_jll", "FFMPEG_jll", "Fontconfig_jll", "
 git-tree-sha1 = "77f81da2964cc9fa7c0127f941e8bce37f7f1d70"
 uuid = "d2c73de3-f751-5644-a686-071e5b155ba9"
 version = "0.73.2+0"
+
+[[deps.Gaston]]
+deps = ["ColorSchemes", "DelimitedFiles", "PrecompileTools", "Random"]
+git-tree-sha1 = "55b32ca83e5749f476a21c7d6c4b10abb46bfa7b"
+uuid = "4b11ee91-296f-5714-9832-002c20994614"
+version = "1.1.2"
 
 [[deps.Gettext_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Libiconv_jll", "Pkg", "XML2_jll"]
