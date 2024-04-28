@@ -10,6 +10,7 @@ end
 
 tscale = 1e9
 
+# Singleshots
 @gp """
 	load '../gnuplot/style.gp'
 	load '../gnuplot/style-cairo.gp'
@@ -43,6 +44,7 @@ end
 Gnuplot.save("results/singleshots-compare.tex",
 	term="cairolatex pdf size 12cm,8cm")
 
+# Calibration
 @gp """
 	load '../gnuplot/style.gp'
 	load '../gnuplot/style-cairo.gp'
