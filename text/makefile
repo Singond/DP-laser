@@ -8,6 +8,8 @@ img/%.tex img/%.pdf: img/%.asy
 img/%.tex img/%.pdf: img/%.gp
 	cd img && gnuplot -d $*.gp
 
+thesis.pdf: ../efish/results/energy-corrected.tex
+thesis.pdf: ../efish/results/energy-norm.tex
 thesis.pdf: ../efish/results/overview-full.tex
 thesis.pdf: ../efish/results/overview-period.tex
 thesis.pdf: ../efish/results/pulse-compare.tex
