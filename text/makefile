@@ -8,6 +8,8 @@ img/%.tex img/%.pdf: img/%.asy
 img/%.tex img/%.pdf: img/%.gp
 	cd img && gnuplot -d $*.gp
 
+thesis.pdf: ../efish/results/overview-full.tex
+thesis.pdf: ../efish/results/overview-period.tex
 thesis.pdf: ../efish/results/singleshot.tex
 thesis.pdf: ../efish/results/singleshots-compare.tex
 thesis.pdf: ../lif/results/concentration-vertical-centre.tex
