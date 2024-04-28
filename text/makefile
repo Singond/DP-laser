@@ -8,6 +8,8 @@ img/%.tex img/%.pdf: img/%.asy
 img/%.tex img/%.pdf: img/%.gp
 	cd img && gnuplot -d $*.gp
 
+thesis.pdf: ../efish/results/singleshot.tex
+thesis.pdf: ../efish/results/singleshots-compare.tex
 thesis.pdf: ../lif/results/concentration-vertical-centre.tex
 thesis.pdf: ../lif/results/excitprof-nofilter.tex
 thesis.pdf: ../lif/results/lifetime-x-time.tex
@@ -32,6 +34,9 @@ presentation-lif.pdf: build/lif.timestamp
 build/lif.timestamp:
 	cd ../lif && $(MAKE) presentation_resources
 	touch $@
+
+../efish/%:
+	cd ../efish && $(MAKE) $*
 
 ../lif/%:
 	cd ../lif && $(MAKE) $*
