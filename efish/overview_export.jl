@@ -22,8 +22,8 @@ iscale = 1e3
 	set ytics in nomirror
 	set y2tics 1 in nomirror
 	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$'
-	set ylabel 'napětí \$\\dbdvoltage\\,[\\si{\\volt}]\$' tc ls 1
-	set y2label 'proud \$\\dbdcurrent\\,[\\si{\\ampere}]\$' tc ls 2
+	set ylabel 'napětí \$\\dbdvoltage\\,[\\si{\\kilo\\volt}]\$' tc ls 1
+	set y2label 'proud \$\\dbdcurrent\\,[\\si{\\milli\\ampere}]\$' tc ls 2
 	unset key
 """ :-
 frame = overviews[1]
@@ -40,8 +40,8 @@ Gnuplot.save("results/overview-full.tex",
 	set ytics in nomirror
 	set y2tics in nomirror
 	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$'
-	set ylabel 'napětí \$\\dbdvoltage\\,[\\si{\\volt}]\$' tc ls 1
-	set y2label 'proud \$\\dbdcurrent\\,[\\si{\\ampere}]\$' tc ls 2
+	set ylabel 'napětí \$\\dbdvoltage\\,[\\si{\\kilo\\volt}]\$' tc ls 1
+	set y2label 'proud \$\\dbdcurrent\\,[\\si{\\milli\\ampere}]\$' tc ls 2
 	unset key
 """ :-
 m = 489863:1397891
