@@ -68,34 +68,3 @@ Gnuplot.save("plots/calib.tex", term="cairolatex pdf size 12cm,8cm")
 if !@isdefined X
 	include("main.jl")
 end
-
-@gp """
-	load '../gnuplot/style.gp'
-	load '../gnuplot/style-cairo.gp'
-	set style fill transparent solid 0.2
-	set xyplane at -4
-	set border 895
-	set grid xtics vertical
-	set grid ytics vertical
-	set grid ztics
-	set xtics 20 offset 0,-0.5
-	set ytics 0.4 offset 0.5,0
-	set ztics
-	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$' offset 0,-1
-	set ylabel 'poloha \$y\\,[\\si{\\milli\\metre}]\$' offset 0,-1
-	set zlabel 'el. pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$' rotate by 90
-	set rmargin at screen 1
-	unset key
-"""
-for k in [8:-1:1; 10:13]
-	local x = X[k]
-	t = x.t .- x.t[1]
-	yy = ones(size(x.t)) * y[k]
-	zz = zeros(size(x.t))
-	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w zerrorfill ls 1" :-
-	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w l ls 1" :-
-end
-Gnuplot.save("plots/period-elfield.tex",
-	term="cairolatex color pdf size 14cm,12cm")
-#Gnuplot.save("plots/period-elfield.tikz",
-#	term="tikz tightboundingbox size 14cm,12cm")

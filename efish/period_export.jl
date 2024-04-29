@@ -88,3 +88,33 @@ for x in X
 end
 Gnuplot.save("results/period-efish.tex",
 	term="cairolatex pdf size 12cm,8cm")
+
+@gp """
+	load '../gnuplot/style.gp'
+	load '../gnuplot/style-cairo.gp'
+	load '../gnuplot/style-splot.gp'
+	set tmargin at screen 0.82
+	set bmargin at screen 0.22
+	set rmargin at screen 0.84
+	set lmargin at screen 0.23
+	set style fill transparent solid 0.2
+	set xyplane at -3.5
+	set zrange [-3.5:]
+	set xtics 20 offset 0,-0.5
+	set ytics 0.4 offset 0.5,0
+	set ztics
+	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$' offset 0,-1
+	set ylabel 'poloha \$y\\,[\\si{\\milli\\metre}]\$' offset 0,-1
+	set zlabel 'el. pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$' rotate by 90
+	unset key
+"""
+for k in [8:-1:1; 10:13]
+	local x = X[k]
+	t = x.t .- x.t[1]
+	yy = ones(size(x.t)) * y[k]
+	zz = zeros(size(x.t))
+	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w zerrorfill ls 1" :-
+	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w l ls 1" :-
+end
+Gnuplot.save("results/period-elfield.tex",
+	term="cairolatex color pdf size 12.5cm,10cm")
