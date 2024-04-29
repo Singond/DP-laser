@@ -51,3 +51,16 @@ E = LinRange(-4.7e6, 3.8e6, 100)
 @gp :- [-calib_mid2.model_params[2]] * Escale [0] "w p ls 3 pt 6 ps 1 notitle"
 Gnuplot.save("results/period-calib-bilateral.tex",
 	term="cairolatex pdf size 12cm,8cm")
+
+@gp """
+	load '../gnuplot/style.gp'
+	load '../gnuplot/style-cairo.gp'
+	set ytics 0.2
+	set xlabel 'poloha \$\\ypos\\,[\\si{\\milli\\metre}]\$'
+	set ylabel 'amplituda \$\\efish\\,[\\si{\\mega\\volt\\per\\metre}]\$'
+	set key bottom left Left reverse samplen 2 height 1
+"""
+@gp :- y  Imax * Escale "w p ps 1 t '\$\\max(\\efish)\$'"
+@gp :- y -Imin * Escale "w p ps 1.4 t '\$|\\min(\\efish)|\$'"
+Gnuplot.save("results/period-amplitude.tex",
+	term="cairolatex pdf size 12cm,8cm")
