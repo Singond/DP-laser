@@ -4,8 +4,8 @@ if !@isdefined calib_example
 	include("calibration.jl")
 end
 
-if !isdir("plots")
-	mkdir("plots")
+if !isdir("results")
+	mkdir("results")
 end
 
 tscale = 1e9
