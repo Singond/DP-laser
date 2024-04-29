@@ -61,6 +61,39 @@ with(legend = :bottomright) do
 	current()
 end
 
+# ╔═╡ 133f790e-a677-48e9-a1b5-2afe48009ab1
+md"""
+Chybný kanál osciloskopu způsobil, že některé snímky jsou uloženy s jiným
+číselným měřítkem než ostatní.
+Následující korekce vybere snímky s vyšším rozsahem a přeškálují je na nižší rozsah.
+"""
+
+# ╔═╡ 60eafc2c-6e07-4eba-bf13-c6060bab58c6
+Xrescale = map(Xraw) do x
+	k = 1/4.0
+	if minimum(x.efish[2]) < -1.5
+		efish = (x.efish[1], x.efish[2] .* k)
+		efish_peak = x.efish_peak * k
+		(; x..., efish, efish_peak)
+	else
+		x
+	end
+end
+
+# ╔═╡ 93ba36cb-ce35-4295-a11f-42a87c135be5
+with(legend = :bottomright) do
+	plot()
+	xlabel!("t [ns]")
+	ylabel!("efish [a.u.]")
+	xlims!((48.5, 51))
+	title!("Odezva EFISH pro různé energie pulzu\n(po korekci měřítka)")
+	for x in Xrescale
+		plot!(x.efish[1].*1e9, x.efish[2],
+			label = @sprintf("%.2f mJ", x.Epulse*1e3))
+	end
+	current()
+end
+
 # ╔═╡ 7422b5c2-0c6d-47bd-a1bf-db000847e0f6
 md"""
 Některá data se zdají být posunuta vůči ostatním.
@@ -69,7 +102,7 @@ v celém odečteme v celém intervalu jako pozadí.
 """
 
 # ╔═╡ d0d0a9bb-2fd4-4aa5-a9c4-3ebc73c14dab
-Xcorr = map(Xraw) do x
+Xcorr = map(Xrescale) do x
 	m = x.efish[1] .< 49.2e-9
 	background = mean(x.efish[2][m])
 	efish = (x.efish[1], x.efish[2] .- background)
@@ -235,6 +268,9 @@ end
 # ╠═4f7cb0ef-c9c9-4d84-91d0-2e261836c03d
 # ╠═3c6e7861-8a34-44ad-9af4-fd33e0355293
 # ╠═cbedfbb1-35d2-43b7-8003-350a0204a38e
+# ╟─133f790e-a677-48e9-a1b5-2afe48009ab1
+# ╠═60eafc2c-6e07-4eba-bf13-c6060bab58c6
+# ╠═93ba36cb-ce35-4295-a11f-42a87c135be5
 # ╟─7422b5c2-0c6d-47bd-a1bf-db000847e0f6
 # ╠═d0d0a9bb-2fd4-4aa5-a9c4-3ebc73c14dab
 # ╠═d57a92fa-af3d-4063-afac-96211cc23a25
