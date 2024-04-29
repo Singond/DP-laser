@@ -1,6 +1,6 @@
 pkg load singon-ext;
 pkg load singon-plasma;
-addpath octave;
+addpath ../octave;
 
 wl = 204.12:0.001:204.18;
 amp = [50 50 15 20 30 40];
@@ -30,4 +30,6 @@ function x = process(x)
 end
 
 X = arrayfun(@correct_iccd, D);
+X = arrayfun(@(x) frametimes(x, 50), X);
+X = arrayfun(@frame_pulse_energy, X);
 X = arrayfun(@process, X);

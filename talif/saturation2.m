@@ -1,6 +1,5 @@
 pkg load optim;
 pkg load singon-plasma;
-addpath octave
 
 p = [2400 2400];
 #p2 = [226 222 406 775 1260 nan(1, 3)];
@@ -20,6 +19,8 @@ for k = [1:2]
 	D(k) = d;
 end
 
-D = arrayfun(@(x) crop_iccd(x, [25 90], [50 410]), D);
-X = arrayfun(@correct_iccd, D);
+X = arrayfun(@(x) crop_iccd(x, [25 90], [50 410]), D);
+X = arrayfun(@(x) frametimes(x, 50), X);
+X = arrayfun(@frame_pulse_energy, X);
+X = arrayfun(@correct_iccd, X);
 X = arrayfun(@process, X);

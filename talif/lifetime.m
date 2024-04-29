@@ -1,7 +1,6 @@
 pkg load optim;
 pkg load singon-plasma;
 addpath ../octave
-addpath octave
 
 
 p1 = [138 138 147 210 280 420 795 1475 2680 4800 9750 20200 41500 63750 93800];
