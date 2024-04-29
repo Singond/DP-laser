@@ -64,3 +64,27 @@ Gnuplot.save("results/period-calib-bilateral.tex",
 @gp :- y -Imin * Escale "w p ps 1.4 t '\$|\\min(\\efish)|\$'"
 Gnuplot.save("results/period-amplitude.tex",
 	term="cairolatex pdf size 12cm,8cm")
+
+@gp """
+	load '../gnuplot/style.gp'
+	load '../gnuplot/style-cairo.gp'
+	load '../gnuplot/style-splot.gp'
+	set tmargin at screen 0.80
+	set bmargin at screen 0.24
+	set xtics 20
+	set ytics 0.4
+	set xyplane at 0
+	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$' offset -0.5,0
+	set ylabel 'poloha \$y\\,[\\si{\\milli\\metre}]\$'
+	set zlabel 'signál \$\\efish\\,[\\si{\\arbunit}]\$'
+	unset key
+"""
+for x in X
+	t = x.t .- x.t[1]
+	yy = x.y * ones(size(x.t))
+	zz = zeros(size(x.t))
+	@gsp :- t yy x.Iefish zz x.Iefish "w zerrorfill ls 1"
+	@gsp :- t yy x.Iefish "w l ls 1"
+end
+Gnuplot.save("results/period-efish.tex",
+	term="cairolatex pdf size 12cm,8cm")
