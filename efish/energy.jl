@@ -72,9 +72,9 @@ v celém odečteme v celém intervalu jako pozadí.
 Xcorr = map(Xraw) do x
 	m = x.efish[1] .< 49.2e-9
 	background = mean(x.efish[2][m])
-	x.efish[2] .-= background
-	efish_peak = -minimum(x.efish[2])
-	(; x.U, x.efish, efish_peak, x.I, x.fd, x.Epulse)
+	efish = (x.efish[1], x.efish[2] .- background)
+	efish_peak = -minimum(efish[2])
+	(; x.U, efish, efish_peak, x.I, x.fd, x.Epulse)
 end
 
 # ╔═╡ d57a92fa-af3d-4063-afac-96211cc23a25
