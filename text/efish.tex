@@ -118,8 +118,29 @@ a~proudovou sondou Tektronix \instrname{CT2}.
 	\label{fig:efish-overview-period}
 \end{figure}
 
-\section{Vyhodnocení}
-\label{sec:efish-method}
+\section{Ověření opakovatelnosti}
+\label{sec:efish-check}
+Protože laserová aparatura byla v~době měření zcela nová,
+bylo vhodné před samotným pokusem ověřit některé charakteristiky
+laserových pulzů a~signálu \EFISH{},
+zejména opakovatelnost s~konstantní intenzitou a~tvarem,
+která je nezbytná k~získání věrohodných výsledků.
+
+Opakovatelnost laserového pulzu byla ověřena změřením sta jednotlivých
+snímků (tj.~bez akumulací na osciloskopu) za stálých podmínek.
+Laser byl nastaven na konstantní zesílení i~vlnovou délku
+a~napájení výboje na konstantní amplitudu napětí.
+Intenzita svazku odraženého z~okénka, zachycená fotodiodou,
+měla stabilní tvar i~amplitudu, jak ukazuje
+obrázek~\ref{fig:efish-pulse-compare}.
+
+Stabilita signálu \EFISH{} byla rovněž dobrá.
+Obrázek~\ref{fig:efish-singleshots-compare} ukazuje signál
+\EFISH{} změřený fotonásobičem v~průběhu téhož měření,
+tedy jednotlivé snímky bez akumulací.
+Je vidět, že tvar hlavního pulzu je velmi podobný ve všech snímcích,
+šířka je stálá a~náběhová hrana má stejný sklon.
+V~některých případech se mírně liší amplituda.
 
 \begin{figure}[htp]
 	\centering
@@ -128,9 +149,28 @@ a~proudovou sondou Tektronix \instrname{CT2}.
 		Zobrazena je intenzita laserového svazku odraženého
 		na okénku reaktoru zaznamenaná fotodiodou.
 		Jedná se o~jednotlivé snímky bez akumulací v~osciloskopu.
-		Laser je nastaven na stabilní zesílení.}
+		Laser je nastaven na stabilní zesílení.
+		Pro přehlednost je zobrazen pouze výběr snímků.}
 	\label{fig:efish-pulse-compare}
 \end{figure}
+
+\begin{figure}[htp]
+	\centering
+	\input{../efish/results/singleshots-compare}
+	\caption{Ověření reprodukovatelnosti signálu \EFISH{} zachyceného
+		fotonásobičem.
+		Výběr ze sta snímků zaznamenaných osciloskopem bez průměrování.
+		Opakovatelnost se zdá být dostatečná,
+		tvar hlavního pulzu je velmi podobný ve všech snímcích.}
+	\label{fig:efish-singleshots-compare}
+\end{figure}
+
+Vztah mezi signálem z~fotodiody (tj.~intenzitou laseru)
+a~fotonásobiče (signálem \EFISH{}) ilustruje
+obrázek~\ref{fig:efish-singleshot}.
+Je na místě připomenout, že vzájemný časový posun obou signálů
+zaznamenaný osciloskopem se~pravděpodobně liší od skutečnosti,
+neboť nelze zaručit stejné zpoždění v~obou detekčních cestách.
 
 \begin{figure}[htp]
 	\centering
@@ -143,15 +183,8 @@ a~proudovou sondou Tektronix \instrname{CT2}.
 	\label{fig:efish-singleshot}
 \end{figure}
 
-\begin{figure}[htp]
-	\centering
-	\input{../efish/results/singleshots-compare}
-	\caption{Ověření reprodukovatelnosti signálu \EFISH{}.
-		Výběr ze sta snímků zaznamenaných osciloskopem bez průměrování.
-		Opakovatelnost se zdá být velmi dobrá.}
-	\label{fig:efish-singleshots-compare}
-\end{figure}
-
+\section{Vyhodnocení}
+\label{sec:efish-method}
 
 \begin{figure}[htp]
 	\centering
