@@ -27,7 +27,7 @@ legend location northeast;
 
 figure;
 title("Time evolution of intensity (normalized)");
-xlabel("time t[ns]");
+xlabel("time t [ns]");
 ylabel("intensity [a.u.]");
 hold on;
 for x = X
@@ -38,6 +38,13 @@ hold off;
 legend location northeast;
 
 figure;
-plot([X.p1]', [[X.fitl].tau]', "d",
-	[X.p1]', [[X.fite].tau]', "o",
-	[X.p1]', [[X.fitb].tau]', "s");
+semilogx([X.p1]', [[X.fitl].tau]', "d", "displayname", "linear fit",...
+	[X.p1]', [[X.fite].tau]', "o", "displayname", "exponential fit",...
+	[X.p1]', [[X.fitb].tau]', "s",...
+		"markersize", 7,...
+		"displayname", "exponential fit with constant");
+title("Lifetime by various methods");
+xlabel("pressure p [Pa]");
+ylabel("lifetime \\tau [ns]");
+legend show;
+legend location northwest;
