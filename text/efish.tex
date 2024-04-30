@@ -12,8 +12,16 @@ bariérovém výboji.
 %
 Druhotným úkolem bylo ověření možností, které laser nabízí.
 
+Výsledky tohto pokusu byly ještě před dokončením práce publikovány
+T.~Hoderem et al.~v~článku \cite{efish-nitrogen}, na nějž se dovolujeme
+odkazovat.
+
 \section{Uspořádání experimentu}
 \label{sec:efish-setup}
+Měření bylo uskutečněno na téže aparatuře, jako je popsána
+v~\cite{efish-nitrogen},
+následující odstavce jsou proto parafrázovány odtamtud.
+
 Předmětem zkoumání byl Townsendův výboj v~dusíku za atmosférického tlaku.
 Výboj byl v~dielektrickém bariérovém uspořádání, které ukazuje
 obrázek~\ref{fig:efish-reactor}.
@@ -29,7 +37,49 @@ Reaktor je vybaven dvěma okénky z~křemenného skla umístěnými naproti
 sobě v~úrovni výboje,
 která umožňují přímé pozorování a~laserovou diagnostiku.
 Okénka jsou skloněna dolů pod Brewsterovým úhlem, aby byl minimalizován
-odraz laserového svazku, který je svisle polarizovaný.
+odraz laserového svazku (který je svisle polarizovaný).
+
+Výboj je napájen střídavým napětím o~frekvenci \SI{11}{\kilo\hertz}
+a~amplitudě kolem \SI{6}{\kilo\volt},
+které je dále modulováno \num{500}\si{\hertz} čtvercovým signálem
+se střídou \SI{45}{\percent}.
+Výsledkem je deset napěťových cyklů o~celkové délce \SI{909}{\milli\second}
+následovaných \SI{1091}{\milli\second} nulového napětí.
+\autocite{efish-nitrogen}
+Část modulačního cyklu je na obrázku~\ref{fig:efish-overview-full},
+detail jednoho napěťového cyklu je na obrázku~\ref{fig:efish-overview-period}.
+
+Schéma optické dráhy je na obrázku~\ref{fig:efish-setup}.
+Laser je nastavený na základní frekvenci \SI{1064}{\nano\metre}.
+Svazek je zaostřen spojkou o~ohniskové vzdálenosti \SI{50}{\milli\metre}
+do středu výbojového prostoru v~reaktoru skrz první okénko.
+Mezi elektrodami dochází ke generování druhé harmonické frekvence
+(vlnové délky \SI{532}{\nano\metre}), která společně s~původním svazkem
+vystupuje druhým okénkem ven.
+Zde jsou frekvence od sebe odděleny pomocí dichroického zrcátka,
+které harmonickou složku odráží a~základní propouští.
+Odražený svazek je po kolimaci druhou spojkou dále očištěn od nežádoucích
+složek pomocí druhého dichroického zrcátka a~disperzního hranolu.
+
+Intenzitu harmonického svazku (tedy signál \EFISH{})
+měří mikrokanálový fotonásobič
+Photek \instrname{PMT210} s~průměrem aktivní oblasti \SI{10}{\milli\metre},
+pološířkou pulzu (FWHM) \SI{150}{\pico\second} a~zesílením \num{e6}.
+Před fotonásobičem je umístěna irisová clona a~úzkopásmový filtr
+pro dodatečné filtrování svazku a~odstínění parazitního záření
+z~jiných zdrojů.
+
+Energie původního svazku je měřena dvojím způsobem:
+Za prvním dichroickým zrcátkem se nachází pyroelektrický měřič energie
+Ophir \instrname{PE50BF-DIF}, jenž snímá celkovou energii pulzů.
+Kromě toho je u~vstupního okénka reaktoru umístěna fotodioda
+Thorlabs \instrname{DET10A/M}, která měří část svazku odraženou na okénku.
+
+Napájecí napětí výboje, procházející proud, intenzita svazku z~fotodiody
+a~signál \EFISH{} z~fotonásobiče jsou zaznamenávány osciloskopem
+Keysight \instrname{DSO-S204A},
+který je vybaven vysokonapěťovou sondou Tektronix \instrname{P6015A}
+a~proudovou sondou Tektronix \instrname{CT2}.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{efish-reactor}
@@ -49,6 +99,19 @@ odraz laserového svazku, který je svisle polarizovaný.
 	Před fotonásobičem je filtr propouštějící pouze úzkou oblast
 	kolem druhé harmonické frekvence.
 	Podle \cite{efish-nitrogen}.}
+	\label{fig:efish-setup}
+\end{figure}
+
+\begin{figure}[htp]
+	\centering
+	\input{../efish/results/overview-full}
+	\caption{Průběh napětí na elektrodách a~proudu ve výboji
+		za několik cyklů.}
+	\label{fig:efish-overview-full}
+	\vspace{24pt}
+	\input{../efish/results/overview-period}
+	\caption{Detail jednoho cyklu výboje.}
+	\label{fig:efish-overview-period}
 \end{figure}
 
 \section{Vyhodnocení}
@@ -85,17 +148,6 @@ odraz laserového svazku, který je svisle polarizovaný.
 	\label{fig:efish-singleshots-compare}
 \end{figure}
 
-\begin{figure}[htp]
-	\centering
-	\input{../efish/results/overview-full}
-	\caption{Průběh napětí na elektrodách a~proudu ve výboji
-		za několik cyklů.}
-	\label{fig:efish-overview-full}
-	\vspace{24pt}
-	\input{../efish/results/overview-period}
-	\caption{Detail jednoho cyklu výboje.}
-	\label{fig:efish-overview-period}
-\end{figure}
 
 \begin{figure}[htp]
 	\centering
