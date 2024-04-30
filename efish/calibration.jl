@@ -165,7 +165,7 @@ Zde je signál fotodiody pro všechna měření:
 # ╔═╡ eea4bf6d-1409-4f52-b577-b4e6e3e56aa4
 with(legend = :none) do
 	plot(xlim=(40, 70))
-	for (k, x) in enumerate(calibration)
+	for (k, x) in enumerate(singleshots[1:5:end])
 		plot!(x.fd[1] * 1e9, k * ones(size(x.fd[2])), x.fd[2])
 	end
 	xlabel!("čas \$t\$ [ns]")
@@ -181,7 +181,7 @@ Rozdíly jsou nepostřehnutelné, zde jsou táž data vykreslena přes sebe.
 # ╔═╡ 5c481058-7db3-4acb-8924-c1983d6b284a
 fd_plot = with(legend = :none) do
 	plot()
-	for (k, x) in enumerate(calibration)
+	for (k, x) in enumerate(singleshots[1:5:end])
 		plot!(x.fd[1]*1e9, x.fd[2])
 	end
 	xlabel!("čas \$t\$ [ns]")
@@ -194,7 +194,7 @@ Odlišnosti se projeví až při přiblížení. Zde je detail špičky signálu
 """
 
 # ╔═╡ 3bc61c71-b563-4fb4-a33a-c70826b22417
-plot(fd_plot, xlim=(45, 45.6), ylim=(0.16, 0.18))
+plot(fd_plot, xlim=(45, 45.6), ylim=(0.06, 0.068))
 
 # ╔═╡ de5ff4dd-fe7a-4d81-8566-1dd90749ab3a
 md"""
