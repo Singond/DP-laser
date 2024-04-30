@@ -28,8 +28,9 @@ iscale = 1e3
 """ :-
 frame = overviews[1]
 t0 = frame.U[1][1]
-@gp :- (frame.U[1][1:100:end] .- t0) * tscale frame.U[2][1:100:end] * uscale "w l " :-
-@gp :- (frame.I[1][1:100:end] .- t0) * tscale frame.I[2][1:100:end] * iscale "w l axes x1y2 " :-
+m = 1:1000:length(frame.U[1])
+@gp :- (frame.U[1][m] .- t0) * tscale frame.U[2][m] * uscale "w l " :-
+@gp :- (frame.I[1][m] .- t0) * tscale frame.I[2][m] * iscale "w l axes x1y2 " :-
 Gnuplot.save("results/overview-full.tex",
 	term="cairolatex pdf colourtext size 12.5cm,5cm")
 
@@ -44,7 +45,7 @@ Gnuplot.save("results/overview-full.tex",
 	set y2label 'proud \$\\dbdcurrent\\,[\\si{\\milli\\ampere}]\$' tc ls 2
 	unset key
 """ :-
-m = 489863:1397891
+m = 489863:100:1397891
 t0 = frame.U[1][m][1]
 @gp :- (frame.U[1][m] .- t0) * tscale frame.U[2][m] * uscale "w l" :-
 @gp :- (frame.I[1][m] .- t0) * tscale frame.I[2][m] * iscale "w l axes x1y2" :-
