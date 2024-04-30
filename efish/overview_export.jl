@@ -38,6 +38,8 @@ Gnuplot.save("results/overview-full.tex",
 	load '../gnuplot/style.gp'
 	load '../gnuplot/style-cairo.gp'
 	set xrange [0:9.09e1]
+	set yrange [-6:6]
+	set y2range [-2:2]
 	set ytics in nomirror
 	set y2tics in nomirror
 	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$'
