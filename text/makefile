@@ -10,8 +10,8 @@ img/%.tex img/%.pdf: img/%.gp
 
 thesis.pdf: ../efish/results/energy-corrected.tex
 thesis.pdf: ../efish/results/energy-norm.tex
-thesis.pdf: ../efish/results/overview-full.tex
-thesis.pdf: ../efish/results/overview-period.tex
+thesis.pdf: ../efish/results/period-overview-full.tex
+thesis.pdf: ../efish/results/period-overview-period.tex
 thesis.pdf: ../efish/results/period-calib.tex
 thesis.pdf: ../efish/results/pulse-compare.tex
 thesis.pdf: ../efish/results/singleshot.tex
