@@ -102,15 +102,22 @@ Gnuplot.save("results/period-efish.tex",
 	set lmargin at screen 0.23
 	set style fill transparent solid 0.2
 	set xyplane at -3.5
-	set zrange [-3.5:]
+	set zrange [-3.5:3.5]
 	set xtics 20 offset 0,-0.5
 	set ytics 0.4 offset 0.5,0
 	set ztics
 	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$' offset 0,-1
 	set ylabel 'poloha \$y\\,[\\si{\\milli\\metre}]\$' offset 0,-1
 	set zlabel 'el. pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$' rotate by 90
+	set label '\$\\dbdvoltage\\,[\\times\\SI{3}{\\kilo\\volt}]\$' at 2,0.8,2.7 tc ls 4
+	set label '\$\\dbdcurrent\\,[\\si{\\milli\\ampere}]\$' at 42,0.8,2.5 tc ls 2
 	unset key
 """
+Uscale = 1/3e3
+Iscale = 1e3
+x = X[1]
+@gsp :- x.t .- x.t[1] ones(size(x.t)) * 0.8 x.Um * Uscale "w l ls 4 lw 4"
+@gsp :- x.t .- x.t[1] ones(size(x.t)) * 0.8 x.Im * Iscale "w l ls 2 lw 4"
 for k in [8:-1:1; 10:13]
 	local x = X[k]
 	t = x.t .- x.t[1]
