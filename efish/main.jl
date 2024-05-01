@@ -176,6 +176,11 @@ function loaddata(dataname::String, energyname::String, y::Float64)
 	if !isempty(energyname)
 		energydata = readdlm("data-22-02-03/powermeter/$(energyname).txt",
 			skipstart = 36)
+		L = mean(energydata[:,2])
+		L_unc = std(energydata[:,2])
+	else
+		L = missing
+		L_unc = missing
 	end
 
 	frames = map(eachrow(index)) do (delay, fileno)
@@ -185,9 +190,12 @@ function loaddata(dataname::String, energyname::String, y::Float64)
 		(; t = delay, U = d[1], fd = d[2], I = d[3], efish = d[4])
 	end
 
+	nframes = length(frames)
 	t = [f.t for f in frames]
+	Um = [mean(f.U[2]) for f in frames]
+	Im = [mean(f.I[2]) for f in frames]
 	Iefish = [-minimum(f.efish[2]) for f in frames]
-	(; frames, y, t, Iefish)
+	(; nframes, frames, y, t, Um, Im, L, L_unc, Iefish)
 end
 
 # ╔═╡ c41639b2-19bc-4e49-ab6f-835c8fcbe218
@@ -234,6 +242,37 @@ end
 
 # ╔═╡ d65f93a9-124a-4a94-9ba7-39f6983773a5
 y = map(x -> x.y[1], X)
+
+# ╔═╡ 12c461b2-7aa9-47f5-a282-d70b4eb2ef56
+md"""
+Energie laseru byla ve všech výškách zhruba stejná.
+Levý bod je z polohy, kdy část svazku pravděpodobně narazila
+do sklíčka a byla pohlcena či odražena.
+"""
+
+# ╔═╡ f75217cd-d711-451c-b3a7-fda1ec82e422
+with() do
+	L = [x.L for x in X]
+	Lunc = [x.L_unc for x in X]
+	m = .!ismissing.(L)
+	scatter(y[m], L[m], yerr=Lunc[m])
+end
+
+# ╔═╡ 1f1378c0-a31e-483a-923c-16f3418848ec
+md"""
+Napětí a proud měly ve všech výškách velmi podobný průběh.
+"""
+
+# ╔═╡ c4a6f786-ad38-4b94-8d50-538425c07618
+with(legend=:none) do
+	local p = plot()
+	local p2 = twinx()
+	for x in X
+		plot!(p, x.t, x.Um)
+		plot!(p2, x.t, x.Im)
+	end
+	p
+end
 
 # ╔═╡ 8216d6a0-61cb-4d96-bc40-4d5be490ca7e
 md"""
@@ -408,6 +447,10 @@ end
 # ╠═9c5600ab-836e-471f-8f1b-a04e0d60ce1a
 # ╠═b25f98da-b4e2-4847-a7e9-06a8d84b8ed8
 # ╠═d65f93a9-124a-4a94-9ba7-39f6983773a5
+# ╟─12c461b2-7aa9-47f5-a282-d70b4eb2ef56
+# ╠═f75217cd-d711-451c-b3a7-fda1ec82e422
+# ╟─1f1378c0-a31e-483a-923c-16f3418848ec
+# ╠═c4a6f786-ad38-4b94-8d50-538425c07618
 # ╟─8216d6a0-61cb-4d96-bc40-4d5be490ca7e
 # ╠═c57517a5-acb0-49dc-be11-0df4de36d87f
 # ╟─90f6fb3f-72d7-4cb9-a7a3-22144551ad66
