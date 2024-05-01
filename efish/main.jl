@@ -145,7 +145,7 @@ md"""
 """
 
 # ╔═╡ 7f91ff78-587f-435e-94ca-88075f1fefab
-calib_overviews = map([
+period_overviews = map([
 	"data-22-02-03/prehled-14kv-pokalibraci0.bin"
 	"data-22-02-03/prehled-14kv-pokalibraci0-b.bin"
 	"data-22-02-03/prehled14kvpo0p3mm.bin"
@@ -156,8 +156,8 @@ end
 
 # ╔═╡ ad5b3206-88c3-4f36-832c-4bca8e60dff5
 with(size=(700,150)) do
-	plot([x[1:100:end] for x in calib_overviews[1].U]...)
-	plot!(twinx(), [x[1:100:end] for x in calib_overviews[1].I]..., c=2)
+	plot([x[1:100:end] for x in period_overviews[1].U]...)
+	plot!(twinx(), [x[1:100:end] for x in period_overviews[1].I]..., c=2)
 end
 
 # ╔═╡ 6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
