@@ -209,12 +209,36 @@ kde jsou data normována tak, aby měla jednotkovou amplitudu signálu.
 
 \section{Vyhodnocení}
 \label{sec:efish-method}
+Na začátku zpracování bylo nutno rozhodnout, která charakteristika signálu
+\EFISH{} bude použita jako srovnávací.
+Nabízely se dvě možnosti: amplituda signálu a~jeho integrál v~čase.
+Porovnání obou charakteristik v~datové sadě s~různými energiemi pulzu
+(vykreslených na obrázku~\ref{fig:efish-energy-corrected}) prokázalo,
+že jsou ekvivalentní, neboť velmi dobře korelují.
+Tato korelace je patrna na obrázku~\ref{fig:efish-intmax}.
+Při výpočtech byla pro jednoduchost použita amplituda signálu.
+
+Určení intenzity elektrického pole spočívalo v~porovnání signálu
+\EFISH{} z~výboje s~referenčním signálem naměřeným bez výboje,
+kdy je možné elektrické pole stanovit jiným způsobem.
+
+Při referenčním měření bylo napětí na elektrodách postupně zvyšováno
+z~nuly do zápalného napětí, které se pohybovalo kolem \SI{5}{\kilo\volt}.
+Napětí bylo přepočteno na~intenzitu elektrického pole podle vztahu:
+\begin{equation}
+	\elfield = \frac{\dbdvoltage}
+		{\gapwidth + 2\frac{\barrierthickness}{\relperm}},
+\end{equation}
+kde $\dbdvoltage$ je napětí na~elektrodách,
+$\gapwidth$ je šířka mezery,
+$\barrierthickness$ je tloušťka bariéry
+a~$\relperm$ je relativní permitivita materiálu bariéry.
 
 \begin{figure}[htp]
 	\centering
 	\input{../efish/results/intmax}
 	\caption{Korelace intenzity signálu \EFISH{} určené dvěma způsoby:
-		Jako maximální hodnota intenzity a~jako integrál intenzity.}
+		Jako amplituda intenzity a~jako její integrál.}
 	\label{fig:efish-intmax}
 \end{figure}
 
