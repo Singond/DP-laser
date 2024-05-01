@@ -34,6 +34,7 @@ Mezi sklíčky je mezera o~šířce zhruba \SI{1}{\milli\metre}.
 Zařízení je umístěno vodorovně v~uzavřeném plastovém reaktoru.
 Čistý dusík je přiváděn otvorem v~rovině výboje v~boční stěně reaktoru
 a~odváděn podobným otvorem naproti.
+Průtok dusíku činí \SI{3500}{\sccm}.
 
 Reaktor je vybaven dvěma okénky z~křemenného skla umístěnými naproti
 sobě v~úrovni výboje,
@@ -48,8 +49,19 @@ se střídou \SI{45}{\percent}.
 Výsledkem je deset napěťových cyklů o~celkové délce \SI{909}{\micro\second}
 následovaných \SI{1091}{\micro\second} nulového napětí.
 \autocite{efish-nitrogen}
-Část modulačního cyklu je na obrázku~\ref{fig:efish-overview-full},
+Zdrojem je funkční generátor Keysight \instrname{33210A}
+produkující napětí zhruba \SI{2.71}{\volt} (mezi maximem a minimem),
+které je navýšeno na požadovanou hodnotu audiozesilovačem
+Sony \instrname{Xplod XM-N502} a~automobilovou cívkou z~vozu Škoda Favorit.
+Celý modulační cyklus je na obrázku~\ref{fig:efish-overview-full},
 detail jednoho napěťového cyklu je na obrázku~\ref{fig:efish-overview-period}.
+
+Synchronizační výstup funkčního generátoru je veden do zpožďovače
+Berkeley Nucleonics \instrname{BNC 575},
+který je nastaven na střídu \SI{10}{\percent},
+takže propouští jen každý desátý pulz.
+Tento výstup o~frekvenci \SI{50}{\hertz} slouží jako spouštěcí signál
+pro pikosekundový laser.
 
 Schéma optické dráhy je na obrázku~\ref{fig:efish-setup}.
 Laser je nastavený na základní frekvenci \SI{1064}{\nano\metre}.
@@ -67,6 +79,7 @@ Intenzitu harmonického svazku (tedy signál \EFISH{})
 měří mikrokanálový fotonásobič
 Photek \instrname{PMT210} s~průměrem aktivní oblasti \SI{10}{\milli\metre},
 pološířkou pulzu (FWHM) \SI{150}{\pico\second} a~zesílením \num{e6}.
+Napájen je napětím \SI{3900}{\kilo\volt}.
 Před fotonásobičem je umístěna irisová clona a~úzkopásmový filtr
 pro dodatečné filtrování svazku a~odstínění parazitního záření
 z~jiných zdrojů.
