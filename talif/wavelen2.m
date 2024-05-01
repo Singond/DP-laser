@@ -33,3 +33,5 @@ X = arrayfun(@correct_iccd, D);
 X = arrayfun(@(x) frametimes(x, 50), X);
 X = arrayfun(@frame_pulse_energy, X);
 X = arrayfun(@process, X);
+
+wavelen2 = X;
