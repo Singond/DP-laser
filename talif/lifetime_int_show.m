@@ -1,5 +1,5 @@
-if (!exist("X"))
-	lifetime;
+if (!exist("X", "var"))
+	lifetime_int;
 end
 
 figure;
