@@ -281,10 +281,7 @@ na obrázku~\ref{fig:efish-period-calib}.
 Při přepočtu byla používána levá nebo pravá větev každé funkce
 podle předpokládaného směru neznámého elektrického pole.
 
-\section{Výsledky}
-\label{sec:efish-results}
-
-\begin{figure}
+\begin{figure}[hbp]
 	\centering
 	\input{../efish/results/period-calib-bilateral}
 	\caption{Kalibrační funkce použité pro zpětný přepočet signálu \EFISH{}
@@ -299,23 +296,60 @@ podle předpokládaného směru neznámého elektrického pole.
 	\label{fig:efish-period-calib}
 \end{figure}
 
+\section{Výsledky}
+\label{sec:efish-results}
+Znalost přepočetní funkce umožnila měřit intenzitu elektrického pole
+uvnitř hořícího výboje.
+Amplituda napětí mezi elektrodami byla zvýšena na \SI{7}{\kilo\volt}
+při stálé frekvenci \SI{11}{\kilo\hertz}.
+Laser byl nastaven na zesílení 15, což vedlo k~průměrné energii pulzu
+kolem \SI{3.9}{\milli\joule} (podle pyroelektrického měřiče).
+Osciloskop data průměroval z~16 snímků.
+
+Měření bylo provedeno v~několika polohách svazku
+odstupňovaných po přibližně $\SI{0.1}{\milli\metre}$ tak,
+aby pokryly celý prostor mezi elektrodami.
+Změnu výšky umožňoval svislý mikrometrický posuv držáku reaktoru.
+V~každé měřené výšce bylo navíc zpoždění laserového pulzu za amplitudou
+budicího napětí regulováno tak,
+aby byl naměřen signál v~různých fázích cyklu výboje.
+Výsledkem je signál \EFISH{} rozlišený ve svislém směru i~v~čase,
+který je vykreslen na obrázku~\ref{fig:efish-period-efish}.
+
 \begin{figure}[htp]
 	\centering
 	\input{../efish/results/period-efish}
 	\caption{Intenzita \EFISH{} zaznamenaná v~různých výškách
-		v~průběhu jedné periody budicího napětí.}
+		v~průběhu jedné periody budicího napětí a~začátku další.
+		Jedna perioda je \SI{90.9}{\micro\second}.}
 	\label{fig:efish-period-efish}
 \end{figure}
+
+Signál byl přepočten pomocí kalibračních funkcí
+na obrázku~\ref{fig:efish-period-calib}.
+V~mezilehlých výškách, kde nebyla kalibrační funkce známa přímo,
+byla interpolována (či extrapolována) z~nejbližších sousedních.
+Hodnoty na začátku a~na konci periody používaly pravou větev
+přepočetní paraboly,
+hodnoty uprostřed, mezi minimy signálu, používaly větev levou.
+Tak byl zajištěn hladký průběh spočtené intenzity v~okolí nuly.
+
+Výsledná intenzita elektrického pole je na
+obrázku~\ref{fig:efish-period-elfield}.
 
 \begin{figure}[p]
 	\sisetup{per-mode = symbol}
 	\input{../efish/results/period-elfield}
-	\caption{Časový vývoj intenzity elektrického pole
-		v~různých místech výboje.
+	\caption{Časový vývoj intenzity elektrického pole v~různých místech výboje
+		určený metodou \EFISH{}.
+		Zobrazený interval je mírně delší než jeden cyklus:
+		Perioda budicího napětí je \SI{90.9}{\micro\second},
+		což odpovídá frekvenci \SI{11}{\kilo\hertz}.
 		Spodní elektroda se nachází zhruba ve~výšce
 		$\ypos = \SI{-0.35}{\milli\metre}$,
 		horní elektroda přibližně ve~výšce
 		$\ypos = \SI{0.7}{\milli\metre}$.}
+	\label{fig:efish-period-elfield}
 \end{figure}
 
 \begin{figure}[htp]
