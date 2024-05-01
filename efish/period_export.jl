@@ -24,10 +24,10 @@ Escale = 1e-6
 E = LinRange(0, 3.8e6, 100)
 @gp :- calib_mid1.E * Escale calib_mid1.Iefish "w p ls 1 t 'střed 1 (\\SI{0}{\\milli\\metre})'"
 @gp :- E * Escale calib_mid1.model.(E) "w l ls 1 notitle"
-@gp :- calib_bot.E * Escale calib_bot.Iefish "w p ls 2 t 'spodek (\\SI{-0.35}{\\milli\\metre})'"
-@gp :- E * Escale calib_bot.model.(E) "w l ls 2 notitle"
-@gp :- calib_mid2.E * Escale calib_mid2.Iefish "w p ls 3 t 'střed 2 (\\SI{0}{\\milli\\metre})'"
-@gp :- E * Escale calib_mid2.model.(E) "w l ls 3 notitle"
+@gp :- calib_mid2.E * Escale calib_mid2.Iefish "w p ls 2 t 'střed 2 (\\SI{0}{\\milli\\metre})'"
+@gp :- E * Escale calib_mid2.model.(E) "w l ls 2 notitle"
+@gp :- calib_bot.E * Escale calib_bot.Iefish "w p ls 3 t 'spodek (\\SI{-0.35}{\\milli\\metre})'"
+@gp :- E * Escale calib_bot.model.(E) "w l ls 3 notitle"
 Gnuplot.save("results/period-calib.tex",
 	term="cairolatex pdf size 12cm,8cm")
 
@@ -43,12 +43,12 @@ E = LinRange(-4.7e6, 3.8e6, 100)
 @gp :- calib_mid1.E * Escale calib_mid1.Iefish "w p ls 1 t 'střed 1 (\\SI{0}{\\milli\\metre})'"
 @gp :- E * Escale calib_mid1.model.(E) "w l ls 1 notitle"
 @gp :- [-calib_mid1.model_params[2]] * Escale [0] "w p ls 1 pt 6 ps 1 notitle"
-@gp :- calib_bot.E * Escale calib_bot.Iefish "w p ls 2 t 'spodek (\\SI{-0.35}{\\milli\\metre})'"
-@gp :- E * Escale calib_bot.model.(E) "w l ls 2 notitle"
-@gp :- [-calib_bot.model_params[2]] * Escale [0] "w p ls 2 pt 6 ps 1 notitle"
-@gp :- calib_mid2.E * Escale calib_mid2.Iefish "w p ls 3 t 'střed 2 (\\SI{0}{\\milli\\metre})'"
-@gp :- E * Escale calib_mid2.model.(E) "w l ls 3 notitle"
-@gp :- [-calib_mid2.model_params[2]] * Escale [0] "w p ls 3 pt 6 ps 1 notitle"
+@gp :- calib_mid2.E * Escale calib_mid2.Iefish "w p ls 2 t 'střed 2 (\\SI{0}{\\milli\\metre})'"
+@gp :- E * Escale calib_mid2.model.(E) "w l ls 2 notitle"
+@gp :- [-calib_mid2.model_params[2]] * Escale [0] "w p ls 2 pt 6 ps 1 notitle"
+@gp :- calib_bot.E * Escale calib_bot.Iefish "w p ls 3 t 'spodek (\\SI{-0.35}{\\milli\\metre})'"
+@gp :- E * Escale calib_bot.model.(E) "w l ls 3 notitle"
+@gp :- [-calib_bot.model_params[2]] * Escale [0] "w p ls 3 pt 6 ps 1 notitle"
 Gnuplot.save("results/period-calib-bilateral.tex",
 	term="cairolatex pdf size 12cm,8cm")
 
