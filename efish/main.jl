@@ -193,9 +193,10 @@ function loaddata(dataname::String, energyname::String, y::Float64)
 	nframes = length(frames)
 	t = [f.t for f in frames]
 	Um = [mean(f.U[2]) for f in frames]
+	Upp = maximum(Um) - minimum(Um)
 	Im = [mean(f.I[2]) for f in frames]
 	Iefish = [-minimum(f.efish[2]) for f in frames]
-	(; nframes, frames, y, t, Um, Im, L, L_unc, Iefish)
+	(; nframes, frames, y, t, Um, Upp, Im, L, L_unc, Iefish)
 end
 
 # ╔═╡ c41639b2-19bc-4e49-ab6f-835c8fcbe218
@@ -272,6 +273,18 @@ with(legend=:none) do
 		plot!(p2, x.t, x.Im)
 	end
 	p
+end
+
+# ╔═╡ 2665fa4f-4640-4194-847c-7989cf3946a2
+md"""
+Napětí od maxima k minimu (peak-to-peak):
+"""
+
+# ╔═╡ d2e6f4b5-e0c3-41e6-ab2b-cb1680203673
+with() do
+	scatter(y, [x.Upp for x in X])
+	xlabel!("poloha \$y\$ [mm]")
+	ylabel!("napětí \$U\$ [V]")
 end
 
 # ╔═╡ 8216d6a0-61cb-4d96-bc40-4d5be490ca7e
@@ -451,6 +464,8 @@ end
 # ╠═f75217cd-d711-451c-b3a7-fda1ec82e422
 # ╟─1f1378c0-a31e-483a-923c-16f3418848ec
 # ╠═c4a6f786-ad38-4b94-8d50-538425c07618
+# ╟─2665fa4f-4640-4194-847c-7989cf3946a2
+# ╠═d2e6f4b5-e0c3-41e6-ab2b-cb1680203673
 # ╟─8216d6a0-61cb-4d96-bc40-4d5be490ca7e
 # ╠═c57517a5-acb0-49dc-be11-0df4de36d87f
 # ╟─90f6fb3f-72d7-4cb9-a7a3-22144551ad66
