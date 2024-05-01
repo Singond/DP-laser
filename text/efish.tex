@@ -1,6 +1,8 @@
 \chapter[\EFISH]{{\EFISH} v~dielektrickém bariérovém výboji}
 
 \newcommand\ypos{y}
+\providecommand\efishmult{\alpha}
+\providecommand\efishshift{P}
 
 \section{Úvod}
 \label{sec:efish-intro}
@@ -218,22 +220,6 @@ Porovnání obou charakteristik v~datové sadě s~různými energiemi pulzu
 Tato korelace je patrna na obrázku~\ref{fig:efish-intmax}.
 Při výpočtech byla pro jednoduchost použita amplituda signálu.
 
-Určení intenzity elektrického pole spočívalo v~porovnání signálu
-\EFISH{} z~výboje s~referenčním signálem naměřeným bez výboje,
-kdy je možné elektrické pole stanovit jiným způsobem.
-
-Při referenčním měření bylo napětí na elektrodách postupně zvyšováno
-z~nuly do zápalného napětí, které se pohybovalo kolem \SI{5}{\kilo\volt}.
-Napětí bylo přepočteno na~intenzitu elektrického pole podle vztahu:
-\begin{equation}
-	\elfield = \frac{\dbdvoltage}
-		{\gapwidth + 2\frac{\barrierthickness}{\relperm}},
-\end{equation}
-kde $\dbdvoltage$ je napětí na~elektrodách,
-$\gapwidth$ je šířka mezery,
-$\barrierthickness$ je tloušťka bariéry
-a~$\relperm$ je relativní permitivita materiálu bariéry.
-
 \begin{figure}[htp]
 	\centering
 	\input{../efish/results/intmax}
@@ -242,16 +228,70 @@ a~$\relperm$ je relativní permitivita materiálu bariéry.
 	\label{fig:efish-intmax}
 \end{figure}
 
+Určení intenzity elektrického pole spočívalo v~porovnání signálu
+\EFISH{} z~výboje s~referenčním signálem naměřeným bez výboje,
+kdy je možné elektrické pole stanovit jiným způsobem.
+
+Při referenčním měření bylo napětí na elektrodách postupně zvyšováno
+z~nuly do zápalného napětí, které se pohybovalo kolem \SI{5}{\kilo\volt}.
+Před zapálením výboje bylo elektrické pole mezi elektrodami považováno
+za homogenní a~jeho intenzita byla spočtena podle vztahu:
+\begin{equation}
+	\elfield = \frac{\dbdvoltage}
+		{\gapwidth + 2\frac{\barrierthickness}{\relperm}},
+\end{equation}
+kde $\dbdvoltage$ je napětí na~elektrodách,
+$\gapwidth = \SI{1}{\milli\metre}$ je šířka mezery,
+$\barrierthickness = \SI{1.1}{\milli\metre}$ je tloušťka každé ze dvou bariér
+(podložních sklíček)
+a~$\relperm = \num{4.7}$ je jejich relativní permitivita.
+Závislost naměřené intenzity na takto spočtené intenzitě elektrického
+pole je na obrázku~\ref{fig:efish-period-calib}.
+
+Podle \eqref{eq:efishth-prop-simple} by měl signál \EFISH{} být úměrný
+druhé mocnině intenzity elektrického pole $\elfield$.
+Naměřená data se však od tohoto vztahu mírně odchylovala a~neprocházela nulou:
+I~při nulovém napětí na elektrodách bylo zaznamenáno malé množství
+druhé harmonické frekvence.
+Jak se později ukázalo, příčinou této odchylky byla okénka reaktoru.
+Pevná látka má mnohonásobně vyšší hustotu částic než plyn,
+proto i~v~ní docházelo ke slabému generování vyšší frekvence,
+přestože zde svazek nebyl zaostřen.
+
+Předpokládaná závislost tedy byla upravena na tvar:
+\begin{equation}
+	\label{eq:efish-prop}
+	\efish(\elfield) \propto \efishmult (\elfield + \efishshift)^2,
+\end{equation}
+kde $\efishmult$ zahrnuje konstantní násobitele
+ze vztahu~\eqref{eq:efishth-prop}
+a~$\efishshift$ je nově zavedený posun ve směru $\elfield$.
+Tento vztah byl proložen naměřenými daty pomocí metody nejmenších čtverců.
+Přepočet signálu \EFISH{} na intenzitu elektrického pole se řídil
+proloženou závislostí, která byla protažena i~do záporných hodnot $\elfield$.
+
+Přepočetní funkce byla určena několikrát v~průběhu hlavního měření.
+Poprvé v~počáteční poloze svazku mezi elektrodami ($\ypos = 0$),
+podruhé v~dolní poloze svazku ($\ypos = \SI{-0.35}{\milli\metre}$)
+a~potřetí opět v~počáteční poloze ($\ypos = 0$) před měřením elektrického
+pole ve vyšších polohách.
+Všechny tři spočtené přepočetní funkce jsou
+na obrázku~\ref{fig:efish-period-calib}.
+Při přepočtu byla používána levá nebo pravá větev každé funkce
+podle předpokládaného směru neznámého elektrického pole.
+
 \section{Výsledky}
 \label{sec:efish-results}
 
 \begin{figure}
 	\centering
 	\input{../efish/results/period-calib-bilateral}
-	\caption{Kalibrační funkce použité pro vyhodnocení časového vývoje.
+	\caption{Kalibrační funkce použité pro zpětný přepočet signálu \EFISH{}
+		($\efish$) na intenzitu elektrického pole.
 		Funkce ve středu mezery byla změřena dvakrát, poprvé před měřením
-		elektrického pole v~dolní části mezery (střed 1)
-		a~podruhé před měřením horní části (střed 2).
+		elektrického pole v~dolní části mezery
+		(označeného jako \emph{střed~1})
+		a~podruhé před měřením horní části (\emph{střed 2}).
 		Záporná větev je extrapolována z~pravé.
 		Označená minima ukazují, že všechny funkce jsou mírně posunuty
 		doleva (zhruba o~\SI{0.4}{\mega\volt\per\metre}).}
