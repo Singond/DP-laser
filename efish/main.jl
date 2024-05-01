@@ -139,6 +139,27 @@ function elfield(Iefish, y; kwargs...)
 	end
 end
 
+# ╔═╡ 3773ddc5-8dbc-4015-86c4-a21b61e7242a
+md"""
+## Přehled napětí a proudu
+"""
+
+# ╔═╡ 7f91ff78-587f-435e-94ca-88075f1fefab
+calib_overviews = map([
+	"data-22-02-03/prehled-14kv-pokalibraci0.bin"
+	"data-22-02-03/prehled-14kv-pokalibraci0-b.bin"
+	"data-22-02-03/prehled14kvpo0p3mm.bin"
+]) do filename
+	local U, efish, I, fd, meta = importkeysightbin(filename)
+	(; U, efish, I, fd, meta)
+end
+
+# ╔═╡ ad5b3206-88c3-4f36-832c-4bca8e60dff5
+with(size=(700,150)) do
+	plot([x[1:100:end] for x in calib_overviews[1].U]...)
+	plot!(twinx(), [x[1:100:end] for x in calib_overviews[1].I]..., c=2)
+end
+
 # ╔═╡ 6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 md"""
 ## Měření elektrického pole výboje
@@ -378,6 +399,9 @@ end
 # ╠═6e8db23b-0f31-4159-ac16-6e23ef8a89d5
 # ╠═6e3ba49e-da04-42e2-b6f4-1d529f1ed504
 # ╠═a93b4d5c-4167-42a4-a01c-f721faf5edd6
+# ╟─3773ddc5-8dbc-4015-86c4-a21b61e7242a
+# ╠═7f91ff78-587f-435e-94ca-88075f1fefab
+# ╠═ad5b3206-88c3-4f36-832c-4bca8e60dff5
 # ╟─6e568ec1-a89f-4ace-ae7f-ed8a85379ff6
 # ╠═17006e36-a1f7-4fe9-ad6f-4dfd828e7228
 # ╠═c41639b2-19bc-4e49-ab6f-835c8fcbe218
