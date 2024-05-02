@@ -118,11 +118,13 @@ _Tektronix_ je v kanálu 1:
 """
 
 # ╔═╡ b76d27c5-70d1-469c-a883-34f63578343f
-plot(x.U)
+plot(x.U, xlabel="t [s]", ylabel="U [V]")
 
 # ╔═╡ 305b5ef0-feb7-4490-9efb-ff33b5024a62
 md"""
-Signál z fotonásobiče (tedy odezva E-FISH), je v kanálu 2:
+Signál z fotonásobiče (tedy odezva E-FISH), je v kanálu 2.
+Podle hlavičky datového souboru se zdá, že všechny kanály
+(včetně proudové sondy) jsou ve voltech.
 """
 
 # ╔═╡ b1eebdae-591b-4064-aede-2c1c0e84edd0
