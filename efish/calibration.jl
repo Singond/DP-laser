@@ -68,9 +68,17 @@ Přiblížení na pulz je zde:
 # ╔═╡ ada7162b-c6de-4fe6-b772-18e56e1760f0
 plot(singleshot_plot, xlim=(4.8e-8, 5.2e-8))
 
+# ╔═╡ 01f5aa8e-fd38-473b-8280-256bd7ce6e3c
+efishmax = [minimum(x.efish[2]) for x in singleshots]
+
+# ╔═╡ 8ec48d9b-065a-4b01-94e2-e0a146f2ea7c
+efishmax_relstd = abs(std(efishmax) / mean(efishmax))
+
 # ╔═╡ 7e6a0eb4-c8da-416f-83b2-f09ecf3833b2
 md"""
 Opakovatelnost pokusu se zdá být dobrá.
+Relativní odchylka maximální hodnoty je asi
+$(100 * round(efishmax_relstd, sigdigits=2)) %.
 """
 
 # ╔═╡ f9baabe8-c809-4061-8e23-a2654d6adf04
@@ -197,6 +205,17 @@ Odlišnosti se projeví až při přiblížení. Zde je detail špičky signálu
 
 # ╔═╡ 3bc61c71-b563-4fb4-a33a-c70826b22417
 plot(fd_plot, xlim=(45, 45.6), ylim=(0.06, 0.068))
+
+# ╔═╡ 399a1df4-a8b7-4b56-bd23-0e0ad4c64abd
+fdmax = [maximum(x.fd[2]) for x in singleshots]
+
+# ╔═╡ dd07a891-308a-466f-ab1b-3e58a967c1a8
+fdmax_relstd = std(fdmax) / mean(fdmax)
+
+# ╔═╡ bca945ba-58bd-4d39-8d71-e99e43ec2933
+md"""
+Relativní odchylka maxima je přibližně $(round(fdmax_relstd * 100, sigdigits=1)) %.
+"""
 
 # ╔═╡ de5ff4dd-fe7a-4d81-8566-1dd90749ab3a
 md"""
@@ -453,6 +472,8 @@ end
 # ╠═7f24764f-1299-43a4-85f4-caa2b82cdb0c
 # ╟─77aea516-8998-4745-9999-74bbbb362a1f
 # ╠═ada7162b-c6de-4fe6-b772-18e56e1760f0
+# ╠═01f5aa8e-fd38-473b-8280-256bd7ce6e3c
+# ╠═8ec48d9b-065a-4b01-94e2-e0a146f2ea7c
 # ╟─7e6a0eb4-c8da-416f-83b2-f09ecf3833b2
 # ╟─f9baabe8-c809-4061-8e23-a2654d6adf04
 # ╠═37331088-c330-4c9b-8ddd-2b773bfd59b1
@@ -477,6 +498,9 @@ end
 # ╠═5c481058-7db3-4acb-8924-c1983d6b284a
 # ╟─804fcb70-4875-436e-9783-5bc28219b571
 # ╠═3bc61c71-b563-4fb4-a33a-c70826b22417
+# ╠═399a1df4-a8b7-4b56-bd23-0e0ad4c64abd
+# ╠═dd07a891-308a-466f-ab1b-3e58a967c1a8
+# ╟─bca945ba-58bd-4d39-8d71-e99e43ec2933
 # ╟─de5ff4dd-fe7a-4d81-8566-1dd90749ab3a
 # ╠═02fd1cfd-dfee-4509-8788-836406dd9eeb
 # ╠═492ce0d3-72c2-469d-8831-216a521e3577
