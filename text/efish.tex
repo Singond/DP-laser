@@ -14,9 +14,9 @@ bariérovém výboji.
 %
 Druhotným úkolem bylo ověření možností, které laser nabízí.
 
-Výsledky tohto pokusu byly ještě před dokončením práce publikovány
-T.~Hoderem et al.~v~článku \cite{efish-nitrogen}, na nějž se dovolujeme
-odkazovat.
+Na tento pokus navázal další prací T.~Hoder et al.~a~ještě před
+dokončením práce výsledky publikoval v~článku \cite{efish-nitrogen},
+na nějž se dovolujeme odkazovat.
 
 \section{Uspořádání experimentu}
 \label{sec:efish-setup}
@@ -24,7 +24,8 @@ Měření bylo uskutečněno na téže aparatuře, jako je popsána
 v~\cite{efish-nitrogen},
 následující odstavce jsou proto parafrázovány odtamtud.
 
-Předmětem zkoumání byl Townsendův výboj v~dusíku za atmosférického tlaku.
+Předmětem zkoumání byl Townsendův výboj za atmosférického tlaku (APTD)
+v~dusíku.
 Výboj byl v~dielektrickém bariérovém uspořádání, které ukazuje
 obrázek~\ref{fig:efish-reactor}.
 Rovinné elektrody o~rozměrech \num{14}\times\SI{15}{\milli\metre}
@@ -56,12 +57,23 @@ Sony \instrname{Xplod XM-N502} a~automobilovou cívkou z~vozu Škoda Favorit.
 Celý modulační cyklus je na obrázku~\ref{fig:efish-overview-full},
 detail jednoho napěťového cyklu je na obrázku~\ref{fig:efish-overview-period}.
 
-Synchronizační výstup funkčního generátoru je veden do zpožďovače
+Pikosekundový laser je synchronizován s~budicím napětím výboje,
+ale jeho maximální frekvence opakování pulzů je \SI{50}{\hertz}.
+Proto je synchronizační výstup funkčního generátoru veden do zpožďovače
 Berkeley Nucleonics \instrname{BNC 575},
 který je nastaven na střídu \SI{10}{\percent},
 takže propouští jen každý desátý pulz.
 Tento výstup o~frekvenci \SI{50}{\hertz} slouží jako spouštěcí signál
-pro pikosekundový laser.
+pro laser.
+
+Zpožďovač zároveň řídí prodlevu mezi počátkem modulačního cyklu
+a~laserovým pulzem.
+Prodleva je nastavena tak, aby laserový pulz přicházel v~předposledním
+napěťovém cyklu.
+Toto opatření je voleno proto, aby se výboj stihl ustálit.
+Pozdější zkoumání odhalilo, že v~prvním pulzu každého modulačního cyklu
+dochází k~filamentárnímu výboji, jehož charakteristiky jsou zcela odlišné
+od APTD, ustáleného v~následujících cyklech.
 
 Schéma optické dráhy je na obrázku~\ref{fig:efish-setup}.
 Laser je nastavený na základní frekvenci \SI{1064}{\nano\metre}.
@@ -73,7 +85,9 @@ vystupuje druhým okénkem ven.
 Zde jsou frekvence od sebe odděleny pomocí dichroického zrcátka,
 které harmonickou složku odráží a~základní propouští.
 Odražený svazek je po kolimaci druhou spojkou dále očištěn od nežádoucích
-složek pomocí druhého dichroického zrcátka a~disperzního hranolu.
+složek (zejména od zbytkového infračerveného záření laseru,
+které je původně o~mnoho řádů silnější)
+pomocí druhého dichroického zrcátka a~disperzního hranolu.
 
 Intenzitu harmonického svazku (tedy signál \EFISH{})
 měří mikrokanálový fotonásobič
@@ -162,7 +176,7 @@ její relativní odchylka se pohybuje kolem \SI{2.3}\percent.
 \begin{figure}[htp]
 	\centering
 	\input{../efish/results/pulse-compare}
-	\caption{Ověření konstantnosti laserového pulzu.
+	\caption{Ověření opakovatelnosti laserového pulzu.
 		Zobrazena je intenzita laserového svazku odraženého
 		na okénku reaktoru zaznamenaná fotodiodou.
 		Jedná se o~jednotlivé snímky bez akumulací v~osciloskopu.
@@ -198,7 +212,7 @@ neboť nelze zaručit stejné zpoždění v~obou detekčních cestách.
 		a~intenzita laserového pulzu, který jej vyvolal.
 		Čas $\tim$ je čas záznamu osciloskopem a~neodpovídá skutečnému času,
 		kdy k~ději došlo.
-		Zejména není zaručeno, že zpoždění je v~obou případech stejné.}
+		Zejména není zaručeno, že zpoždění je u~obou signálů stejné.}
 	\label{fig:efish-singleshot}
 \end{figure}
 
