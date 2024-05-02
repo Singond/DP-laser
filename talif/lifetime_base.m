@@ -16,3 +16,5 @@ end
 D(6).pwrdata = D(5).pwrdata;
 ## Missing series 11 data altogether, skip it
 D = D([1:10 12:15]);
+
+lifetimebase = D;
