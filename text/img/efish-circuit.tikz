@@ -1,0 +1,29 @@
+\ctikzset{
+	sources/symbol/rotate = 0,
+	tubes/height = 1,
+	tubes/width = 2
+}
+% Reactor
+\draw (10,6) node[diodetube] (reactor) {};
+\draw (reactor.south) node[below] {reaktor};
+
+% Generator
+\draw (0,10) node[vsourcesinshape, label={\SI{11}{\kilo\hertz}}] (src) {};
+\draw (src.east) -- (1,10)
+	to[vsourcesquare, name=mod, label={\SI{500}{\hertz}}] ++(2,0)
+	-- ++(2,0)
+	to[amp, name=amp, l^=audiozesilovač] +(4,0) -| (reactor.anode);
+\draw[thick] (-1,9) rectangle (4,11);
+\draw (1.5,11) node[above] {funkční generátor};
+\draw (mod.east) node[above right] {výstup};
+\draw (mod.south) node[below right] {sync};
+\draw (1,10) node[below] {\SI{2.71}{\volt}};
+% \draw (4,10) node[below right] {\SI{14}{\kilo\volt}};
+
+% Laser
+\draw (2,6) node[twoportshape, t=laser] (laser) {};
+\draw (mod.south)
+	to[ecsource, name=delay, label={střída \SI{10}{\percent}}] (laser.north);
+\draw[red] (laser.east) -- ++(9,0);
+\draw (delay.east) node[below left] {\SI{50}{\hertz}};
+\draw (delay.south) node[left] {zpožďovač};
