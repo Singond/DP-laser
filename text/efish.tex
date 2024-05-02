@@ -138,11 +138,11 @@ a~proudovou sondou Tektronix \instrname{CT2}.
 
 \begin{figure}[htp]
 	\centering
-	\begin{circuitikz}
+	\begin{circuitikz}[scale=1.0]
 		\input{img/efish-circuit.tikz}
 	\end{circuitikz}
-	\caption{caption}
-	\label{fig:}
+	\caption{Schéma napájení reaktoru a~synchronizace laseru.}
+	\label{fig:efish-circuit}
 \end{figure}
 
 \begin{figure}[htp]
@@ -152,7 +152,7 @@ a~proudovou sondou Tektronix \instrname{CT2}.
 		za celý modulační cyklus.}
 	\label{fig:efish-overview-full}
 	\vspace{24pt}
-	\input{../efish/results/period-overview-period}
+	\input{../efish/results/period-overview-period-small}
 	\caption{Detail jednoho cyklu výboje.}
 	\label{fig:efish-overview-period}
 \end{figure}
@@ -196,7 +196,7 @@ její relativní odchylka se pohybuje kolem \SI{2.3}\percent.
 	\label{fig:efish-pulse-compare}
 \end{figure}
 
-\begin{figure}[htp]
+\begin{figure}[p]
 	\centering
 	\input{../efish/results/singleshots-compare}
 	\caption{Ověření reprodukovatelnosti signálu \EFISH{} zachyceného
@@ -215,7 +215,7 @@ Je na místě připomenout, že vzájemný časový posun obou signálů
 zaznamenaný osciloskopem se~pravděpodobně liší od skutečnosti,
 neboť nelze zaručit stejné zpoždění v~obou detekčních cestách.
 
-\begin{figure}[htp]
+\begin{figure}[p]
 	\centering
 	\input{../efish/results/singleshot}
 	\caption{Signál \EFISH{} z~jediného snímku
@@ -235,7 +235,7 @@ silnějším pulzem klesá mírně pomaleji než u~slabších.
 Tento rozdíl je vidět na obrázku~\ref{fig:efish-energy-norm},
 kde jsou data normována tak, aby měla jednotkovou amplitudu signálu.
 
-\begin{figure}[htp]
+\begin{figure}[p]
 	\centering
 	\input{../efish/results/energy-corrected}
 	\caption{Signál \EFISH{} pro různé energie laserového pulzu.}
@@ -261,7 +261,7 @@ Porovnání obou charakteristik v~datové sadě s~různými energiemi pulzu
 Tato korelace je patrna na obrázku~\ref{fig:efish-intmax}.
 Při výpočtech byla pro jednoduchost použita amplituda signálu.
 
-\begin{figure}[htp]
+\begin{figure}[hbp]
 	\centering
 	\input{../efish/results/intmax}
 	\caption{Korelace intenzity signálu \EFISH{} určené dvěma způsoby:
@@ -367,6 +367,18 @@ který je vykreslen na obrázku~\ref{fig:efish-period-efish}.
 	\label{fig:efish-period-efish}
 \end{figure}
 
+\begin{figure}[htp]
+	\centering
+	\input{../efish/results/period-amplitude}
+	\caption{Amplituda intenzity elektrického pole určená z~maxima
+		a~minima spočteného průběhu v~čase.
+		Horní elektroda je vpravo.
+		Měření proběhlo ve dvou sériích (kladné a~záporné $\ypos$),
+		které se překrývají v~bodě $\ypos = 0$.
+		To je příčinou dvojí hodnoty v~tomto bodě.}
+	\label{fig:efish-period-amplitude}
+\end{figure}
+
 Signál byl přepočten pomocí kalibračních funkcí
 na obrázku~\ref{fig:efish-period-calib}.
 V~mezilehlých výškách, kde nebyla kalibrační funkce známa přímo,
@@ -397,16 +409,4 @@ nečekaný je ale pokles kladné amplitudy směrem k~horní elektrodě.
 		$\ypos = \SI{0.7}{\milli\metre}$.
 		Vykreslené průběhy napětí a~proudu jsou typické pro všechny výšky.}
 	\label{fig:efish-period-elfield}
-\end{figure}
-
-\begin{figure}[htp]
-	\centering
-	\input{../efish/results/period-amplitude}
-	\caption{Amplituda intenzity elektrického pole určená z~maxima
-		a~minima spočteného průběhu v~čase.
-		Horní elektroda je vpravo.
-		Měření proběhlo ve dvou sériích (kladné a~záporné $\ypos$),
-		které se překrývají v~bodě $\ypos = 0$.
-		To je příčinou dvojí hodnoty v~tomto bodě.}
-	\label{fig:efish-period-amplitude}
 \end{figure}

@@ -37,6 +37,7 @@ Gnuplot.save("results/period-overview-full.tex",
 @gp """
 	load '../gnuplot/style.gp'
 	load '../gnuplot/style-cairo.gp'
+	set rmargin at screen 0.9
 	set xrange [0:9.09e1]
 	set yrange [-7.5:7.5]
 	set y2range [-3.5:3.5]
@@ -52,4 +53,6 @@ t0 = frame.U[1][m][1]
 @gp :- (frame.U[1][m] .- t0) * tscale frame.U[2][m] * uscale "w l" :-
 @gp :- (frame.I[1][m] .- t0) * tscale frame.I[2][m] * iscale "w l axes x1y2" :-
 Gnuplot.save("results/period-overview-period.tex",
-	term="cairolatex pdf size 12cm,8cm")
+	term="cairolatex pdf size 12.5cm,8cm")
+Gnuplot.save("results/period-overview-period-small.tex",
+	term="cairolatex pdf size 12.5cm,5cm")
