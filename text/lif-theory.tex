@@ -85,22 +85,23 @@ které fluorescenci oslabují (viz dále v~oddíle \ref{sec:lifth-saturation}).
 
 Za předpokladu tříhladinového modelu fluorescenčního procesu uvedeného výše
 lze při určování koncentrace vyjít z~rychlostní rovnice popisující
-koncentraci horního stavu $\ndens_3$:
+koncentraci horního stavu $\ndens_3$ (viz obrázek~\ref{fig:lifth-levels}):
 \begin{equation}
 	\label{eq:lifth-rate-simple}
 	\dv{\ndens_3}{\tim}
 	= \specoverlap \frac{\einsteinb13 \ity}{\lightspeed} \ndens_1
 	- \specoverlap \frac{\einsteinb31 \ity}{\lightspeed} \ndens_3
-	- ( \einsteina32 + \quenching_{32} ) \ndens_3,
+	- ( \einsteina31 + \einsteina32 + \quenching_{31} + \quenching_{32} )
+	\ndens_3,
 \end{equation}
 kde $\ndens_1$ je koncentrace základního stavu,
 $\einsteina{i}{j}$ je Einsteinův koeficient spontánní emise,
-$\einsteinb{i}{j}$ jsou Einsteinovy koeficienty absorpce,
-$\quenching_{ij}$ je koeficient zohledňující zhášení,
+$\einsteinb{i}{j}$ jsou Einsteinovy koeficienty absorpce a~stimulované emise,
+$\quenching_{ij}$ je rychlostní konstanta zohledňující zhášení,
 $\ity$ je intenzita ozáření laserem
 a~$\lightspeed$ je rychlost světla.
 Kromě toho vystupuje ve vztahu také takzvaný
-\emph{spektrální překryv} $\specoverlap$,
+\emph{spektrální překryv} $\specoverlap$\autocite{lif-oh-argon},
 definovaný pomocí profilu absorpční čáry $a$
 a~spektrálního složení laserového záření $l$ normovaných na jedničku:
 \begin{equation}
@@ -118,9 +119,9 @@ Vztah~\eqref{eq:lifth-rate-simple} potom nabývá podoby:
 	- \specoverlap \frac{\einsteinb31 \ity}{\lightspeed} \ndens_3
 	- \left( \sum_i \einsteina3i + \sum_i \quenching_{3i} \right) \ndens_3,
 \end{equation}
-kde sumy probíhají přes všechny mezilehlé stavy $i$.
-Výraz v~závorce udává rychlost úbytku horního stavu všemi samovolnými
-procesy (tedy těmi, které nejsou způsobeny laserovým zářením).
+kde sumy probíhají přes všechny nižší stavy $i$ (včetně základního).
+Výraz v~závorce je rychlostní konstanta úbytku horního stavu všemi
+samovolnými procesy (tedy těmi, které nejsou způsobeny laserovým zářením).
 Převrácená hodnota této veličiny se nazývá \emph{doba života} $\lifetime$:
 \begin{equation}
 	\label{eq:lifth-lifetime-def}
@@ -136,7 +137,8 @@ Integrací vzta\-hu~\eqref{eq:lifth-rate} podle času lze tedy získat rovnici:
 	\int_0^\infty (\einsteinb13 \ndens_1 - \einsteinb31 \ndens_3) \ity\,\dd\tim
 	- \frac1\lifetime \int_0^\infty \ndens_3 \dd{\tim}.
 \end{equation}
-Celkové množství fluorescenčního záření lze vyjádřit jako:
+Celkový počet fluorescenčních fotonů vzniklých v~jednotkovém objemu
+lze vyjádřit jako:
 \begin{equation}
 	\label{eq:lifth-liftotal-def}
 	\liftotal = \einsteina32 \int_0^\infty \ndens_3 \dd{t}.
@@ -145,7 +147,7 @@ Po dosazení tohoto výrazu do rovnice \eqref{eq:lifth-rate-int}
 lze celkové vyzářené množství vyjádřit jako:
 \begin{equation}
 	\label{eq:lifth-liftotal-general}
-	\liftotal = \einsteina32 \lifetime \frac\specoverlap\lightspeed
+	\liftotal = \einsteina32 \lifetime \, \frac\specoverlap\lightspeed
 	\int_0^\infty
 	(\einsteinb13 \ndens_1 - \einsteinb31 \ndens_3)
 	\ity\,\dd\tim.
@@ -183,7 +185,6 @@ kde bylo zavedeno několik parametrů popisujících uspořádání:
 $\cameraangle$ je prostorový úhel fluorescenčního záření dopadajícího
 na snímač
 a~$\beamprofile$ je prostorový profil intenzity laseru normovaný na jedničku.
-
 Citlivost snímače vůči fluorescenčnímu záření ($\lifsens$) obvykle není přímo
 známa,
 a~byla proto rozepsána jako součin dvou veličin $\lifeff$ a~$\sensabs$.
@@ -203,7 +204,7 @@ jako parametr exponenciálního poklesu intenzity fluorescence v~čase:
 	\lifsignal \propto \eu^{-\frac{\tim}{\lifetime}}.
 \end{equation}
 Dobu života lze tedy získat proložením časového vývoje fluorescenčního
-signálu exponenciální fukncí.
+signálu exponenciální funkcí.
 
 Větší potíže působí objemový integrál na konci, jehož hodnota není snadno
 vyčíslitelná.
@@ -224,7 +225,7 @@ $\freq$ je frekvence laserového záření,
 $\rayleigheff$ je kvantová účinnost snímače pro použitou vlnovou délku
 a~$\rayleighdxsect$ je diferenciální účinný průřez Rayleighova rozptylu.
 
-V~případě vzduchu lze koncentraci částic přibližně vyjádřit pomocí
+V~případě vzduchu lze koncentraci částic vyjádřit pomocí
 stavové rovnice ideálního plynu:
 \begin{equation}
 	\rayleighndens = \frac{\pres}{\boltzmann\temp}.
