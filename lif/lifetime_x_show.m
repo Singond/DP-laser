@@ -55,10 +55,12 @@ function inspect_fitx(s, fits, f1, f2, f3)
 end
 
 figure(fig_taux);
+s = x;
+s.in = x.inx;
 uicontrol("parent", fig_taux,
 	"string", "Inspect fit",
 	"position", [10 10 120 30],
-	"callback", @(a,b) inspect_fitx(x, x.fits, fig_taux, fig_fit, fig_logfit));
+	"callback", @(a,b) inspect_fitx(s, x.fitsx, fig_taux, fig_fit, fig_logfit));
 uicontrol("parent", fig_taux,
 	"string", "Clear fits",
 	"position", [140 10 120 30],
