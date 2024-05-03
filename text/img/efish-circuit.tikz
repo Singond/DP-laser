@@ -5,7 +5,8 @@
 }
 % Reactor
 \draw (10,6) node[diodetube] (reactor) {};
-\draw (reactor.south) node[below] {reaktor};
+\draw (reactor.south) node[below right] {reaktor};
+\draw (reactor.cathode) node[ground] {};
 
 % Generator
 \draw (0,10) node[vsourcesinshape, label={\SI{11}{\kilo\hertz}}] (src) {};
