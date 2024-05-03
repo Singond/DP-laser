@@ -19,8 +19,8 @@ tscale = 1e9
 	set ytics in nomirror
 	set y2tics in nomirror
 	set xlabel 'čas \$\\tim\\,[\\si{\\nano\\second}]\$'
-	set ylabel 'intenzita \$\\efish\\,[\\si{\\arbunit}]\$' tc ls 1
-	set y2label 'intenzita \$\\enlaser\\,[\\si{\\arbunit}]\$' tc ls 2
+	set ylabel 'intenzita \$\\efish\\,[\\si{\\volt}]\$' tc ls 1
+	set y2label 'intenzita \$\\ityfd\\,[\\si{\\volt}]\$' tc ls 2
 	set key center right
 """ :-
 frame = singleshots[1]
