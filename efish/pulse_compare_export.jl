@@ -22,7 +22,7 @@ tscale = 1e9
 	set xyplane at 0
 	set xlabel 'čas \$\\tim\\,[\\si{\\nano\\second}]\$' rotate parallel
 	set ylabel 'číslo měření' rotate parallel
-	set zlabel 'signál fotodiody \$\\ityfd\\,[\\si{\\arbunit}]\$'
+	set zlabel 'signál fotodiody \$\\ityfd\\,[\\si{\\volt}]\$'
 	unset key
 """ :-
 for (k, x) in enumerate(singleshots[1:4:end])
