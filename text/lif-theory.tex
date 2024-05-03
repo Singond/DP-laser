@@ -152,13 +152,15 @@ lze celkové vyzářené množství vyjádřit jako:
 	(\einsteinb13 \ndens_1 - \einsteinb31 \ndens_3)
 	\ity\,\dd\tim.
 \end{equation}
-Součin $\einsteina32 \lifetime$ se nazývá kvantový výtěžek a~popisuje,
-jaký podíl přechodů se podílí na fluorescenčním záření.
+Součin $\einsteina32 \lifetime$ se nazývá kvantový výtěžek a~vyjadřuje
+pravděpodobnost, že absorbovaný foton způsobí emisi fluorescenčního fotonu
+% jaký podíl absorbovaných fotonů je znovu vyzářen fluorescenčním přechodem
+(je-li vynucená emise zanedbatelná).
 
-Za předpokladu, že množství stimulované emise do základního stavu
+Pokud dále platí, že množství stimulované emise do základního stavu
 je výrazně menší než absorpce laserového záření
-a~že celkové množství popsaných jevů je dostatečně malé, aby mohla být
-koncentrace základního stavu $\ndens_1 = \ndens$ považována za konstantní,
+a~že celková depopulace základní hladiny je dostatečně malá,
+aby mohla být její koncentrace $\ndens_1 = \ndens$ považována za konstantní,
 lze výraz \eqref{eq:lifth-liftotal-general} zjednodušit následovně:
 \begin{equation}
 	\label{eq:lifth-liftotal-linear}
@@ -246,7 +248,7 @@ stavové rovnice ideálního plynu:
 Stanovení účinného průřezu $\rayleighdxsect$ je obtížnější,
 ale pro běžná média je dobře popsáno v~literatuře.
 Rayleighově rozptylu ve vzduchu se věnuje například Miles v~\cite{rayleigh},
-kde udává hodnoty indexu lomu a~diferenciálního účinného průřezu vzduchu
+kde udává hodnoty indexu lomu a~účinného průřezu vzduchu
 pro vlnové délky v~rozsahu \SIrange{200}{1000}{\nano\metre}.
 
 Kombinace vztahů \eqref{eq:lifth-lifsignal} a~\eqref{eq:lifth-rayleighsignal}
@@ -290,20 +292,21 @@ a~odvozený vztah~\eqref{eq:lifth-ndens}.
 Existují však možnosti, jak jej pro saturaci korigovat.
 
 \Citeauthor{lif-saturation} odvodili v~roce \citeyear{lif-saturation}
-následující vztah pro přibližný popis částečně saturovaného
-fluorescenčního jevu\autocite{lif-saturation}:
+následující vztah pro přibližný popis částečně saturované
+fluorescence pocházející z~oblasti konstantní intenzity laseru
+\autocite{lif-saturation}:
 \begin{equation}
 	\liftotal(\enlaser) = \frac{\lifslope\enlaser}{1 + \lifsat\enlaser}.
 \end{equation}
 Zde $\lifslope\enlaser$ je hypotetická fluorescence bez účinků saturace
 a~$\lifsat$ je takzvaný saturační parametr.
-V~navazující studii z~roku \citeyear{lif-pb} uvádí \citeauthor{lif-pb},
-že saturaci lze ve vztahu \eqref{eq:lifth-ndens} zohlednit,
-pokud se podíl $\lifsignal/\enlaser$ nahradí vhodným výrazem
-závisejícím na konkrétním provedení experimentu.
-Zároveň doplňuje příklady pro dvě nejběžnější uspořádání.%
-\autocite{lif-pb}
 
+Laserový svazek s~konstantním prostorovým profilem intenzity
+je v~praxi obtížně dosažitelný,
+proto i~míra saturace se v~různých místech svazku liší.
+V~navazující studii z~roku \citeyear{lif-pb} započítala \citeauthor{lif-pb}
+vliv prostorového profilu svazku, aby různý stupeň saturace zohlednila,
+a~uvádí řešení pro dvě nejběžnější uspořádání experimentu.
 Pro úzký rovinný svazek pozorovaný z~kolmého směru má výraz tvar:
 \begin{equation}
 	\label{eq:lifth-sheet}
@@ -318,3 +321,10 @@ Pro osově souměrný gaussovský svazek nabývá výraz podoby:
 	\ln(1 + \lifsat\enlaser),
 \end{equation}
 kde $\enlaser$ je celková energie laserového pulzu.
+\autocite{lif-pb}
+
+Ve vztahu \eqref{eq:lifth-ndens} nebo \eqref{eq:lifth-ndens-multi}
+lze potom saturaci započítat tak,
+že se podíl $\lifsignal/\enlaser$ nahradí výrazem pro $\lifslope$
+vyjádřeným z~příslušného vztahu
+\eqref{eq:lifth-sheet} nebo \eqref{eq:lifth-cylindric}.
