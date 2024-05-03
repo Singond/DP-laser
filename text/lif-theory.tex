@@ -193,6 +193,19 @@ výrobcem; mnohdy představuje kvantovou účinnost detektoru.
 Absolutní citlivost $\sensabs$ nezávisí na vlnové délce,
 ale její hodnota je zpravidla neznámá nebo jen obtížně stanovitelná.
 
+Ve složitějším případě, kdy je pozorováno více fluorescenčních čar,
+je celkový signál součtem příspěvků jednotlivých přechodů
+a~vztah \eqref{eq:lifth-lifsignal} přechází do podoby:
+\begin{equation}
+	\label{eq:lifth-lifsignal-multi}
+	\lifsignal = \lifetime
+	\frac{\specoverlap \einsteinb13}{\lightspeed}
+	\ndens \enlaser \sum_i \einsteina3i \lifeff[i]
+	\iiint_\vol \sensabs \frac{\solidangle}{4\pi} \beamprofile \dd{\vol},
+\end{equation}
+kde se Einsteinovy koeficienty $\einsteina3i$ a~účinnosti $\lifeff[i]$
+sčítají pro všechny pozorované čáry.
+
 Z~výše uvedeného plyne nutnost při měření zaznamenat nejen samotnou
 intenzitu fluorescence $\lifsignal$,
 ale také dobu života zářivého stavu $\lifetime$.
@@ -243,8 +256,18 @@ kde již objemový integrál nevystupuje:
 	\label{eq:lifth-ndens}
 	\ndens = \frac{\lifsignal}{\rayleighsignal}
 	\frac{\enlaserrayleigh}{\enlaser}\frac{\rayleigheff}{\lifeff}
-	\frac{1}{A_{32}\,\tau}
-	\frac{\lightspeed}{\planck\freq\specoverlap B_{13}}
+	\frac{1}{\einsteina32\,\tau}
+	\frac{\lightspeed}{\planck\freq\specoverlap \einsteinb13}
+	\, 4\pi \rayleighdxsect \frac{p}{kT},
+\end{equation}
+případně pro více pozorovaných fluorescenčních čar:
+\begin{equation}
+	\label{eq:lifth-ndens-multi}
+	\ndens = \frac{\lifsignal}{\rayleighsignal}
+	\frac{\enlaserrayleigh}{\enlaser} \, \rayleigheff
+	\, \frac{1}{\sum_i \einsteina3i\,\lifeff[i]}
+	\frac{1}{\tau}
+	\frac{\lightspeed}{\planck\freq\specoverlap \einsteinb13}
 	\, 4\pi \rayleighdxsect \frac{p}{kT}.
 \end{equation}
 
