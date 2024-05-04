@@ -15,7 +15,7 @@ gp = gnuplotter;
 gp.load("../gnuplot/style.gp");
 gp.load("../gnuplot/style-cairo.gp");
 gp.xlabel('poloha $\\xpos\\,[\\si\\pixel]$');
-gp.ylabel('intenzitní parametr $\\lifslope\\,[10^9]$');
+gp.ylabel('doba života $\\tau\\,[\\si{\\nano\\second}]$');
 gp.exec("\n\
 	#set rmargin 8 \n\
 	unset key \n\
