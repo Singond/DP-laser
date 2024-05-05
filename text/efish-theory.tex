@@ -9,6 +9,9 @@
 \newcommand\eper{\varepsilon}
 \newcommand\epervac{\eper_0}
 \newcommand\eperrel{\eper_\text{r}}
+\newcommand\elfieldlaser{E^{(\mathnormal\angfreq)}}
+\newcommand\efishconst{A}
+\newcommand\itylaser{I_\text{laser}}
 
 Mezi novější laserové metody pro diagnostiku plazmatu patří
 generování druhé harmonické frekvence v~elektrickém poli (\EFISH{},
@@ -33,7 +36,7 @@ elektrické polarizace $\epol$ na intenzitě elektrického pole,
 tedy když přestává platit lineární vztah:
 \begin{equation}
 	\label{eq:efishth-epol-linear}
-	\epol = \epervac (\eperrel - 1) \elfield,
+	\vec\epol = \epervac (\eperrel - 1) \vec\elfield,
 \end{equation}
 kde $\epervac$ je permitivita vakua,
 $(\eperrel - 1) = \esus$ je elektrická susceptibilita
@@ -46,7 +49,26 @@ je proto třeba jej upravit zahrnutím členů vyšších řádů:
 	\vec\epol = \epervac (\esusn1\vec\elfield + \esusn2\vec\elfield^2
 		+ \esusn3\vec\elfield^3 + \ldots),
 \end{equation}
-kde byly zavedeny susceptibility vyšších řádů $\esus{n}$.
+kde byly zavedeny susceptibility vyšších řádů $\esusn{n}$.
+
+Nelinearita druhého řádu, tj.~přítomnost nenulové $\esusn2$,
+vede k~jevům jako je generování součtových a~rozdílových frekvencí,
+optické parametrické zesílení (OPA) nebo optické parametrické oscilace (OPO).
+Mezi důsledky nelinearity třetího řádu patří například
+Kerrův jev, Ramanův rozptyl a~Brillouinův rozptyl.
+\autocite{rpphotonics-polarization}
+
+\begin{equation}
+	\label{eq:efishth-epolsh}
+	\vec\epolsh = \frac{3}{2} \ndens \esusn3
+	(-2\angfreq, 0, \angfreq, \angfreq)
+	\vec\elfield \vec\elfieldlaser^2 \
+\end{equation}
+
+\begin{equation}
+	\label{eq:efishth-ity}
+	\efish = \efishconst \ndens^2 \elfield^2 \itylaser^2
+\end{equation}
 
 \begin{equation}
 	\label{eq:efishth-prop}
