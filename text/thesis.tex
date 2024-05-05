@@ -56,6 +56,8 @@
 	sorting=none, sortlocale=cs_CZ,
 	maxcitenames=1, mincitenames=1]{biblatex}
 \addbibresource{references.bib}
+% Shrink text in bibliography to reduce overfull hboxes
+\renewcommand*{\bibfont}{\normalfont\small}
 % Use brackets around superscript references
 \DeclareCiteCommand{\supercite}[\mkbibsuperscript]{%
 	\iffieldundef{prenote}
@@ -107,6 +109,7 @@
 \include{conclusion}
 
 \backmatter
+\emergencystretch=1em
 \printbibliography[heading=bibintoc,title=Seznam použité literatury]
 \label{lastpage}
 
