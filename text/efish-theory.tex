@@ -3,12 +3,13 @@
 \label{sec:efishth}
 
 \newcommand\epol{P}
-\newcommand\epolsh{P}
+\newcommand\epolsh{P^{\mathnormal{(2\angfreq)}}}
 \newcommand\esus{\chi}
 \newcommand\esusn[1]{\esus^{(#1)}}
 \newcommand\eper{\varepsilon}
 \newcommand\epervac{\eper_0}
 \newcommand\eperrel{\eper_\text{r}}
+\newcommand\elfieldext{E_\text{ext}}
 \newcommand\elfieldlaser{E^{(\mathnormal\angfreq)}}
 \newcommand\efishconst{A}
 \newcommand\itylaser{I_\text{laser}}
@@ -18,7 +19,7 @@ generování druhé harmonické frekvence v~elektrickém poli (\EFISH{},
 z~anglického \emph{electric field induced second harmonic generation}),
 vyvinuté na Princeton University a~poprvé popsané
 Arthurem Dogariu et al.~v~roce \citeyear{efish-original}.
-\autocite{efish-original,efish-2018}
+\autocite{efish-original}
 Její podstatou je detekce záření s~dvojnásobnou frekvencí, vznikajícího
 v~médiu vystaveném elektrickému poli.
 Množství této harmonické složky je funkcí intenzity elektrického pole,
@@ -58,24 +59,97 @@ Mezi důsledky nelinearity třetího řádu patří například
 Kerrův jev, Ramanův rozptyl a~Brillouinův rozptyl.
 \autocite{rpphotonics-polarization}
 
+V~médiu se středovou souměrností je susceptibilita druhého řádu $\esusn2$
+nulová, proto i~generování druhé harmonické frekvence $2\angfreq$
+(které je degenerovaným případem vzniku součtové frekvence), je v~něm nemožné.
+Přiložení vnějšího elektrického pole však symetrii naruší
+a~umožní druhé harmonické frekvenci vzniknout v~nelineárním procesu třetího
+řádu, kde se kromě elektrického pole laseru $\elfieldlaser$ uplatní
+i~vnější elektrické pole $\elfieldext$.
+\Citeauthor{efish-2018} tento jev popisuje pro případ molekulárního plynu
+vztahem:
 \begin{equation}
 	\label{eq:efishth-epolsh}
 	\vec\epolsh = \frac{3}{2} \ndens \esusn3
 	(-2\angfreq, 0, \angfreq, \angfreq)
-	\vec\elfield \vec\elfieldlaser^2 \
+	\vec\elfieldext \vec\elfieldlaser^2,
 \end{equation}
-
+kde $\ndens$ je hustota částic plynu,
+a~$\esusn3$ je tenzor susceptibility třetího řádu, který závisí
+na dipólovém momentu molekul a~orientaci jejich elektrického pole.
+\autocite{efish-2018}
+Naměřená intenzita druhé harmonické frekvence $\efish$
+je úměrná druhé mocnině indukované polarizace $\epolsh$, pročež platí:
 \begin{equation}
 	\label{eq:efishth-ity}
-	\efish = \efishconst \ndens^2 \elfield^2 \itylaser^2
+	\efish = \efishconst \ndens^2 \elfieldext^2 \itylaser^2,
 \end{equation}
-
-\begin{equation}
-	\label{eq:efishth-prop}
-	\efish \sim A (\alpha^{(3)} \ndens \enlaser \elfield)^2
-\end{equation}
-
+kde $\efishconst$ je kalibrační konstanta
+a~$\itylaser$ je intenzita budicího laseru.
+\autocite{efish-2018}
+Konstantu $\efishconst$ je možno určit vhodným referenčním měřením
+při známém elektrickém poli
+a~hustotu částic lze určit jinými způsoby nebo zahrnout
+do konstanty $\efishconst$.
+Pro určení intenzity elektrického pole je podstatný závěr,
+že signál \EFISH{} je přímo úměrný druhé mocnině elektrického pole
+i~intenzity budicího laseru:
 \begin{equation}
 	\label{eq:efishth-prop-simple}
-	\efish \sim (\enlaser \elfield)^2
+	\efish \propto (\itylaser \elfieldext)^2.
 \end{equation}
+
+\section{Provedení}
+\label{sec:efishth-setup}
+Metoda \EFISH{} byla poprvé provedena s~femtosekundovým laserem,
+ale je aplikovatelná i~pro pikosekundové lasery.
+Hlavní výhodou delších pulzů pikosekundového laseru je,
+že pulzy mají užší spektrální šířku a~lze je tudíž oddělit
+od vlastního záření plazmatu vhodným monochromátorem.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=\textwidth]{efish-setup-general}
+	\caption{Schéma jednoduchého experimentálního uspořádání pro měření
+		intenzity elektrického pole pomocí \EFISH{}.
+		Laser o~základní frekvenci $\angfreq$ je zaostřen do studované
+		oblasti, kde dochází vlivem elektrického pole ke vzniku
+		druhé harmonické frekvence $2\angfreq$.
+		Pomocí dichroického zrcátka a~monochromátoru jsou složky
+		odděleny od sebe a~od parazitního signálu
+		(například vlastního záření plazmatu),
+		takže na výstupu monochromátoru je očištěná druhá harmonická
+		složka, jejíž intenzitu měří fotonásobič.}
+	\label{fig:efish-setup-general}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics{efish-beam}
+	\caption{Obvyklá geometrie oblasti vzniku druhé harmonické frekvence.
+		Kruhový svazek je zaostřen do zkoumaného místa,
+		což umožňuje dobré prostorové rozlišení.
+		Signál $2\angfreq$ je koherentní s~budicím svazkem $\angfreq$,
+		takže má poměrně vysokou intenzitu,
+		ale je integrovaný ve směru svazku.}
+	\label{fig:efish-beam}
+\end{figure}
+
+Schéma základní instrumentace pro \EFISH{} je
+na obrázku~\ref{fig:efish-setup-general}.
+Laser produkuje světlo o~frekvenci $\angfreq$.
+Volba této frekvence není nijak omezena, takže při ní lze přihlédnout
+k~jiným, praktičtějším, důvodům, například možnostem laserového zařízení,
+odlišitelnosti signálu od pozadí či citlivosti detektoru.
+Metoda se obvykle používá se zaostřeným svazkem,
+aby bylo dosaženo vyššího prostorového rozlišení.
+Při průchodu médiem vystaveným vnějšímu elektrickému poli dochází
+ke vzniku malého množství světla o~druhé harmonické frekvenci $2\angfreq$,
+které je koherentní se zdrojovým svazkem a~vystupuje společně s~ním
+do detekční soustavy.
+Přestože je signál koherentní, a tudíž silnější,
+než by byl v~hypotetickém nekoherentním případě,
+je o~mnoho řádů slabší než zdrojový svazek, a~je proto nezbytné
+tyto dvě složky dobře oddělit.
+Největší část zdrojového svazku je oddělena dichroickým zrcadlem
+nastaveným tak, aby základní frekvenci propouštěl a~harmonickou odrážel.

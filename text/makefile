@@ -25,6 +25,8 @@ thesis.pdf: ../lif/results/saturation-full-example-index.tex
 thesis.pdf: ../lif/results/specoverlap.tex
 thesis.pdf: img/cameraeff.pdf
 thesis.pdf: img/camerafilter.pdf
+thesis.pdf: img/efish-setup-general.pdf
+thesis.pdf: img/efish-setup.pdf
 thesis.pdf: img/lif-generator.pdf
 thesis.pdf: img/lif-setup-general.pdf
 thesis.pdf: img/lif-setup-se.pdf
