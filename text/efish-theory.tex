@@ -118,8 +118,9 @@ od vlastního záření plazmatu vhodným monochromátorem.
 		Pomocí dichroického zrcátka a~monochromátoru jsou složky
 		odděleny od sebe a~od parazitního signálu
 		(například vlastního záření plazmatu),
-		takže na výstupu monochromátoru je očištěná druhá harmonická
-		složka, jejíž intenzitu měří fotonásobič.}
+		takže na výstupu monochromátoru je dobře očištěná druhá harmonická
+		složka, jejíž intenzitu měří fotonásobič.
+		Podle \cite{efish-2018}.}
 	\label{fig:efish-setup-general}
 \end{figure}
 
@@ -131,7 +132,8 @@ od vlastního záření plazmatu vhodným monochromátorem.
 		což umožňuje dobré prostorové rozlišení.
 		Signál $2\angfreq$ je koherentní s~budicím svazkem $\angfreq$,
 		takže má poměrně vysokou intenzitu,
-		ale je integrovaný ve směru svazku.}
+		ale je integrovaný ve směru svazku.
+		Podle \cite{efish-focusing, efish-lecture}.}
 	\label{fig:efish-beam}
 \end{figure}
 
@@ -147,9 +149,50 @@ Při průchodu médiem vystaveným vnějšímu elektrickému poli dochází
 ke vzniku malého množství světla o~druhé harmonické frekvenci $2\angfreq$,
 které je koherentní se zdrojovým svazkem a~vystupuje společně s~ním
 do detekční soustavy.
+
 Přestože je signál koherentní, a tudíž silnější,
 než by byl v~hypotetickém nekoherentním případě,
 je o~mnoho řádů slabší než zdrojový svazek, a~je proto nezbytné
 tyto dvě složky dobře oddělit.
-Největší část zdrojového svazku je oddělena dichroickým zrcadlem
+Největší část zdrojového svazku je odstraněna dichroickým zrcadlem
 nastaveným tak, aby základní frekvenci propouštěl a~harmonickou odrážel.
+Malá část původního svazku se však odráží také, proto bývá v~optické dráze
+zařazen další prvek, například disperzní hranol, mřížkový monochromátor
+úzkopásmový filtr nebo další dichroické zrcátko.
+Signál zbavený většiny parazitního světla je zaznamenáván citlivým snímačem,
+nejčastěji fotonásobičem nebo ICCD kamerou.
+
+\section{Výhody a~nevýhody}
+\label{sec:efishth-proscons}
+Mezi zásadní výhody metody \EFISH{} patří bezesporu vysoké časové
+i~prostorové rozlišení.
+Prostorové rozlišení metody je dáno profilem svazku.
+Horním limitem je dvojnásobek Rayleighovy vzdálenosti,
+obvyklé rozlišení je pod \SI{1}{\milli\metre}.
+Polarizace signálu je navíc shodná s~orientací pole,
+což umožňuje ji stanovit (až na znaménko).
+
+Časové rozlišení metody se odvíjí od délky laserového pulzu.
+Proces vzniku druhé harmonické frekvence je nerezonanční a~velmi rychlý,
+takže jediným rozhodujícím kritériem je délka trvání laserového pulzu,
+která se běžně pohybuje pod \SI{1}{\nano\second} a~je možno ji snížit
+až pod \SI{1}{\pico\second}.
+\autocite{efish-lecture}
+Na rozdíl od spektroskopických metod je tato navíc schopna měřit
+během celé periody, tedy i~v~době, kdy plazma nezáří.
+
+Metoda je nerezonanční a funguje tedy s~většinou plynů,
+navíc neklade žádná omezení na vlnovou délku laseru.
+Velkou výhodou je také to, že je neinvazivní a~tedy nespočívá
+v~zavedení sondy do plazmatu, která jej, byť minimálně, narušuje.
+
+Nevýhodou \EFISH{} je, že signál je integrovaný ve směru svazku.
+Přestože je svazek zaostřen, ke vzniku signálu dochází i~mimo ohnisko
+a~tento příspěvěk nemusí být zanedbatelný.
+\autocite{efish-lecture}
+
+Dalším omezením je závislost signálu na složení plynu.
+Ve výrazu \eqref{eq:efishth-ity} vystupuje neznámá konstanta $\efishconst$,
+která musí být zjištěna kalibrací a~pro každý plyn se liší.
+Z~toho plyne požadavek, že kalibrace musí být provedena v~plynu
+stejného složení jako při experimentu.
