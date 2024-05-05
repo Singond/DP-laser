@@ -56,6 +56,21 @@
 	sorting=none, sortlocale=cs_CZ,
 	maxcitenames=1, mincitenames=1]{biblatex}
 \addbibresource{references.bib}
+% Use brackets around superscript references
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]{%
+	\iffieldundef{prenote}
+	{}
+	{\BibliographyWarning{Ignoring prenote argument}}%
+	\iffieldundef{postnote}
+	{}
+	{}%
+}
+{\bibopenbracket%
+	\usebibmacro{citeindex}%
+	\usebibmacro{cite}%
+	\usebibmacro{postnote}%
+	\bibclosebracket}
+{\supercitedelim}{}
 
 % Enable including PDF pages (needed for assignment)
 \usepackage{pdfpages}
