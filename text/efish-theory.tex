@@ -2,6 +2,52 @@
 	v~elektrickém poli (\EFISH)}
 \label{sec:efishth}
 
+\newcommand\epol{P}
+\newcommand\epolsh{P}
+\newcommand\esus{\chi}
+\newcommand\esusn[1]{\esus^{(#1)}}
+\newcommand\eper{\varepsilon}
+\newcommand\epervac{\eper_0}
+\newcommand\eperrel{\eper_\text{r}}
+
+Mezi novější laserové metody pro diagnostiku plazmatu patří
+generování druhé harmonické frekvence v~elektrickém poli (\EFISH{},
+z~anglického \emph{electric field induced second harmonic generation}),
+vyvinuté na Princeton University a~poprvé popsané
+Arthurem Dogariu et al.~v~roce \citeyear{efish-original}.
+\autocite{efish-original,efish-2018}
+Její podstatou je detekce záření s~dvojnásobnou frekvencí, vznikajícího
+v~médiu vystaveném elektrickému poli.
+Množství této harmonické složky je funkcí intenzity elektrického pole,
+což s~použitím vhodné reference umožňuje tuto intenzitu stanovit.
+
+\section{Princip}
+\label{sec:efishth-principle}
+Generování druhé harmonické frekvence v~elektrickém poli
+je nelineární optický proces třetího řádu.%
+\footnote{Pozor na záměnu s~prostým generováním druhé harmonické frekvence,
+které je nelineárním procesem \emph{druhého} řádu.}
+% TODO: Druhého nebo třetího? V poznámkách mám druhého, Goldberg uvádí třetího.
+K~nelineárním optickým jevům dochází, když je porušena lineární závislost
+elektrické polarizace $\epol$ na intenzitě elektrického pole,
+tedy když přestává platit lineární vztah:
+\begin{equation}
+	\label{eq:efishth-epol-linear}
+	\epol = \epervac (\eperrel - 1) \elfield,
+\end{equation}
+kde $\epervac$ je permitivita vakua,
+$(\eperrel - 1) = \esus$ je elektrická susceptibilita
+a~$\elfield$ je intenzita elektrického pole.
+Tento vztah je pouhou aproximací platnou pro slabá elektrická pole,
+v~případě silného vnějšího pole $\elfield$ nebo vysoké intenzity světla
+je proto třeba jej upravit zahrnutím členů vyšších řádů:
+\begin{equation}
+	\label{eq:efishth-epol-general}
+	\vec\epol = \epervac (\esusn1\vec\elfield + \esusn2\vec\elfield^2
+		+ \esusn3\vec\elfield^3 + \ldots),
+\end{equation}
+kde byly zavedeny susceptibility vyšších řádů $\esus{n}$.
+
 \begin{equation}
 	\label{eq:efishth-prop}
 	\efish \sim A (\alpha^{(3)} \ndens \enlaser \elfield)^2
