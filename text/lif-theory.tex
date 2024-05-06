@@ -155,7 +155,8 @@ lze celkové vyzářené množství vyjádřit jako:
 Součin $\einsteina32 \lifetime$ se nazývá kvantový výtěžek a~vyjadřuje
 pravděpodobnost, že absorbovaný foton způsobí emisi fluorescenčního fotonu
 % jaký podíl absorbovaných fotonů je znovu vyzářen fluorescenčním přechodem
-(je-li vynucená emise zanedbatelná).
+(jsou-li vynucená emise a~případná fotoionizace excitovaného stavu
+zanedbatelná).
 
 Pokud dále platí, že množství stimulované emise do základního stavu
 je výrazně menší než absorpce laserového záření
@@ -167,7 +168,7 @@ lze výraz \eqref{eq:lifth-liftotal-general} zjednodušit následovně:
 	\liftotal \approx \einsteina32 \lifetime
 	\frac{\specoverlap\einsteinb13}{\lightspeed}
 	\ndens
-	\int_0^\infty \ity\,\dd\tim
+	\int_0^\infty \ity\,\dd\tim,
 	\qquad
 	\text{kde} \int_0^\infty \ity\,\dd\tim \propto \enlaser,
 \end{equation}
@@ -186,13 +187,14 @@ integrálem fluorescenčního záření přes celý objem $\vol$:
 kde bylo zavedeno několik parametrů popisujících uspořádání:
 $\cameraangle$ je prostorový úhel fluorescenčního záření dopadajícího
 na snímač
-a~$\beamprofile$ je prostorový profil intenzity laseru normovaný na jedničku.
+a~$\beamprofile$ je prostorový profil intenzity laseru normovaný na jedničku
+($\iint_S \beamprofile \dd S = 1$).
 Citlivost snímače vůči fluorescenčnímu záření ($\lifsens$) obvykle není přímo
 známa,
 a~byla proto rozepsána jako součin dvou veličin $\lifeff$ a~$\sensabs$.
 Relativní citlivost $\lifeff$ je funkcí vlnové délky a~běžně bývá dodávána
 výrobcem; mnohdy představuje kvantovou účinnost detektoru.
-Absolutní citlivost $\sensabs$ nezávisí na vlnové délce,
+Konstanta absolutní citlivosti $\sensabs$ nezávisí na vlnové délce,
 ale její hodnota je zpravidla neznámá nebo jen obtížně stanovitelná.
 
 Ve složitějším případě, kdy je pozorováno více fluorescenčních čar,
@@ -212,8 +214,8 @@ Z~výše uvedeného plyne nutnost při měření zaznamenat nejen samotnou
 intenzitu fluorescence $\lifsignal$,
 ale také dobu života zářivého stavu $\lifetime$.
 Tu je možno změřit z~časového vývoje fluorescenčního záření po odeznění
-laserového pulzu,
-neboť doba života definovaná vztahem~\eqref{eq:lifth-lifetime-def} vystupuje
+laserového pulzu, neboť, jak vyplývá ze~vztahu~\eqref{eq:lifth-rate},
+doba života definovaná vztahem~\eqref{eq:lifth-lifetime-def} vystupuje
 jako parametr exponenciálního poklesu intenzity fluorescence v~čase:
 \begin{equation}
 	\lifsignal \propto \eu^{-\frac{\tim}{\lifetime}}.
