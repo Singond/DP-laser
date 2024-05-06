@@ -1,3 +1,120 @@
 \chapter{Laserová diagnostika plazmatu}
 \label{sec:diagnostics}
+
+\newcommand\photonflux{\Gamma}
+
+Od svého vynálezu v~roce 1960 je laser používán k~mnoha rozličným účelům,
+diagnostiku průhledných prostředí nevyjímaje.
+Základní vlastností, která jej odlišuje od ostatních světelných zdrojů,
+je tvorba silně koherentního svazku o~vysokém zářivém výkonu.
+To jej předurčuje k~mnoha aplikacím, kde je zapotřebí velmi úzký svazek
+s~velkým výkonem.
+
+Zvláštní kategorii laserů tvoří rychlé pulzní lasery, tedy zařízení,
+která produkují krátké pulzy laserového světla.
+Podle délky pulzu se obvykle dělí na nanosekundové, pikosekundové
+či femtosekundové.
+Rozdělení není jen formální, neboť % TODO
+
+Většinu diagnostických metod lze rozdělit do dvou základních typů.
+Nazvěme je metodami absorpčními a~rozptylovými.
+
+\section{Absorpční metody}
+\label{sec:diagnostics-absorption}
+Společným znakem absorpčních metod je pohlcení fotonů procházejícího
+záření částicemi látky, které přitom přecházejí do vyššího energetického
+stavu.
+Spektrum pohlcených, případně (po předchozí absorpci) vyzářených vlnových
+délek je charakteristické pro každou částici, což umožňuje jejich detekci.
+
+\subsection{Prostá absorpce}
+\label{sec:diagnostics-absorptionplain}
+Nejjednodušší podobou absorpčních metod je měření poklesu spektrální
+intenzity světla z~externího zdroje při průchodu zkoumanou látkou.
+Pro rozlišení od ostatních metod ji zde nazvěme prostou absorpcí.
+
+Základem metody je externí zdroj záření o~známém spektrálním složení.
+Když toto záření prochází látkou, jeho část je pohlcena a~spektrum se změní.
+Porovnáním spektra zdroje a~procházejícího záření je možno určit míru
+absorpce různých vlnových délek, což vypovídá o~struktuře částic
+a~jejich množství.
+
+Označíme-li hustotu fotonového toku $\photonflux$ a~hustotu pohlcujících
+částic $\ndens$, lze počet fotonů pohlcených v~elementu objemu vyjádřit
+pomocí Beerova-Lambertova zákona jako:
+\begin{equation}
+	\label{eq:}
+	\dd\photonflux = - \photonflux \ndens \xsect \, \dd z,
+\end{equation}
+kde $\xsect$ je účinný průřez absorpce a~$z$ je směr průchodu záření.
+Je-li koncentrace částic $\ndens$ ve~studovaném objemu konstantní,
+má rovnice jednoduché řešení ve tvaru exponenciálního poklesu:
+\begin{equation}
+	\label{eq:}
+	\photonflux (z) = \photonflux_0 \eu^{-\ndens\xsect z},
+\end{equation}
+kde $\photonflux_0$ je hustota fotonového toku v~bodě $z = 0$.
+Aplikací tohoto vztahu lze z~poměru původního a~prošlého záření snadno
+spočítat absolutní koncentraci pohlcujících částic.
+
+Možnost přímého určení koncentrace částic je hlavní výhodou prosté absorpce.
+Její největší nevýhodou je obvykle nízká citlivost, neboť měřený signál
+(pokles intenzity) je velmi slabý v~porovnání s~celkovou intenzitou
+procházejícího záření.
+Dalším omezením je prostorové rozlišení metody, které je možné jen
+ve dvou směrech, protože signál je integrován ve směru průchodu svazku.
+
+\subsection{Cavity ring-down spectroscopy}
+\label{sec:diagnostics-crds}
+Jednou z~možností, jak zvýšit citlivost absorpce, je použít vícenásobný
+průchod záření látkou.
+Metoda CRDS (angl.~\emph{cavity ring-down spectroscopy})
+k~tomu využívá optickou dutinu, tedy soustavu dvou vysoce
+odrazných zrcadel naproti sobě.
+
+Při měření je vzorek mezi zracadly ozářen krátkým laserovým pulzem.
+Ten se i~po odeznění zdroje mezi zrcadly odráží a~při každém odrazu
+ztratí malou část energie, která projde zrcadlem ven.
+Měří se rychlost exponenciálního poklesu tohoto signálu v~čase,
+z~níž je možno vypočítat absorpční koeficient média v~dutině.
+
+Výhodou metody je velmi vysoká citlivost, protože účinná optická hloub\-ka
+se mnohonásobným odrazem prodlouží i~na několik kilometrů.
+Druhou výhodou je nezávislost na fluktuaci energie laserových pulzů,
+jelikož konstanta exponenciálního poklesu je na celkové energii
+pulzu nezávislá.
+Nevýhodou metody je především vysoká cena způsobená značnými nároky
+kladenými na laserový zdroj i~kvalitu zrcadel.
+\autocite{wiki-crds}
+
+\subsection{Laserem indukovaná fluorescence}
+\label{sec:diagnostics-lif}
+Mezi absorpční metody je možno zařadit také laserem indukovanou fluorescenci
+(LIF).
+Přestože při fluorescenci je měřeným signálem záření \emph{emitované}
+zkoumanými částicemi, absorpce se zde stále uplatňuje při excitaci částic
+do zářivého stavu.
+O~laserem indukované fluorescenci důkladněji pojednává
+kapitola~\ref{sec:lifth}.
+
 % TODO
+% \section{Rozptylové metody}
+% \label{sec:diagnostics-scattering}
+%
+% \subsection{Rayleighův rozptyl}
+% \label{sec:diagnostics-rayleigh}
+% \subsection{Ramanův rozptyl}
+% \label{sec:diagnostics-raman}
+% \subsection{Thomsonův rozptyl}
+% \label{sec:diagnostics-thomson}
+% \subsection{Brillouinův rozptyl}
+% \label{sec:diagnostics-brillouin}
+% \subsection{Comptonův rozptyl}
+% \label{sec:diagnostics-compton}
+
+\section{Ostatní metody}
+\label{sec:diagnostics-misc}
+Některé metody nelze zařadit ani do jedné z~výše uvedených kategorií,
+protože spočívají v~jiných fyzikálních principech.
+Mezi ně se řadí i~generování druhé harmonické (\EFISH),
+jemuž se věnuje kapitola~\ref{sec:efishth}.
