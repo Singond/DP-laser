@@ -109,8 +109,11 @@
 \include{conclusion}
 
 \backmatter
-\emergencystretch=1em
-\printbibliography[heading=bibintoc,title=Seznam použité literatury]
+\begingroup
+	\setlength{\emergencystretch}{1em}
+	\printbibliography[heading=bibintoc,title=Seznam použité literatury]
+\endgroup
+
 \label{lastpage}
 
 \end{document}
