@@ -57,7 +57,7 @@ Gnuplot.save("results/period-calib-bilateral.tex",
 	load '../gnuplot/style-cairo.gp'
 	set ytics 0.2
 	set xlabel 'poloha \$\\ypos\\,[\\si{\\milli\\metre}]\$'
-	set ylabel 'amplituda \$\\efish\\,[\\si{\\mega\\volt\\per\\metre}]\$'
+	set ylabel 'amplituda \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$'
 	set key bottom left Left reverse samplen 2 height 1
 """
 @gp :- y  Imax * Escale "w p ps 1 t '\$\\max(\\efish)\$'"
