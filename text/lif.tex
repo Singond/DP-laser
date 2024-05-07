@@ -97,7 +97,7 @@ atomizaci selenu rozpadem selanové molekuly \ce{H2Se}:
 	}
 \end{align*}
 
-\begin{figure}[htbp]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=\textwidth]{img/lif-generator}
 	\caption{Schéma uspořádání chemické aparatury pro atomizaci selenu.
@@ -132,7 +132,7 @@ navíc je selen tak těžký atom, že přestává být vhodná aproximace celko
 momentu hybnosti $J$ pomocí LS-vazby i~vyjádření celkového spinu elektronů,
 a~rozdíl mezi fluorescencí a~fosforescencí se stírá.}
 
-\begin{figure}[htbp]
+\begin{figure}[p]
 	\centering
 	\begin{tikzpicture}[scale=0.5]
 		\seleniumlifgrotrian
@@ -168,6 +168,19 @@ o~výšce \SI{3}{\milli\metre} a~tloušťce \SI{1}{\milli\metre}.
 Upravený svazek vodorovně procházel středovou oblastí plamene.
 Schéma celého uspořádání je na obrázku č.~\ref{fig:lif-setup}.
 
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=\textwidth]{img/lif-setup-se}
+	\caption{Schéma uspořádání experimentu.
+		Svazek je na začátku upraven prostorovým filtrem,
+		aby se jeho profil více podobal gaussovskému.
+		Pro měření je použita jen malá část svazku odražená na skleněné desce,
+		zbytek prochází do~prvního měřiče, jenž zaznamenává jeho energii.
+		Svislá štěrbina zajišťuje rovinný profil svazku,
+		ale nebyla použita ve všech experimentech.}
+	\label{fig:lif-setup}
+\end{figure}
+
 Intenzita svazku je měřena dvojicí detektorů
 zaznamenávajích energii jednotlivých pulzů.
 Svazek procházející děličem putuje přímo do detektoru
@@ -189,18 +202,6 @@ Před kamerou se nacházela dvojice křemenných sklíček,
 která sloužila jako filtr pro odstínění rozptýleného laserového světla.
 Snímek skutečného provedení je na obrázku \ref{fig:lif-setup-photo}.
 
-\begin{figure}[htbb]
-	\centering
-	\includegraphics[width=\textwidth]{img/lif-setup-se}
-	\caption{Schéma uspořádání experimentu.
-		Svazek je na začátku upraven prostorovým filtrem,
-		aby se jeho profil více podobal gaussovskému.
-		Pro měření je použita jen malá část svazku odražená na skleněné desce,
-		zbytek prochází do~prvního měřiče, jenž zaznamenává jeho energii.
-		Svislá štěrbina zajišťuje rovinný profil svazku,
-		ale nebyla použita ve všech experimentech.}
-	\label{fig:lif-setup}
-\end{figure}
 
 \begin{figure}[htbp]
 	\centering
@@ -288,6 +289,15 @@ Příklad takového snímku je na obrázku č.~\ref{fig:lif-beam}.
 Snímaná intenzita byla mnohem větší než u~prostého plamene,
 uvedený příklad je ze \num{100} akumulací.
 
+\begin{figure}[p]
+	\centering
+	\input{../lif/results/rayleigh-example-small}
+	\caption{Snímek laserového svazku ve vzduchu bez plamene.
+		Pozorovaný signál je Rayleighův rozptyl.
+		Kamera byla bez filtru a~nastavena na \num{100} akumulací.}
+	\label{fig:lif-beam}
+\end{figure}
+
 Získaný signál byl integrován ve směru vodorovné osy,
 čímž vznikl svislý profil laserového svazku
 na obrázku~\ref{fig:lif-rayleigh-profile}.
@@ -296,16 +306,7 @@ použit k~výpočtu svislého rozdělení intenzity v~laserovém svazku,
 případně jako váhová funkce při skládání snímků naměřených v~různých
 výškách.
 
-\begin{figure}[htp]
-	\centering
-	\input{../lif/results/rayleigh-example}
-	\caption{Snímek laserového svazku ve vzduchu bez plamene.
-		Pozorovaný signál je Rayleighův rozptyl.
-		Kamera byla bez filtru a~nastavena na \num{100} akumulací.}
-	\label{fig:lif-beam}
-\end{figure}
-
-\begin{figure}[htb]
+\begin{figure}[htbp]
 	\centering
 	\input{../lif/results/rayleigh-profile-s}%
 	\hfill
@@ -386,7 +387,7 @@ Detail proložených profilů pro různé energie pulzu s~prostorovým filtrem
 je na obrázku č.~\ref{fig:lif-excitprof-fit}
 a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\input{../lif/results/excitprof-nofilter}
 	\bigskip\par
@@ -401,12 +402,14 @@ a~optimalizované parametry jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.
 	\input{../lif/results/excitprof-fit}
 	\caption{Detail maxima integrálního excitačního profilu
 		změřeného s~prostorovým filtrem
-		a~spočtených aproximací Voigtovým profilem.}
+		a~spočtených aproximací Voigtovým profilem.
+		Parametry proložených profilů
+		jsou v~tabulce č.~\ref{tab:lif-excitprof-fit}.}
 	\label{fig:lif-excitprof-fit}
 \end{figure}
 
 \shorthandoff{-}
-\begin{table}[htbp]
+\begin{table}[p]
 	\centering
 	\caption{Parametry aproximovaných excitačních profilů.
 		$\enlaser$ je energie laserového pulzu,

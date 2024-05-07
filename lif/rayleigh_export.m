@@ -17,11 +17,12 @@ gp.exec("\n\
 	unset margins \n\
 	unset key \n\
 	unset colorbox \n\
-	set terminal cairolatex pdf colortext size 12cm,8cm \n\
-	set output 'results/rayleigh-example.tex' \n\
-	plot '-' matrix with image \n\
 ");
-gp.data(R(1).inm);
+gp.plotmatrix(R(1).inm, "with image");
+gp.export("results/rayleigh-example.tex",
+	"cairolatex", "pdf colortext size 12cm,8cm");
+gp.export("results/rayleigh-example-small.tex",
+	"cairolatex", "pdf colortext size 10cm,6cm");
 clear gp;
 
 ## Beam profile
