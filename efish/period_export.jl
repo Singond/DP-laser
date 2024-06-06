@@ -128,3 +128,11 @@ for k in [8:-1:1; 10:13]
 end
 Gnuplot.save("results/period-elfield.tex",
 	term="cairolatex color pdf size 12.5cm,10cm")
+
+@gp :- """
+	set lmargin at screen 0.28
+	set xlabel offset -1,0
+	set ylabel offset -1,0
+""" :-
+Gnuplot.save("results/period-elfield-small.tex",
+	term="cairolatex color pdf size 10cm,7cm")

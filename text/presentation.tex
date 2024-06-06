@@ -1,11 +1,10 @@
-\documentclass{beamer}
-\usetheme{Madrid}
-\setbeamertemplate{itemize item}[triangle]
-\usecolortheme{whale}
-\beamertemplatenavigationsymbolsempty
+\documentclass[10pt]{beamer}
+\usetheme[height=10mm]{Rochester}
+% \beamertemplatenavigationsymbolsempty
 
-\usepackage{fontspec}
 \usepackage[czech]{babel}
+
+\AtBeginDocument{\renewcommand\vec{\mathbf}}
 \usepackage{siunitx}
 \sisetup{
 	locale               = DE,
@@ -32,29 +31,50 @@
 \title[Laserová diagnostika plazmatu]
 {Diagnostika plazmatu pomocí pikosekundového laseru}
 \subtitle{Diplomová práce}
-\date{2022}
+\date{2024}
 \author{Jan Slaný}
 \institute[PřF MUNI]{Přírodovědecká fakulta Masarykovy univerzity\\
-	Ústav fyzikální elektroniky}
+	Ústav fyziky a~technologií plazmatu}
+
+\newcommand\epol{P}
+\newcommand\epolsh{P^{\mathnormal{(2\angfreq)}}}
+\newcommand\esus{\chi}
+\newcommand\esusn[1]{\esus^{(#1)}}
+\newcommand\eper{\varepsilon}
+\newcommand\epervac{\eper_0}
+\newcommand\eperrel{\eper_\text{r}}
+\newcommand\elfieldext{E_\text{ext}}
+\newcommand\elfieldlaser{E^{(\mathnormal\angfreq)}}
+\newcommand\efishconst{A}
+\newcommand\itylaser{I_\text{laser}}
 
 \begin{document}
 
 \begin{frame}[plain]
 	\titlepage
-	\footnotesize
 	Vedoucí práce: \hfill doc. Mgr. Pavel Dvořák, PhD.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Pikosekundový laser EKSPLA}
+	\frametitle{Motivace}
 	\begin{columns}
 	\begin{column}{0.5\textwidth}
+		laser Ekspla \instrname{PL2231-50}
 		\begin{itemize}
 			\item Nd:YAG ($\SI{1064}{\nano\metre}$)
-			\item laditelná vlnová délka
-			\item délka pulzu $\SI{30}{\pico\second}$
-			\item energie pulzu $\SI{30}{\milli\joule}$
 		\end{itemize}
+		\medskip
+		optický zesilovač Ekspla \instrname{PG411-SH-DUV}
+		\begin{itemize}
+			\item laditelná vlnová délka
+			\SIrange{193}{2300}{\nano\metre}
+			\item délka pulzu $\sim \SI{20}{\pico\second}$
+			\item max.~energie pulzu $\SI{50}{\micro\joule}$
+			\item max.~opakovací frekvence \SI{50}{\hertz}
+		\end{itemize}
+		\medskip
+		Využití: absorpční spektroskopie, CRDS, \textbf{LIF},
+		rozptylové metody, \textbf{\EFISH}\ldots
 	\end{column}
 	\begin{column}{0.5\textwidth}
 		\begin{figure}
@@ -73,56 +93,46 @@
 \begin{frame}
 	\frametitle{E-FISH}
 	\begin{itemize}
-		\item \emph{generování druhé harmonické frekvence v~elektrickém poli}
+		\item \emph{electric field-induced second harmonic generation}
 		\item opticky nelineární prostředí nebo vysoká intenzita
-		\item dva fotony o~stejné frekvenci vytvoří nový
-			o~dvojnásobné frekvenci
-		\item $\efish \sim (I_\text{laser} \elfield)^2$
+		\item$\vec\epol = \epervac (\esusn1\vec\elfield + \esusn2\vec\elfield^2
+			+ \esusn3\vec\elfield^3 + \ldots)$
+		\item $\efish \sim (\itylaser \elfield)^2$
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Zkoumaný výboj}
+	\begin{columns}
+	\begin{column}{0.6\textwidth}
+		\includegraphics[width=\textwidth]{efish-reactor}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Uspořádání experimentu}
+	\includegraphics[width=\textwidth]{efish-setup}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Kalibrace}
 	\sisetup{per-mode=symbol}
 	\graphicspath{{../efish/}}
-	\input{../efish/plots/calib}
+	\input{../efish/results/period-calib-bilateral}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Elektrické pole výboje}
+	\frametitle{Výsledky}
 	\begin{figure}
 		\centering
 		\small
 		\sisetup{per-mode=symbol}
 		\graphicspath{{../efish/}}
-		\input{../efish/plots/period-elfield}
+		\input{../efish/results/period-elfield-small}
 		\caption{Časový vývoj intenzity elektrického pole
 			v~různých místech výboje.}
 	\end{figure}
-\end{frame}
-
-\section[TALIF]{Two-photon absorption laser-induced fluorescence}
-
-\begin{frame}
-	\frametitle{Dvoufotonová absorpce}
-	\begin{columns}[c]
-	\begin{column}{0.5\textwidth}
-		\begin{itemize}
-			\item nelineární optický jev
-			\item absorpce dvou fotonů téže vlnové délky
-		\end{itemize}
-	\end{column}
-	\begin{column}{0.5\textwidth}
-		\begin{figure}
-			\centering
-			\begin{tikzpicture}[scale=0.5]
-				\small
-				\kryptontalifgrotrian
-			\end{tikzpicture}
-			\caption{Schéma dvoufotonové absorpce v~kryptonu.}
-		\end{figure}
-	\end{column}
-	\end{columns}
 \end{frame}
 
 \end{document}
