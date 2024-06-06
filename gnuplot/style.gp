@@ -17,7 +17,7 @@ set linetype 7 lw 2 lc rgb '#A65628' pt 3  ps 1.3 # brown
 set linetype 8 lw 2 lc rgb '#F781BF' pt 9  ps 2   # pink
 
 # Load palette (using `set palette viridis` requires Gnuplot 6.0+)
-load "../gnuplot/viridis.pal"
+load "viridis.pal"
 
 set macros
 
