@@ -29,10 +29,21 @@ iscale = 1e3
 frame = period_overviews[1]
 t0 = frame.U[1][1]
 m = 1:5:length(frame.U[1])
-@gp :- (frame.U[1][m] .- t0) * tscale frame.U[2][m] * uscale "w l " :-
-@gp :- (frame.I[1][m] .- t0) * tscale frame.I[2][m] * iscale "w l axes x1y2 " :-
+@gp :- (frame.U[1][m] .- t0) * tscale frame.U[2][m] * uscale "w l t'napětí'" :-
+@gp :- (frame.I[1][m] .- t0) * tscale frame.I[2][m] * iscale "w l axes x1y2 t'proud'" :-
 Gnuplot.save("results/period-overview-full.tex",
 	term="cairolatex pdf colourtext size 12.5cm,4cm")
+@gp :- """
+set rmargin at screen 0.98
+set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$'
+unset ytics
+unset y2tics
+unset ylabel
+unset y2label
+set key above left horizontal
+"""
+Gnuplot.save("results/period-overview-full-small.tex",
+	term="cairolatex pdf colourtext size 6.5cm,3cm")
 
 @gp """
 	load '../gnuplot/style.gp'

@@ -5,6 +5,7 @@
 \usepackage[czech]{babel}
 
 \AtBeginDocument{\renewcommand\vec{\mathbf}}
+\usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \sisetup{
 	locale               = DE,
@@ -18,6 +19,7 @@
 	detect-all,                            % Use sans-serif
 }
 \DeclareSIUnit\arbunit{rel.~j.}
+\DeclareSIUnit\atmosphere{atm}
 
 \usepackage{graphicx}
 \graphicspath{
@@ -92,13 +94,21 @@
 
 \begin{frame}
 	\frametitle{E-FISH}
-	\begin{itemize}
-		\item \emph{electric field-induced second harmonic generation}
-		\item opticky nelineární prostředí nebo vysoká intenzita
-		\item$\vec\epol = \epervac (\esusn1\vec\elfield + \esusn2\vec\elfield^2
-			+ \esusn3\vec\elfield^3 + \ldots)$
-		\item $\efish \sim (\itylaser \elfield)^2$
-	\end{itemize}
+	\begin{columns}
+	\begin{column}{0.5\textwidth}
+		\begin{itemize}
+			\item \emph{electric field-induced second harmonic generation}
+			\item opticky nelineární prostředí nebo vysoká intenzita
+			\item $\vec\epol = \epervac (\esusn1\vec\elfield + \esusn2\vec\elfield^2
+% 				+ \esusn3\vec\elfield^3
+				\ldots)$
+			\item $\efish = \efishconst \ndens^2 \elfieldext^2 \itylaser^2$
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{polarization}
+	\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -106,6 +116,20 @@
 	\begin{columns}
 	\begin{column}{0.6\textwidth}
 		\includegraphics[width=\textwidth]{efish-reactor}
+		\graphicspath{{../efish/}}
+		\input{../efish/results/period-overview-full-small}
+	\end{column}
+	\begin{column}{0.4\textwidth}
+		\begin{itemize}
+			\item Townsendův výboj (DBD)
+			\item sklo \SI{1.1}{\milli\metre} (2\times)
+			\item mezera \SI{1}{\milli\metre}
+			\item elektrody \num{14}\times\SI{15}{\milli\metre}
+			\item \ce{N2}, \SI{3500}{\sccm}, \SI{1}{\atmosphere}
+			\item \SI{11}{\kilo\hertz}, \SI{7}{\kilo\volt},
+				\SI{3}{\milli\ampere}
+			\item laser \SI{50}{\hertz}
+		\end{itemize}
 	\end{column}
 	\end{columns}
 \end{frame}
