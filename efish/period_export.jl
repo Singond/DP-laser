@@ -51,6 +51,8 @@ E = LinRange(-4.7e6, 3.8e6, 100)
 @gp :- [-calib_bot.model_params[2]] * Escale [0] "w p ls 3 pt 6 ps 1 notitle"
 Gnuplot.save("results/period-calib-bilateral.tex",
 	term="cairolatex pdf size 12cm,8cm")
+Gnuplot.save("results/period-calib-bilateral-small.tex",
+	term="cairolatex pdf size 10.5cm,8cm")
 
 @gp """
 	load '../gnuplot/style.gp'
