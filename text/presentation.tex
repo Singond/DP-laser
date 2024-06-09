@@ -10,6 +10,9 @@
 \usepackage[czech]{babel}
 
 \AtBeginDocument{\renewcommand\vec{\mathbf}}
+\usepackage{physics}
+\renewcommand\dd[1]{\,\mathsf{d}#1}
+\renewcommand\dv[2]{\frac{\text{d}#1}{\text{d}#2}}
 \usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \sisetup{
@@ -226,6 +229,48 @@
 \begin{frame}
 	\question{„[\ldots] intenzita byla mnohem větší než u prostého plamene“:
 		Máte pro to vysvětlení?}
+\end{frame}
+
+\section{Dodatky}
+\providecommand\vol{V}
+\providecommand\sensabs{D_\text{a}}
+\providecommand\lifsens{D_\text{F}}
+\providecommand\rayleighsens{D_\text{R}}
+\providecommand\lifsignal{M_\text{F}}
+\providecommand\rayleighsignal{M_\text{R}}
+\providecommand\rayleighndens{\ndens_\text{R}}
+\providecommand\beamprofile{s}
+\begin{frame}
+	\frametitle{Určení koncentrace}
+	V~lineárním režimu:
+	\begin{align*}
+		&\text{LIF:} &
+		\lifsignal &= \einsteina32\,\lifetime
+		\frac{\specoverlap \einsteinb13}{\lightspeed}
+		\ndens \enlaser \lifeff
+		\iiint_\vol \sensabs \frac{\solidangle}{4\pi} \beamprofile \dd{\vol} \\
+		&\text{Rayleigh:} &
+		\rayleighsignal &= \rayleighdxsect \, \rayleighndens
+		\frac{\enlaserrayleigh}{\planck\freq} \, \rayleigheff
+		\iiint_\vol \sensabs \solidangle \beamprofile \dd{\vol}
+	\end{align*}
+	\vspace{-3ex}
+	\begin{block}{\vspace*{-2ex}}
+		\begin{equation*}
+			\ndens = \frac{\lifsignal}{\rayleighsignal}
+			\frac{\enlaserrayleigh}{\enlaser}\frac{\rayleigheff}{\lifeff}
+			\frac{1}{\einsteina32\,\tau}
+			\frac{\lightspeed}{\planck\freq\specoverlap \einsteinb13}
+			\, 4\pi \rayleighdxsect \frac{\pres}{\boltzmann\temp}
+		\end{equation*}
+	\end{block}
+	\medskip
+	\begin{tabular}{l l}
+		$\lifsignal$, $\rayleighsignal$ & měřený signál \\
+		$\lifsens$, $\rayleighsens$ & citlivost přístroje \\
+		$\specoverlap = \int l(\freq)\,a(\freq) \dd{\freq}$
+		& spektrální překryv
+	\end{tabular}
 \end{frame}
 
 \end{document}
