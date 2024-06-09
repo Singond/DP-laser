@@ -140,7 +140,7 @@ for k in [8:-1:1; 10:13]
 	@gsp :- t yy x.E./1e6 zz x.E./1e6 "w l ls 1" :-
 end
 Gnuplot.save("results/period-elfield.tex",
-	term="cairolatex color pdf size 12.5cm,10cm")
+	term="cairolatex colourtext pdf size 12.5cm,10cm")
 
 @gp :- """
 	set lmargin at screen 0.28
@@ -148,8 +148,8 @@ Gnuplot.save("results/period-elfield.tex",
 	set ylabel offset -1,0
 """ :-
 Gnuplot.save("results/period-elfield-small.tex",
-	term="cairolatex color pdf size 10cm,7cm")
+	term="cairolatex colourtext pdf size 10cm,7cm")
 
 @gp :- gp_narrow :-
 Gnuplot.save("results/period-elfield-narrow.tex",
-	term="cairolatex color pdf size 5.4cm,5cm")
+	term="cairolatex colourtext pdf size 5.4cm,5cm")
