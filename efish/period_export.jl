@@ -153,3 +153,32 @@ Gnuplot.save("results/period-elfield-small.tex",
 @gp :- gp_narrow :-
 Gnuplot.save("results/period-elfield-narrow.tex",
 	term="cairolatex colourtext pdf size 5.4cm,5cm")
+
+@gp """
+	load '../gnuplot/style.gp'
+	load '../gnuplot/style-cairo.gp'
+	#set tmargin at screen 0.82
+	#set bmargin at screen 0.22
+	#set rmargin at screen 0.84
+	#set lmargin at screen 0.23
+	set ytics nomirror
+	set xlabel 'čas \$\\tim\\,[\\si{\\micro\\second}]\$'
+	set ylabel 'el. pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$'
+	set cblabel '\$y\\,[\\si{\\milli\\metre}]\$' offset 0,0
+	set label '\$\\dbdvoltage\\,[\\SI{e4}{\\volt}]\$' center at 45,-1.3 tc ls 1
+	set label '\$\\dbdcurrent\\,[\\si{\\milli\\ampere}]\$' at 40,3 tc ls 2
+	unset key
+"""
+# for x in X[[8:-1:1; 10:13]]
+for x in X
+	t = x.t .- x.t[1]
+	color = x.y * ones(size(t))
+	@gp :- t x.E.*1e-6 color "w l lc palette" :-
+end
+Uscale = 1e-4
+Iscale = 1e3
+x = X[1]
+@gp :- x.t .- x.t[1] x.Um * Uscale "w l axes x1y1 ls 1" :-
+@gp :- x.t .- x.t[1] x.Im * Iscale "w l axes x1y1 ls 2" :-
+Gnuplot.save("results/period-elfield-2d-small.tex",
+	term="cairolatex colourtext pdf size 10.8cm,7cm")
