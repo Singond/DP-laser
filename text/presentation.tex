@@ -10,6 +10,7 @@
 \sisetup{
 	locale               = DE,
 	inter-unit-product   = \ensuremath{{}\cdot{}},
+	per-mode             = single-symbol,
 	list-units           = single,
 	list-separator       = {; },
 	list-final-separator = \text{ a },
@@ -141,22 +142,34 @@
 
 \begin{frame}
 	\frametitle{Kalibrace}
-	\sisetup{per-mode=symbol}
 	\graphicspath{{../efish/}}
 	\input{../efish/results/period-calib-bilateral-small}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Výsledky}
-	\begin{figure}
-		\centering
-		\small
-		\sisetup{per-mode=symbol}
-		\graphicspath{{../efish/}}
-		\input{../efish/results/period-elfield-small}
-		\caption{Časový vývoj intenzity elektrického pole
-			v~různých místech výboje.}
-	\end{figure}
+	\begin{columns}
+	\begin{column}{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\small
+			signál \EFISH{} $\efish\,[\si{\arbunit}]$
+			\medskip\par
+			\graphicspath{{../efish/}}
+			\input{../efish/results/period-efish-narrow}
+		\end{figure}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\small
+			elektrické pole $\elfield\,[\si{\mega\volt\per\metre}]$
+			\medskip\par
+			\graphicspath{{../efish/}}
+			\input{../efish/results/period-elfield-narrow}
+		\end{figure}
+	\end{column}
+	\end{columns}
 \end{frame}
 
 \end{document}

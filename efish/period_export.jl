@@ -94,6 +94,17 @@ end
 Gnuplot.save("results/period-efish.tex",
 	term="cairolatex pdf size 12.5cm,8cm")
 
+gp_narrow = """
+	set lmargin at screen 0.28
+	set xlabel '\$\\tim\\,[\\si{\\micro\\second}]\$' offset -1,0
+	set ylabel '\$y\\,[\\si{\\milli\\metre}]\$' offset -2,0
+"""
+@gp :- gp_narrow """
+	set zrange noextend
+""" :-
+Gnuplot.save("results/period-efish-narrow.tex",
+	term="cairolatex pdf size 5.4cm,5cm")
+
 @gp """
 	load '../gnuplot/style.gp'
 	load '../gnuplot/style-cairo.gp'
@@ -138,3 +149,7 @@ Gnuplot.save("results/period-elfield.tex",
 """ :-
 Gnuplot.save("results/period-elfield-small.tex",
 	term="cairolatex color pdf size 10cm,7cm")
+
+@gp :- gp_narrow :-
+Gnuplot.save("results/period-elfield-narrow.tex",
+	term="cairolatex color pdf size 5.4cm,5cm")
