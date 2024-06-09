@@ -92,6 +92,10 @@
 \end{frame}
 
 \section[E-FISH]{Electric field induced second harmonic generation}
+\graphicspath{
+	{../efish/}
+	{img}
+}
 
 \begin{frame}
 	\frametitle{E-FISH}
@@ -117,7 +121,6 @@
 	\begin{columns}
 	\begin{column}{0.6\textwidth}
 		\includegraphics[width=\textwidth]{efish-reactor}
-		\graphicspath{{../efish/}}
 		\input{../efish/results/period-overview-full-small}
 	\end{column}
 	\begin{column}{0.4\textwidth}
@@ -142,7 +145,6 @@
 
 \begin{frame}
 	\frametitle{Kalibrace}
-	\graphicspath{{../efish/}}
 	\input{../efish/results/period-calib-bilateral-small}
 \end{frame}
 
@@ -155,7 +157,6 @@
 			\small
 			signál \EFISH{} $\efish\,[\si{\arbunit}]$
 			\medskip\par
-			\graphicspath{{../efish/}}
 			\input{../efish/results/period-efish-narrow}
 		\end{figure}
 	\end{column}
@@ -165,7 +166,6 @@
 			\small
 			elektrické pole $\elfield\,[\si{\mega\volt\per\metre}]$
 			\medskip\par
-			\graphicspath{{../efish/}}
 			\input{../efish/results/period-elfield-narrow}
 		\end{figure}
 	\end{column}
