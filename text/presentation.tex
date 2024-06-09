@@ -180,4 +180,47 @@
 	\end{figure}
 \end{frame}
 
+\appendix
+\section{Otázky}
+\newcommand\question[1]{\begin{block}{Otázka}#1\end{block}}
+
+\begin{frame}
+	\question{„Před kamerou se nacházela dvojice křemenných sklíček, která
+		sloužila jako filtr pro odstínění rozptýleného laserového světla“:
+		Jaká byla (zhruba) účinnost odstínění?}
+	\begin{columns}
+	\begin{column}{0.75\textwidth}
+		\input{img/camerafilter}
+	\end{column}
+	\begin{column}{0.25\textwidth}
+		\begin{align*}
+			\transmittance{}_1 &= \num{0.242} \\
+			\transmittance{}_2 &= \num{0.256} \\
+			\transmittance{}_1 \transmittance{}_2 &= \num{0.062} \\
+			\eta &= \SI{93.8}{\percent}
+		\end{align*}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\question{„[\ldots] byly všechny snímky korigovány odečtením temného
+		snímku změřeného s vypnutým laserem“:
+		Jak významná byla tato korekce a jaká byla opakovatelnost
+		velikosti této korekce?}
+\end{frame}
+
+\begin{frame}
+	\question{„Energie byla následně zprůměrována v časových intervalech
+		odpovídajících jednotlivým snímkům kamery“:
+		Znamená to, že energie jednotlivých pulzů nebyla stejná?
+		Jaký byl (zhruba) rozptyl energie jednotlivých pulzů vyjádřený
+		např.~jako relativní standardní odchylka?}
+\end{frame}
+
+\begin{frame}
+	\question{„[\ldots] intenzita byla mnohem větší než u prostého plamene“:
+		Máte pro to vysvětlení?}
+\end{frame}
+
 \end{document}

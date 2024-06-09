@@ -1,5 +1,12 @@
 concentration_load;
 
+printf("Camera filter\n")
+wl = conc.liflines.wl(1);
+printf("glass 1 transmittance:  %f\n", conc.camerafilter(1).at_wavelen(wl));
+printf("glass 2 transmittance:  %f\n", conc.camerafilter(2).at_wavelen(wl));
+printf("total transmittance:    %f\n", conc.liflines.T(1));
+printf("total absorbance:       %f\n", 1 - conc.liflines.T(1));
+
 nscale = 1;
 
 figure("name", "Density");
