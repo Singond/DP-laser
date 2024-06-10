@@ -341,7 +341,7 @@
 
 \begin{frame}
 	\frametitle{Určení koncentrace}
-	V~lineárním režimu:
+	Tříhladinový model v~lineárním režimu:
 	\begin{align*}
 		&\text{LIF:} &
 		\lifsignal &= \einsteina32\,\lifetime
@@ -364,11 +364,18 @@
 		\end{equation*}
 	\end{block}
 	\medskip
-	\begin{tabular}{l l}
-		$\lifsignal$, $\rayleighsignal$ & měřený signál \\
-		$\lifsens$, $\rayleighsens$ & citlivost přístroje \\
+	\small
+	\centering
+	\begin{tabular}{l l l l}
+		$\lifsignal$, $\rayleighsignal$ & měřený signál &
 		$\specoverlap = \int l(\freq)\,a(\freq) \dd{\freq}$
-		& spektrální překryv
+			& spektrální překryv \\
+		$\enlaser$, $\enlaserrayleigh$ & energie pulzu &
+		$\beamprofile$\quad($\iint_S \beamprofile \dd S = 1$) & profil svazku \\
+		$\lifeff$, $\rayleigheff$ & citlivost detektoru &
+		$\solidangle$ & prostorový úhel \\
+		$\sensabs$ & konstanta citlivosti &
+		$\einsteina32$, $\einsteinb13$ & Einsteinovy koef. \\
 	\end{tabular}
 \end{frame}
 
