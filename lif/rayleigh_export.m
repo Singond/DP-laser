@@ -20,9 +20,9 @@ gp.exec("\n\
 ");
 gp.plotmatrix(R(1).inm, "with image");
 gp.export("results/rayleigh-example.tex",
-	"cairolatex", "pdf colortext size 12cm,8cm");
+	"cairolatex", "pdf colourtext size 12cm,8cm");
 gp.export("results/rayleigh-example-small.tex",
-	"cairolatex", "pdf colortext size 10cm,6cm");
+	"cairolatex", "pdf colourtext size 10cm,6cm");
 clear gp;
 
 ## Beam profile
