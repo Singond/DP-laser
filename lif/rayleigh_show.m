@@ -6,6 +6,7 @@ figure(1, "name", "Example image");
 clf;
 imshow(R(1).inm, []);
 title("Rayleigh scattering example image");
+colorbar;
 
 figure(2, "name", "Overall intensity");
 clf;
