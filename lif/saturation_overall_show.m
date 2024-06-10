@@ -22,7 +22,9 @@ plot(x.E * Escale, x.lif(:), "d",
 	LL * Escale, x.fitl.f(LL),
 		"b:", "color", c, "displayname", "polynomial fit",
 	LL * Escale, x.fite.f(LL),
-		"b--", "color", c, "displayname", "general fit");
+		"b--", "color", c, "displayname", "general fit",
+	LL * Escale, x.fite.a * LL,
+		"b-.", "color", c, "displayname", "non-saturated");
 title(sprintf(...
 	"Integral LIF intensity\nfitted saturation parameter \\beta = %g \\mu{}J^{-1}",...
 	x.fite.b * 1e-6));
