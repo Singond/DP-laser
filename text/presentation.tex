@@ -14,6 +14,8 @@
 \renewcommand\dd[1]{\,\mathsf{d}#1}
 \renewcommand\dv[2]{\frac{\text{d}#1}{\text{d}#2}}
 \usepackage[version=4]{mhchem}
+\mhchemoptions{textfontcommand=\sffamily}
+\mhchemoptions{mathfontcommand=\mathsf}
 \usepackage{siunitx}
 \sisetup{
 	locale               = DE,
@@ -331,12 +333,59 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Příprava selenu}
+	\begin{columns}[c]
+	\begin{column}{1\textwidth}
+		\begin{itemize}
+			\item vzorek: roztok 10 ppb \ce{Se}
+				v~\SI[per-mode=symbol]{1}{\mol\per\litre} \ce{HCl}
+			\item reaguje s~borohydridem
+				(\SI{0.5}{\percent} \ce{BH4} v~$0,4\%$ \ce{KOH})
+				na~\ce{SeH2}
+			\item nosný plyn: argon (\SI{775}{\sccm})
+			\item přidán vodík (\SI{300}{\sccm})
+			\item atomizace ve~vodíkovém plameni
+				\begin{align*}
+					\ce{
+						H + SeH2 &-> H2 + SeH \\
+						H + SeH &-> H2 + Se
+					}
+				\end{align*}
+		\end{itemize}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Chemická aparatura}
+	\includegraphics[width=\textwidth]{img/lif-generator}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Excitační schéma}
 	\centering
 	\begin{tikzpicture}[scale=0.5]
 		\small
 		\seleniumlifgrotrian
 	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Časový vývoj}
+	\begin{columns}[c]
+	\begin{column}{0.5\textwidth}
+		\centering
+		\includegraphics[height=0.28\textheight]{../lif/results/timeev-5.0.png}
+		\includegraphics[height=0.28\textheight]{../lif/results/timeev-5.5.png}
+		\includegraphics[height=0.28\textheight]{../lif/results/timeev-6.0.png}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\centering
+		\includegraphics[height=0.28\textheight]{../lif/results/timeev-7.0.png}
+		\includegraphics[height=0.28\textheight]{../lif/results/timeev-10.0.png}
+		\includegraphics[height=0.28\textheight]{../lif/results/timeev-12.0.png}
+	\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
