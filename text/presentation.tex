@@ -60,6 +60,10 @@
 \newcommand\elfieldlaser{E^{(\mathnormal\angfreq)}}
 \newcommand\efishconst{A}
 \newcommand\itylaser{I_\text{laser}}
+\providecommand\xpos{x}
+\providecommand\ypos{y}
+\providecommand\xmm{x}
+\providecommand\ymm{h}
 
 \begin{document}
 
@@ -293,6 +297,19 @@
 		Máte pro to vysvětlení?}
 	Chyba v~textu, umístění věty je zavádějící.
 	Porovnává Rayleighův rozptyl a~vlastní záření plamene (bez laseru).
+	\small
+	\begin{columns}[t]
+	\begin{column}{0.5\textwidth}
+		\input{../lif/results/compare-flame-small}
+		\smallskip\par
+		Prostý plamen bez~laseru. Kamera bez~filtru, 10000 akumulací.
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\input{../lif/results/compare-rayleigh-small}
+		\smallskip\par
+		Rayleighův rozptyl. Kamera bez~filtru, 100 akumulací.
+	\end{column}
+	\end{columns}
 \end{frame}
 
 \appendix
@@ -309,10 +326,6 @@
 \providecommand\rayleighsignal{M_\text{R}}
 \providecommand\rayleighndens{\ndens_\text{R}}
 \providecommand\beamprofile{s}
-\providecommand\xpos{x}
-\providecommand\ypos{y}
-\providecommand\xmm{x}
-\providecommand\ymm{h}
 
 \begin{frame}
 	\frametitle{Prostorový profil svazku}

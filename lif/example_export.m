@@ -4,6 +4,9 @@ pkg load singon-plasma;
 if (!exist("lifetime", "var"))
 	lifetime_base;
 end
+if (!exist("R", "var") || !strcmp(R(1).name, "rayleigh1"))
+	rayleigh;
+end
 
 flame = load_iccd("data-2023-01-20/obr1.SPE", "nodark", "nopower");
 img_flame = mean(flame.img, 3);
@@ -54,3 +57,28 @@ gp.exec("\n\
 ");
 gp.data(img_lif);
 clear gp;
+
+gp = gnuplotter;
+gp.load("../gnuplot/style.gp");
+gp.load("gnuplot/style-lif.gp");
+gp.exec("\n\
+	set yrange [:] reverse \n\
+	set cbrange [0:8000] \n\
+	unset xtics \n\
+	unset ytics \n\
+	set cbtics 2000 \n\
+	unset key \n\
+	set colorbox horizontal bottom \n\
+");
+gp.plotmatrix(flame.img(:,:,1), "with image");
+gp.export("results/compare-flame-small.tex",
+	"cairolatex", "pdf colourtext size 5.4cm,4cm");
+gp.clearplot;
+
+gp.exec("\n\
+	set cbrange [0:2000] \n\
+	set cbtics 500 \n\
+");
+gp.plotmatrix(R(1).img(:,:,1), "with image");
+gp.export("results/compare-rayleigh-small.tex",
+	"cairolatex", "pdf colourtext size 5.4cm,4cm");
