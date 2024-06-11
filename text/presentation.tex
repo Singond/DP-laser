@@ -290,6 +290,23 @@
 		Znamená to, že energie jednotlivých pulzů nebyla stejná?
 		Jaký byl (zhruba) rozptyl energie jednotlivých pulzů vyjádřený
 		např.~jako relativní standardní odchylka?}
+	Kamera akumuluje mnoho pulzů do jednoho snímku,
+	měřiče energie zaznamenávají každý pulz.
+	\medskip
+	\begin{columns}
+	\begin{column}{0.5\textwidth}
+		\input{../lif/results/example-pwrdata-small}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		Příklad: měření excitačního profilu
+		(měřič za plamenem,
+		12550 pulzů, 251 snímků po 50 akumulacích)
+		\begin{align*}
+			\mu    &= \SI{9.173}{\micro\joule} \\
+			\sigma &= \SI{0.728}{\micro\joule} \ (\sim \SI{8}\percent)
+		\end{align*}
+	\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
