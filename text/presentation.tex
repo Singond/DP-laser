@@ -29,7 +29,11 @@
 	range-units          = single,
 	detect-all,                            % Use sans-serif
 }
-\DeclareSIUnit\arbunit{rel.~j.}
+% Silence warning about conflict of siunitx and physics
+\ExplSyntaxOn
+\msg_redirect_name:nnn {siunitx}{physics-pkg}{none}
+\ExplSyntaxOff
+
 \DeclareSIUnit\atmosphere{atm}
 
 \usepackage{graphicx}
