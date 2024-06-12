@@ -282,6 +282,33 @@
 		snímku změřeného s vypnutým laserem“:
 		Jak významná byla tato korekce a jaká byla opakovatelnost
 		velikosti této korekce?}
+	Příklad: měření excitačního profilu, nejsilnější snímek,
+	20 temných snímků
+	\begin{center}
+% 		\mbox{
+% 			\input{../lif/results/example-img-raw-small}
+% 			\parbox[t][2.7cm][c]{0.9em}{$-$}
+% 			\input{../lif/results/example-img-dark-small}
+% 			\parbox[b][2.7cm][c]{0.9em}{$=$}
+% 			\input{../lif/results/example-img-corr-small}
+% 		}
+		\setlength{\tabcolsep}{2pt}
+		\begin{tabular}{ccccc}
+			\input{../lif/results/example-img-raw-small} &
+			\parbox[b][2.7cm][c]{0.9em}{$-$} &
+			\input{../lif/results/example-img-dark-small} &
+			\parbox[b][2.7cm][c]{0.9em}{$=$} &
+			\input{../lif/results/example-img-corr-small} \\
+			$\max = 15290$ & &
+			$\mu = 956$ & &
+		\end{tabular}
+	\end{center}
+	\begin{tabular}{l l l}
+		v~jedné sérii (20 snímků): & $\mu(d) = \num{956.1}$
+			& $\sigma(d) = \num{1.0}\ (\SI{0.1}{\percent})$ \\
+		mezi sériemi (10 sérií): & $\mu(d) = \num{958.4}$
+			& $\sigma(d) = \num{3.0}\ (\SI{0.3}{\percent})$
+	\end{tabular}
 \end{frame}
 
 \begin{frame}
