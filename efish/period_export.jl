@@ -37,6 +37,7 @@ Gnuplot.save("results/period-calib.tex",
 	set yrange [-0.1:]
 	set xlabel 'intenzita elektrického pole \$\\elfield\\,[\\si{\\mega\\volt\\per\\metre}]\$'
 	set ylabel 'intenzita \$\\efish\\,[\\si{\\arbunit}]\$'
+	set label '\$\\efish(\\elfield) \\propto \\efishmult (\\elfield + \\efishshift)^2\$' center at graph 0.5,0.5
 	set key top center Left reverse samplen 2 height 1
 """
 E = LinRange(-4.7e6, 3.8e6, 100)
